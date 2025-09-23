@@ -1,0 +1,324 @@
+{
+  "total_files": 39,
+  "files": [
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 10_pages_1-6.md",
+      "rows": 464,
+      "rows_9d": 403,
+      "rows_6d": 61,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 10_pages_13-18.md",
+      "rows": 485,
+      "rows_9d": 485,
+      "rows_6d": 0,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 10_pages_19-24.md",
+      "rows": 517,
+      "rows_9d": 461,
+      "rows_6d": 56,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 10_pages_7-12.md",
+      "rows": 575,
+      "rows_9d": 379,
+      "rows_6d": 196,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 1_pages_1-25.md",
+      "rows": 0,
+      "rows_9d": 0,
+      "rows_6d": 0,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 1_pages_26-50.md",
+      "rows": 14,
+      "rows_9d": 2,
+      "rows_6d": 12,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 1_pages_51-75.md",
+      "rows": 9,
+      "rows_9d": 0,
+      "rows_6d": 9,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 1_pages_76-100.md",
+      "rows": 8,
+      "rows_9d": 1,
+      "rows_6d": 7,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 2_pages_1-25.md",
+      "rows": 4,
+      "rows_9d": 1,
+      "rows_6d": 3,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 2_pages_26-50.md",
+      "rows": 8,
+      "rows_9d": 3,
+      "rows_6d": 5,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 2_pages_51-75.md",
+      "rows": 27,
+      "rows_9d": 2,
+      "rows_6d": 25,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 2_pages_76-100.md",
+      "rows": 0,
+      "rows_9d": 0,
+      "rows_6d": 0,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 3_pages_1-25.md",
+      "rows": 1,
+      "rows_9d": 0,
+      "rows_6d": 1,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md",
+      "rows": 1,
+      "rows_9d": 0,
+      "rows_6d": 1,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 3_pages_51-75.md",
+      "rows": 37,
+      "rows_9d": 1,
+      "rows_6d": 36,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 3_pages_76-100.md",
+      "rows": 0,
+      "rows_9d": 0,
+      "rows_6d": 0,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 4_pages_1-25.md",
+      "rows": 0,
+      "rows_9d": 0,
+      "rows_6d": 0,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 4_pages_26-50.md",
+      "rows": 24,
+      "rows_9d": 0,
+      "rows_6d": 24,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md",
+      "rows": 23,
+      "rows_9d": 0,
+      "rows_6d": 23,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 4_pages_76-100.md",
+      "rows": 28,
+      "rows_9d": 2,
+      "rows_6d": 26,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 5_pages_1-25.md",
+      "rows": 1533,
+      "rows_9d": 1361,
+      "rows_6d": 172,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 5_pages_26-50.md",
+      "rows": 2056,
+      "rows_9d": 1931,
+      "rows_6d": 125,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 5_pages_51-75.md",
+      "rows": 1902,
+      "rows_9d": 1837,
+      "rows_6d": 65,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 5_pages_76-100.md",
+      "rows": 2176,
+      "rows_9d": 1988,
+      "rows_6d": 188,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 6_pages_1-25.md",
+      "rows": 1911,
+      "rows_9d": 1799,
+      "rows_6d": 112,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 6_pages_26-50.md",
+      "rows": 2102,
+      "rows_9d": 2024,
+      "rows_6d": 78,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 6_pages_51-75.md",
+      "rows": 1879,
+      "rows_9d": 1753,
+      "rows_6d": 126,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 6_pages_76-100.md",
+      "rows": 2008,
+      "rows_9d": 1831,
+      "rows_6d": 177,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 7_pages_1-25.md",
+      "rows": 1866,
+      "rows_9d": 1803,
+      "rows_6d": 63,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 7_pages_26-50.md",
+      "rows": 2112,
+      "rows_9d": 1975,
+      "rows_6d": 137,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 7_pages_76-100.md",
+      "rows": 2260,
+      "rows_9d": 2124,
+      "rows_6d": 136,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 8_pages_1-25.md",
+      "rows": 2166,
+      "rows_9d": 1977,
+      "rows_6d": 189,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 8_pages_26-50.md",
+      "rows": 2146,
+      "rows_9d": 1905,
+      "rows_6d": 241,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 8_pages_51-75.md",
+      "rows": 2097,
+      "rows_9d": 1881,
+      "rows_6d": 216,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 8_pages_76-100.md",
+      "rows": 2143,
+      "rows_9d": 1997,
+      "rows_6d": 146,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 9_pages_1-25.md",
+      "rows": 2217,
+      "rows_9d": 1909,
+      "rows_6d": 308,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 9_pages_26-50.md",
+      "rows": 2097,
+      "rows_9d": 2095,
+      "rows_6d": 2,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 9_pages_51-75.md",
+      "rows": 2014,
+      "rows_9d": 1885,
+      "rows_6d": 129,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    },
+    {
+      "file": "VMRS_HB_COMPLETE_v20 page 9_pages_76-100.md",
+      "rows": 2105,
+      "rows_9d": 1913,
+      "rows_6d": 192,
+      "invalid_9d": 0,
+      "invalid_6d": 0
+    }
+  ],
+  "totals": {
+    "rows": 41015,
+    "rows_9d": 37728,
+    "rows_6d": 3287,
+    "invalid_9d": 0,
+    "invalid_6d": 0
+  }
+}

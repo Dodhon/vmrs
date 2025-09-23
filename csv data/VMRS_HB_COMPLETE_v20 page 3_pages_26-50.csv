@@ -1,2 +1,752 @@
 code_9d,code_6d,system,subcode,description,source_file
-,000-110,000,110,110000,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-110,000,110,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-000,000,000,& Aerodynamic Devices Group,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-020,002,020,Sect Frames & Springs,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-027,002,027,Adjuster - Front Seat,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-000,001,000,Air Conditioning Heating & Ventilating,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-030,002,030,Interior Moldings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-001,001,001,Air Conditioning Assembly - Complete,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-031,002,031,Body Moldings - Exterior,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-002,001,002,Heating & Ventilating,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-032,002,032,Sidewall & Miscellaneous Trim,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-003,001,003,Auxiliary Heating and Cooling - Self-,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-033,002,033,Sheet Metal Ornamentation,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-034,002,034,Exterior Body Ornamentation,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-004,001,004,Heater and A/C - Sleeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-035,002,035,Windshield Wiper & Washer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-005,001,005,Auxiliary Fan - Defroster,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-036,002,036,Tilting Mechanism,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-006,001,006,Heater and A/C - Combination Unit.,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-037,002,037,Seats,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-038,002,038,Deflector - Non-Aerodynamic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-000,002,000,Cab & Sheet Metal,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-039,002,039,Cab Guard Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-001,002,001,Radiator Grille,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-040,002,040,Cab Entry Assists,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-002,002,002,Fenders & Mud Flaps - Front Wheel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-041,002,041,"Guard - Overhead, Operator Protection",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-003,002,003,Running Boards,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-042,002,042,Crosswalk (Deckplate) - Frame,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-004,002,004,Hood,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-044,002,044,Cab,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-005,002,005,Cowl Panels,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-045,002,045,Insulator - Engine Noise,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-006,002,006,Roof Panel & Reinforcements,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-046,002,046,Side Door - Special Application,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-007,002,007,Center Pillar & Reinforcements,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-047,002,047,Vent Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-800,002,800,Instrument Panel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-048,002,048,Upholstery Trim - Cab,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-009,002,009,Sun Visor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-050,002,050,Sleeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-010,002,010,Mirrors,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-057,002,057,Occupant Safety Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-011,002,011,Cab Accessories - Interior,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-058,002,058,Signage - Integral to Body,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-012,002,012,Floor Pan,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-059,002,059,Truck Bed,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-013,002,013,Floor Coverings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-060,002,060,Convertible Top,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-014,002,014,Panel Deadeners,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-061,002,061,Liftgate/Hatch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-015,002,015,Quarter & Deck Panels - Rear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-062,002,062,Trunk,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-016,002,016,Tailgate - Rear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-063,002,063,Back Glass Wiper and Washer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-017,002,017,Cab Or Front Door Panels,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-064,002,064,Package Iray,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-018,002,018,Cab Or Front Door Mechanism,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-065,002,065,Headlamp Wiper and Washer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-019,002,019,Side Door Panels & Ramps,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-066,002,066,Rear Body Panels and Reinforcements,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,003-000,003,000,"Instruments, Gauges, Warning &",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-021,002,021,"Panel - Rear Door, Cab",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-022,002,022,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,003-001,003,001,Gauges & Warning Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,002-023,002,023,Handles - Inner & Outer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,003-002,003,002,Speedometer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-000,015,000,Steering Wheel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-000,004,000,Deflector - Wind Roof Mounted,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-001,015,001,Steering Shaft Support,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-001,004,001,Eniring - Noco,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-002,015,002,Steering Goar,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-002,004,002,Fairing - Wind Boof Mounted,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-003,015,003,Steering Linkage,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-003,004,003,Fairing - Cab Extenders,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-004,015,004,Dower Steering Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-004,004,004,Fairing - Chassis,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-005,015,005,Control Valve (Torque Concretor) -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-005,004,005,Fairing - Sleeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-007,015,007,Control Valve - Tie Rod Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-007,004,007,Fairing - Transitional,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-010,004,010,Fairing - Belly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-010,015,010,Steering - All Steer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-011,004,011,Spoiler - Air,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-011,015,011,Steering Assembly - Transferable,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-012,004,012,Spoiler - Body,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,010-011,010,011,(Vario Pilot),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-013,004,013,Wheel Cover - Aerodynamic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-012,015,012,Steering Stability System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-014,004,014,Chassis Air Flow Management Fairing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-013,015,013,Steering Gear - Back & Pinion Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-014,015,014,Hydraulic Steering System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,004-015,004,015,Aerodynamic Splash Guard,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,015-015,015,015,Electric Lane Assist Steering,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-000,016,000,Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,010-000,010,000,Chassis Group,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-001,016,001,Independent Front Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,011-000,011,000,Axles - Front,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-002,016,002,Front Springs,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,011-001,011,001,"Axle - Non-Driven, Front",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-003,016,003,Front Shock Absorbers,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,012-000,012,000,Axles - Rear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-004,016,004,Front Stabilizer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,012-001,012,001,"Axle - Non-Driven, Rear",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-005,016,005,Suspension - Rear (Non-Air),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,012-002,012,002,"Axle - Non-Driven, Tag/Pusher",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-006,016,006,Shock Absorber - Rear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-000,013,000,Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-007,016,007,Stabilizer - Rear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-001,013,001,Front Brakes & Drums,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-800,016,800,Air Ride Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-002,013,002,Rear Brakes & Drums,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-009,016,009,Air Leaf Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-003,013,003,Parking Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-014,016,014,Liftable Air Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-004,013,004,Spring Parking Brake (Separate Or,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-015,016,015,Cab/Sleeper Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-018,016,018,Slider - Air Ride Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-005,013,005,Pedal Assembly - Service Brake,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-019,016,019,Locking Device - Ride Height,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-006,013,006,Brake Master Cylinder,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-020,016,020,Strut,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-007,013,007,Brake Lines & Fittings - Hydraulic & Air,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-021,016,021,Control Arm,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-800,013,800,Vacuum Type Power Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-022,016,022,Active Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-009,013,009,Air Compressor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,016-023,016,023,Independent Rear Suspension,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-010,013,010,Air Type Power Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-000,017,000,"Tires, Tubes, Liners & Valves",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-011,013,011,Antilock Sensor Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-001,017,001,Tire - Pneumatic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-012,013,012,Electric Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-002,017,002,Tire - Semi-Pneumatic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-013,013,013,Air Disc Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-003,017,003,Tire - Cushion,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-014,013,014,Iag/Pusher Axle Brakes,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-004,017,004,Inner Tube - Pneumatic Tire,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,013-015,013,015,Air Brake Monitoring System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-005,017,005,lire - Solid,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-006,017,006,Liner (Flap) - Pneumatic Tire,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-008,017,008,Valve Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-009,017,009,The Pressure Inflation and Monitoring,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-000,014,000,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-010,017,010,Systems,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-001,014,001,Pumpers & Attaching Ports,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-002,014,002,Engine/Electric Motor Mountings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,017-012,017,012,Balance Ring,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-003,014,003,Cab & Body Mountings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-000,018,000,Wheels Rime Hube & Rearings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-004,014,004,Battery Support,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-006,014,006,Fuel Tank Support,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-002,018,002,Drive Ayle Hubs Rearings & Seals,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-007,014,007,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-003,018,003,Wheels,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-008,014,008,Attaching Devices - Hoses Lines,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-004,018,004,Trailer Converter Tag & Pusher Ayle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-009,014,009,Sleeper Mounting,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-005,018,005,Bearings - General,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-010,014,010,Toolbox Mounting,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,018-006,018,006,Wheel End Disconnect,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-011,014,011,Quarter and Full Fenders,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-000,019,000,Automatic/Manual Chassis Lubricator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,014-012,014,012,Jackstand Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-001,019,001,Reservoir & Lines,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-002,019,002,Grease Pump - Automatic Lubricator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-002,026,002,"Reverse, Regular Countershaft Gears",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-003,019,003,Controller,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-003,026,003,Maindrive & Main Shaft Bearings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-004,019,004,Wiring - Solenoid,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-003,020,003,Retainer - Main Bearing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-004,020,004,Maindrive Gear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,019-007,019,007,Hose Tubing & Connectors,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-006,026,006,Synchronizer & Gears - Main Shaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-000,111,000,Indercarriage,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-007,020,007,Countershaft - High Bange,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-001,111,001,Track,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-008,026,008,Countershaft - Low Bange,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-002,111,002,Boller,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-009,026,009,Cover Assembly - Manual,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-000,020,000,Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-004,111,004,Tensioner,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-010,026,010,Bails Forks & Internal Shift,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-005,111,005,Sprocket,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-010,020,010,Mechanism,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-006,111,006,Shields and Guards - Undercarriage,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-011,026,011,Transmission External Control,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-007,111,007,Equalizer - Undercarriage,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-012,026,012,Transmission Assembly - Manual,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-008,111,008,Pivot Shaft Mechanism,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-013,026,013,Pump - Oil,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-009,111,009,Adjuster,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-014,026,014,Electronic Controls Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,111-010,111,010,Chain,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-000,112,000,Stabilization,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-015,026,015,Automated Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-001,112,001,Feet / Pads,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-016,026,016,Countershaft Brake,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-002,112,002,Hvdraulics - Stabilization,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-017,026,017,Range Section - Manual Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-003,112,003,Controls - Stabilization Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-000,027,000,Transmission - Automatic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-004,112,004,Supports,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-001,027,001,Case - Automatic Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-005,112,005,Locks,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-002,027,002,Converter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-006,112,006,Outrigger Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-003,027,003,Hvdraulic Retarder Rotor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,112-007,112,007,Slope Indicator Gauge,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-004,027,004,Direct Drive Clutch Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-005,027,005,High Range Clutch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-006,027,006,Forward Clutch Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,021-000,021,000,"Axles - Driven, Front Steering",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-007,027,007,Direct Clutch & Intermediate Sprag,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,021-001,021,001,Axle Assembly. Driven - Front,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-008,027,008,Intermediate Clutch & Center Support,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,021-002,021,002,"Axle Assemblies - Driven, Front",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-009,027,009,Low Range Clutch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-010,027,010,Reverse Clutch Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,021-800,021,800,Portal Assembly - Front Driven Axle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-011,027,011,Splitter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,021-009,021,009,Transaxle Assembly - Driven Front,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-012,027,012,Housing Converter (Bell Housing),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-013,027,013,Planet Carrier &/Or Output Shaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-000,022,000,"Axles - Driven, Rear",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-001,022,001,"Axle Housing, Rear",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-014,027,014,Reaction Carrier & Low Sprag,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-002,022,002,Shaft - Rear Axle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-003,022,003,Differential Carrier,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-015,027,015,"Carrier Assembly - Rear Or Low,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-004,022,004,Power Divider & Inter-Axle Differential,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-005,022,005,Axle Controls - Air Or Vacuum,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-016,027,016,First Range Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-006,022,006,Axle Controls - Electric Shift,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-017,027,017,Sun Gear & Shaft Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-007,022,007,"Axle Assembly - Driven, Rear",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-018,027,018,Reverse Range Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,022-800,022,800,Portal Assembly - Rear Driven Axle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-019,027,019,Main Shaft Assembly & Rear Internal,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,023-000,023,000,Clutch System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,023-001,023,001,"Control Assembly - Mechanical, Clutch",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-020,027,020,Bands,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,023-002,023,002,Clutch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-021,027,021,Rear Servo Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,023-003,023,003,Clutch Output Shaft - Divorced,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-022,027,022,Low Servo Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-023,027,023,Front Servo Assembly (2nd Gear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,023-004,023,004,Control Assembly - Electronic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-024,027,024,Valve Body Assembly - Main Control,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,024-000,024,000,Drive Shafts,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-025,027,025,"Solenoid Assembly - Detent, Automatic",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,024-001,024,001,Drive Shaft - Front Driving Axles,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,024-002,024,002,"Drive Shaft, Behind Main Transmission",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-026,027,026,Modulator Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,024-003,024,003,Retarder - Drive/Propeller Shaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-027,027,027,Valve Body Assembly - Stator Control,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,024-004,024,004,Chain Drive,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-028,027,028,Solenoid Assembly - Variable Pitch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,025-000,025,000,Transfer Case,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,025-001,025,001,Iranster Case Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-029,027,029,OII Pump Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,025-003,025,003,Accumulator - Iransfer Case,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-030,027,030,Rear Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,025-004,025,004,Annulus - Planetary Gear Carrier,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-031,027,031,Rear Bearing Retainer Or Case,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-000,026,000,"Iransmission - Main, Manual",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,026-001,026,001,Transmission Case,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-032,027,032,Parking Lock Or Brake & Actuator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-035,027,035,Output Drive Transfer Gearing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-005,034,005,Electrical Grounds,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-036,027,036,Oil Pan & Screen Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-006,034,006,Warning & Emergency Lighting/,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-037,027,037,Transmission Assembly - Automatic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-038,027,038,"Electronic Controls, Transmission,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-007,034,007,Signaling Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-008,034,008,Electrical Vault,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-039,027,039,Cooler - Manifold,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-000,036,000,Supplemental Information Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-040,027,040,Continuously Variable Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-001,036,001,"Collision Avoidance System - Forward,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-041,027,041,Dual Clutch Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-002,036,002,Lane Departure Warning System -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,027-042,027,042,Auxiliary Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-003,036,003,Visual Assist System - Complete,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,020-001,020,001,Case - Auxiliary Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-002,028,002,Cover - Auxiliary Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-004,036,004,Transponder,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-003,028,003,Main Drive,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-005,036,005,Power Line Carrier (PLC). Data,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-004,028,004,Main Shaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-005,028,005,Countershaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-006,036,006,Asset Tracking,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-006,028,006,Transmission - Auxiliary,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-007,036,007,On Board Computer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,028-007,028,007,Output Housing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-800,036,800,Surveillance System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-000,029,000,"Auxiliary Section - Main Transmission,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-009,036,009,Performance Monitor - Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-010,036,010,"Electronic Logging Device (ELD),",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-001,029,001,Auxiliary Section - Main Transmission,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-011,036,011,Trailer Sensor System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-002,029,002,Cover - Rear Bearing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-012,036,012,Backup Warning System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-003,029,003,Countershaft - Auxiliary Section,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-013,036,013,Adaptive Cruise Control,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-004,029,004,Synchronizer Auxiliary Section,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-014,036,014,Driver Risk Management System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-005,029,005,Main Shaft Auxiliary Section,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,036-015,036,015,Exterior Recording System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-006,029,006,Drive Gear - Auxiliary Section,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,037-000,037,000,Modules/Relays - Electrical,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,029-007,029,007,Intermediate Section Housing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,037-001,037,001,"Modules - Electrical, Multiple Use",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,101-008,101,008,Air Cylinders,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,038-000,038,000,Electric Power Management - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,121-000,121,000,Final Drive Accombly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,121-001,121,001,Tracks - Final Drive,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,030-001,030,001,High voltage Junction Box - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,038-002,038,002,Power Distribution Unit (PDU) - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,030-000,030,000,Electrical Group,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-002,000,002,Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-000,031,000,Charging System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,038-003,038,003,Voltage Converter - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-001,031,001,Generator/Alternator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-000,039,000,Electric Drive Components - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-002,031,002,Regulator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-003,031,003,Solar Panel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-001,039,001,High Voltage Battery & Cables -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-005,031,005,Battery Charger - Electrically Propelled,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-002,039,002,Powertrain Assembly - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-006,031,006,Charging Control Unit - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-003,039,003,Electric Drive Motor - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,031-007,031,007,Charging Interface - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-004,039,004,Inverter - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-000,032,000,Cranking System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,039-005,039,005,Electric Drive Motor Controls - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-001,032,001,Battery & Cables,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-002,032,002,Starter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-003,032,003,Pre-Heater,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,040-000,040,000,Engine / Motor Systems Group,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-004,032,004,Starter - Air,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-000,041,000,Air Intake System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-005,032,005,Battery Charger - On Board,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-001,041,001,Air Cleaner,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-002,041,002,Intake Manifold,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,032-007,032,007,Janition System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-003,041,003,Intercooler,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,033-001,033,001,Ignition System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-004,041,004,Ether Injector Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,033-007,033,007,Distributor - Engine Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,041-006,041,006,Throttle Body,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,033-002,033,002,Coil & Spark Plugs,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-000,042,000,Cooling System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-000,034,000,Lighting System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-001,042,001,Shutters,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-001,034,001,Head Lamps,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-002,042,002,Radiator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,034-002,034,002,"Lamps - Tail, Stop, Turn & License.",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-003,042,003,Fan - Engine Cooling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-004,042,004,Water Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-005,042,005,Water Manifold,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-006,042,006,Thermostat - Engine Cooling System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-007,042,007,Coolant Filter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-008,042,008,Coolant Pre-Heater (On Power Plant) -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-009,042,009,Coolant Pre-Heater (In Block) -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-010,042,010,Coolant Pre-Heater - Self-Contained,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,040-011,040,011,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-012,042,012,Coolant Diverter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-013,042,013,Coolant Pre-Heater - Liquid Heat,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-014,042,014,Battery Thermal Management System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,042-015,042,015,Electric Drive Cooling System - Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-000,043,000,Exhaust System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-001,043,001,Emission Controls,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-002,043,002,Exhaust Manifold,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-003,043,003,Muffler Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-004,043,004,Turbocharger Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,040-005,040,005,Exhaust Brake,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,043-007,043,007,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-000,044,000,(SCR),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-001,044,001,"Iank - Fuel, Liquid",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-002,044,002,Filters,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-003,044,003,Fuel Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-004,044,004,Injectors - Mechanical,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-005,044,005,Carburetor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-006,044,006,Governor - Gasoline Engines,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-007,044,007,Throttle Controls,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-008,044,008,Engine Shutdown,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-009,044,009,"Heater - Fuel, Non-Electrical",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-010,044,010,Converter - Propane / Natural Gas,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-011,044,011,Speed Control System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-012,044,012,Tank - Fuel Gaseous,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-014,044,014,Higectors - Electronic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,044-015,044,015,"Healer - Fuel, Electrical",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-000,045,000,Power Plant,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-001,045,001,Front Covers,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-002,045,002,Cylinder Block & Crankcase,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-003,045,003,Crankshaft,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-004,045,004,Flywheel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-005,045,005,Crankshaft - Harmonic Balancer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-006,045,006,"Connecting Rod, Piston & Rings",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-007,045,007,Cylinder Head,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-008,045,008,Camshaft - Accessory Drive & Valve,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-009,045,009,Oil Pump & Distribution System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-010,045,010,Oil Filler & Level Indicator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-011,045,011,Filter Assembly - Oil,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-012,045,012,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-013,045,013,Uli PanVentilatin a Custom,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-014,045,014,ventilating System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-015,045,015,"Retarder - Vehicle, Flywheel Type",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-016,045,016,Pre-Heater - Oil (Power Plant),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-021,045,021,Electronic Engine Controls,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,045-022,045,022,Rear Timing Housing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,046-002,046,002,"Controls - Electro-Mechanical, Electric",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,046-003,046,003,Battery - Electric Propulsion Motor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,046-004,046,004,"Controls - Electronic (Solid State),",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,047-000,047,000,Electric Propulsion MotorKit Filter - Multi System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,047-001,047,001,"Kit, Filter - Engine",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,048-000,048,000,Power Train - Electric Hybrid,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,048-001,048,001,"Power Train Assemblies - Electric,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-000,049,000,"Power Train - Hydraulic, Hybrid",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-001,049,001,"Power Train Assemblies - Hydraulic,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-002,049,002,Pump - Motor Assembly Hybrid,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-003,049,003,"Reservoir - Low Pressure, Hybrid",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-004,049,004,"Accumulator - High Pressure, Hybrid",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,049-005,049,005,Transfer Case - Hybrid,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,141-000,141,000,Hydrogen Fuel Cell,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,141-001,141,001,Fuel Cell - Hydrogen,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-000,142,000,LNG Engine Fuel System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-001,142,001,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-002,142,002,I NG Fuel Injectors,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-004,142,004,Fuel Conditioning Module,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-005,142,005,Control Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-006,142,006,Hydraulic Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-007,142,007,Diesel Fuel Pump,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-008,142,008,LNG Fuel Filter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,142-009,142,009,HOSES - LING,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-000,143,000,Electronic Controls,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-002,143,002,High Pressure Regulator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-003,143,003,Low Pressure Regulator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-004,143,004,Fuel Tank,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-005,143,005,Pressure Relief Device,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,143-006,143,006,"Fuel Lines, Fittings",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,050-000,050,000,Accessories Group,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-000,051,000,General Accessories,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-001,051,001,Tachometer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-002,051,002,Hubodometer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-003,051,003,Hourmeter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-004,051,004,Tachograph,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-005,051,005,Recorder - Fuel & Mileage,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-008,051,008,Navigation System - GPS,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-009,051,009,Fare Box,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-010,051,010,Speedograph,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-011,051,011,Information Center,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-012,051,012,Data Logger,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,054-000,054,000,Horns & Mountings & Reverse SignalAlarms,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-015,051,015,Spare Tire Tools,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,054-001,054,001,Horn & Mounting,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-016,051,016,Bicycle Rack - Rear Mounted,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,054-002,054,002,Alarm,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-000,055,000,"Cargo Handling, Restraints, & LiftSystems",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,051-019,051,019,Shrink Wrap Mounting,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-001,055,001,Platform - Power Liftgate,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-000,052,000,Electrical Accessories,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-002,055,002,Vertical Slides - Power Tailgate,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-001,052,001,Cigar Lighter,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-003,055,003,Ram - Power Tailgate,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-002,052,002,Clock,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-004,055,004,Dump Trailer Hydraulic Lift Mechanism,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-003,052,003,Radio Equipment,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-005,055,005,Conveyor - Retractable Roller,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-004,052,004,Tape Player,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-005,052,005,Transmitter - CB,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-006,055,006,"Unloaders - Electric, Containers &",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-006,052,006,CD Player,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-007,052,007,Television,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-007,055,007,Mast Assembly - Lift Truck,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-800,052,800,Refrigerator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-008,055,008,Carriage Assembly - Lift Truck,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-009,052,009,Speakers,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-009,055,009,Carriage & Lift Assembly - Lift Truck,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-010,052,010,Fan - Auxiliary,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-010,055,010,Hydraulic System - Lifts & Attachments,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-011,052,011,Auxiliary Power,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-011,055,011,Carriage Assembly Attachments,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-012,052,012,Cellular Telephone,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-012,055,012,Cargo Restraints,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-013,052,013,Intercom System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-013,055,013,Counterweight,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-014,052,014,Microwave Oven,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-014,055,014,Hydraulic Lift System Pump Motor -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-015,052,015,DVD Player,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-015,055,015,Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-017,052,017,Hostor Interior Electric,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-017,055,017,Siecore Accombly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-020,052,020,Radar Detector,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-019,055,019,Control Panel - Retractable Roller (Air),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-020,055,020,Control System - Conveyor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-022,052,022,USB Port,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-021,000,021,Retractable Roller (Air),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-023,052,023,Blu-Bay Player,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-022,055,022,Shelving and Supports,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,052-024,052,024,Computer Tablet,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-023,055,023,Wheelchair Lift,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-000,053,000,Expendable Items,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-025,055,025,Pallet Jack,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-001,053,001,Tire Chains,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-026,055,026,Hand Truck,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-002,053,002,Sander,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-027,055,027,Drum - Hand Truck,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-003,053,003,Mattress,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-028,055,028,Jack - Ground Support Equipment,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-004,053,004,Safety Equipment,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-005,053,005,Markings - Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-029,055,029,Liftgate Battery Charging System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-006,053,006,Tools & Diagnostic Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-030,055,030,Cargo,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-007,053,007,Hardware - Expendable Items,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-031,055,031,Chain - Transport Grade,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-800,053,800,Hoses & Tubings & Fittings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,055-032,055,032,Cargo Bunk,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-009,053,009,Steel Stock,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,056-000,056,000,Power Take-Off,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-010,053,010,Sanding/Grinding Supplies,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,056-001,056,001,Power Take-Off (PTO),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-011,053,011,Supplies,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,056-002,056,002,Shift,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-012,053,012,Aluminum Stock,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,056-003,056,003,Powershift PTO,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-013,053,013,Wood,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,057-000,057,000,Spare Wheel Mounting,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-014,053,014,Environmental,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,057-001,057,001,Spare Wheel Mounting Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-015,053,015,vveiding Supplies,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-000,058,000,Winch System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-001,058,001,Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,050-002,050,002,Drum and Rope - WinchBrake Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-003,058,003,Motor - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-020,053,020,Board - Compound,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-005,058,005,Transmission Gear Housing - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-021,053,021,Bear Window Defogger,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-006,058,006,Controls - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-022,053,022,Bearings - On Vehicle Position &,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-007,058,007,Structure - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-008,058,008,Pneumatics - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-023,053,023,Chain - Hardware Grade,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,058-009,058,009,Accessories - Winch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-100,053,100,Manual,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-000,059,000,Vehicle Coupling System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-998,053,998,Paint & Preservatives - Vehicle,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-001,059,001,Fifth Wheel - Lower Coupler Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,053-999,053,999,"Vehicle Fluids, Lubricants, Gases, &",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-002,059,002,Pintle Hook Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-003,059,003,Tow Hooks,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-004,059,004,Draw Bar,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-005,059,005,Coupler System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-006,059,006,Towing Hitch,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-007,059,007,Lunette Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-800,059,800,Tow Ring Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-009,059,009,Towing Shackle Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-010,059,010,Tow Bar Components,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-013,059,013,Hydraulic System - Vehicle Coupling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-014,059,014,SystemReservoir Assembly - Hydraulic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-015,059,015,"SystemPump Assembly - Hydraulic, Vane",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-016,059,016,"TypePump Assembly - Hydraulic, Gear",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-017,059,017,"Pump Assembly - Hydraulic, Rotary",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-018,059,018,"Pump Assembly - Hydraulic, Gerotor",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-019,059,019,"Pump Assembly - Hydraulic, Piston",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-020,059,020,"Pump Assembly - Hydraulic,",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-021,059,021,"Pump Assembly - Hydraulic,Reciproceting (Air-Operated)",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-022,059,022,Pump Assembly - Hydraulic Manual,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-025,059,025,"Control Valve Assembly - Hydraulic, Manual",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-026,059,026,Relief Valve Assembly - Hydraulic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-027,059,027,Check Valve Assembly - Hydraulic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-028,059,028,Flow Control Valve Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-031,059,031,"Fittings - Hydraulic System, Vehicle",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-032,059,032,Line Assembly - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-033,059,033,Cylinder Assembly - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-036,059,036,"Filtration System - Fluid, HydraulicSystem",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-037,059,037,Cooler Assembly - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-038,059,038,Articulation Hydraulics - On Boad,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-040,059,040,Combination Tag Axle/Converter Dolly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-041,059,041,Steering Hitch System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-042,059,042,3-Point Hitch - Farm/Industrial Tractor,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-043,059,043,Converter Dolly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,059-044,059,044,Electronic Sensor Coupling System -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-000,151,000,Auxiliary Power Unit (APU),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-001,151,001,Auxiliary Power Unit (APU) Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-002,151,002,Heating - APU,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-003,151,003,Cooling - APU,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-004,151,004,Support - APU,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-005,151,005,Controls - Auxiliary Power Unit (APU),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,151-006,151,006,Inverter - APU,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,152-000,152,000,Onboard Lavatory,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,152-001,152,001,Toilet Assembly - Complete,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,152-002,152,002,Sink Assembly - Complete,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,152-003,152,003,Frame/Structure - Lavatory,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-000,153,000,Stationary Generator,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-001,153,001,Stationary Generator - Complete,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-002,153,002,Alternator (AC) Assembly - Stationary,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-003,153,003,Auxiliary Receptacle - 120 Volt,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-004,153,004,Circuit Breaker,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-005,153,005,Control Panel,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-006,153,006,Enclosure,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,153-007,153,007,Battery Charger,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,154-000,154,000,Medical Devices,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,154-001,154,001,CPAP Machine - Continuous Positve,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,161-000,161,000,Sweeping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,161-001,161,001,Broom Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,161-002,161,002,Wearable Items - Sweeping Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,161-003,161,003,Hydraulic System - Sweeping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,161-004,161,004,Support - Sweeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-005,162,005,Control - Sweeping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-000,162,000,Spreader Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-002,162,002,Wearable Items - Spreading Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-003,162,003,Hydraulic System - Spreading,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-004,162,004,Support - Spreader,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,162-006,162,006,Electrical,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,163-000,163,000,Chipping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,163-001,163,001,Chipper Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,163-002,163,002,Hydraulic System - Chipping Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,163-003,163,003,Support - Chipper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,163-005,163,005,Control - Chipping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-000,164,000,Blowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-001,164,001,Blower Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-002,164,002,Wearable Items - Blowing Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-003,164,003,Hydraulic System - Blowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-004,164,004,Support - Blower,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,164-005,164,005,Control - Blowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,165-000,165,000,Vacuum Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,165-002,165,002,Wearable Items - Vacuum Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,165-003,165,003,Hydraulic System - Vacuuming,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,165-004,165,004,Support - Vacuum,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,165-005,165,005,Control - Vacuuming,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,166-000,166,000,Trenching,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,166-001,166,001,Irencher Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,166-002,166,002,Hydraulic System - Trenching,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,166-003,166,003,Support - Trencher,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,166-005,166,005,Control - Trenching,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-000,167,000,Tilling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-001,167,001,Tiller Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-002,167,002,Wearable Items - Tilling Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-003,167,003,Hydraulic System - Tilling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-004,167,004,Support - Tiller,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,167-005,167,005,Control - Tilling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-000,168,000,Mower Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-002,168,002,Wearable Items - Mowing Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-003,168,003,Hydraulic System - Mowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-004,168,004,Support - Mower,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-005,168,005,Control - Mowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,168-006,168,006,Boom Structure - Mowing,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-000,169,000,Ripping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-001,169,001,Ripper Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-002,169,002,Wearable Items - Ripping Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-025,065,025,Pressure Bypass Valve,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-003,169,003,Hydraulic System - Ripping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-026,065,026,Regulator Valve,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-004,169,004,Support - Ripper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-027,065,027,Relief Valve - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,169-005,169,005,Control - Ripping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-029,065,029,Warning Devices - Hydraulic. Sys.,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-000,063,000,Satellite Communications System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-030,065,030,"Motor - Hydraulic, Propulsion",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,060-000,060,000,Equipment Dependent Attachments,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-031,065,031,Controls - Hydraulic,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-032,065,032,"Motor - Hvdraulic, Vane",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-000,061,000,Terminal Equipment - Multi Applications,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-000,066,000,Scraping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-001,061,001,Chassis Assembly - Sweeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-001,066,001,Blade Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-002,061,002,Hopper Assembly - Sweeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-002,066,002,Wearable Items - Scraping Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-003,061,003,Blower Vacuum System - Sweeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-003,066,003,Hydraulic System - Scraping,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-004,061,004,Broom System - Main Sweeper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-004,066,004,Support - Scraper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-005,061,005,"Broom System - Side, Sweeper",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,066-005,066,005,Control - Scraper,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-006,061,006,Chassis Assembly - Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-000,067,000,Buckets,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-007,061,007,Scrub Brush - Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-001,067,001,Bucket Assembly - Bucket Equipment,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-008,061,008,Broom System - Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-002,067,002,Wearable Items - Buckets,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-009,061,009,Splash Guard System - Front and,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-003,067,003,Hydraulic System - Buckets,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-004,067,004,Support - Bucket,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-010,061,010,Wash Solution System - Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-011,061,011,Floor Squeegee System - Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-006,067,006,Cutting Edge,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,061-012,061,012,Wash Solution Becovery System -,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,067-007,067,007,Teeth,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,001-012,001,012,Scrubber,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-001,063,001,Antenna - RE System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-007,063,007,Antenna - Loran System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-007,000,007,Wearable Items - Lifting/Liploading,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-002,063,002,Transceiver - Satellite Communications,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,068-003,068,003,Hydraulic System - Lifting/Liploading,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-004,063,004,Display/Keyboard,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-003,000,003,I ploaders,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-004,000,004,Control - Lifting/Unloading,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,063-005,063,005,Load Tracking,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-005,000,005,Carriage Assembly - Lift Trucks,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-003,005,003,Communication) - Trailer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,060-007,060,007,Wearable Items - Dipping Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-000,065,000,Hydraulic Systems - Multi-Function,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,060-002,060,002,Hydraulic System - Conveyance,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,060-003,060,003,Support - Conveyance,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-007,065,007,Accumulator - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,060-004,060,004,Control - Conveyance,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-002,065,002,Cooler - Oil (Heat Exchanger),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,261-000,261,000,Baking,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-003,065,003,Cylinder - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-000,201,000,Rake Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-004,065,004,"Drive Assembly, For Motor Or Pump",VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-001,201,001,Maarable Itoms - Daking Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-005,005,005,Eiltere Strainere Screene & Heuring,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-002,201,002,Hydraulia System Daking,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-003,201,003,Support Dakar,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-007,005,007,Hoses & Fillings,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-004,201,004,Control Bake Accombly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-000,005,000,Nonifold Detany (Swivel),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,201-005,201,005,Control - nake Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-009,005,009,Marinold - Rolary (Swiver),VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-000,202,000,DreakingBreaker Accombly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-010,005,010,Meter Diston Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-001,202,001,Meanable Itema Procking Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-002,202,002,Wearable Items - Dieaking Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-012,005,012,Fump - Centinugai (Low Pressure,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-003,202,003,Aydraulic System - Breaking,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-004,202,004,Support - Breaker,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-013,065,013,Pump - Gearater Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,202-005,202,005,Control - Breaker Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-014,065,014,Pump - Gearotor Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,262-006,262,006,Pulverizer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-010,065,010,Pump - Variable Displacement Type,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,262-007,262,007,Snear,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,203-000,203,000,,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-017,065,017,Type)Decenyair Hydraulia System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,203-001,203,001,Maniner Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,203-002,203,002,Wearable items - Hammering Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,203-003,203,003,Aydraulic System - Hammering,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,065-019,065,019,Check valve Assembly Components,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,203-004,203,004,Support - Hammer,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-020,000,020,Countor Valve - Hydraulic System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-021,005,021,Counter Datance valve,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,204-000,204,000,Grapple Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,204-001,204,001,Grappie Assembly,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,204-002,204,002,Wearable items - Grappling Unit,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,000-023,000,023,River Valve - Hudroulia System,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,204-003,204,003,nyuraulic System - Grappling,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,005-024,005,024,FIIOL VAIVE - MYUTAUIIC SYSTEM,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md
+,204-004,204,004,Support - Grappier,VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md

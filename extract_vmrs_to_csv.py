@@ -12,9 +12,11 @@ OUT_DIR = os.path.join(ROOT, "csv data")
 SUMMARY_PATH = os.path.join(OUT_DIR, "validation_summary.json")
 
 RE_HTML = re.compile(r"<[^>]+>")
-# Find codes anywhere in a row (not just at the start)
+# Find codes anywhere in a text
 RE_CODE9_ANYWHERE = re.compile(r"(\d{3})\s*[- ]\s*(\d{3})\s*[- ]\s*(\d{3})")
 RE_CODE6_ANYWHERE = re.compile(r"(\d{3})\s*[- ]\s*(\d{3})")
+# Plain 3-digit cell matcher
+RE_3D = re.compile(r"^\s*(\d{3})\s*$")
 # Markdown table alignment/separator like: | --- | :---: | --- |
 RE_TABLE_SEP = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
 
@@ -75,13 +77,85 @@ def write_csv_rows(path, fieldnames, rows):
 			w.writerow(r)
 
 
-def remove_match_from_text(text: str, m: re.Match) -> str:
-	start, end = m.span()
-	clean = (text[:start] + text[end:]).strip()
-	# collapse extra spaces and separators
-	clean = re.sub(r"\s*\|\s*", " | ", clean)
-	clean = re.sub(r"\s+", " ", clean)
-	return clean.strip("| ")
+def process_row_cells(cells, source_file, seen_codes, out_rows):
+	"""Extract 1..N pairs from a table row.
+	Patterns handled per row:
+	- [9d, desc, 9d, desc, ...]
+	- [6d, desc, 6d, desc, ...]
+	- [ddd, ddd, desc, ddd, ddd, desc, ...]  # 3-cell 6d
+	- Mixed cells with code embedded in text
+	"""
+	c = 0
+	L = len(cells)
+	while c < L:
+		cell = strip_html(cells[c])
+		# Prefer explicit 3-cell 6d pattern (ddd | ddd | desc)
+		mA = RE_3D.match(cell)
+		mB = None
+		if mA and c + 1 < L:
+			mB = RE_3D.match(strip_html(cells[c + 1]))
+		if mA and mB:
+			code_6d = normalize_2group(mA.group(1), mB.group(1))
+			if ("6", code_6d) not in seen_codes:
+				desc = strip_html(cells[c + 2]) if c + 2 < L else ""
+				out_rows.append({
+					"code_9d": "",
+					"code_6d": code_6d,
+					"system": f"{int(mA.group(1)):03d}",
+					"subcode": f"{int(mB.group(1)):03d}",
+					"description": desc,
+					"source_file": source_file,
+				})
+				seen_codes.add(("6", code_6d))
+			c += 3
+			continue
+
+		# Otherwise match code embedded in the current cell
+		m9 = RE_CODE9_ANYWHERE.search(cell)
+		if m9:
+			code_9d = normalize_3group(*m9.groups())
+			if ("9", code_9d) not in seen_codes:
+				desc = strip_html(cells[c + 1]) if c + 1 < L else ""
+				# If next cell is another code, treat description as empty
+				if c + 1 < L:
+					next_cell = strip_html(cells[c + 1])
+					if RE_CODE9_ANYWHERE.search(next_cell) or RE_CODE6_ANYWHERE.search(next_cell) or RE_3D.match(next_cell):
+						desc = ""
+				out_rows.append({
+					"code_9d": code_9d,
+					"code_6d": "",
+					"system": f"{int(m9.group(1)):03d}",
+					"subcode": f"{int(m9.group(2)):03d}",
+					"description": desc,
+					"source_file": source_file,
+				})
+				seen_codes.add(("9", code_9d))
+			c += 2
+			continue
+
+		m6 = RE_CODE6_ANYWHERE.search(cell)
+		if m6:
+			code_6d = normalize_2group(*m6.groups())
+			if ("6", code_6d) not in seen_codes:
+				desc = strip_html(cells[c + 1]) if c + 1 < L else ""
+				if c + 1 < L:
+					next_cell = strip_html(cells[c + 1])
+					if RE_CODE9_ANYWHERE.search(next_cell) or RE_CODE6_ANYWHERE.search(next_cell) or RE_3D.match(next_cell):
+						desc = ""
+				out_rows.append({
+					"code_9d": "",
+					"code_6d": code_6d,
+					"system": f"{int(m6.group(1)):03d}",
+					"subcode": f"{int(m6.group(2)):03d}",
+					"description": desc,
+					"source_file": source_file,
+				})
+				seen_codes.add(("6", code_6d))
+			c += 2
+			continue
+
+		# No code in this cell; advance
+		c += 1
 
 
 def process_file(in_path: str):
@@ -116,40 +190,7 @@ def process_file(in_path: str):
 					continue
 				for r in data_rows:
 					cells = [c.strip() for c in r]
-					row_text = strip_html(" | ".join(cells))
-					# Prefer 9-digit; else 6-digit
-					m9 = RE_CODE9_ANYWHERE.search(row_text)
-					if m9:
-						code_9d = normalize_3group(*m9.groups())
-						if ("9", code_9d) not in seen_codes:
-							desc = remove_match_from_text(row_text, m9)
-							# Optionally also populate system/subcode from first two triplets
-							system = f"{int(m9.group(1)):03d}"
-							subcode = f"{int(m9.group(2)):03d}"
-							emitted.append({
-								"code_9d": code_9d,
-								"code_6d": "",
-								"system": system,
-								"subcode": subcode,
-								"description": desc,
-								"source_file": source_file,
-							})
-							seen_codes.add(("9", code_9d))
-						continue
-					m6 = RE_CODE6_ANYWHERE.search(row_text)
-					if m6:
-						code_6d = normalize_2group(*m6.groups())
-						if ("6", code_6d) not in seen_codes:
-							desc = remove_match_from_text(row_text, m6)
-							emitted.append({
-								"code_9d": "",
-								"code_6d": code_6d,
-								"system": f"{int(m6.group(1)):03d}",
-								"subcode": f"{int(m6.group(2)):03d}",
-								"description": desc,
-								"source_file": source_file,
-							})
-							seen_codes.add(("6", code_6d))
+					process_row_cells(cells, source_file, seen_codes, emitted)
 			i = j
 			continue
 		i += 1

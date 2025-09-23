@@ -1,24 +1,83 @@
 code_9d,code_6d,system,subcode,description,source_file
-,000-999,000,999,59,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-149,000,149,1099,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-199,000,199,1599,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-249,000,249,2099,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-299,000,299,2599,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-349,000,349,3099,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-399,000,399,3599,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-449,000,449,4099,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-499,000,499,4599,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,500-499,500,499,Ν | 29,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-749,000,749,Р | 59,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,500-899,500,899,Q | 79,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-114,000,114,R | 999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,500-139,500,139,S | 1199,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-164,000,164,Т | 1499,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,500-189,500,189,U | 1699,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-214,000,214,V | 1999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,500-229,500,229,W | 2199,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-254,000,254,Υ | 2399,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-599,000,599,E | 59 | S | 45000-49999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-699,000,699,F | 69 | Т | 50000-54999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-799,000,799,G | 79 | U | 55000-59999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
-,000-899,000,899,Н | 89 | V | 60000-64999,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-999,000,999,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-149,000,149,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-199,000,199,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-249,000,249,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-299,000,299,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-349,000,349,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-399,000,399,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-449,000,449,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-499,000,499,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,500-499,500,499,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-749,000,749,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,500-899,500,899,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-114,000,114,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,500-139,500,139,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-164,000,164,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,500-189,500,189,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-214,000,214,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,500-229,500,229,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-254,000,254,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-599,000,599,S,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-699,000,699,Т,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-549,000,549,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-799,000,799,U,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-899,000,899,V,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,000-649,000,649,,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,059-042,059,042,3-Point Hitch - Farm/Industrial Tractor,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,197-022,197,022,Air Lock Assembly - Chain Conveyor,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,058-009,058,009,Accessories - Winch,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,051-013,051,013,Air Pump - On Board,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,016-008,016,008,Air Ride Suspension,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,050-000,050,000,Accessories Group,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-010,013,010,Air Type Power Brakes,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,051-006,051,006,Accessory Safety Devices,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,174-036,174,036,Aisle Gate Assembly,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,049-004,049,004,"Accumulator - High Pressure, Hybrid",VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,054-002,054,002,Alarm,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,065-002,065,002,Accumulator - Hydraulic System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,153-002,153,002,Alternator (AC) Assembly - Stationary,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,025-003,025,003,Accumulator - Transfer Case,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,016-022,016,022,Active Suspension,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,053-012,053,012,Aluminum Stock,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,036-013,036,013,Adaptive Cruise Control,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,025-004,025,004,Annulus - Planetary Gear Carrier,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,192-011,192,011,Additive Mixture Pumper,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,063-002,063,002,Antenna - Loran System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,111-009,111,009,Adjuster,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,063-001,063,001,Antenna - RF System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,002-028,002,028,Adjuster - Front Seat,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,003-005,003,005,Anti-Theft,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,191-007,191,007,Aeration,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-011,013,011,Antilock Sensor Assembly,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,004-000,004,000,Aerodynamic Devices,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,464-003,464,003,Arm Assembly,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,004-015,004,015,Aerodynamic Splash Guard,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,461-000,461,000,Arrow Board,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-015,013,015,Air Brake Monitoring System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,461-001,461,001,Arrow Board Assembly,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,082-043,082,043,Air Circulation,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,174-033,174,033,Articulated Joint Assembly,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,041-001,041,001,Air Cleaner,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,059-038,059,038,Articulation Hydraulics - On Road,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-009,013,009,Air Compressor,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,036-006,036,006,Asset Tracking,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-018,013,018,Air Compressor - Electric Vehicle,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,014-008,014,008,"Attaching Devices - Hoses, Lines,",VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,361-000,361,000,Air Compressor System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,001-001,001,001,Air Conditioning Assembly - Complete,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,267-011,267,011,Auger,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,001-000,001,000,"Air Conditioning, Heating & Ventilating",VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,099-007,099,007,Automated Fuel Transfer,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,026-015,026,015,Automated Transmission,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,029-008,029,008,Air Cylinders,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,072-008,072,008,Automatic Door Opener,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,004-009,004,009,Air Deflector,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,019-000,019,000,Automatic/Manual Chassis Lubricator,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,013-013,013,013,Air Disc Brakes,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,001-005,001,005,Auxiliary Fan - Defroster,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,078-021,078,021,Air Duct - Reefer,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,001-003,001,003,Auxiliary Heating and Cooling - Self-,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,291-003,291,003,Air Eliminator Vessel,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,041-000,041,000,Air Intake System,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md
+,081-001,081,001,Auxiliary Mounted Heater,VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md

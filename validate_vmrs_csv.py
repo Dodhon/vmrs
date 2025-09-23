@@ -13,6 +13,7 @@ REPORT_PATH = os.path.join(CSV_DIR, "validation_report.json")
 RE_HTML = re.compile(r"<[^>]+>")
 RE_CODE9_ANYWHERE = re.compile(r"(\d{3})\s*[- ]\s*(\d{3})\s*[- ]\s*(\d{3})")
 RE_CODE6_ANYWHERE = re.compile(r"(\d{3})\s*[- ]\s*(\d{3})")
+RE_3D = re.compile(r"^\s*(\d{3})\s*$")
 RE_TABLE_SEP = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
 
 
@@ -76,14 +77,31 @@ def parse_md_codes(md_path: str):
                 data_start_idx = 1 if has_header_row(rows[0]) else 0
                 data_rows = rows[data_start_idx:]
                 for r in data_rows:
-                    row_text = strip_html(" | ".join(r))
-                    m9 = RE_CODE9_ANYWHERE.search(row_text)
-                    if m9:
-                        codes.add(("9", normalize_3group(*m9.groups())))
-                        continue
-                    m6 = RE_CODE6_ANYWHERE.search(row_text)
-                    if m6:
-                        codes.add(("6", normalize_2group(*m6.groups())))
+                    cells = [strip_html(c) for c in r]
+                    # scan multi-pair patterns per row
+                    c = 0
+                    L = len(cells)
+                    while c < L:
+                        a = cells[c]
+                        mA = RE_3D.match(a)
+                        mB = None
+                        if mA and c + 1 < L:
+                            mB = RE_3D.match(cells[c + 1])
+                        if mA and mB:
+                            codes.add(("6", normalize_2group(mA.group(1), mB.group(1))))
+                            c += 3
+                            continue
+                        m9 = RE_CODE9_ANYWHERE.search(a)
+                        if m9:
+                            codes.add(("9", normalize_3group(*m9.groups())))
+                            c += 2
+                            continue
+                        m6 = RE_CODE6_ANYWHERE.search(a)
+                        if m6:
+                            codes.add(("6", normalize_2group(*m6.groups())))
+                            c += 2
+                            continue
+                        c += 1
             i = j
             continue
         i += 1

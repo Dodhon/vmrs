@@ -3,65 +3,65 @@
   "files": [
     {
       "file": "VMRS_HB_COMPLETE_v20 page 10_pages_1-6.md",
-      "rows": 464,
-      "rows_9d": 403,
-      "rows_6d": 61,
+      "rows": 701,
+      "rows_9d": 628,
+      "rows_6d": 73,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 10_pages_13-18.md",
-      "rows": 485,
-      "rows_9d": 485,
-      "rows_6d": 0,
+      "rows": 737,
+      "rows_9d": 736,
+      "rows_6d": 1,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 10_pages_19-24.md",
-      "rows": 517,
-      "rows_9d": 461,
-      "rows_6d": 56,
+      "rows": 823,
+      "rows_9d": 764,
+      "rows_6d": 59,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 10_pages_7-12.md",
-      "rows": 575,
-      "rows_9d": 379,
-      "rows_6d": 196,
+      "rows": 729,
+      "rows_9d": 521,
+      "rows_6d": 208,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 1_pages_1-25.md",
-      "rows": 0,
+      "rows": 4,
       "rows_9d": 0,
-      "rows_6d": 0,
+      "rows_6d": 4,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 1_pages_26-50.md",
-      "rows": 14,
+      "rows": 49,
       "rows_9d": 2,
-      "rows_6d": 12,
+      "rows_6d": 47,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 1_pages_51-75.md",
-      "rows": 9,
+      "rows": 13,
       "rows_9d": 0,
-      "rows_6d": 9,
+      "rows_6d": 13,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 1_pages_76-100.md",
-      "rows": 8,
+      "rows": 17,
       "rows_9d": 1,
-      "rows_6d": 7,
+      "rows_6d": 16,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
@@ -75,17 +75,17 @@
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 2_pages_26-50.md",
-      "rows": 8,
+      "rows": 14,
       "rows_9d": 3,
-      "rows_6d": 5,
+      "rows_6d": 11,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 2_pages_51-75.md",
-      "rows": 27,
+      "rows": 29,
       "rows_9d": 2,
-      "rows_6d": 25,
+      "rows_6d": 27,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
@@ -107,17 +107,17 @@
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 3_pages_26-50.md",
-      "rows": 1,
+      "rows": 751,
       "rows_9d": 0,
-      "rows_6d": 1,
+      "rows_6d": 751,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 3_pages_51-75.md",
-      "rows": 37,
+      "rows": 566,
       "rows_9d": 1,
-      "rows_6d": 36,
+      "rows_6d": 565,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
@@ -147,177 +147,177 @@
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 4_pages_51-75.md",
-      "rows": 23,
+      "rows": 82,
       "rows_9d": 0,
-      "rows_6d": 23,
+      "rows_6d": 82,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 4_pages_76-100.md",
-      "rows": 28,
+      "rows": 1535,
       "rows_9d": 2,
-      "rows_6d": 26,
+      "rows_6d": 1533,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 5_pages_1-25.md",
-      "rows": 1533,
-      "rows_9d": 1361,
-      "rows_6d": 172,
+      "rows": 2822,
+      "rows_9d": 2160,
+      "rows_6d": 662,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 5_pages_26-50.md",
-      "rows": 2056,
-      "rows_9d": 1931,
-      "rows_6d": 125,
+      "rows": 3363,
+      "rows_9d": 3177,
+      "rows_6d": 186,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 5_pages_51-75.md",
-      "rows": 1902,
-      "rows_9d": 1837,
-      "rows_6d": 65,
+      "rows": 3267,
+      "rows_9d": 3194,
+      "rows_6d": 73,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 5_pages_76-100.md",
-      "rows": 2176,
-      "rows_9d": 1988,
-      "rows_6d": 188,
+      "rows": 3377,
+      "rows_9d": 3135,
+      "rows_6d": 242,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 6_pages_1-25.md",
-      "rows": 1911,
-      "rows_9d": 1799,
-      "rows_6d": 112,
+      "rows": 3029,
+      "rows_9d": 2872,
+      "rows_6d": 157,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 6_pages_26-50.md",
-      "rows": 2102,
-      "rows_9d": 2024,
-      "rows_6d": 78,
+      "rows": 3303,
+      "rows_9d": 3181,
+      "rows_6d": 122,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 6_pages_51-75.md",
-      "rows": 1879,
-      "rows_9d": 1753,
-      "rows_6d": 126,
+      "rows": 3219,
+      "rows_9d": 3075,
+      "rows_6d": 144,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 6_pages_76-100.md",
-      "rows": 2008,
-      "rows_9d": 1831,
-      "rows_6d": 177,
+      "rows": 3319,
+      "rows_9d": 3126,
+      "rows_6d": 193,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 7_pages_1-25.md",
-      "rows": 1866,
-      "rows_9d": 1803,
-      "rows_6d": 63,
+      "rows": 3289,
+      "rows_9d": 3210,
+      "rows_6d": 79,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 7_pages_26-50.md",
-      "rows": 2112,
-      "rows_9d": 1975,
-      "rows_6d": 137,
+      "rows": 3247,
+      "rows_9d": 3100,
+      "rows_6d": 147,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 7_pages_76-100.md",
-      "rows": 2260,
-      "rows_9d": 2124,
-      "rows_6d": 136,
+      "rows": 3187,
+      "rows_9d": 3038,
+      "rows_6d": 149,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 8_pages_1-25.md",
-      "rows": 2166,
-      "rows_9d": 1977,
-      "rows_6d": 189,
+      "rows": 3080,
+      "rows_9d": 2887,
+      "rows_6d": 193,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 8_pages_26-50.md",
-      "rows": 2146,
-      "rows_9d": 1905,
-      "rows_6d": 241,
+      "rows": 3262,
+      "rows_9d": 3014,
+      "rows_6d": 248,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 8_pages_51-75.md",
-      "rows": 2097,
-      "rows_9d": 1881,
-      "rows_6d": 216,
+      "rows": 3231,
+      "rows_9d": 3007,
+      "rows_6d": 224,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 8_pages_76-100.md",
-      "rows": 2143,
-      "rows_9d": 1997,
-      "rows_6d": 146,
+      "rows": 3056,
+      "rows_9d": 2899,
+      "rows_6d": 157,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 9_pages_1-25.md",
-      "rows": 2217,
-      "rows_9d": 1909,
-      "rows_6d": 308,
+      "rows": 3193,
+      "rows_9d": 2882,
+      "rows_6d": 311,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 9_pages_26-50.md",
-      "rows": 2097,
-      "rows_9d": 2095,
-      "rows_6d": 2,
+      "rows": 3167,
+      "rows_9d": 3159,
+      "rows_6d": 8,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 9_pages_51-75.md",
-      "rows": 2014,
-      "rows_9d": 1885,
-      "rows_6d": 129,
+      "rows": 3158,
+      "rows_9d": 3018,
+      "rows_6d": 140,
       "invalid_9d": 0,
       "invalid_6d": 0
     },
     {
       "file": "VMRS_HB_COMPLETE_v20 page 9_pages_76-100.md",
-      "rows": 2105,
-      "rows_9d": 1913,
-      "rows_6d": 192,
+      "rows": 3081,
+      "rows_9d": 2855,
+      "rows_6d": 226,
       "invalid_9d": 0,
       "invalid_6d": 0
     }
   ],
   "totals": {
-    "rows": 41015,
-    "rows_9d": 37728,
-    "rows_6d": 3287,
+    "rows": 66729,
+    "rows_9d": 59650,
+    "rows_6d": 7079,
     "invalid_9d": 0,
     "invalid_6d": 0
   }

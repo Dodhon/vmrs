@@ -1,0 +1,40 @@
+VMRS DATA - QUICK STATISTICS
+=============================
+
+TOTAL RECORDS: 66,729
+
+CODE DISTRIBUTION:
+  9-digit codes (XXX-XXX-XXX): 59,650 (89.4%)
+  6-digit codes (XXX-XXX):      7,079 (10.6%)
+  
+HIERARCHY:
+  Total Systems:                289
+  Avg Subcodes/System:          13.2
+  Total System-Subcode pairs:   2,035
+  Avg Components/Subcode:       17.6
+
+DATA QUALITY:
+  Empty descriptions:           3,254 (4.9%)
+  OCR errors found:             Yes (various typos)
+  
+TOP 5 SYSTEMS:
+  002: 8,517 records (12.8%)
+  013: 2,927 records (4.4%)
+  174: 2,794 records (4.2%)
+  082: 2,336 records (3.5%)
+  053: 2,320 records (3.5%)
+
+STRUCTURE VALIDATION:
+  First segment matches system:   100%
+  Second segment matches subcode: 100%
+  Both 9d and 6d codes:           0%
+
+CODE PATTERNS:
+  Reserved XXX-XXX-000:          3,094 occurrences
+  Reserved XXX-XXX-999:          1 occurrence
+  Code range:                    000-000-000 to 999-999-999
+
+SOURCE FILES:
+  Total unique files:            36
+  Avg records/file:              ~1,853
+

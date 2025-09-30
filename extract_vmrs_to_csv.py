@@ -78,18 +78,46 @@ def write_csv_rows(path, fieldnames, rows):
 
 
 def process_row_cells(cells, source_file, seen_codes, out_rows):
-	"""Extract 1..N pairs from a table row.
-	Patterns handled per row:
-	- [9d, desc, 9d, desc, ...]
-	- [6d, desc, 6d, desc, ...]
-	- [ddd, ddd, desc, ddd, ddd, desc, ...]  # 3-cell 6d
-	- Mixed cells with code embedded in text
+	"""Extract all code-description pairs from a table row.
+	Handles multi-column layouts where rows contain multiple horizontal pairs.
 	"""
+	L = len(cells)
+	
+	# Detect and split multi-column layouts
+	if L == 6:
+		# Check if this is two 3-column groups: [sys, assy, desc, sys, assy, desc]
+		if RE_3D.match(strip_html(cells[0])) and RE_3D.match(strip_html(cells[1])) and \
+		   RE_3D.match(strip_html(cells[3])) and RE_3D.match(strip_html(cells[4])):
+			process_single_group([cells[0], cells[1], cells[2]], source_file, seen_codes, out_rows)
+			process_single_group([cells[3], cells[4], cells[5]], source_file, seen_codes, out_rows)
+			return
+	
+	if L >= 4 and L % 2 == 0:
+		# Check if this is pairs of [code, desc, code, desc, ...]
+		all_even_are_codes = all(
+			RE_CODE9_ANYWHERE.search(strip_html(cells[i])) or 
+			RE_CODE6_ANYWHERE.search(strip_html(cells[i])) or 
+			RE_3D.match(strip_html(cells[i]))
+			for i in range(0, min(L, 4), 2) if i < L
+		)
+		if all_even_are_codes:
+			for i in range(0, L, 2):
+				if i + 1 < L:
+					process_single_group([cells[i], cells[i+1]], source_file, seen_codes, out_rows)
+			return
+	
+	# Fallback: process sequentially
+	process_single_group(cells, source_file, seen_codes, out_rows)
+
+
+def process_single_group(cells, source_file, seen_codes, out_rows):
+	"""Process a single code-description group sequentially."""
 	c = 0
 	L = len(cells)
 	while c < L:
 		cell = strip_html(cells[c])
-		# Prefer explicit 3-cell 6d pattern (ddd | ddd | desc)
+		
+		# Check for 3-cell pattern: ddd | ddd | desc
 		mA = RE_3D.match(cell)
 		mB = None
 		if mA and c + 1 < L:
@@ -110,13 +138,12 @@ def process_row_cells(cells, source_file, seen_codes, out_rows):
 			c += 3
 			continue
 
-		# Otherwise match code embedded in the current cell
+		# Check for 9-digit code
 		m9 = RE_CODE9_ANYWHERE.search(cell)
 		if m9:
 			code_9d = normalize_3group(*m9.groups())
 			if ("9", code_9d) not in seen_codes:
 				desc = strip_html(cells[c + 1]) if c + 1 < L else ""
-				# If next cell is another code, treat description as empty
 				if c + 1 < L:
 					next_cell = strip_html(cells[c + 1])
 					if RE_CODE9_ANYWHERE.search(next_cell) or RE_CODE6_ANYWHERE.search(next_cell) or RE_3D.match(next_cell):
@@ -130,9 +157,10 @@ def process_row_cells(cells, source_file, seen_codes, out_rows):
 					"source_file": source_file,
 				})
 				seen_codes.add(("9", code_9d))
-			c += 2
+			c += 2 if c + 1 < L else 1
 			continue
 
+		# Check for 6-digit code
 		m6 = RE_CODE6_ANYWHERE.search(cell)
 		if m6:
 			code_6d = normalize_2group(*m6.groups())
@@ -151,10 +179,10 @@ def process_row_cells(cells, source_file, seen_codes, out_rows):
 					"source_file": source_file,
 				})
 				seen_codes.add(("6", code_6d))
-			c += 2
+			c += 2 if c + 1 < L else 1
 			continue
 
-		# No code in this cell; advance
+		# No code found, advance
 		c += 1
 
 

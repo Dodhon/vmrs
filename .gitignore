@@ -14,7 +14,7 @@ venv/
 ENV/
 *.egg-info/
 .pytest_cache/
-
+.env
 # Jupyter Notebook
 .ipynb_checkpoints
 

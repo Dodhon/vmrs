@@ -1,0 +1,793 @@
+vendor_part,vendor_manufacturer,vendor_description,vmrs_code,vmrs_description,vmrs_system,confidence_score,match_reasoning,match_rank
+03-37679-000,FREIGHTLINER,"HOUSING, FILTER, AIR, COMPLETE",,,,NO_MATCH,Housing is a sub-component; no direct VMRS code for complete housing assembly,
+03-42776-010,FREIGHTLINER,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Direct semantic match: air filter for engine,1.0
+03-43845-000,FREIGHTLINER,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Perfect match: fuel filter with water separator function,1.0
+04236-U2020-71,TOYOTA,"FILTER, FUEL, LPG",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,"Fuel filter match, but LPG specification not captured in VMRS",1.0
+04901-20570-71,TOYOTA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Direct match: engine oil filter, full flow type",1.0
+77145,CROWN,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,"Direct match: hydraulic oil filter, complete assembly",1.0
+85360,"PACCAR, INC.","FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,Direct match: DEF (Diesel Exhaust Fluid) filter,1.0
+100416,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for refrigeration unit (Thermo King = Reefer),1.0
+100449,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for refrigeration unit (Thermo King = Reefer),1.0
+1005302,TENNANT,"FILTER, WATER, WASH SOLUTION",061-012-011,"Element - Air Filter, Wash Solution Recovery",61.0,MEDIUM,"Partial match: wash solution context matches, but air filter vs water filter mismatch",1.0
+100579,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+100580,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+100583,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+100604,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+100634,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+10-11-9300B,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Perfect match: Air engine filter for reefer unit,1.0
+1021579,TENNANT,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Direct match: hydraulic oil filter,1.0
+1027290,TENNANT,"FILTER, SOLUTION, .020 MESH",,,,NO_MATCH,"Specific mesh screen, no direct VMRS code for mesh specifications",
+10-417,THERMO KING,"FILTER, KIT, ENGINE, PM",082-041-005,"Filter Kit - Engine PM, Reefer",82.0,HIGH,Perfect match: Engine PM kit for reefer,1.0
+1045900,TENNANT,"FILTER, CANNISTER, DUST",061-002-004,"Filter - Hopper Assembly, Sweeper",61.0,MEDIUM,"Dust collection for sweeper, likely hopper filter",1.0
+10-473,THERMO KING,"FILTER, KIT, ENGINE, PM",151-001-002,"Filter - Air, APU",151.0,MEDIUM,"Vendor system 151 (APU) but filter kit, closest match is APU filter",1.0
+107423,JOHN DEERE LTD.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Direct match: engine oil filter,1.0
+107794,"BENDIX CORP, THE","CARTRIDGE, AIR DRYER",013-010-052,Air Filter & Drier Assembly W/Drain & Check,13.0,HIGH,Air brake system air dryer filter cartridge,1.0
+107796,"BENDIX CORP, THE","CARTRIDGE, AIR DRYER",013-010-052,Air Filter & Drier Assembly W/Drain & Check,13.0,HIGH,Air brake system air dryer filter cartridge,1.0
+109493,"BENDIX CORP, THE","CARTRIDGE, AIR DRYER",013-010-052,Air Filter & Drier Assembly W/Drain & Check,13.0,HIGH,Air brake system air dryer filter cartridge,1.0
+11013-1290,KAWASAKI,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Direct match: engine air filter,1.0
+1982-11-01 00:00:00,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Perfect match: oil filter for reefer engine,1.0
+119059,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Perfect match: air filter for reefer engine,1.0
+1998-11-01 00:00:00,THERMO KING,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Perfect match: secondary fuel filter,1.0
+119299,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Perfect match: air filter for reefer engine,1.0
+119300,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Air filter for reefer engine,1.0
+119321,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Oil filter for reefer engine,1.0
+119341,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119342,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119955,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Air filter for reefer engine,1.0
+119956,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Air filter for reefer engine,1.0
+119959,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Oil filter for reefer engine,1.0
+119960,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Oil filter for reefer engine,1.0
+119961,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Oil filter for reefer engine,1.0
+119965,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119966,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119967,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119969,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+119970,THERMO KING,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+1205428,TENNANT,"FILTER, SCREEN 080 MESH INLINE",,,,NO_MATCH,No clear pattern match found,
+120967,THERMO KING,"HOUSING, FILTER, AIR",,,,NO_MATCH,No clear pattern match found,
+124350,CROWN,"FILTER, OIL, HYDRAULIC, RETURN",055-010-150,Filter Assembly Return Line,55.0,HIGH,Hydraulic return line filter,1.0
+12691158,GENERAL MOTORS CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+12693541,GENERAL MOTORS CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+12731742,GMC TRUCK DIVISION,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+12737086,GENERAL MOTORS CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+12-967,THERMO KING,"FILTER, ASSEMBLY, AIR",,,,NO_MATCH,No clear pattern match found,
+130820,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Air filter for reefer engine,1.0
+13172,ROBINAIR DIVISION,"FILTER, OIL, A/C RECOVERY, KIT",,,,NO_MATCH,A/C recovery filter not in standard VMRS,
+14-00209-00,CARRIER CORP,"FILTER, DRIER, LIQUID LINE",082-010-001,Filter - Drier,82.0,HIGH,Liquid line filter drier,1.0
+141132,CROWN,"FILTER, HYDRAULIC, RETURN",,,,NO_MATCH,No clear pattern match found,
+14-17927-000,FREIGHTLINER,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering oil filter,1.0
+142110,CROWN,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+142115,CROWN,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+144925,CROWN,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+15102546,GENERAL MOTORS CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+15208-65FOE,NISSAN,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+152128,CROWN,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+153555,CROWN,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+15400-PLM-A02,HONDA MTR AMERICA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+15601-76004-71,TOYOTA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+15601-76008-71,TOYOTA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+15613-EV140,HINO MOTORS LTD.,"FILTER, CRANKCASE, VENTILATION",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+15942429,GENERAL MOTORS CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+15950,NAPA,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+15966,NAPA,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+15P,PARKER-HANNIFIN,"FILTER, ASSY, HIGH PRESSURE",,,,NO_MATCH,"Generic high pressure filter, needs more specificity",
+1655115PE,"PACCAR, INC.","FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+1707194,HYSTER CO.,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+1718534PE,"PACCAR, INC.","FILTER, OIL, ENGINE, KIT",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,"Engine oil filter, full flow",1.0
+1756,NAPA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+17587,NAPA,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+1780178100,HINO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+1817849C3,NAVISTAR,"GASKET, HOUSING, FILTER, OIL",,,,NO_MATCH,No clear pattern match found,
+18566,NAPA,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+19259309,GENERAL MOTORS CORP,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+19433934,GENERAL MOTORS CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+1R-0716,CATERPILLAR TRACTOR,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+1R-0749,CATERPILLAR TRACTOR,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Secondary fuel filter,1.0
+1R-0750,CATERPILLAR TRACTOR,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Secondary fuel filter,1.0
+1R-1808,CATERPILLAR TRACTOR,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+200095,NAPA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+200337,NAPA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+200697,NAPA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+20580233,VOLVO,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+21715813,VOLVO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+22759203,GENERAL MOTORS CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+2277129PE,"PACCAR, INC.","FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+22845992,GENERAL MOTORS CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+22909882,GENERAL MOTORS CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+2299013PE,"PACCAR, INC.","FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+23044511,VOLVO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+23300-UB010,TOYOTA,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+2330478380,HINO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+23304EV360,HINO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+23381562,VOLVO,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+23521528,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+24009059,VOLVO,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+24137737,VOLVO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+24210956,GENERAL MOTORS CORP,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+24211,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+24236517,GENERAL MOTORS CORP,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+24236931,GENERAL MOTORS CORP,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+24283117,VOLVO,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+24419,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+2510993C2,NAVISTAR,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+2515573C1,NAVISTAR,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+2517298C1,NAVISTAR,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+2517315C91,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+2517331C91,NAVISTAR,"MODULE, PARTICULATE FILTER",,,,NO_MATCH,"No pattern match for: MODULE, PARTICULATE FILTER",
+2518086C1,NAVISTAR,"FILTER, SCREEN, DEF SENSOR",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+2522414C91,NAVISTAR,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+2522821C1,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+2522822C1,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+2522824C1,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+2523522C91,NAVISTAR,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+2523635C91,NAVISTAR,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+2523636C91,NAVISTAR,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+25-26170-00,CARRIER CORP,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+25-38666-16,CARRIER CORP,"FILTER, FUEL, BRASS SCREEN",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+2602211C1,NAVISTAR,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+2604318C91,NAVISTAR,"FILTER, FUEL, KIT",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+2606467C92,NAVISTAR,"FILTER, OIL, CENTRIFUGE KIT",,,,NO_MATCH,"No pattern match for: FILTER, OIL, CENTRIFUGE KIT",
+26-1689,AUTOCAR,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+270-180-01-09,MERCEDES-BENZ OF NA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+28181-2,AUTOCAR,"FILTER, DEF, KIT",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+283102-01,MAXON,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+290034,MAXON,"FILTER, PUMP, INLET",,,,NO_MATCH,"No pattern match for: FILTER, PUMP, INLET",
+29539579,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+29542824,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+29558293,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+29558328,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+29558329,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+29558331,ALLISON TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+297569,MAXON,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+297573,MAXON,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+2I8660,MITSUBISHI,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+2L2Z-9155-AB,FORD MOTOR CO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+2L2Z-9601-AC,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+30-00323-00,CARRIER CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+30-00430-23,CARRIER CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+30-00450-00,CARRIER CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+30-00463-00,CARRIER CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+30-00471-20,CARRIER CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+30-01077-01,CARRIER CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+30-01090-04,CARRIER CORP,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+30-01090-05,CARRIER CORP,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+3004473C93,NAVISTAR,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+30-50373-00SV,CARRIER CORP,"FILTER, KIT, ENGINE, PM",047-001-000,Kit Filter - Engine,47.0,MEDIUM,Engine filter kit,1.0
+30-50374-00SV,CARRIER CORP,"FILTER, KIT, ENGINE, PM",047-001-000,Kit Filter - Engine,47.0,MEDIUM,Engine filter kit,1.0
+30A4000103,MITSUBISHI,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+31103-00,MERITOR N.A.,"FILTER, INLINE, TIRE INFLATION",,,,NO_MATCH,"No pattern match for: FILTER, INLINE, TIRE INFLATION",
+32670-12620-71,TOYOTA,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+3321143,POWERBOSS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+3322572,POWERBOSS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+3336584,POWERBOSS,"FILTER, FUEL, LPG",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+3342201,POWERBOSS,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+3344840,POWERBOSS,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+33837,MICROGARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+34724,ROBINAIR DIVISION,"FILTER, REFRIGERANT, DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+3604,NAPA,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+3670134C1,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+3672,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+369746,TENNANT,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+371972,TENNANT,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+3839141C1,NAVISTAR,"FILTER, CABIN, AIR",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+3839326C1,NAVISTAR,"FILTER, AIR, CABIN, RECIRC",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+386326,TENNANT,"FILTER, DUST, FAN, VACUUM",,,,NO_MATCH,"No pattern match for: FILTER, DUST, FAN, VACUUM",
+3905161S,FLEETGUARD,"GAUGE, RESTRICTION, FILTER",,,,NO_MATCH,"No pattern match for: GAUGE, RESTRICTION, FILTER",
+3937557S,FLEETGUARD,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+393982,TENNANT,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+398279,TENNANT,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+3C3Z-6731-AA,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+3C3Z-9N184-CB,FORD MOTOR CO,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+4000258,HYSTER CO.,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+4020588,HYSTER CO.,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+4043517C1,NAVISTAR,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+4070948C1,NAVISTAR,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4071HP,MICROGARD,"FILTER, CABIN, AIR",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4079,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4080114C2,NAVISTAR,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+4090340,HYSTER CO.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+4093,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4107,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4107HP,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4110,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4123,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+4132,MICROGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+420438-1,TICO TRACTORS,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+4304827,FULLER TRANSMISSION,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+4324209232,ZF WABCO,"CARTRIDGE, AIR DRYER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+4329012482,ZF WABCO,"CARTRIDGE, AIR DRYER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+4478300100,MERCEDES-BENZ OF NA,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+46646,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+46916,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+49017,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+49019-0032,KAWASAKI,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+49022,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+49064,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+4920476,CUMMINS ENGINE CO,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant/water filter,1.0
+49225,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+4C2Z-9N184-BA,FORD MOTOR CO,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+5008414,"BENDIX CORP, THE","CARTRIDGE, AIR DRYER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+51551,WIX CORP,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+518217,CARQUEST,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+5303604,CUMMINS ENGINE CO,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+5363390,CUMMINS ENGINE CO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+5507120,THERMO KING,"FILTER, AIR, ENGINE",082-041-017,"Filter - Air, Engine, Reefer",82.0,HIGH,Air filter for reefer engine,1.0
+552119,NAPA,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+5579176,CUMMINS ENGINE CO,"FILTER, DEF, KIT",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+56510581,NILFISK,"FILTER, SOLUTION, KIT",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+5679573,CUMMINS ENGINE CO,"FILTER, CRANKCASE, VENTILATION",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+57082,WIX CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+5C3Z-9601-AB,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+5S013817,"PACCAR, INC.","FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+5Z768,SOLBERG,"FILTER, AIR, COKE PUMP",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+610600,THERMO KING,"FILTER, DRIER, REFRIGERANT",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+667800,THERMO KING,"FILTER, OIL, ENGINE",082-041-006,"Filter - Oil, Reefer",82.0,HIGH,Oil filter for reefer engine,1.0
+67501-12900-71,TOYOTA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+67502-23000-71,TOYOTA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+67502-23320-71,TOYOTA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+67502-U2230-71,TOYOTA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+6C2Z-9601-C,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+7-24-04085,NILFISK,"FILTER, AIR, OUTER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+7-24-04086,NILFISK,"FILTER, AIR, INNER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+78677270,VOLVO,"FILTER, PUMP, SCREENWASH",,,,NO_MATCH,"No pattern match for: FILTER, PUMP, SCREENWASH",
+7C3Z-9601-C,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+82269261,VOLVO,"FILTER, FILLER NECK, DEF",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+84000015,GENERAL MOTORS CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+84373974,GENERAL MOTORS CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+844179,BRIGGS & STRATTON,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+845090,BRIGGS & STRATTON,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+85249,CARQUEST,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+87904M,NELSON MFG,"FILTER, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+88970273,GENERAL MOTORS CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+8C3Z-7A098-D,FORD MOTOR CO,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+90022187,OTTAWA TRUCKS NA,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+90033647,OTTAWA TRUCKS NA,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+90035364,OTTAWA TRUCKS NA,"FILTER, AIR, ENGINE, SECONDARY",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+90035365,OTTAWA TRUCKS NA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+90036438,OTTAWA TRUCKS NA,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+90036439,OTTAWA TRUCKS NA,"FILTER, AIR, RECIRCULATION",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+90037519,OTTAWA TRUCKS NA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+9007380,TENNANT,"FILTER, FUEL, PRIMARY, LPG",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+9017,NAPA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+9087,NAPA,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+90915-YZZD1,TOYOTA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+91H2100240,MITSUBISHI,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+9T1Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+A0000-00063,MITSUBISHI,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+A000003458,MITSUBISHI,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+A0000901351,MERCEDES-BENZ OF NA,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A0000901551,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A0000904851,DETROIT DIESEL CORP,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+A0000905051,DETROIT DIESEL CORP,"FILTER, FUEL/WATER SEPERATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+A0000905151,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A0000905251,DETROIT DIESEL CORP,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+A0001400594,DETROIT DIESEL CORP,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+A0001420289,MERCEDES-BENZ OF NA,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+A0001421089,MERCEDES-BENZ OF NA,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+A0001802909,MERCEDES-BENZ OF NA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+A0004700892,DETROIT DIESEL CORP,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+A04-27207-000,FREIGHTLINER,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+A4700903151,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A4710900955,FREIGHTLINER,"FILTER, 3-2 CONVERSION, FUEL",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+A4711800209,DETROIT DIESEL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+A4720921705,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A4722030355,DETROIT DIESEL CORP,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant/water filter,1.0
+A4731800409,MERCEDES-BENZ OF NA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+A4731800909,MERCEDES-BENZ OF NA,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+A5410900151,MERCEDES-BENZ OF NA,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A9061800209,DETROIT DIESEL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+A9061810086,DETROIT DIESEL CORP,"FILTER, OIL, CENTRIFUGE KIT",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+A9360900651,DETROIT DIESEL CORP,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+A9361807410,DETROIT DIESEL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+AA5Z-6714-A,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+AA5Z-6714-B,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+AD27747,FLEETGUARD,"CARTRIDGE, AIR DRYER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+AD27750,FLEETGUARD,"CARTRIDGE, AIR DRYER",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+AD56413195,NILFISK,"FILTER, AIR, VACUUM",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+AF24302,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF24305,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25033,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25119,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25133,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25139M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25248,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25306,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25337M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25423,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25550,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25551,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25572,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25590,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25636,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25684,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25700,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25707,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25732,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25757,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF25854,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26103,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26152,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26154,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26163M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26193,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26203,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26235,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26268,FLEETGUARD,"FILTER, AIR, ENGINE, SECONDARY",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26324,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26328M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26363,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26375,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26405,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26424,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26427,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26429,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26430,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26449,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26450,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26459,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26462,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF26472M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF26657,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27684,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27687,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27688,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27693,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27706,FLEETGUARD,"FILTER, AIR, ENGINE, SECONDARY",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27823,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27882,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27910,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF27958,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF4135,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4195,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4219,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4222,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4263,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4283,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4284,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4286,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4331,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4339,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4343,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4344,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF435KM,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4739,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF4878,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55005,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55014,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55021,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55308,FLEETGUARD,"FILTER, AIR, ENGINE, SECONDARY",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55309,FLEETGUARD,"FILTER, AIR, ENGINE, SECONDARY",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF55700,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55704,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55764,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55820,FLEETGUARD,"FILTER, AIR, CABIN, RECIRC",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55832,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55836,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55837,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF55839,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56054,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56060,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56065,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56099,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56102,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56107,FLEETGUARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+AF56500,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF839,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF979,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AF979M,FLEETGUARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AFM30P-060AS,AIR TECHNIQUES,"FILTER, MIST, OUTLET",,,,NO_MATCH,No pattern match,
+AH1197,FLEETGUARD,"FILTER, AIR, ENGINE, W/HOUSING",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AH55543,FLEETGUARD,"FILTER, AIR, ENGINE, W/HOUSING",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+AM117584,JOHN DEERE LTD.,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+AM141445,JOHN DEERE LTD.,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+AR15-1004,CUMMINS CLEAN FUEL,"FILTER, FUEL, HP, CNG",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+AUC16614,JOHN DEERE LTD.,"FILTER, KIT, MAINTENANCE",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+BE8Z-6731-AB,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+BE8Z-6731-AC,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+BK2Z-19N619-A,FORD MOTOR CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+C1154,NASHVILLE MB LOCAL,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+C2804-1,AIR TECHNIQUES,"FILTER, ELEMENT, OIL VAPOUR",045-011-005,Element - Full Flow Oil Filter,45.0,MEDIUM,Oil filter element,1.0
+C2813,AIR TECHNIQUES,"FILTER, MIST, OUTLET",,,,NO_MATCH,No pattern match,
+CF188,ACDELCO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+CF19501C,CLIMATECH INDS,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+CJ5Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+CK4Z-7A098-A,FORD MOTOR CO,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+CK4Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+CS41008,FLEETGUARD,"FILTER, OIL, CENTRIFUGE KIT",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+CS41043,FLEETGUARD,"FILTER, OIL, CENTRIFUGE KIT",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+CS41044,FLEETGUARD,"FILTER, OIL, CENTRIFUGE KIT",047-000-000,Kit Filter - Multi System,47.0,LOW,Generic filter kit,1.0
+CTT00001818,OTTAWA TRUCKS NA,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic oil filter,1.0
+CV50626,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV50628,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV50633,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV50634,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV50900,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV52001,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV52055,FLEETGUARD,"FILTER, VENTILATION, CRANKCASE",045-014-007,Filter - Crankcase Ventilation,45.0,HIGH,Crankcase ventilation filter,1.0
+CV6Z-19N619-A,FORD MOTOR CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+CV6Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+DLS113-6K,PARKER-HANNIFIN,"FILTER, FUEL, LNG/CNG",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+E4FZ-6731-AB,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+F1810PM0,FILL-RITE DIV.,"FILTER, FUEL, TRANSFER",044-002-014,"Filter - Fuel, Final",44.0,MEDIUM,Generic fuel filter,1.0
+F1AZ-6731-BD,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+F37-1018,PETERBILT MOTORS CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+F5OZ-9601-BA,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA-1632,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA1744,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA1884,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA1910,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA1938,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FA-1950,MOTORCRAFT CORP.,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FC4Z-9601-B,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+FD4616,MOTORCRAFT CORP.,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FD4637,MOTORCRAFT CORP.,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FD4647,MOTORCRAFT CORP.,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF105,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF149,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF204,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF2200,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF2203,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF236,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF252,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF254,FLEETGUARD,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Secondary fuel filter,1.0
+FF260,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF276,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF4136,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF42000,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF42102,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF42128NN,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF42131,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF42220,FLEETGUARD,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Secondary fuel filter,1.0
+FF5045,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5052,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5089,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5108,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5160,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5206,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5269,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5301,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5319,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5324,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5369W,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5380,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5405,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5418,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5421,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5455,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5461,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5480,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5507,FLEETGUARD,"FILTER, FUEL, SECONDARY",044-002-003,"Filter Assembly - Fuel, Secondary",44.0,HIGH,Secondary fuel filter,1.0
+FF5612,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5616,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5632,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5636,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5639W,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5675,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5686,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5690,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5775,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5776,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5813,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5816,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5825NN,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5871,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5877,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5971NN,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5973,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5974,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF5995,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF63041NN,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF63054NN,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FF73100,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK11011,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK11020,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK13850NN,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK22004,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK22005,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK267,POWER TORQUE,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+FK48002,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK48004,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK48555,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FK48556,FLEETGUARD,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+FL2016,MOTORCRAFT CORP.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+FL2124S,MOTORCRAFT CORP.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+FL3Z-19N619-A,FORD MOTOR CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+FL500S,MOTORCRAFT CORP.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+FL-820-S,MOTORCRAFT CORP.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+FLTAC9801152,FLEETRITE,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+FP-70,FORD MOTOR CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+FP-74,MOTORCRAFT CORP.,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+FP92,MOTORCRAFT CORP.,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+FS1000,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1003,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1029W,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1065,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1067,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1098,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1212,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1251,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1269,FLEETGUARD,"HOUSING, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1280,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1281,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1285,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1287,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS1291,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19513,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19532,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19536,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19551,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19560,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19580,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19580A,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19591,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19596,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19598,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19624,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19684E,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19687,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19727,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19729,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19732,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19761,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19763,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19764,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19764G,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19765,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19797,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19798,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19844,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19869,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19905G,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19915,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19942,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19947,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19966,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS19974,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20028,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20040,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20081,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20083,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20087,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20089,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20091,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20121,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20128,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20132,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20172,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20176,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20194,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20207,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20208,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20288,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20313,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS20385,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS36401,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+FS53000,FLEETGUARD,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+HC3Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+HC3Z-9601-B,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+HF28943,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+HF35099,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF35135,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+HF35296,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+HF35387,FLEETGUARD,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+HF35467,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF35476,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF35488,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6005,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6057,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6136,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6162,FLEETGUARD,"FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+HF6510,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6520,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6552,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+HF6710,FLEETGUARD,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+J08568.0100,KALMAR LMV,"PUMP, FILTER , DEF",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+J37-1007,"PACCAR, INC.","FILTER, OIL, POWER STEERING",015-005-046,Filter - Oil Pump Steering,15.0,HIGH,Power steering filter,1.0
+K266043,"BENDIX CORP, THE","AIR, DRYER, CARTRIDGE",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+K37-1004,"PACCAR, INC.","FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+KL3Z-19N619-AA,FORD MOTOR CO,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+KV6Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+LAF1934,LUBER-FINER,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+LC3Z-9601-A,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+LC3Z-9601-B,FORD MOTOR CO,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+LC3Z-9N184-A,FORD MOTOR CO,"FILTER, FUEL/WATER SEPERATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+LF14000NN,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF14001NN,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF14002NN,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF14009NN,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16002,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16015,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16046,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16102,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16108,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16109,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16110,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16165,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16166,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16173,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16231,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16233,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16242,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16246,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16354,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16368,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16424,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16465,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF16511,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17494,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17499,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17502,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17503,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17509,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17511,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17515,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17527,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17531,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17538,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17539,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17549,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17810,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF17811,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3311,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3313,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3335,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3339,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3342,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3349,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3379,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3400,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3462,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3536,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3537,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3566,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3614,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3615,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3620,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3630,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3641,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3644,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3649,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3654,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3675,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3681,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3692,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3706,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3818,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3854,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3883,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3914,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3925,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3945,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3970,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3972,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF3973,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF4008,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF637,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF667,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF691A,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF692,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF716,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF780,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF796,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9009,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9025,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9028,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9030,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9070,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+LF9667,FLEETGUARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+M1-107A,MOBIL OIL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+M1-113A,MOBIL OIL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+M1-204A,MOBIL OIL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+M1-212A,MOBIL OIL CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+M37-6091,"PACCAR, INC.","FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+MGA10095,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA10316,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA10718,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA10906,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA42487,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA46213,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA46573,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA49022,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGA49429,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MGL10010,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL10412,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL51334,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL51372,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL57060,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL57202,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL57502,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MGL7515,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MH3344840,MINUTEMAN,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MSA11084,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA41092,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA61009,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA71054,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA81014,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA81015,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSA81053,MICROGARD,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+MSL10255,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MSL51372,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MSL57060,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MSL7515,MICROGARD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+MU2Z-6731-C,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+N10G 36000006,ALLIANCE PARTS,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+N10G 91559,ALLIANCE PARTS,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+NG5900,FLEETGUARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+NU2Z-6731-DA,FORD MOTOR CO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+OTR25870,OTR - OVER THE ROAD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+OTROF60018,OTR - OVER THE ROAD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+P34046,LEYMAN,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+P637454,"DONALDSON CO., INC.","FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+P640016,"PACCAR, INC.","FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+P643159,"DONALDSON CO., INC.","FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+P957050,"DONALDSON CO., INC.","FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+PA10046,BALDWIN FILTERS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+PA10103,BALDWIN FILTERS,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+PA10427,BALDWIN FILTERS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+PA30281,BALDWIN FILTERS,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+PA4305,BALDWIN FILTERS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+PC3Z-9N184-A,FORD MOTOR CO,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+PF46172KIT,BALDWIN FILTERS,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+PF46174KIT,BALDWIN FILTERS,"FILTER, FUEL, PRIMARY, KIT",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+PF48,ACDELCO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+PF64,ACDELCO,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+PFD4626,MICROGARD,"FILTER, FUEL, PRIMARY",044-002-001,"Filter Assembly - Fuel, Primary",44.0,HIGH,Primary fuel filter,1.0
+PT9180,BALDWIN FILTERS,"FILTER, OIL, HYDRAULIC",065-006-018,"Filter - Hydraulic, Complete",65.0,HIGH,Hydraulic filter,1.0
+R19501,"PACCAR, INC.","FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+R61709,DETROIT DIESEL CORP,"FILTER, FUEL/WATER SEPARATOR",044-002-087,"Filter - Fuel Filter, Water Separator",44.0,HIGH,Fuel/water separator,1.0
+R950068A,ZF WABCO,"CARTRIDGE, AIR DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+RS10005,BALDWIN FILTERS,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+S1560-72051,HINO MOTORS LTD.,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+S9972XL,STP PROD,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+SA10163,STP PROD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+SR2000059,"PACCAR, INC.","FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+SR2000091,"PACCAR, INC.","FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+SR2000092,"PACCAR, INC.","FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+TF15040,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+TF15078,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+TF15088,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+TF15089,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+TF15090,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+TF15093,FLEETGUARD,"FILTER, OIL, TRANSMISSION",027-036-008,Filter Element - Transmission Oil,27.0,HIGH,Transmission oil filter,1.0
+UF101,FLEETGUARD,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+UF104,FLEETGUARD,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+UF106,FLEETGUARD,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+UF113,FLEETGUARD,"FILTER, DEF FLUID",043-007-228,Housing Assembly with Filter - DEF,43.0,HIGH,DEF filter,1.0
+WA10256,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10304,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10337,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10559,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10654,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10680,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10718,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10832,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10905,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WA10906,WIX CORP,"FILTER, AIR, ENGINE",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,HIGH,Engine air filter,1.0
+WF2054,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2070,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2071,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2077,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2096,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2106,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2108,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2121,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2122,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2126,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2127,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2128,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2129,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WF2187,FLEETGUARD,"FILTER, COOLANT, ENGINE",042-007-002,"Element - Filter, Coolant",42.0,HIGH,Coolant filter,1.0
+WL10290,WIX CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+WL7515,WIX CORP,"FILTER, OIL, ENGINE",045-011-001,"Filter Assembly - Oil, Full Flow",45.0,HIGH,Engine oil filter,1.0
+WP10090,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+WP10129,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+WP10266,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+WP10655,WIX CORP,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+X002252,"DONALDSON CO., INC.","GAUGE, RESTRICTION, FILTER",,,,NO_MATCH,Unclassified filter type,
+X002277,"DONALDSON CO., INC.","GAUGE, RESTRICTION, FILTER",,,,NO_MATCH,Unclassified filter type,
+XC10491,ECOGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+XC36174,ECOGARD,"FILTER, AIR, CABIN",002-044-017,Housing - Cabin Air Filter,2.0,MEDIUM,Cabin air filter,1.0
+ZGG19844,NAVISTAR,"FILTER, A/C, RECEIVER/DRYER",082-010-001,Filter - Drier,82.0,HIGH,Filter drier,1.0
+ZS1059789,GARDNER DENVER,"FILTER, OIL, COMPRESSOR",045-011-000,Filter Assembly - Oil,45.0,LOW,Generic oil filter,1.0
+ZS1059791,GARDNER DENVER,"FILTER, SEPARATOR, AIR/OIL",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0
+ZS1060578,GARDNER DENVER,"FILTER, AIR, COMPRESSOR",041-001-005,"Element - Filter, Engine Air Cleaner",41.0,LOW,Generic air filter,1.0

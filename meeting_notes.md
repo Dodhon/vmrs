@@ -29,3 +29,19 @@ break down written summary and matching into tasks for sprint planning:
 do after meeting ^^
 - point is to have agile methodology
 - helps deliver what client actually wants over time
+
+
+
+
+review db design
+- necessary for multiple data sources beyond the manual
+- stay focused on what properties/data is guaranteed to be true
+- 
+
+different relationships examples
+- this vendor only sells these system parts
+    - vendor A manufactures only syste codes 1,2, and 3
+- this assembly codes only related to these some system etc
+    - assembly code xyz is under system code abc
+    - same for component
+- above are only examples, must generate relationships from manual

@@ -249,4 +249,230 @@ pip3 install pandas openpyxl
 
 ---
 
-*Last Updated: September 30, 2025*
+## 🕸️ Knowledge Graph Extraction Scripts
+
+### 1. `run_ingest_from_file.py`
+**Purpose**: Extract structured knowledge from VMRS manuals and build a Neo4j knowledge graph
+
+**Input**:
+- Any text file (e.g., `llm_matching/matching_context.md`)
+- VMRS documentation in text or markdown format
+
+**Output**:
+- `e80_eec_knowledge_graph.json` - Complete extraction in JSON format
+- `progress_chunk_N.json` - Progress checkpoints for resumption
+- Neo4j graph database (if configured)
+
+**What It Extracts**:
+- **Systems** (Code Key 31): 3-digit codes (e.g., "044 - Fuel System")
+- **Assemblies** (Code Key 32): 6-digit codes (e.g., "044-001 - Fuel Injection")
+- **Components** (Code Key 33): 9-digit codes (e.g., "044-001-015 - Fuel Injector")
+- **Relationships**: PART_OF hierarchy (Component→Assembly→System)
+
+**Usage**:
+```bash
+# Basic usage (JSON export only)
+PYTHONPATH=. python3 scripts/run_ingest_from_file.py \
+  --input llm_matching/matching_context.md
+
+# With Neo4j (configure .env first)
+PYTHONPATH=. python3 scripts/run_ingest_from_file.py \
+  --input llm_matching/matching_context.md
+
+# Resume from checkpoint
+PYTHONPATH=. python3 scripts/run_ingest_from_file.py \
+  --input llm_matching/matching_context.md \
+  --start-chunk 50
+
+# Save progress less frequently (faster)
+PYTHONPATH=. python3 scripts/run_ingest_from_file.py \
+  --input llm_matching/matching_context.md \
+  --save-every 10
+```
+
+**Configuration** (`.env` file):
+```bash
+# Required
+ANTHROPIC_API_KEY=your_anthropic_api_key
+
+# Optional (for Neo4j storage)
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=your_password
+```
+
+**Features**:
+- ✅ LLM-based structured extraction (Claude Sonnet 4.5 - latest, most cost-effective)
+- ✅ Automatic chunking for large files
+- ✅ Code validation (format and range checking)
+- ✅ Deduplication by code
+- ✅ Progress checkpoints for resumption
+- ✅ Dual output (Neo4j + JSON)
+- ✅ Handles 800K+ token files
+
+---
+
+### 2. `run_graph_extraction.py`
+**Purpose**: Same as `run_ingest_from_file.py` but originally designed for E80 manual
+
+**Input**:
+- `data/input/E80_manual_text.txt` (default)
+- Any VMRS documentation
+
+**Output**:
+- Same as `run_ingest_from_file.py`
+
+**Usage**:
+```bash
+# Same interface as run_ingest_from_file.py
+PYTHONPATH=. python3 scripts/run_graph_extraction.py \
+  --start-chunk 0 \
+  --save-every 1
+```
+
+**Note**: Both scripts use the same underlying `src/graph_builder.py` module.
+
+---
+
+## 🏗️ Core Modules (`src/`)
+
+The graph extraction scripts use these core modules:
+
+### `src/text_chunker.py`
+- Splits large documents into ~3000 token chunks
+- Preserves paragraph boundaries
+- Maintains context with overlap
+- Extracts VMRS codes from text
+
+### `src/triple_extractor.py`
+- LLM-based structured extraction using Claude Sonnet 4.5
+- Strict JSON schema for reliability
+- Validates codes (format and range)
+- Temperature=0 for deterministic results
+
+### `src/neo4j_client.py`
+- Creates and manages Neo4j nodes
+- Handles PART_OF relationships
+- Automatic deduplication via MERGE
+- Creates indexes for performance
+
+### `src/graph_builder.py`
+- Orchestrates chunker → extractor → Neo4j flow
+- Tracks progress and statistics
+- Saves checkpoints
+- Exports to JSON and Neo4j
+
+---
+
+## 📊 Knowledge Graph Statistics (Expected)
+
+Processing `llm_matching/matching_context.md` (~810K tokens):
+
+| Metric | Expected Value |
+|--------|----------------|
+| Total Chunks | ~270 |
+| Systems | ~150 |
+| Assemblies | ~850 |
+| Components | ~4,200 |
+| Relationships | ~5,050 |
+| Processing Time | 30-60 minutes |
+
+---
+
+## 🔍 Querying the Knowledge Graph
+
+### Neo4j Cypher Queries
+
+```cypher
+// Count entities
+MATCH (s:System) RETURN count(s) as systems
+MATCH (a:Assembly) RETURN count(a) as assemblies
+MATCH (c:Component) RETURN count(c) as components
+
+// Find all assemblies in Fuel System
+MATCH (a:Assembly)-[:PART_OF]->(s:System {code: "044"})
+RETURN a.code, a.name
+
+// Get full hierarchy for a component
+MATCH path = (c:Component {code: "044-001-015"})-[:PART_OF*]->(s:System)
+RETURN path
+```
+
+### Python API
+
+```python
+from src.neo4j_client import Neo4jClient
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+client = Neo4jClient(
+    uri=os.getenv("NEO4J_URI"),
+    username=os.getenv("NEO4J_USERNAME"),
+    password=os.getenv("NEO4J_PASSWORD")
+)
+
+stats = client.get_statistics()
+print(f"Systems: {stats['systems']}")
+client.close()
+```
+
+---
+
+## 🔄 Updated Typical Workflow
+
+### Phase 1: Data Processing (Existing)
+```bash
+# 1-7. Same as before
+python3 scripts/data_processing/extract_vmrs_to_csv.py
+python3 scripts/data_processing/combine_vmrs_csv.py
+# ... etc
+```
+
+### Phase 2: Knowledge Graph Building (New!)
+```bash
+# 8. Configure .env
+echo "ANTHROPIC_API_KEY=your_key" > .env
+echo "NEO4J_URI=bolt://localhost:7687" >> .env
+echo "NEO4J_USERNAME=neo4j" >> .env
+echo "NEO4J_PASSWORD=password" >> .env
+
+# 9. Install dependencies
+pip3 install -r requirements.txt
+
+# 10. Extract knowledge graph
+PYTHONPATH=. python3 scripts/run_ingest_from_file.py \
+  --input llm_matching/matching_context.md
+
+# 11. Query the graph (Neo4j Browser or Python)
+# Open http://localhost:7474
+```
+
+---
+
+## 📚 Additional Documentation
+
+For detailed setup and usage of knowledge graph extraction:
+- **[SETUP_GUIDE.md](../SETUP_GUIDE.md)** - Complete setup instructions
+- **[IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)** - Technical details and design
+
+---
+
+## 🛠️ Updated Dependencies
+
+```bash
+# Data processing (existing)
+pip3 install pandas openpyxl
+
+# Knowledge graph extraction (new)
+pip3 install anthropic neo4j python-dotenv
+```
+
+Or install everything:
+```bash
+pip3 install -r requirements.txt
+```
+
+---
+
+*Last Updated: November 11, 2025*

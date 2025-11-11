@@ -1,0 +1,14 @@
+# Core dependencies for VMRS Knowledge Graph Builder
+anthropic>=0.40.0
+neo4j>=5.15.0
+python-dotenv>=1.0.0
+
+# Data processing (already in use)
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Optional: for enhanced logging
+coloredlogs>=15.0
+
+
+

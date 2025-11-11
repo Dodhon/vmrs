@@ -72,9 +72,8 @@ def main():
 
         # Export EEC JSON snapshot
         if result['eec_documents']:
-            output_path = "e80_eec_knowledge_graph.json"
-            builder.export_eec_json(result['eec_documents'], output_path)
-            print(f"📄 EEC graph exported to: {output_path}")
+            builder.export_eec_json(result['eec_documents'], "knowledge_graph.json")
+            print(f"📄 EEC graph exported to: knowledge_graph_output/knowledge_graph.json")
 
         # Optional temporal/schema prints
         if result.get('temporal_patterns') is not None:

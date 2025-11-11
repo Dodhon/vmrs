@@ -29,3 +29,7 @@ ENV/
 # *.csv
 # *.xlsx
 # *.json
+
+# Output and source files
+knowledge_graph_output/
+source_pdfs/

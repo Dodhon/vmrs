@@ -28,6 +28,8 @@ def main():
                         help="Also extract temporal patterns and induce schemas (default: off)")
     parser.add_argument("--save-every", type=int, default=1,
                         help="Save progress every N chunks (default: 1)")
+    parser.add_argument("--skip-neo4j", action="store_true",
+                        help="Skip Neo4j import during extraction (extract to JSON only, import later)")
     args = parser.parse_args()
 
     print("🚀 Starting EEC ingestion from file")
@@ -42,12 +44,28 @@ def main():
         print("❌ Please set ANTHROPIC_API_KEY in .env file")
         return
 
-    builder = ManualGraphBuilder(
-        anthropic_api_key=api_key,
-        neo4j_uri=os.getenv("NEO4J_URI"),
-        neo4j_username=os.getenv("NEO4J_USERNAME"),
-        neo4j_password=os.getenv("NEO4J_PASSWORD")
-    )
+    # Archive existing output files before starting
+    print("📦 Archiving existing output files...")
+    archive_dir = ManualGraphBuilder.archive_existing_outputs()
+    if archive_dir:
+        print(f"✅ Archived existing files to: {archive_dir}")
+
+    # Skip Neo4j if flag is set
+    if args.skip_neo4j:
+        print("⚠️  Running without Neo4j (JSON export only)")
+        builder = ManualGraphBuilder(
+            anthropic_api_key=api_key,
+            neo4j_uri=None,
+            neo4j_username=None,
+            neo4j_password=None
+        )
+    else:
+        builder = ManualGraphBuilder(
+            anthropic_api_key=api_key,
+            neo4j_uri=os.getenv("NEO4J_URI"),
+            neo4j_username=os.getenv("NEO4J_USERNAME"),
+            neo4j_password=os.getenv("NEO4J_PASSWORD")
+        )
 
     if not os.path.exists(args.input):
         print(f"❌ Input file not found: {args.input}")
@@ -73,7 +91,7 @@ def main():
         # Export EEC JSON snapshot
         if result['eec_documents']:
             builder.export_eec_json(result['eec_documents'], "knowledge_graph.json")
-            print(f"📄 EEC graph exported to: knowledge_graph_output/knowledge_graph.json")
+            print(f"📄 EEC graph exported to: {builder.output_dir}/knowledge_graph.json")
 
         # Optional temporal/schema prints
         if result.get('temporal_patterns') is not None:

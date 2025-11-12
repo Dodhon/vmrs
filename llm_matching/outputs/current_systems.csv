@@ -1,0 +1,117 @@
+code,name,description
+293,Oil Shaker Box,Bulk Product Transfer Systems
+294,Fuel Metering,Bulk Product Transfer Systems
+361,Air Compressor System,
+362,Weighing & Measuring,Equipment Dependent Attachments
+001,"Air Conditioning, Heating, and Ventilating System","Cab, Climate Control, Instrumentation and Aerodynamic Devices"
+002,Cab and Sheet Metal,"Cab, Climate Control, Instrumentation and Aerodynamic Devices"
+003,"Instruments, Gauges (All), and Meters","Cab, Climate Control, Instrumentation and Aerodynamic Devices"
+004,Aerodynamic Devices,"Cab, Climate Control, Instrumentation and Aerodynamic Devices"
+011,Axles Front—Non-Driven,Chassis
+012,Axles Rear—Non-Driven,Chassis
+013,Brakes,Brake system
+014,Frame,Chassis
+015,Steering,Chassis
+016,Suspension,Chassis
+021,Axle Driven—Front Steering,Drivetrain
+022,Axle Driven—Rear,Drivetrain
+023,Clutch,Drivetrain
+024,Drive Shaft(s),Drivetrain
+025,Transfer Case,Drivetrain
+026,"Transmission—Main, Manual",Drivetrain
+027,"Transmission—Main, Automatic",Drivetrain
+028,Transmission—Auxiliary and Transfer Case,Drivetrain
+029,"Auxiliary Section (Transmission—Main, Manual)",Drivetrain
+121,Final Drive,Drivetrain
+041,Air Intake System,Engine / Motor Systems
+042,Cooling System,Engine / Motor Systems
+043,Exhaust System,Engine / Motor Systems
+044,Fuel System,Engine / Motor Systems
+045,Power Plant,Engine / Motor Systems
+046,Electric Propulsion System,Engine / Motor Systems
+047,Filter Kits (Multi-piece),Engine / Motor Systems
+048,"Powertrain-Electric, Hybrid",Engine / Motor Systems
+141,Hydrogen Fuel Cell,Engine / Motor Systems
+142,LNG Engine Fuel System,Engine / Motor Systems
+143,CNG Engine Fuel System,Engine / Motor Systems
+051,"General Accessories (for power units, trailers, etc.)",Accessories
+052,"Electrical Accessories (for power units, trailers, etc.)",Accessories
+053,Fluids and Gases,System for equipment fluids and gases
+054,Horns and Mounting and Reverse Signal Alarms,Accessories
+055,"Cargo Handling, Restraints and Lift Systems (for power units, trailers, etc.)",Accessories
+056,Power Take Off,Accessories
+057,Spare Wheel Mounting,Accessories
+058,"Winch (for power units, trailers, etc.)",Accessories
+059,Vehicle Coupling,Accessories
+151,Auxiliary Power Unit (APU),Accessories
+152,Onboard Lavatory,Accessories
+153,Stationary Generator,Accessories
+154,Medical Devices,Accessories
+061,Terminal Equipment Systems and Accessories,Equipment Dependent Attachments
+063,Satellite Communications Systems,Equipment Dependent Attachments
+065,"Hydraulic Systems, Multifunctional",Equipment Dependent Attachments
+066,Scrapping,Equipment Dependent Attachments
+067,Buckets,Equipment Dependent Attachments
+068,Lifting,Equipment Dependent Attachments
+069,Conveyance,Equipment Dependent Attachments
+161,Sweeping,Equipment Dependent Attachments
+162,Spreading,Equipment Dependent Attachments
+163,Chipping,Equipment Dependent Attachments
+164,Blowing,Equipment Dependent Attachments
+165,Vacuuming,Equipment Dependent Attachments
+166,Trenching,Equipment Dependent Attachments
+167,Tilling,Equipment Dependent Attachments
+168,Mowing,Equipment Dependent Attachments
+169,Ripping,Equipment Dependent Attachments
+261,Raking,Equipment Dependent Attachments
+262,Breaking,Equipment Dependent Attachments
+263,Hammering,Equipment Dependent Attachments
+264,Grappling,Equipment Dependent Attachments
+265,Magnetic,Equipment Dependent Attachments
+267,Drilling and Boring,Equipment Dependent Attachments
+268,Pulling,Equipment Dependent Attachments
+269,Dust & Debris Collecting,Equipment Dependent Attachments
+364,Paving,Equipment Dependent Attachments
+369,Crushing,Equipment Dependent Attachments
+465,Compacting,Equipment Dependent Attachments
+071,Body (except bulk carrier body),Bodies and Vessels
+072,Rear Wall and Door,Bodies and Vessels
+073,"Tank Vessel, inner shell",Bodies and Vessels
+074,"Tank Vessel, outer jacket",Bodies and Vessels
+075,Manholes,Bodies and Vessels
+076,Rings and Bolsters,Bodies and Vessels
+077,Trailer Frame and Support,Bodies and Vessels
+078,Trim and Miscellaneous Hardware,Bodies and Vessels
+079,Safety Devices,Bodies and Vessels
+171,Mixers,Bodies and Vessels
+172,Compaction Bodies,Bodies and Vessels
+173,Tilt Bodies,Bodies and Vessels
+174,Bus Body,Bodies and Vessels
+175,Emergency Vehicle,Bodies and Vessels
+177,Recreational Vehicle,Bodies and Vessels
+081,"Heating Unit (for power units, trailers, etc.)",Heating and Refrigeration
+082,"Refrigeration, Mechanical (for power units, trailers, etc.)",Heating and Refrigeration
+083,"Refrigeration, Nitrogen (for power units, trailers, etc.)",Heating and Refrigeration
+084,"Refrigeration, Holdover Plate (for power units, trailers, etc.)",Heating and Refrigeration
+091,"Blowers, Conveyors, and Vibrators (for power units, trailers, etc.)",Bulk Product Transfer Systems
+092,"Compressor, Bulk Product Systems (for power units, trailers, etc.)",Bulk Product Transfer Systems
+094,"Engine, Auxiliary (for power units, trailers, etc.)",Bulk Product Transfer Systems
+095,"Manifold (for power units, trailers, etc.)",Bulk Product Transfer Systems
+096,"Power Shaft (for power units, trailers, etc.)",Bulk Product Transfer Systems
+097,"Pump (for power units, trailers, etc.)",Bulk Product Transfer Systems
+098,"Valves and Controls (for power units, trailers, etc.)",Bulk Product Transfer Systems
+099,"Safety Devices, Instruments and Gauges (for power units, trailers, etc.)",Bulk Product Transfer Systems
+191,Bulk Storage System,Bulk Product Transfer Systems
+192,Batch Mobile Processing Plant,Bulk Product Transfer Systems
+193,Belt Conveyor System,Bulk Product Transfer Systems
+194,Bucket Conveyor System,Bulk Product Transfer Systems
+195,Screw Conveyor System,Bulk Product Transfer Systems
+196,Roller Conveyor System,Bulk Product Transfer Systems
+197,Chain Conveyor System,Bulk Product Transfer Systems
+198,"Paddle Wagon, Drag Chain Assembly",Bulk Product Transfer Systems
+199,Processing Screens,Bulk Product Transfer Systems
+291,Dairy Pumping Unit,Bulk Product Transfer Systems
+292,Concrete Pumping Equipment,Bulk Product Transfer Systems
+017,Tires,
+018,Wheels,
+034,Electrical System,

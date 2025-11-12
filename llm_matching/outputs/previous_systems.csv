@@ -1,0 +1,159 @@
+code,name,description
+001,"Air Conditioning, Heating and Ventilating","Includes all fans, hoses, thermostats, ductwork, etc., associated with the environmental control of the vehicle cab."
+002,Cab and Sheet Metal,"Includes all cab and sheet metal required to cover the major equipment components. Includes all integral bodies and pickup-type beds normally supplied by equipment manufacturers. Also includes reflectors, mirrors, seats and interior cab equipment. Does not include special bodies such as dumps and containers."
+003,"Instruments, Gauges, Warning and Shutdown Devices, and Meters","Includes all instruments, gauges (pressure and rotary) warning and shutdown devices, and meters that are integral to the components of power units."
+004,Aerodynamic Devices,"Includes all fairings, stabilizers, and other devices designed to reduce drag and buffeting. Applicable to power units and trailers."
+011,"Axles, Non-Driven, Front","Begins at, but does not include, the front springs and includes all components up to, but not including, the wheel bearings. Applicable to Power Units, Trailers, etc."
+012,"Axles, Non-Driven, Rear","Begins at, but does not include, the rear springs and includes all components up to, but not including, the rear hubs and bearings. Applicable to Power Units, Trailers, etc."
+013,Brakes,"Begins at the brake pedal and includes all plumbing, valves, air compressor and controls up to and including the brake drums. Applicable to Power Units, Trailers, etc."
+014,Frame,"Includes all structural members of the frame, bumpers and necessary brackets/mounts required for attaching components. However, suspension brackets are not included as part of the frame. Applicable to Power Units, Trailers, etc."
+015,Steering,"Begins at the steering wheel and includes all steering components up to, but not including, the spindle or steering knuckle."
+016,Suspension,"Begins with, and includes, the brackets attaching the suspension to the frame and includes the parts necessary to attach the suspension to the axle. Applicable to Power Units, Trailers, etc."
+017,"Tires, Tubes, Liners and Valves","Includes tires of all types, tubes, liners, and valve assemblies. (Tire costs of mounting, removal, repair and maintenance are an operating expense and should not be charged to the maintenance account.) Applicable to Power Units, Trailers, etc."
+018,"Wheels, Rims, Hubs, Bearings","Includes only wheels, rims, hubs wheel bearings and seals. Applicable to Power Units, Trailers, etc."
+111,Undercarriage,"Specific to equipment equipped with tracks, such as a bulldozer, or related off-highway equipment. Includes the track, rollers, idlers, tensioners, sprockets, shields/guards, equalizers, and pivot shaft mechanism."
+112,Stabilization,"Specific to equipment equipped with retractable stabilizers, such as used on utility or tree-trimming trucks. Includes the feet/pads, hydraulics, controls, supports and locks."
+021,"Axles, Driven, Front Steering","Includes the axle assembly beginning with the front spring pad through, but not including, the wheel hub and bearings, and includes the differential drive flange or yoke."
+022,"Axles, Driven, Rear","Begins at, but does not include, the rear springs and includes all components up to, but not including, the wheel hub and bearings. Includes the differential drive flange or yoke."
+023,Clutch,Includes all clutch drive or driven members including the controls. Does not include the flywheel.
+024,Driveshafts,"Includes all driveshafts, universal joints, and support bearings between the component drive flanges or yokes."
+025,Transfer Case,"Includes case, cover and all internal parts and controls. Begins at the input shaft and ends at the rear output shaft flange."
+026,"Transmission, Main, Manual","Includes the transmission case, cover and all internal parts and controls. Begins with the main drive gear and ends at the rear flange or yoke. Does not include parts found in the Auxiliary section."
+027,"Transmission, Main, Automatic","Includes the transmission case, cover, and all internal parts and controls. Begins with the main drive gear and ends at the rear flange or yoke."
+028,Auxiliary Transmission,"Includes the transmission case, cover and all internal parts and controls. Begins with the main drive gear and ends at the rear output shaft flange."
+029,"Auxiliary Section, Main Transmission, Manual","Includes the transmission case, cover, and all internal parts and controls. Begins with the auxiliary drive gear and ends at the rear flange or yoke."
+121,Final Drive,"Includes sprockets, gears, and yoke."
+031,Charging,Includes all on-board components and wiring necessary for charging of batteries for both internal combustion and electrically propelled vehicles. Does not include batteries or gauges.
+032,Cranking,"Includes the starting motor, necessary piping, wiring, relays and switches (excluding combination ignition or accessory switches) including the system power source which is normally a battery. The cranking system includes both electrical and air operated circuits."
+033,Ignition,Begins with the ignition switch and includes all components through the spark plugs. It includes all components and wiring in both the primary and secondary circuits.
+034,Lighting,"Includes all wiring, bulbs, switches and wiring harnesses necessary to illuminate the vehicle."
+036,Supplemental Information Devices,Includes collision avoidance systems and other related safety devices.
+037,Modules/Relays - Electrical,Includes modules and relays with multiple applications.
+041,Air Intake,Includes all items between the air inlet port through the intake manifold (excluding carburetor).
+042,Cooling,Begins with the radiator and covers all components up to and including the water pump. Also includes water manifold and temperature control devices.
+043,Exhaust,Begins with the exhaust manifold and extends through the end of the tailpipe.
+044,Fuel,"Includes the fuel tank through the carburetor or fuel nozzle and covers all fuel lines, pumps, filters and controls."
+045,Powerplant,"Includes the basic power plant of internal combustion engines and internal power plant lubrication system. It does not include any of the above systems (Air intake, cooling, exhaust or fuel)."
+046,Electric Propulsion,"Includes the basic electric propulsion motor and its controls, and the system power source (normally an electric battery)."
+047,Filter Kits (Multi-piece),Filter kits used with Systems 041-046.
+048,"Powertrain - Electric, Hybrid",Parts specific to hybrid-electric powertrains.
+141,Hydrogen Fuel Cell,Parts specific to hydrogen fuel cells.
+142,LNG Engine Fuel System,Parts specific to liquid natural gas engine fuel systems.
+143,CNG Engine Fuel System,Parts specific to compressed natural gas engine fuel systems.
+051,General Accessories,"Includes such items as hubodometers, tachometers, recorders, etc. Applies to Power Units, Trailers, etc."
+052,Electrical Accessories,"Includes clocks, batteries, and battery boxes for auxiliary equipment, radio receivers and transmitters, cassette players, CD players, etc. Applies to Power Units, Trailers, etc."
+053,Expendable Items,"Includes equipment fluids, gases, and particulates as well as such items as chains, flares, fire extinguishers, paint, etc., which are not normally considered as being part of equipment maintenance. Applies to Power Units, Trailers, etc."
+054,Horns and Mounting and Reverse Signal Alarms,"Includes all wiring, piping, controls and mounting devices."
+055,"Cargo Handling, Restraints and Lift Systems","Includes all equipment-mounted cargo handling devices such as conveyors and on-off loading mechanisms, cargo restraints, and all lifting devices such as power tailgates, power masts and booms, slides, rams, dump mechanisms, etc. Applies to Power Units, Trailers, etc."
+056,Power Take Off,"Includes the following types of power take off units and all related components: front driven, transmission driven, auxiliary transmission driven, belt driven."
+057,Spare Wheel Mounting,"Includes all brackets, mounting plates, and securing devices"
+058,Winch,"Includes all brackets, mounting plates, and securing devices. Applies to Power Units, Trailers, etc."
+059,Vehicle Coupling,"Includes all vehicle coupling devices, controls and necessary mounts. It includes the fifth wheel and pintle hooks."
+151,Auxilary Power Unit (APU),Includes all components specific to auxilary power units used for powering driver comforts onboard the vehicle.
+152,Onboard Lavatory,"Includes all components associated with an onboard vehicle lavatory including water closet, sink and supporting fixtures."
+153,Stationary Generator,"Includes all parts specifc to the stationary generator such as motor, alternator, battery, belts, control panels, circuit breakers."
+154,Medical Devices,Includes all parts specific to medical devices used in a sleeper cab environment such as a Continuous Positive Airway Pressure (CPAP) machine.
+061,Terminal Equipment - Multi-Applications,Includes those systems integral or attached as accessories to terminal equipment and not found to be appropriate for assignment under other vehicle system codes.
+063,Satellite Communications Sys.,Includes satellite/mobile communications equipment.
+065,Hydraulic Systems,Includes those hydraulic systems not otherwise specified.
+066,Scrapping,"Applies to blade and/or scrapping attachments, including the blade assembly, wearable items, hydraulic, support and control assemblies."
+067,Buckets,"Applies to bucket attachments (manlift and/or loading), including the bucket assembly, wearable items, hydraulic, support and control assemblies."
+068,Lifting,"Applies to any lifting attachments, including boom assemblies, fork lift masts, poles, wearable items, hydraulic, support and control assemblies."
+069,Conveyence,"Applies to conveyence attachments, including roller assemblies, belts, wearable items, hydraulic, support and control assemblies."
+161,Sweeping,"Applies to broom attachments, including the roller assembly, wearable items, hydraulic, support and control assemblies."
+162,Spreading,"Applies to spreader attachments, including the spreader assembly, wearable items, hydraulic, support and control assemblies."
+163,Chipping,"Applies to chipper attachments, including the chipper assembly, wearable items, hydraulic, support and control assemblies."
+164,Blowing,"Applies to blower attachments, including the blower assembly, wearable items, hydraulic, support and control assemblies."
+165,Vacuuming,"Applies to vacuum attachments, including the vacuum assembly, wearable items, hydraulic, support and control assemblies."
+166,Trenching,"Applies to trencher attachments, including the trencher assembly, wearable items, hydraulic, support and control assemblies."
+167,Tilling,"Applies to tiller attachments, including the tiller assembly, wearable items, hydraulic, support and control assemblies."
+168,Mowing,"Applies to mower attachments, including the mower assembly, wearable items, hydraulic, support and control assemblies."
+169,Ripping,"Applies to ripper attachments, including the ripper assembly, wearable items, hydraulic, support and control assemblies."
+261,Raking,"Applies to rake attachments, including the rake assembly, wearable items, hydraulic, support and control assemblies."
+262,Breaking,"Applies to breaker attachments, including the breaker assembly, wearable items, hydraulic, support and control assemblies."
+263,Hammering,"Applies to hammer attachments, including the hammer assembly, wearable items, hydraulic, support and control assemblies."
+264,Grappling,"Applies to grapple attachments, including the grapple assembly, wearable items, hydraulic, support and control assemblies."
+265,Magnets,"Applies to magnet attachments, including the magnet assembly, wearable items, hydraulic, support and control assemblies."
+267,Drilling and Boring,"Applies to drilling and boring attachments, including the feeding assembly, boom structure, frame, motor, rod holder, flushing assembly, hammer, auger, cable and wench, hydraulic, support and control assemblies."
+268,Pulling,"Applies to pulling attachments, including the sheaves (or cables and pulleys), hoist drum, winches, bucket, boom structure, pedestal, knucle, sprockets, leveling assembly, shields and guards, hydraulic, support and control assemblies."
+269,Dust and Debris Collection,"Applies to dust/debris collection attachments, including the holding container, filtration, hydraulic, support and control assemblies."
+362,Weighing and Measuring,Includes assemblies pertaining to onboard weighing and measuring systems.
+364,Paving,Includes assemblies specific to paving equpment.
+369,Crushing,Includes assemblies specific to crushing equipment.
+465,Compacting,Includes assemblies specific to compacting equipment.
+071,Body (Except Bulk Carrier Body),"Includes side and front walls, roof assembly and/or tarpaulin bows for van bodies, posts and rails for stake bodies, flooring or decking, side door, bolsters and holddowns, lining, sealing, insulation and related hardware and special attachments (Meatrails, rivets, tappets, etc.)"
+072,Rear Wall and Door,"Includes rear wall and supports and rear door(s) with all hardware for attaching, operating, or support along with heavy-duty framing around periphery of doors."
+073,"Shell - Tank Vessel, Inner","Portion of vessel which can be in direct contact with flowable cargo. Includes aerator, bulkheads, baffles, sumps, and slope sheets, but does not include manholes, piping, nipples or valving."
+074,"Jacket - Tank Vessel, Outer","Includes light gauge protective cover over insulation, insulation coolie heads, and supporting framework."
+075,Manholes,"Opening in tank shell for access, inspection or loading. Includes collar or flange in vessel along with cover and attaching hardware."
+076,Rings and Bolsters,Structural or supporting members at the inner shell periphery.
+077,Trailer Frame and Support,"Begins at the frame and includes the upper coupler, support frame, platform chassis framing, upper subframe, lower subframe, slider mechanism, spring hangers, vertical supports, leg assembly, dolly, turntable, and ends with either the footpads or wheels."
+078,Trim and Miscellaneous Hardware,"Includes hose carriers, fenders, underride guard, ladder, walkway, tarps, and carrier, plenum cover, deflectors for gravel, and tire carrier. Applicable to Power Units, Trailers, etc."
+079,Safety Devices,Includes all components designed to protect the structural integrity of the vessel.
+171,Mixers,"Includes the drum, booster axle, chutes and hydraulic, support, frame, control, water supply, and drive assemblies."
+172,Compaction Bodies,"Includes the container body, compaction assembly, trim and miscellaneous parts, and the loader, ejection, hydraulic, support, control and frame assemblies."
+173,Tilt Bodies,"Includes the body or bed, boom, winches/cables, and the hydraulic, support, control, frame, roller, and tarp assemblies."
+174,Bus Body,"Includes window, storage and entry/egress assemblies."
+175,Emergency Vehicles,"Includes parts specifically tailored for fire, rescue and emergency equipment."
+177,Recreational Vehicle,"Includes parts specific to recreational vehicles such as refrigerators, heaters, bedding, tables, entertainment systems, etc."
+081,Heating Unit,"Includes all coils or appliances either structurally incorporated into the vessel or mounted in the cargo space to maintain a given temperature range. Applicable to Power, Trailers, etc."
+082,"Refrigeration, Mechanical","Includes the evaporator, expansion valve, compressor, thermostat, engine or PTO, condenser, receiver, liquid line dryer, heating-defrosting, control panel and all refrigeration lines pertinent to the system. Applicable to Power, Trailers, etc."
+083,"Refrigeration, Nitrogen","Includes the fill body, container, piper guard, sensing bulb guard, control unit, emergency switch, emergency shutoff valve, safety vent-door, spray header, and all refrigeration lines pertinent to the system. Applicable to Power, Trailers, etc."
+084,"Refrigeration, Holdover Plate","Includes the holdover plate, console panel, and condensing unit. Applicable to Power, Trailers, etc."
+091,"Blowers, Conveyors and Vibrations","Begins with product intake and includes intake air filter, lubrication system, housing and mounting frame and ends with the product discharge outlet. The blower may be either tractor or trailer mounted"
+092,"Compressor, Bulk Product Transfer Systems","Begins with product intake and includes intake air filter, lubrication system, housing and mounting frame and ends with the product discharge outlet. The compressor may be either tractor or trailer mounted."
+094,"Lines, Tubes, Hoses — Fittings, Bulk Product Transfer Systems","Includes all air and commodity conveying lines and hoses, couplings, and attaching components integral to the vessel for both loading and unloading. Does not include valves or manifolds."
+095,Manifold,Includes inlet and outlet fittings along with product control devices and supporting brackets.
+096,Powershaft - Power Take Off,"Begins at the PTO and includes the driveline, universal joints, and the support bearings between component flanges or yokes and ends with coupling device to either the pump, blower or compressor."
+097,Pump - Product Transfer,Begins with the product intake and ends at discharge outlet.
+098,Valves and Controls - Bulk Product Transfer Systems,"Includes all air, hydraulic or mechanically operated valves which regulate or direct the transfer of air or cargo. Also included are any remote controls for the operation of these valves. Does not include the manifold."
+099,"Safety Devices, Instruments and Gauges","Includes all relief and check valves, fusible and frangible discs, as well as mounting nipples and other devices used to measure and report, but audible or visual means, safety-related conditions such as pressure and temperature conditions, etc."
+191,Batch Mobile Processing Plant,"Includes the material hopper, scale, hydraulics, support, controls, frame, water supply, material heater, material drier, loader, additive mixture pumper, mixer, pnuematic, drive, tilt shielding, and exterior protection assemblies."
+192,Belt Conveyor System,"Includes rollers, bets, hydraulic, support, controls, frame, pulleys, motors, bearings, wipers, skirting, pnuematic, safety, catwalk, drive and external protection assemblies."
+193,Bucket Conveyor System,"Includes the bucket, chain, hydraulic, support, controls, frame,catwalk, drive and external protection assemblies."
+194,Bucket Conveyor System,
+195,Screw Conveyor System,"Includes the screw, flight, hydraulic, support, controls, frame,catwalk, drive and external protection assemblies."
+196,Roller Conveyor System,"Includes the roller, hydraulic, support, controls, frame, catwalk, drive and external protection assemblies."
+197,Chain Conveyor System,"Includes the chain, pulleys, motors, gears, hydraulic, support, controls, frame,catwalk, drive and external protection assemblies."
+198,"Paddle Wagon, Drag Chain Assy.","Includes the paddle wagon, motors, cylinders."
+199,Processing Screens,"Includes screens, bearings, motors, chain/belt drives, trommel assembly (used in recycling equipment)."
+291,Dairy Pumping Unit,"Includes main pumping assembly, sampler assembly, air eliminator vessel, hoses, reels, cabinets, valves."
+292,Concrete Pumping Equipment,"Includes main pumping assembly, drums/vessels, hoses, reels, cabinets, valves."
+293,Oil Shaker Box,"Includes shaker assembly, motors, switches, and pump."
+294,Fuel Metering,"Includes meter assembly, cables, hoses, probes, valves."
+010,CHASSIS,
+020,ELECTRICAL,
+040,ENGINE,
+019,Automatic/Manual Chassis Lubricator,"Includes control system, necessary plumbing, wiring, fittings and fasteners. Applicable to Power Units, Trailers, etc."
+038,Electric Power Management - Electric Vehicle,Parts for managing power on electric vehicles.
+039,Electric Drive Components - Electric Vehicle,Parts for drives on electric vehicles.
+070,Safety Devices,
+093,Bulk Storage System,"Includes the container vessel, piping, hydraulics, support, controls, frame, aeriation, gates, scale, ladder, ventilation, platform and turn head assemblies."
+090,Safety Devices Instruments & Gauges,
+170,Harvesting,
+178,"Roll Off, Lugger Bodies",Includes parts specific to equipment that transports and disposes of refuse.
+202,Breaking,
+203,Grappling,
+266,Forks,
+361,Air Compressor System,"Includes compressor, motor, hydraulic, support, control, frame, reservoir, plumbing, filtration, couplers, lines, hoses and safety devices for an air compressor system used as an equipment-dependent attachment."
+363,Deicing,Includes assemblies specific to deicing equipment.
+366,Sawing,Includes assemblies specific to sawing equipment.
+368,Milling,Includes assemblies specific to milling equipment.
+461,Arrow Board,Includes parts specific to road directional/instruction displays.
+462,Insulating Lift Equipment,Includes assemblies specific to insulating lift equipment.
+463,Insulating Drilling and Boring,Includes assemblies specific to insulating drilling/boring equipment.
+998,Glider Kit,Includes all components other than the engine and chassis used to restore a vehicle to like new condition.
+999,Total Vehicle,Represents the entire vehicle or piece of equipment as a whole.
+049,"Powertrain - Hydraulic, Hybrid",Parts specific to hybrid-hydraulic powertrains.
+365,Painting and Spraying,Assemblies specific to painting and spraying equipment.
+367,Rolling,Includes assemblies specific to rolling equipment.
+464,Digging,Includes assemblies specific to digging equipment.
+176,Chassis Shipping Unit,Includes parts specifically tailored for shipping intermodal container chassis.
+101,Air Cylinders,
+030,Electrical Group,
+050,Accessories Group,
+060,Equipment Dependent Attachments Group,
+201,Raking,
+204,Grapple Assembly,
+301,Air Compressor System,
+080,Heating & Refrigeration Group,

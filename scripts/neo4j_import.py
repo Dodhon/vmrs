@@ -73,6 +73,10 @@ def main():
             description=c.get("description", "")
         )
 
+    # Fix any missing relationships (in case parents were created after children)
+    print("🔧 Fixing missing relationships...")
+    client.fix_missing_relationships()
+
     stats = client.get_statistics()
     print("\n✅ Import complete!")
     print(f"Nodes: systems={stats.get('systems', 0)}, assemblies={stats.get('assemblies', 0)}, components={stats.get('components', 0)}")

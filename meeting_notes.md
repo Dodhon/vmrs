@@ -45,3 +45,15 @@ different relationships examples
     - assembly code xyz is under system code abc
     - same for component
 - above are only examples, must generate relationships from manual
+
+
+
+meeting with stakeholder
+1. start with what we have, and what we think we are missing
+2. have stakeholder to tell us what we need
+- process or data issue
+- we can't control data issue, but we can do process correct
+3. ask for contact of the 2 people he mentioned
+- ask them for methodology for actually correctly matching
+- might need 
+4. create vmrs codes of all parts based on llm 

@@ -43,7 +43,7 @@ class TripleExtractor:
             
             response = self.client.messages.create(
                 model=self.model,
-                max_tokens=8192,  # Increased to handle large extraction outputs
+                max_tokens=16384,  # Increased to 16k to handle very large extraction outputs
                 temperature=0,  # Deterministic extraction
                 messages=[{
                     "role": "user",
@@ -70,7 +70,18 @@ class TripleExtractor:
             
         except json.JSONDecodeError as e:
             logger.error(f"Failed to parse JSON from chunk {chunk_index}: {e}")
-            logger.error(f"Response content: {content[:500]}")
+            logger.error(f"Response content (first 500 chars): {content[:500]}")
+            
+            # Try to salvage partial data from truncated JSON
+            partial_result = self._try_salvage_partial_json(content, chunk_index)
+            if partial_result:
+                logger.warning(f"Salvaged partial data from chunk {chunk_index}: "
+                             f"{len(partial_result.get('systems', []))} systems, "
+                             f"{len(partial_result.get('assemblies', []))} assemblies, "
+                             f"{len(partial_result.get('components', []))} components")
+                return partial_result
+            
+            logger.error(f"Could not salvage data from chunk {chunk_index}, returning empty result")
             return self._empty_result()
         
         except Exception as e:
@@ -89,20 +100,21 @@ This is OCR-processed text with some cleanup. Tables may be partially malformed.
 - Component codes: SYS-ASY-COMP format (e.g., "044-001-015")
 
 **WHERE TO FIND DATA:**
-- Look for patterns like "| 044 | Fuel System |" in tables
-- Look for "Code Key 31/32/33" sections
+- Systems/Assemblies/Components: Look for "Code Key 31/32/33" sections
+- Tables: Parse pipe-separated columns, first column is often the code
 - Codes may appear as "013", "013-001", "013-001-015"
 - Names are usually in adjacent table cells or after dashes/colons
 
 **EXTRACTION RULES:**
-1. Extract: code, name, description (if clearly available)
+1. Extract: code, name, description (if clearly available) for ALL entity types
 2. For tables: Parse pipe-separated columns, first column is often the code
 3. Ignore OCR artifacts: stray dots, dashes, or short repetitive strings
-4. System codes: 001-999 (3 digits)
-5. Assembly codes: must have exactly 1 hyphen (XXX-XXX)
-6. Component codes: must have exactly 2 hyphens (XXX-XXX-XXX)
-7. If you see malformed codes (like "6-5-" or "0H08"), try to infer the valid code or skip
-8. Skip if no clear name/description is associated with the code
+4. System codes: 001-999 (3 digits, numeric only)
+5. Assembly codes: must have exactly 1 hyphen (XXX-XXX, numeric)
+6. Component codes: must have exactly 2 hyphens (XXX-XXX-XXX, numeric)
+7. If you see malformed codes, try to infer the valid code or skip
+8. Skip if no clear name is associated with the code
+9. DO NOT extract vendors - there are no vendor relationships in this file
 
 **PARENT RELATIONSHIPS (auto-derived):**
 - Assembly parent: first 3 digits before first hyphen
@@ -138,6 +150,74 @@ Empty arrays if nothing found. Be generous but validate codes strictly.
             "assemblies": [],
             "components": []
         }
+    
+    def _try_salvage_partial_json(self, content: str, chunk_index: int) -> Dict:
+        """
+        Try to extract partial data from truncated JSON response.
+        Uses regex to find complete JSON objects even if the overall JSON is malformed.
+        
+        Args:
+            content: Truncated JSON content
+            chunk_index: Chunk index for logging
+            
+        Returns:
+            Dictionary with salvaged entities, or empty dict if nothing could be salvaged
+        """
+        import re
+        
+        salvaged = {
+            "systems": [],
+            "assemblies": [],
+            "components": []
+        }
+        
+        try:
+            # Try to find complete JSON objects using regex
+            # Pattern for system objects: {"code": "...", "name": "...", ...}
+            system_pattern = r'\{"code"\s*:\s*"(\d{3})",\s*"name"\s*:\s*"([^"]*(?:\\.[^"]*)*)",\s*"description"\s*:\s*"([^"]*)"\}'
+            assembly_pattern = r'\{"code"\s*:\s*"(\d{3}-\d{3})",\s*"name"\s*:\s*"([^"]*(?:\\.[^"]*)*)",\s*"parent_system_code"\s*:\s*"(\d{3})",\s*"description"\s*:\s*"([^"]*)"\}'
+            component_pattern = r'\{"code"\s*:\s*"(\d{3}-\d{3}-\d{3})",\s*"name"\s*:\s*"([^"]*(?:\\.[^"]*)*)",\s*"parent_assembly_code"\s*:\s*"(\d{3}-\d{3})",\s*"description"\s*:\s*"([^"]*)"\}'
+            
+            # Extract systems
+            for match in re.finditer(system_pattern, content):
+                code, name, description = match.groups()
+                if self._is_valid_system_code(code):
+                    salvaged["systems"].append({
+                        "code": code,
+                        "name": name.replace('\\"', '"').replace('\\n', ' '),
+                        "description": description.replace('\\"', '"').replace('\\n', ' ')
+                    })
+            
+            # Extract assemblies
+            for match in re.finditer(assembly_pattern, content):
+                code, name, parent_code, description = match.groups()
+                if self._is_valid_assembly_code(code):
+                    salvaged["assemblies"].append({
+                        "code": code,
+                        "name": name.replace('\\"', '"').replace('\\n', ' '),
+                        "parent_system_code": parent_code,
+                        "description": description.replace('\\"', '"').replace('\\n', ' ')
+                    })
+            
+            # Extract components
+            for match in re.finditer(component_pattern, content):
+                code, name, parent_code, description = match.groups()
+                if self._is_valid_component_code(code):
+                    salvaged["components"].append({
+                        "code": code,
+                        "name": name.replace('\\"', '"').replace('\\n', ' '),
+                        "parent_assembly_code": parent_code,
+                        "description": description.replace('\\"', '"').replace('\\n', ' ')
+                    })
+            
+            # Return salvaged data if we found anything
+            if salvaged["systems"] or salvaged["assemblies"] or salvaged["components"]:
+                return salvaged
+                
+        except Exception as salvage_error:
+            logger.error(f"Error during JSON salvage for chunk {chunk_index}: {salvage_error}")
+        
+        return {}
     
     def validate_extraction(self, result: Dict) -> Dict:
         """
@@ -221,4 +301,5 @@ Empty arrays if nothing found. Be generous but validate codes strictly.
             return 1 <= system <= 999 and 0 <= assembly <= 999 and 0 <= component <= 999
         except ValueError:
             return False
+    
 

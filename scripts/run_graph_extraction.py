@@ -33,6 +33,12 @@ def main():
         print("Copy .env.example to .env and add your Anthropic API key")
         return
     
+    # Archive existing output files before starting
+    print("📦 Archiving existing output files...")
+    archive_dir = ManualGraphBuilder.archive_existing_outputs()
+    if archive_dir:
+        print(f"✅ Archived existing files to: {archive_dir}")
+    
     # Initialize builder
     builder = ManualGraphBuilder(
         anthropic_api_key=api_key,
@@ -89,7 +95,7 @@ def main():
         # Export to JSON
         if result['eec_documents']:
             builder.export_eec_json(result['eec_documents'], "knowledge_graph.json")
-            print(f"📄 EEC graph exported to: knowledge_graph_output/knowledge_graph.json")
+            print(f"📄 EEC graph exported to: {builder.output_dir}/knowledge_graph.json")
             if args.with_temporal_schema:
                 print(f"📄 Temporal patterns exported to: e80_temporal_patterns.json")
                 print(f"📄 Schemas exported to: e80_schemas.json")

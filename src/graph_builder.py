@@ -4,6 +4,8 @@ Manual Graph Builder - Orchestrates the extraction pipeline
 
 import json
 import logging
+import shutil
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 from .text_chunker import TextChunker
@@ -18,7 +20,8 @@ class ManualGraphBuilder:
     """Orchestrates extraction and graph building from VMRS manuals"""
     
     def __init__(self, anthropic_api_key: str, neo4j_uri: Optional[str] = None,
-                 neo4j_username: Optional[str] = None, neo4j_password: Optional[str] = None):
+                 neo4j_username: Optional[str] = None, neo4j_password: Optional[str] = None,
+                 output_dir: Optional[str] = None):
         """
         Initialize the graph builder
         
@@ -27,8 +30,9 @@ class ManualGraphBuilder:
             neo4j_uri: Neo4j connection URI (optional, for graph storage)
             neo4j_username: Neo4j username
             neo4j_password: Neo4j password
+            output_dir: Optional custom output directory. If None, creates unique folder per run
         """
-        self.chunker = TextChunker(chunk_size=3000, overlap=200)
+        self.chunker = TextChunker(chunk_size=2000, overlap=200)  # Reduced to prevent truncation
         self.extractor = TripleExtractor(api_key=anthropic_api_key)
         
         # Initialize Neo4j client if credentials provided
@@ -39,6 +43,20 @@ class ManualGraphBuilder:
             logger.info("Neo4j client initialized")
         else:
             logger.info("Running without Neo4j (JSON export only)")
+        
+        # Set up output directory - create unique folder per run
+        base_output_dir = Path("knowledge_graph_output")
+        base_output_dir.mkdir(exist_ok=True)
+        
+        if output_dir:
+            self.output_dir = Path(output_dir)
+        else:
+            # Create unique folder with timestamp
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            self.output_dir = base_output_dir / f"run_{timestamp}"
+        
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        logger.info(f"Output directory: {self.output_dir}")
         
         # Track statistics
         self.stats = {
@@ -115,10 +133,28 @@ class ManualGraphBuilder:
         self.stats["total_assemblies"] = len(self.all_entities["assemblies"])
         self.stats["total_components"] = len(self.all_entities["components"])
         
-        # Get Neo4j stats if available
+        # Get Neo4j stats if available and fix any missing relationships
         if self.neo4j_client:
+            # Fix missing relationships (in case parents were created after children)
+            logger.info("Fixing missing relationships...")
+            self.neo4j_client.fix_missing_relationships()
             neo4j_stats = self.neo4j_client.get_statistics()
             self.stats["total_relationships"] = neo4j_stats["total_relationships"]
+        else:
+            # Calculate relationships from entity data when not using Neo4j
+            # Each assembly with a parent_system_code = 1 relationship (Assembly -> System)
+            # Each component with a parent_assembly_code = 1 relationship (Component -> Assembly)
+            assembly_relationships = sum(
+                1 for assembly in self.all_entities["assemblies"].values()
+                if assembly.get("parent_system_code")
+            )
+            component_relationships = sum(
+                1 for component in self.all_entities["components"].values()
+                if component.get("parent_assembly_code")
+            )
+            self.stats["total_relationships"] = assembly_relationships + component_relationships
+            logger.info(f"Calculated {assembly_relationships} assembly->system relationships and "
+                       f"{component_relationships} component->assembly relationships")
         
         logger.info(f"Extraction complete! {self.stats}")
         
@@ -197,11 +233,7 @@ class ManualGraphBuilder:
     
     def _save_progress(self, file_path: str, chunk_num: int):
         """Save progress to JSON file"""
-        # Create output directory if it doesn't exist
-        output_dir = Path("knowledge_graph_output")
-        output_dir.mkdir(exist_ok=True)
-        
-        progress_file = output_dir / f"progress_chunk_{chunk_num}.json"
+        progress_file = self.output_dir / f"progress_chunk_{chunk_num}.json"
         
         progress_data = {
             "file_path": file_path,
@@ -225,13 +257,15 @@ class ManualGraphBuilder:
         
         Args:
             eec_documents: List of entity documents (or dict with all entities)
-            output_filename: Output filename (will be saved in knowledge_graph_output/)
+            output_filename: Output filename (will be saved in the run's output directory)
+                           If default "knowledge_graph.json", timestamp will be added automatically
         """
-        # Create output directory if it doesn't exist
-        output_dir = Path("knowledge_graph_output")
-        output_dir.mkdir(exist_ok=True)
+        # Add timestamp to filename if using default name
+        if output_filename == "knowledge_graph.json":
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_filename = f"knowledge_graph_{timestamp}.json"
         
-        output_path = output_dir / output_filename
+        output_path = self.output_dir / output_filename
         
         # Convert to list format if needed
         if isinstance(eec_documents, list) and len(eec_documents) > 0:
@@ -240,12 +274,13 @@ class ManualGraphBuilder:
             data = self.all_entities
         
         # Format for export
+        extraction_timestamp = datetime.now().isoformat()
         export_data = {
             "metadata": {
                 "total_systems": len(data.get("systems", {})),
                 "total_assemblies": len(data.get("assemblies", {})),
                 "total_components": len(data.get("components", {})),
-                "extraction_date": None  # Can add timestamp
+                "extraction_date": extraction_timestamp
             },
             "systems": list(data.get("systems", {}).values()),
             "assemblies": list(data.get("assemblies", {}).values()),
@@ -258,6 +293,41 @@ class ManualGraphBuilder:
         logger.info(f"Exported {export_data['metadata']['total_systems']} systems, "
                    f"{export_data['metadata']['total_assemblies']} assemblies, "
                    f"{export_data['metadata']['total_components']} components to {output_path}")
+    
+    @staticmethod
+    def archive_existing_outputs():
+        """
+        Archive all existing files in knowledge_graph_output into a timestamped folder.
+        This should be called before starting a new extraction run.
+        """
+        base_output_dir = Path("knowledge_graph_output")
+        if not base_output_dir.exists():
+            logger.info("Output directory doesn't exist, nothing to archive")
+            return
+        
+        # Get all files (not directories) in the output directory
+        existing_files = [f for f in base_output_dir.iterdir() if f.is_file()]
+        
+        if not existing_files:
+            logger.info("No existing files to archive")
+            return
+        
+        # Create archive folder with timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        archive_dir = base_output_dir / f"archive_{timestamp}"
+        archive_dir.mkdir(exist_ok=True)
+        
+        # Move all files to archive folder
+        moved_count = 0
+        for file in existing_files:
+            try:
+                shutil.move(str(file), str(archive_dir / file.name))
+                moved_count += 1
+            except Exception as e:
+                logger.warning(f"Failed to move {file.name}: {e}")
+        
+        logger.info(f"Archived {moved_count} files to {archive_dir}")
+        return archive_dir
     
     def close(self):
         """Clean up resources"""

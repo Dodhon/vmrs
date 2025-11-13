@@ -314,8 +314,7 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = output_dir / f"combined_extraction_{timestamp}.json"
+    output_file = output_dir / "combined_triple_extraction_1_and_2.json"
     
     print(f"\n💾 Saving combined extraction to: {output_file}")
     with open(output_file, 'w') as f:

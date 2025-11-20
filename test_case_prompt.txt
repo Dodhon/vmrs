@@ -1,0 +1,20 @@
+
+
+Review README.md to understand the project I'm working on.
+
+You are currently helping create acceptance testing for the chatbot. The chatbot functionality is complete. The acceptance tests are not for the chatbot functionality. The acceptance tests I want are for the actual question answer part. You do not need to design the chatbot interface.
+
+The Chatbot will use an MCP to query the Neo4j knowledge graph. 
+
+The following file is a ground truth of a master vendor part dataset: Motors Part Cleanup - Return Data - Copy.xlsx.
+The following file is the data that is currently in the Neo4j db that the chatbot queries: knowledge_graph_output/combined_triple_extraction_and_md_tables_codes.csv.
+
+I want you to help create acceptance tests for the stakeholder. I want to ensure that any question the stakeholder may ask will be correct. I will measure this through the acceptance tests. These questions should mimic possible questions that the user may ask.
+
+Here are some examples of questions that the stakeholder has asked in meetings before:
+1. What is the VMRS code for a "mirror actuator"?
+2. What is the VMRS code for "grille"?x
+3. What is the vmrs code for an AC receiver dryer?
+4. Which assemblies span across multiple vehicle systems?
+
+Help me make a plan for this acceptance test suite

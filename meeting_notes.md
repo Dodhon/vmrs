@@ -57,3 +57,11 @@ meeting with stakeholder
 - ask them for methodology for actually correctly matching
 - might need 
 4. create vmrs codes of all parts based on llm 
+
+
+
+do acceptance testing:
+- use llm to make unit testing based of the source of truth excel file that David gave us
+- 1st step is to make sure the code actually does what it needs to
+    - makes sure the code is actually correct
+- review what the stakeholder might actually check

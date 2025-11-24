@@ -23,10 +23,6 @@ vrms/
 │   │   ├── excel_to_csv.py           # Excel → CSV
 │   │   └── sort_vendor_csv.py        # Sort vendor data
 │   │
-│   └── analysis/                      # Analysis scripts
-│       ├── linking_patterns_analysis.py    # Pattern discovery
-│       └── verify_code_alignment.py        # Code verification & PoC
-│
 ├── docs/                              # Documentation
 │   └── analysis/                      # Analysis reports
 │       ├── PATTERNS_ANALYSIS.md      # VMRS patterns (66,729 codes)
@@ -118,10 +114,6 @@ Added:
 python3 scripts/data_processing/excel_to_csv.py
 python3 scripts/data_processing/sort_vendor_csv.py
 
-# Analysis
-python3 scripts/analysis/linking_patterns_analysis.py
-python3 scripts/analysis/verify_code_alignment.py
-```
 
 ### Read Documentation
 
@@ -158,7 +150,6 @@ head -20 vendor\ data/Master\ Parts\ list*.csv
 |----------|-------|---------|
 | Root | 3 | README.md, .gitignore, ORGANIZATION_SUMMARY.md |
 | scripts/data_processing/ | 6 | ETL and data preparation |
-| scripts/analysis/ | 2 | Pattern analysis and verification |
 | docs/analysis/ | 4 | Analysis reports and findings |
 | csv data/ | 40+ | VMRS source and master data |
 | md data/ | 39 | VMRS handbook markdown |
@@ -199,7 +190,7 @@ Your project is now organized and ready for:
 
 ## 🎉 Summary
 
-✅ **8 scripts** organized into 2 categories  
+✅ **6 data-processing scripts** centralized for ETL  
 ✅ **4 documentation files** in dedicated folder  
 ✅ **2 README files** for guidance  
 ✅ **100+ files** now in logical structure  

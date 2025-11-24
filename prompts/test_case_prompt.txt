@@ -1,0 +1,45 @@
+
+
+Review README.md to understand the project I'm working on.
+
+You are currently helping create acceptance testing for the chatbot. The chatbot functionality is complete. The acceptance tests are not for the chatbot functionality. The acceptance tests I want are for the actual question answer part. You do not need to design the chatbot interface.
+
+The Chatbot will use an MCP to query the Neo4j knowledge graph. 
+
+The following file is a ground truth of a master vendor part dataset: vendor data/checked/Motors Part Cleanup - Return Data.csv.
+The following file is the data that is currently in the Neo4j db that the chatbot queries: knowledge_graph_output/combined_triple_extraction_and_md_tables_codes.csv.
+
+I want you to help create acceptance tests for the stakeholder. I want to ensure that any question the stakeholder may ask will be correct. I will measure this through the acceptance tests. These questions should mimic possible questions that the user may ask.
+
+Here are some examples of questions that the stakeholder has asked in meetings before:
+1. What is the VMRS code for a "mirror actuator"?
+2. What is the VMRS code for "grille"?x
+3. What is the vmrs code for an AC receiver dryer?
+4. Which assemblies span across multiple vehicle systems?
+
+Help me make a plan for this acceptance test suite
+---
+
+## Acceptance Test Plan (MVP)
+
+### Scope & Inputs
+- Limit acceptance tests to the Neo4j-backed QA layer per `project_context.md`; the chatbot shell is already complete.
+- Treat `vendor data/checked/Motors Part Cleanup - Return Data.csv` as the vendor-authoritative ground truth, and `knowledge_graph_output/combined_triple_extraction_and_md_tables_codes.csv` as the exact snapshot loaded into Neo4j.
+- Every test must cite the MCP query plus the CSV rows used for verification so stakeholders can trace answers back to their sources.
+
+### Starter Acceptance Tests
+1. **Mirror actuator VMRS lookup**
+   - *Question*: “What is the VMRS code for a mirror actuator?”
+   - *Expected answer*: VMRS `002-010-084`, described as Actuator - Mirror within System `002` (Cab & Sheet Metal) and Assembly `010` (Mirrors).
+
+2. **Radiator grille VMRS lookup**
+   - *Question*: “What is the VMRS code for a grille?”
+   - *Expected answer*: VMRS `002-001-001`, “Grille - Radiator,” under System `002` (Cab & Sheet Metal) and Assembly `001` (Radiator Grille).
+
+3. **A/C receiver drier VMRS lookup**
+   - *Question*: “What is the VMRS code for an A/C receiver dryer?”
+   - *Expected answer*: VMRS `001-001-065`, “Receiver - Dehydrator Assembly (Drier),” tied to System `001` (Air Conditioning/Heating) and Assembly `001` (Air Conditioning Assembly - Complete).
+
+4. **Assemblies spanning multiple vehicle systems**
+   - *Question*: “Which assemblies span across multiple vehicle systems?”
+   - *Expected answer*: Default expectation is “none” (VMRS assemblies are namespaced per system). If any assemblies genuinely appear under multiple system codes, list each `(assembly_name, system_code)` combination explicitly.

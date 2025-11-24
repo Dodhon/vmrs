@@ -122,68 +122,6 @@ python3 scripts/data_processing/sort_vendor_csv.py
 
 ---
 
-## 🔍 Analysis Scripts (`analysis/`)
-
-### 1. `linking_patterns_analysis.py`
-**Purpose**: Analyze patterns between VMRS and vendor data to identify linking strategies
-
-**Input**:
-- `csv data/VMRS_COMPLETE_v20_MASTER.csv`
-- `vendor data/Master Parts list for Richard 06.25.25 (1).csv`
-
-**Output** (in `eda/`):
-- `common_systems.csv` - System codes present in both datasets
-- `vendor_vmrs_matched_codes.csv` - 17,168 matched parts
-- `shared_keywords.csv` - 1,890 shared keywords with frequencies
-- Console report with 6 pattern analyses
-
-**Analysis**:
-1. Direct system code matching
-2. Vendor code construction to VMRS
-3. Description keyword overlap
-4. Class/category alignment
-5. Hierarchical structure comparison
-6. Manufacturer/brand codes
-
-**Key Finding**: 93.7% match rate (17,168 out of 18,327 parts with numeric codes)
-
-**Usage**:
-```bash
-python3 scripts/analysis/linking_patterns_analysis.py
-```
-
----
-
-### 2. `verify_code_alignment.py`
-**Purpose**: Verify code alignment accuracy and create PoC-ready datasets
-
-**Input**:
-- `csv data/VMRS_COMPLETE_v20_MASTER.csv`
-- `vendor data/Master Parts list for Richard 06.25.25 (1).csv`
-- `eda/vendor_vmrs_matched_codes.csv`
-
-**Output** (in `eda/`):
-- `poc_dataset.csv` - System 044 PoC (639 parts, 355 HIGH quality)
-- `perfect_alignment_poc.csv` - High-confidence matches (111 parts)
-- Console report with quality breakdown
-
-**Analysis**:
-- Clarifies what 93.7% match means
-- Identifies best systems for PoC
-- Calculates description similarity scores
-- Quality grades: HIGH (>0.30), MEDIUM (0.15-0.30), LOW (<0.15)
-
-**Key Finding**: 
-- 100% of unique constructed codes exist in VMRS
-- System 044 (Fuel System) has 55.6% HIGH quality matches
-
-**Usage**:
-```bash
-python3 scripts/analysis/verify_code_alignment.py
-```
-
----
-
 ## 🔄 Typical Workflow
 
 ### Initial Setup (First Time)
@@ -205,15 +143,6 @@ python3 scripts/data_processing/sort_master_csv.py
 python3 scripts/data_processing/sort_vendor_csv.py
 ```
 
-### Analysis (After Setup)
-```bash
-# 6. Analyze linking patterns
-python3 scripts/analysis/linking_patterns_analysis.py
-
-# 7. Verify and create PoC datasets
-python3 scripts/analysis/verify_code_alignment.py
-```
-
 ---
 
 ## 📊 Output Summary
@@ -226,8 +155,6 @@ python3 scripts/analysis/verify_code_alignment.py
 | sort_master_csv.py | 5 sorted CSVs | - |
 | excel_to_csv.py | 1 vendor CSV | 29,710 parts |
 | sort_vendor_csv.py | 10 sorted CSVs | - |
-| linking_patterns_analysis.py | 3 analysis CSVs | 93.7% match rate |
-| verify_code_alignment.py | 2 PoC datasets | 355 HIGH quality |
 
 ---
 

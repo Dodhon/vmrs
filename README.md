@@ -17,10 +17,6 @@ vrms/
 │   │   ├── excel_to_csv.py           # Convert Excel to CSV
 │   │   └── sort_vendor_csv.py        # Sort vendor data by columns
 │   │
-│   └── analysis/                      # Data analysis scripts
-│       ├── linking_patterns_analysis.py    # Find patterns between VMRS and vendor data
-│       └── verify_code_alignment.py        # Verify code matches and create PoC datasets
-│
 ├── docs/                              # Documentation
 │   └── analysis/                      # Analysis reports
 │       ├── PATTERNS_ANALYSIS.md      # VMRS data pattern analysis
@@ -91,15 +87,6 @@ python3 scripts/data_processing/combine_vmrs_csv.py
 python3 scripts/data_processing/validate_vmrs_csv.py
 ```
 
-### 2. Analysis
-
-```bash
-# Analyze linking patterns between VMRS and vendor data
-python3 scripts/analysis/linking_patterns_analysis.py
-
-# Verify code alignment and create PoC datasets
-python3 scripts/analysis/verify_code_alignment.py
-```
 
 ## 📖 Documentation
 

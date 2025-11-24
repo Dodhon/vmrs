@@ -1,0 +1,66 @@
+Neo4j QA Acceptance Test Summary Report
+========================================
+Date: 2025-11-24
+Total Questions: 50
+
+Results Overview
+----------------
+Exact Matches: 42 (84%)
+- The actual Neo4j code and description matched the vendor expectation
+
+Fuzzy Matches: 3 (6%)
+- Code exists but description differs from expected
+  * 002-048-000: Assembly-level entry without specific component detail
+  * 041-004-021: "Charge Port Electric Vehicle / Dina Cold Sida Charge Air Coolor" vs expected "CHARGE AIR COOLER ASSEMBLY"
+  * 041-004-010: "Hose Intake, All Cleanel, APU" vs expected "HOSE - INTAKE, CHARGE AIR COOLER"
+
+Not Found: 5 (10%)
+- Code does not exist in current Neo4j snapshot
+  * 001-004-064: VENT - CAB EXHAUSTER, SLEEPER
+  * 002-017-014: SILL - OUTER
+  * 032-001-001: BATTERY (specific component missing, only assembly exists)
+
+Query Efficiency
+----------------
+Average Queries Per Question: 1.24
+- 1 Query: 39 questions (78%)
+- 2 Queries: 9 questions (18%)
+- 3 Queries: 2 questions (4%)
+
+System Coverage
+---------------
+Questions tested across 11 VMRS systems:
+- 001: Air Conditioning, Heating & Ventilating (5 questions)
+- 002: Cab and Sheet Metal (6 questions)
+- 013: Brakes (6 questions)
+- 014: Frame Components (5 questions)
+- 015: Steering (5 questions)
+- 016: Suspension (5 questions)
+- 022: Axles - Driven, Rear (5 questions)
+- 032: Cranking System (5 questions)
+- 033: Ignition System (5 questions)
+- 041: Air Intake System (5 questions)
+
+Key Findings
+------------
+1. High Match Rate: 84% exact matches indicate strong Neo4j data quality
+2. Missing Components: 5 vendor codes not in Neo4j (primarily specific variants)
+3. Data Quality Issues: Some Neo4j descriptions contain typos or concatenated entries
+4. Search Effectiveness: Regex-based searches work well for natural language questions
+
+Recommendations
+---------------
+1. Add missing codes (001-004-064, 002-017-014, 032-001-001) to Neo4j
+2. Clean up fuzzy match descriptions for clarity
+3. Consider adding vendor part number cross-references to components
+4. Implement synonym handling for common variations (e.g., "drier" vs "dryer")
+
+Rerun Instructions
+------------------
+To revalidate after Neo4j updates:
+1. Ensure Neo4j is running with latest data snapshot
+2. Read questions from: tests/neo4j_acceptance/selected_parts.csv
+3. Execute queries via MCP Neo4j connector
+4. Compare results against vendor ground truth CSV
+5. Update qa_results.csv with new findings
+

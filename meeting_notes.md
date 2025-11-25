@@ -65,3 +65,6 @@ do acceptance testing:
 - 1st step is to make sure the code actually does what it needs to
     - makes sure the code is actually correct
 - review what the stakeholder might actually check
+
+
+

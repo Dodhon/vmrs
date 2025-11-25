@@ -4,3 +4,5 @@ Question,Expected_Answer,Actual_Answer,Num_Queries,Query_1,Query_2,Query_3,Query
 "What is the VMRS code for module, climate, control?","001-001-261 (CONTROL - HEATER AND AIR CONDITIONING)","001-001-261 (Control - Heater & Air Conditioning)",2,"MATCH (n) WHERE n.name =~ '(?i).*climate.*control.*' OR n.description =~ '(?i).*climate.*control.*' RETURN n.code as code, n.name as name, labels(n)[0] as type LIMIT 15","MATCH (n:Component) WHERE (n.name =~ '(?i).*module.*climate.*' OR n.name =~ '(?i).*control.*heater.*air.*') AND n.code STARTS WITH '001-001' RETURN n.code as code, n.name as name LIMIT 10",N/A,N/A,N/A
 "What is the VMRS code for blower motor?","001-002-017 (MOTOR - BLOWER, HEATER AND DEFROSTER)","001-002-017 (Motor - Blower, Heater & Defroster)",2,"MATCH (n) WHERE n.name =~ '(?i).*blower.*motor.*' OR n.description =~ '(?i).*blower.*motor.*' RETURN n.code as code, n.name as name, labels(n)[0] as type LIMIT 15","MATCH (n:Component) WHERE n.name =~ '(?i).*motor.*blower.*heater.*' AND n.code STARTS WITH '001-002' RETURN n.code as code, n.name as name LIMIT 10",N/A,N/A,N/A
 
+
+

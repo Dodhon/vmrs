@@ -23,7 +23,7 @@ Help me make a plan for this acceptance test suite
 ## Acceptance Test Plan (MVP)
 
 ### Scope & Inputs
-- Limit acceptance tests to the Neo4j-backed QA layer per `project_context.md`; the chatbot shell is already complete.
+- Limit acceptance tests to the Neo4j-backed QA layer per `docs/project_context.md`; the chatbot shell is already complete.
 - Treat `vendor data/checked/Motors Part Cleanup - Return Data.csv` as the vendor-authoritative ground truth, and `knowledge_graph_output/combined_triple_extraction_and_md_tables_codes.csv` as the exact snapshot loaded into Neo4j.
 - Every test must cite the MCP query plus the CSV rows used for verification so stakeholders can trace answers back to their sources.
 

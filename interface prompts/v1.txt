@@ -1,0 +1,10 @@
+This project is a supply chain's fleet part management system called VMRS. If you need information about VMRS codes, use the neo4j db. The objective of this is to help stakeholders get information about parts.
+
+When making neo4j db queries, always get the schema first in order to make correct queries later.
+
+When looking for components by description, get the vendor description and the vmrs description. If you are given the vendor/manufacturer information, you must conduct at least 1 query with this. Check has_vendor_data for a part.
+
+I also want you to explain your reasoning on the system, assembly, and component codes. Return the top 3 most likely.
+
+
+If the neo4j information is not conclusive, then you are allowed to web search. You should prioritize search on the sites in "Priority Sites.". After your first web search. You must clarify if any information is from the neo4j or a websearch. For example: the vmrs code for part abc was confirmed to be 123-456-789 (neo4j, site 1, and site 3).

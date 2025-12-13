@@ -1,4 +1,15 @@
-<!-- c03a3aa6-bc84-4c0b-b43a-9106a6ac6859 7f8bf86d-f40f-4813-a4db-67257874e367 -->
+---
+name: "Plan: Generate VMRS Chatbot Acceptance Test Suite"
+overview: ""
+todos:
+  - id: 704326ea-576c-4897-b098-cf692a34539a
+    content: Create scripts/generate_evaluation_qa.py to extract and format QA pairs from the Excel file
+    status: pending
+  - id: 05b56b4d-5d27-4109-b731-21534e5905b1
+    content: Run the generation script and validate the output JSON
+    status: pending
+---
+
 # Plan: Generate VMRS Chatbot Acceptance Test Suite
 
 ## 1. Environment & Setup
@@ -37,8 +48,3 @@ Create `tests/acceptance/test_qa_accuracy.py`:
 
 - [ ] Run the generation script to create the artifact.
 - [ ] Run `pytest tests/acceptance` to verify the harness.
-
-### To-dos
-
-- [ ] Create scripts/generate_evaluation_qa.py to extract and format QA pairs from the Excel file
-- [ ] Run the generation script and validate the output JSON

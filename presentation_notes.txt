@@ -1,0 +1,26 @@
+
+
+RH gained the following from this project:
+
+1. VMRS handbook as a truth of source
+2. Did not have an ongoing training workflow
+- previously, they outsourced the classification of vmrs codes to a different company costing $$$ ( needs exact number )
+- in betwee
+
+
+
+Savings for this project:
+1. Saving from your staff (direct saving),  
+2.  Saving from similar parts, (cheaper price)  
+3. Saving from inventory forecast & control, such as saving from expedite shipping,... 
+4. Speed up repair process, faster turn around time for truck.
+
+
+Make several version of the prompt before you present: make sure to save each version
+
+* Make a test plan to stress test the capabilities of the solution
+- needs to cover all possible edge cases
+- identify what questions will break the solution
+- make github issue for this.
+
+^ must be done by meeting w David on the 15th

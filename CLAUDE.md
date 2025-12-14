@@ -154,6 +154,7 @@ python3 process_questions.py
 - `create_vendor_nodes.py` - Import Vendor nodes to Neo4j
 - `refactor_vendor_schema.py` - Create VendorPart nodes and link to Components/Vendors
 - `fix_orphaned_vendor_parts.py` - Create missing Components and link orphaned VendorParts
+- `check_missing_codes.py` - Verify if specific VMRS codes exist in Neo4j
 - `enrich_vmrs_with_vendor_data.py` - Link vendor parts to VMRS codes (legacy)
 - `fix_vendor_names.py` - Clean vendor data
 
@@ -228,7 +229,7 @@ Copy `.env.example` to `.env` and fill in credentials.
 ### Code Validation
 - All scripts validate VMRS code formats (XXX-XXX-XXX pattern)
 - Hierarchical integrity checks ensure parent codes exist
-- 100% of vendor-constructed codes exist in VMRS master
+- Some vendor VMRS codes don't exist in VMRS handbook - these Components are created from vendor data (101 total)
 
 ## Important Path Conventions
 
@@ -247,9 +248,16 @@ Copy `.env.example` to `.env` and fill in credentials.
 ### Neo4j Acceptance Tests
 Located in `tests/neo4j_acceptance/`:
 - `queries.json` - Test queries with expected answers
-- `questions.json` - Q&A test cases
+- `questions.json` - 50 Q&A test cases
 - `process_questions.py` - Test runner
 - `qa_results.csv` - Test results
+
+### Stress Tests
+Located in `tests/stress_test/`:
+- `curated_edge_cases.csv` - 224 curated edge case questions across 9 categories
+- `edge_cases_summary.md` - Category breakdown and testing procedure
+
+Categories: Data Quality, Ambiguity, Missing Data, Query Complexity, Natural Language, Boundary, Manufacturer, Vendor Query, Not In Database
 
 ### Data Validation
 - `scripts/data_processing/validate_vmrs_csv.py` generates validation reports

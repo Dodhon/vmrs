@@ -1,0 +1,225 @@
+id,category,subcategory,question,expected_vmrs,expected_behavior,source_description,notes
+DQ-001,data_quality,abbreviations,"What is the VMRS code for CONDENSER-A/C,55T,815CC?",001-001-062,Should parse A/C and ignore specs,"CONDENSER-A/C,55T,815CC",Complex abbreviation with embedded specs
+DQ-002,data_quality,abbreviations,"What is the VMRS code for DRYER, A/C - W/ WAFER DYE?",001-001-065,Should handle W/ abbreviation,"DRYER, A/C - W/ WAFER DYE",Multiple abbreviations
+DQ-003,data_quality,abbreviations,"What is the VMRS code for RCVR DRIER - A/C CLINCH, INBOA?",001-001-065,Should handle truncated text and abbreviations,"RCVR DRIER - A/C CLINCH, INBOA",Truncated + abbreviated
+DQ-004,data_quality,abbreviations,What is the VMRS code for P/S PUMP DIP STCK?,015-005-055,Should parse P/S as power steering,P/S PUMP DIP STCK,P/S abbreviation
+DQ-005,data_quality,abbreviations,What is the VMRS code for CONTROL ARM UPPER W/BALL JOINT?,016-021-001,Should handle W/ abbreviation,CONTROL ARM UPPER W/BALL JOINT,W/ abbreviation
+DQ-006,data_quality,abbreviations,"What is the VMRS code for HOLDER, MIRRIOR LH?",002-010-005,Should handle LH (left hand) and typo,"HOLDER, MIRRIOR LH",LH abbreviation + typo
+DQ-007,data_quality,abbreviations,"What is the VMRS code for HOLDER, MIRRIOR RH?",002-010-005,Should handle RH (right hand) and typo,"HOLDER, MIRRIOR RH",RH abbreviation + typo
+DQ-008,data_quality,abbreviations,What is the VMRS code for CONDENSER ASSY?,001-001-062,Should expand ASSY to assembly,CONDENSER ASSY,ASSY abbreviation
+DQ-009,data_quality,abbreviations,"What is the VMRS code for RECEIVER & DEHYDRATOR ASM,A/C?",001-001-065,Should handle ASM abbreviation,"RECEIVER & DEHYDRATOR ASM,A/C",ASM abbreviation
+DQ-010,data_quality,abbreviations,"What is the VMRS code for SWITCH-IGNITION,6 TUMBLER-NON?",033-001-001,Should handle truncated description,"SWITCH-IGNITION,6 TUMBLER-NON",Truncated at end
+DQ-011,data_quality,spelling_errors,"What is the VMRS code for CONDENSOR, AC?",001-001-062,Should recognize CONDENSOR as CONDENSER typo,"CONDENSOR, AC",Spelling error: CONDENSOR
+DQ-012,data_quality,spelling_errors,What is the VMRS code for A/C CONDENSOR?,001-001-062,Should recognize CONDENSOR typo,A/C CONDENSOR,Spelling error: CONDENSOR
+DQ-013,data_quality,spelling_errors,What is the VMRS code for WINSHIELD?,002-024-001,Should recognize WINSHIELD as WINDSHIELD typo,WINSHIELD,Spelling error: WINSHIELD
+DQ-014,data_quality,spelling_errors,What is the VMRS code for WINSHIELD SEALING STRIP?,002-024-018,Should handle typo in context,WINSHIELD SEALING STRIP,Spelling error in phrase
+DQ-015,data_quality,spelling_errors,What is the VMRS code for HOSE-WINSHIELD WASH?,002-035-021,Should handle typo in compound,HOSE-WINSHIELD WASH,Spelling error in compound word
+DQ-016,data_quality,spelling_errors,"What is the VMRS code for MIRRIOR, ASSY D/S?",002-010-006,Should recognize MIRRIOR as MIRROR typo,"MIRRIOR, ASSY D/S",Spelling error: MIRRIOR
+DQ-017,data_quality,spelling_errors,"What is the VMRS code for SEPERATOR, ASSY, FUEL/WATER?",044-002-002,Should recognize SEPERATOR as SEPARATOR typo,"SEPERATOR, ASSY, FUEL/WATER",Spelling error: SEPERATOR
+DQ-018,data_quality,spelling_errors,"What is the VMRS code for WATER SEPERATOR, FUEL?",044-002-012,Should handle SEPERATOR typo,"WATER SEPERATOR, FUEL",Spelling error: SEPERATOR
+DQ-019,data_quality,punctuation,"What is the VMRS code for WASHER,SEALING,A/C #12?",001-001-063,Should handle comma-heavy description,"WASHER,SEALING,A/C #12",Heavy punctuation
+DQ-020,data_quality,punctuation,"What is the VMRS code for RECEIVER, DRIER, A/C?",001-001-065,Should parse multiple commas,"RECEIVER, DRIER, A/C",Multiple commas
+DQ-021,data_quality,punctuation,"What is the VMRS code for LINE, A/C , CAB LIQUID?",001-001-138,Should handle extra spaces around comma,"LINE, A/C , CAB LIQUID",Inconsistent spacing
+DQ-022,data_quality,punctuation,"What is the VMRS code for HOSE ASSEMBLY-A/C, 8,CAT,DFLW?",001-001-153,Should parse complex punctuation,"HOSE ASSEMBLY-A/C, 8,CAT,DFLW",Mixed punctuation
+DQ-023,data_quality,punctuation,"What is the VMRS code for O-RING, KIT, HVAC SYS?",001-001-232,Should handle O-RING hyphenation,"O-RING, KIT, HVAC SYS",Hyphen in part name
+DQ-024,data_quality,punctuation,"What is the VMRS code for LOUVER-DIRECTIONAL, HVAC,DASH?",001-001-221,Should handle hyphen and commas,"LOUVER-DIRECTIONAL, HVAC,DASH",Mixed punctuation
+DQ-025,data_quality,punctuation,"What is the VMRS code for VALVE, SCHRADER, A/C?",001-001-227,Should handle brand name in description,"VALVE, SCHRADER, A/C",Brand name embedded
+DQ-026,data_quality,embedded_codes,"What is the VMRS code for CONDENSER-AC, 51T, 1009CC?",001-001-062,Should ignore spec codes,"CONDENSER-AC, 51T, 1009CC",Embedded specifications
+DQ-027,data_quality,embedded_codes,"What is the VMRS code for SWITCH, R134A HSHP?",001-001-242,Should handle refrigerant code,"SWITCH, R134A HSHP",Refrigerant code R134A
+DQ-028,data_quality,embedded_codes,"What is the VMRS code for SWITCH, R134A LSHP?",001-001-243,Should handle refrigerant code,"SWITCH, R134A LSHP",Refrigerant code R134A
+DQ-029,data_quality,embedded_codes,What is the VMRS code for HOSE AC #8 CAT3126?,001-001-285,Should ignore engine code,HOSE AC #8 CAT3126,Engine code CAT3126
+DQ-030,data_quality,embedded_codes,"What is the VMRS code for MOTOR RUN CAPACITOR, 35 440VAC?",001-003-167,Should ignore electrical specs,"MOTOR RUN CAPACITOR, 35 440VAC",Electrical specifications
+DQ-031,data_quality,embedded_codes,What is the VMRS code for HEATER HOSE .375 X 600?,001-002-022,Should ignore dimensions,HEATER HOSE .375 X 600,Dimensions embedded
+DQ-032,data_quality,embedded_codes,"What is the VMRS code for HOSE-EPDM,1.000 ID,R?",001-002-022,Should ignore material and size specs,"HOSE-EPDM,1.000 ID,R",Material and dimension specs
+DQ-033,data_quality,truncated,"What is the VMRS code for HOSE, A/C , COMPRESSOR TO CON?",001-001-153,Should handle truncated description,"HOSE, A/C , COMPRESSOR TO CON",Truncated at CON
+DQ-034,data_quality,truncated,What is the VMRS code for MOLDED HOSE CYLINDER HEAD COVE?,001-001-206,Should handle truncated COVER,MOLDED HOSE CYLINDER HEAD COVE,Truncated at COVE
+DQ-035,data_quality,truncated,What is the VMRS code for CLIMATE CONTROL CONTROL MODULE?,001-001-209,Should handle duplicate word,CLIMATE CONTROL CONTROL MODULE,Duplicate word error
+DQ-036,data_quality,truncated,"What is the VMRS code for COONECTOR KIT, EXPANSION VALVE?",001-001-140,Should handle CONNECTOR typo,"COONECTOR KIT, EXPANSION VALVE",Typo: COONECTOR
+DQ-037,data_quality,truncated,What is the VMRS code for P3 GRAY BUMPER W/FOGLIGHT CUTO?,014-002-001,Should handle truncated CUTOUT,P3 GRAY BUMPER W/FOGLIGHT CUTO,Truncated + color code
+DQ-038,data_quality,truncated,"What is the VMRS code for PANEL, TEMPERATURE CONTROL COR?",001-001-261,Should handle truncated description,"PANEL, TEMPERATURE CONTROL COR",Truncated
+DQ-039,data_quality,truncated,What is the VMRS code for OUTLET LOUVER AIR COND GRY?,001-001-221,Should handle color abbreviation,OUTLET LOUVER AIR COND GRY,Color abbreviation GRY
+DQ-040,data_quality,truncated,What is the VMRS code for OUTLET LOUVER AIR COND BLACK?,001-001-221,Should ignore color,OUTLET LOUVER AIR COND BLACK,Color in description
+AM-001,ambiguity,generic_term,What is the VMRS code for SEAL?,MULTIPLE,Should ask for clarification - 304 parts across 19 systems,SEAL,Matches 106 unique VMRS codes
+AM-002,ambiguity,generic_term,What is the VMRS code for SWITCH?,MULTIPLE,Should ask for clarification - 280 parts across 24 systems,SWITCH,Matches 90 unique VMRS codes
+AM-003,ambiguity,generic_term,What is the VMRS code for BRACKET?,MULTIPLE,Should ask for clarification - 293 parts across 23 systems,BRACKET,Matches 114 unique VMRS codes
+AM-004,ambiguity,generic_term,What is the VMRS code for HOSE?,MULTIPLE,Should ask for clarification - 534 parts across 17 systems,HOSE,Matches 111 unique VMRS codes
+AM-005,ambiguity,generic_term,What is the VMRS code for GASKET?,MULTIPLE,Should ask for clarification - 340 parts across 14 systems,GASKET,Matches 106 unique VMRS codes
+AM-006,ambiguity,generic_term,What is the VMRS code for BOLT?,MULTIPLE,Should ask for clarification - 141 parts across 14 systems,BOLT,Matches 39 unique VMRS codes
+AM-007,ambiguity,generic_term,What is the VMRS code for CLAMP?,MULTIPLE,Should ask for clarification - 176 parts across 9 systems,CLAMP,Matches 35 unique VMRS codes
+AM-008,ambiguity,generic_term,What is the VMRS code for FILTER?,MULTIPLE,Should ask what type of filter,FILTER,Air filter vs fuel filter vs oil filter
+AM-009,ambiguity,generic_term,What is the VMRS code for RADIATOR?,MULTIPLE,Should ask for system context - 62 matches,RADIATOR,Could be cooling system or A/C
+AM-010,ambiguity,generic_term,What is the VMRS code for STARTER?,MULTIPLE,Should ask for clarification - 36 matches,STARTER,Could be motor or solenoid
+AM-011,ambiguity,generic_term,What is the VMRS code for FITTING?,MULTIPLE,Should ask for clarification - 45 matches,FITTING,Very generic term
+AM-012,ambiguity,generic_term,What is the VMRS code for CONNECTOR?,MULTIPLE,Should ask for clarification - 24 matches,CONNECTOR,Electrical vs mechanical
+AM-013,ambiguity,generic_term,What is the VMRS code for BEARING?,MULTIPLE,Should ask for clarification - 21 matches,BEARING,Many bearing types
+AM-014,ambiguity,generic_term,What is the VMRS code for BELT?,MULTIPLE,Should ask for clarification - 22 matches,BELT,Serpentine vs V-belt vs timing
+AM-015,ambiguity,generic_term,What is the VMRS code for NUT?,MULTIPLE,Should ask for clarification - 19 matches,NUT,Very generic fastener
+AM-016,ambiguity,generic_term,What is the VMRS code for O-RING?,MULTIPLE,Should ask for clarification - 21 matches,O-RING,Many O-ring applications
+AM-017,ambiguity,generic_term,What is the VMRS code for THERMOSTAT?,MULTIPLE,Should ask cooling vs HVAC - 25 matches,THERMOSTAT,Cooling system vs climate control
+AM-018,ambiguity,generic_term,What is the VMRS code for ANTENNA?,MULTIPLE,Should clarify type - 23 matches,ANTENNA,Radio vs GPS vs satellite
+AM-019,ambiguity,generic_term,What is the VMRS code for HARNESS?,MULTIPLE,Should ask for clarification - 20 matches,HARNESS,Many wiring harnesses
+AM-020,ambiguity,generic_term,What is the VMRS code for MIRROR?,MULTIPLE,Should ask which mirror - 21 matches,MIRROR,Side vs rear view vs hood
+AM-021,ambiguity,partial_description,What is the VMRS code for BATTERY?,032-001-001,Should match battery component but 237 parts map here,BATTERY,High volume single component
+AM-022,ambiguity,partial_description,What is the VMRS code for FLANGE?,053-008-004,Should match but 218 parts map here,FLANGE,High volume generic term
+AM-023,ambiguity,partial_description,What is the VMRS code for TERMINAL?,053-017-004,Should match but 133 parts map here,TERMINAL,Electrical terminal generic
+AM-024,ambiguity,partial_description,What is the VMRS code for RETAINER?,053-007-000,Should match but 98 parts map here,RETAINER,Generic fastener
+AM-025,ambiguity,partial_description,What is the VMRS code for SPRING?,MULTIPLE,Should ask for clarification,SPRING,Air spring vs leaf spring vs coil
+AM-026,ambiguity,multi_system,"What is the VMRS code for SEAL, OIL?",MULTIPLE,Should ask which system - engine vs axle vs transmission,"SEAL, OIL",Oil seal appears in many systems
+AM-027,ambiguity,multi_system,"What is the VMRS code for HOSE, AIR?",MULTIPLE,Should ask which system - brake vs intake vs suspension,"HOSE, AIR",Air hose in multiple systems
+AM-028,ambiguity,multi_system,"What is the VMRS code for VALVE, CHECK?",MULTIPLE,Should ask which system,"VALVE, CHECK",Check valve in multiple systems
+AM-029,ambiguity,multi_system,"What is the VMRS code for SENSOR, TEMPERATURE?",MULTIPLE,Should ask which system - engine vs HVAC,"SENSOR, TEMPERATURE",Temp sensors everywhere
+AM-030,ambiguity,multi_system,"What is the VMRS code for PUMP, WATER?",MULTIPLE,Should ask which system - cooling vs washer,"PUMP, WATER",Water pump ambiguity
+MD-001,missing_data,vendor_sourced,"What is the VMRS code for VENT, CAB EXHAUST?",001-004-064,Should return 001-004-064 (created from vendor data),"VENT, CAB EXHAUST",Component created from vendor CSV
+MD-002,missing_data,vendor_sourced,"What is the VMRS code for VENT, CAB DOOR?",001-004-064,Should return 001-004-064 (created from vendor data),"VENT, CAB DOOR",Component created from vendor CSV
+MD-003,missing_data,vendor_sourced,What is the VMRS code for EXTERIOR WALL VENT?,001-004-064,Should return 001-004-064 (created from vendor data),EXTERIOR WALL VENT,Component created from vendor CSV
+MD-004,missing_data,vendor_sourced,"What is the VMRS code for DOOR SILL, OUTER LH?",002-017-014,Should return 002-017-014,"DOOR SILL, OUTER LH",Component exists in Neo4j
+MD-005,missing_data,vendor_sourced,"What is the VMRS code for BATTERY, GROUP 51, 12V, 450CCA?",032-001-001,Should return 032-001-001 (237 vendor parts link here),"BATTERY, GROUP 51, 12V, 450CCA",Component created from vendor CSV
+MD-006,missing_data,vendor_sourced,"What is the VMRS code for BATTERY, GC2, 6V, 224AH?",032-001-001,Should return 032-001-001 (237 vendor parts link here),"BATTERY, GC2, 6V, 224AH",Component created from vendor CSV
+MD-007,missing_data,unclassified,What is the VMRS code for FRONT LINEAR ACTUATOR?,NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,FRONT LINEAR ACTUATOR,Vendor couldn't classify
+MD-008,missing_data,unclassified,What is the VMRS code for 41' COUNTERBALANCE?,NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,41' COUNTERBALANCE,Vendor couldn't classify
+MD-009,missing_data,unclassified,"What is the VMRS code for 49"" COUNTER BALANCE?",NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,"49"" COUNTER BALANCE",Vendor couldn't classify
+MD-010,missing_data,unclassified,"What is the VMRS code for HOUSING, EXTENDED WDV?",NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,"HOUSING, EXTENDED WDV",Vendor couldn't classify
+MD-011,missing_data,unclassified,"What is the VMRS code for SPRING, PIN?",NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,"SPRING, PIN",Vendor couldn't classify
+MD-012,missing_data,unclassified,What is the VMRS code for MOUNTING KIT?,NOT_FOUND,Should gracefully return not found - too generic,MOUNTING KIT,Too generic to classify
+MD-013,missing_data,unclassified,What is the VMRS code for 6V 220AH AGM EV DRY CELL?,NOT_FOUND,Should gracefully return not found - UNABLE TO CODE,6V 220AH AGM EV DRY CELL,EV battery not in VMRS
+MD-014,missing_data,unclassified,"What is the VMRS code for ASSEMBLY, SHAFT?",NOT_FOUND,Should gracefully return not found - too generic,"ASSEMBLY, SHAFT",Too generic to classify
+MD-015,missing_data,unclassified,What is the VMRS code for SHIELD?,NOT_FOUND,Should gracefully return not found or ask for clarification,SHIELD,Too generic - heat shield? splash shield?
+MD-016,missing_data,unable_to_verify,What is the VMRS code for A/C CONDENSER MOUNTING KIT?,001-001-062,Vendor marked UNABLE TO VERIFY,A/C CONDENSER MOUNTING KIT,Uncertain classification
+MD-017,missing_data,unable_to_verify,"What is the VMRS code for DRIER, AC?",001-001-065,Vendor marked UNABLE TO VERIFY,"DRIER, AC",Uncertain classification
+MD-018,missing_data,unable_to_verify,What is the VMRS code for MAIN CONTROL BOARD?,001-001-261,Vendor marked UNABLE TO VERIFY,MAIN CONTROL BOARD,Uncertain classification
+MD-019,missing_data,unable_to_verify,What is the VMRS code for A/C SYSTEM CORE AND CAP KIT?,001-001-352,Vendor marked UNABLE TO VERIFY,A/C SYSTEM CORE AND CAP KIT,Uncertain classification
+MD-020,missing_data,unable_to_verify,What is the VMRS code for FAN MOTOR SWITCH?,001-001-261,Vendor marked UNABLE TO VERIFY,FAN MOTOR SWITCH,Could be multiple systems
+QC-001,query_complexity,multi_result,List all components in the Air Conditioning system,MULTIPLE,Should summarize or ask to narrow down - 754 parts,,System 001 has 754 vendor parts
+QC-002,query_complexity,multi_result,What parts are in the Brakes system?,MULTIPLE,Should summarize or ask to narrow down - 2591 parts,,System 013 has 2591 vendor parts
+QC-003,query_complexity,multi_result,Show me all Cab and Sheet Metal components,MULTIPLE,Should summarize or ask to narrow down - 2183 parts,,System 002 has 2183 vendor parts
+QC-004,query_complexity,multi_result,What vendor parts are available for the Cooling System?,MULTIPLE,Should summarize or ask to narrow down - 1119 parts,,System 042 has 1119 vendor parts
+QC-005,query_complexity,multi_result,List all brake-related vendor parts,MULTIPLE,Should summarize or paginate results,,Very large result set
+QC-006,query_complexity,reverse_lookup,What vendor parts map to VMRS code 032-001-001?,MULTIPLE,Should list vendor parts - 237 parts map here,,High-volume component lookup
+QC-007,query_complexity,reverse_lookup,What vendor parts map to VMRS code 053-008-004?,MULTIPLE,Should list vendor parts - 218 parts map here,,High-volume component lookup
+QC-008,query_complexity,reverse_lookup,What vendor parts are available for component 042-004-061?,MULTIPLE,Should list vendor parts - 199 parts map here,,High-volume component lookup
+QC-009,query_complexity,reverse_lookup,Show me all vendor parts for VMRS 002-010-006,MULTIPLE,Should list vendor parts - 173 parts map here,,Mirror assembly - many variants
+QC-010,query_complexity,reverse_lookup,What parts from Freightliner map to brakes?,MULTIPLE,Should filter by manufacturer and system,,Cross-reference query
+QC-011,query_complexity,cross_system,What systems use SEAL parts?,MULTIPLE,Should list 19 systems,,SEAL appears in 19 systems
+QC-012,query_complexity,cross_system,Which systems have SWITCH components?,MULTIPLE,Should list 24 systems,,SWITCH appears in 24 systems
+QC-013,query_complexity,cross_system,What systems contain BRACKET parts?,MULTIPLE,Should list 23 systems,,BRACKET appears in 23 systems
+QC-014,query_complexity,cross_system,Find all systems with HOSE components,MULTIPLE,Should list 17 systems,,HOSE appears in 17 systems
+QC-015,query_complexity,cross_system,What systems have GASKET parts?,MULTIPLE,Should list 14 systems,,GASKET appears in 14 systems
+QC-016,query_complexity,hierarchy,What assembly does component 044-001-015 belong to?,044-001,Should return Fuel Tank assembly,,Hierarchy traversal up
+QC-017,query_complexity,hierarchy,What system contains assembly 013-010?,013,Should return Brakes system,,Hierarchy traversal up
+QC-018,query_complexity,hierarchy,List all assemblies in the Fuel System (044),MULTIPLE,Should list assemblies in system 044,,Hierarchy traversal down
+QC-019,query_complexity,hierarchy,What components are in assembly 001-001?,MULTIPLE,Should list components in A/C assembly,,Hierarchy traversal down
+QC-020,query_complexity,hierarchy,Show the hierarchy for VMRS code 013-017-007,HIERARCHICAL,Should show System > Assembly > Component path,,Full hierarchy display
+QC-021,query_complexity,comparison,What is the difference between 001-001-062 and 001-001-065?,COMPARISON,Should explain condenser vs receiver drier,,Compare two components
+QC-022,query_complexity,comparison,Compare brake rotor front vs rear VMRS codes,COMPARISON,Should compare 013-001-026 vs 013-017-001,,Compare related components
+NL-001,natural_language,informal,whats the code for a brake pad,013-017-003,Should match despite informal language,,Informal query style
+NL-002,natural_language,informal,gimme the vmrs for an ac compressor,001-001-001,Should match despite slang,,Slang query
+NL-003,natural_language,informal,need the code for alternator please,032-003-001,Should match polite informal,,Polite but informal
+NL-004,natural_language,informal,what code is a fuel filter,044-002-002,Should match question format,,Different question structure
+NL-005,natural_language,informal,code for starter motor?,032-002-001,Should match terse query,,Minimal query
+NL-006,natural_language,informal,how do i classify a radiator hose,042-002-022,Should understand intent,,Different phrasing
+NL-007,natural_language,informal,looking for vmrs on wiper blades,002-035-015,Should understand search intent,,Search-style query
+NL-008,natural_language,informal,can you find the code for headlights,034-001-001,Should understand request,,Polite request format
+NL-009,natural_language,typos,What is the VMRS code for brakke pad?,013-017-003,Should handle typo in brake,,Common typo
+NL-010,natural_language,typos,What is the VMRS code for transmision?,MULTIPLE,Should handle typo in transmission,,Common typo
+NL-011,natural_language,typos,What is the VMRS code for altenator?,032-003-001,Should handle typo in alternator,,Common typo
+NL-012,natural_language,typos,What is the VMRS code for exhuast pipe?,043-001-001,Should handle typo in exhaust,,Common typo
+NL-013,natural_language,typos,What is the VMRS code for steiring wheel?,015-001-001,Should handle typo in steering,,Common typo
+NL-014,natural_language,typos,What is the VMRS code for suspention spring?,016-005-002,Should handle typo in suspension,,Common typo
+NL-015,natural_language,typos,What is the VMRS code for battrey?,032-001-001,Should handle typo in battery,,Common typo
+NL-016,natural_language,synonyms,What is the VMRS code for AC compressor?,001-001-001,Should match A/C to AC,,AC vs A/C variation
+NL-017,natural_language,synonyms,What is the VMRS code for air conditioning unit?,001-001-000,Should match to A/C system,,Full name vs abbreviation
+NL-018,natural_language,synonyms,What is the VMRS code for windscreen?,002-024-001,Should match to windshield,,British vs American English
+NL-019,natural_language,synonyms,What is the VMRS code for bonnet?,002-001-001,Should match to hood,,British vs American English
+NL-020,natural_language,synonyms,What is the VMRS code for tyre?,017-001-001,Should match to tire,,British vs American English
+NL-021,natural_language,synonyms,What is the VMRS code for petrol filter?,044-002-002,Should match to fuel filter,,British vs American English
+NL-022,natural_language,synonyms,What is the VMRS code for gearbox?,027-000-000,Should match to transmission,,British vs American English
+NL-023,natural_language,synonyms,What is the VMRS code for indicator lamp?,034-002-001,Should match to turn signal,,British vs American English
+NL-024,natural_language,case_variation,What is the VMRS code for BATTERY?,032-001-001,Should match uppercase,,All caps
+NL-025,natural_language,case_variation,What is the VMRS code for battery?,032-001-001,Should match lowercase,,All lowercase
+NL-026,natural_language,case_variation,What is the VMRS code for Battery?,032-001-001,Should match title case,,Title case
+NL-027,natural_language,case_variation,What is the VMRS code for bAtTeRy?,032-001-001,Should match mixed case,,Mixed case
+BD-001,boundary,minimal_input,What is the VMRS code for S?,NOT_FOUND,Should ask for more information,,Single character query
+BD-002,boundary,minimal_input,What is the VMRS code for AB?,NOT_FOUND,Should ask for more information,,Two character query
+BD-003,boundary,minimal_input,VMRS for X,NOT_FOUND,Should ask for more information,,Minimal terse query
+BD-004,boundary,minimal_input,code?,NOT_FOUND,Should ask what part,,Ambiguous minimal query
+BD-005,boundary,minimal_input,What is the VMRS code for a?,NOT_FOUND,Should ask for more information,,Single character
+BD-006,boundary,long_input,"What is the VMRS code for BATTERY, GROUP 51, 12V, 450CCA, WET, MAINTENANCE FREE, HEAVY DUTY, COMMERCIAL VEHICLE, SIDE POST TERMINALS, 36 MONTH WARRANTY?",032-001-001,Should extract key terms and match,,Very long description
+BD-007,boundary,long_input,What is the VMRS code for AIR CONDITIONING CONDENSER ASSEMBLY WITH MOUNTING BRACKETS AND HARDWARE KIT FOR FREIGHTLINER CASCADIA MODEL YEAR 2015-2020?,001-001-062,Should extract key terms and match,,Very long with vehicle info
+BD-008,boundary,special_chars,"What is the VMRS code for 3/8"" HOSE?",MULTIPLE,Should handle inch symbol and fraction,,Fraction and inch symbol
+BD-009,boundary,special_chars,What is the VMRS code for #8 FITTING?,MULTIPLE,Should handle hash symbol,,Hash symbol
+BD-010,boundary,special_chars,What is the VMRS code for BRACKET (FRONT)?,MULTIPLE,Should handle parentheses,,Parentheses in query
+BD-011,boundary,special_chars,What is the VMRS code for HOSE - 1/2 INCH?,MULTIPLE,Should handle dash and fraction,,Dash and fraction
+BD-012,boundary,special_chars,What is the VMRS code for O-RING & SEAL KIT?,MULTIPLE,Should handle hyphen and ampersand,,Special characters
+BD-013,boundary,special_chars,What is the VMRS code for WIRE 10GA RED/BLK?,MULTIPLE,Should handle gauge and color codes,,Abbreviations with slash
+BD-014,boundary,nonexistent,What is the VMRS code for flux capacitor?,NOT_FOUND,Should gracefully return not found,,Fictional part
+BD-015,boundary,nonexistent,What is the VMRS code for warp drive?,NOT_FOUND,Should gracefully return not found,,Fictional part
+BD-016,boundary,nonexistent,What is the VMRS code for dilithium crystal?,NOT_FOUND,Should gracefully return not found,,Fictional part
+BD-017,boundary,nonexistent,What is the VMRS code for hover conversion kit?,NOT_FOUND,Should gracefully return not found,,Fictional part
+BD-018,boundary,nonexistent,What is the VMRS code for antigravity module?,NOT_FOUND,Should gracefully return not found,,Fictional part
+BD-019,boundary,malformed,What is the VMRS code for 001-001?,001-001-000,Should recognize assembly-level code,,Assembly code not component
+BD-020,boundary,malformed,What is the VMRS code for 001?,001-000-000,Should recognize system-level code,,System code only
+BD-021,boundary,malformed,What is the VMRS code for 001-001-001-001?,NOT_FOUND,Should reject malformed code,,Too many segments
+BD-022,boundary,malformed,What is the VMRS code for ABC-DEF-GHI?,NOT_FOUND,Should reject non-numeric code,,Non-numeric code
+BD-023,boundary,malformed,What is the VMRS code for 1-1-1?,NOT_FOUND,Should reject short segments,,Single digit segments
+BD-024,boundary,empty,What is the VMRS code for ?,NOT_FOUND,Should ask for part description,,Empty query
+BD-025,boundary,empty,What is the VMRS code for       ?,NOT_FOUND,Should ask for part description,,Whitespace only
+MF-001,manufacturer,lookup,What is the VMRS code for Freightliner condenser?,001-001-062,Should use manufacturer context,,Manufacturer + part
+MF-002,manufacturer,lookup,What is the VMRS code for Cummins fuel filter?,044-002-002,Should use manufacturer context,,Engine manufacturer + part
+MF-003,manufacturer,lookup,What is the VMRS code for Paccar mirror?,002-010-006,Should use manufacturer context,,Manufacturer + part
+MF-004,manufacturer,lookup,What parts does Freightliner make for A/C systems?,MULTIPLE,Should filter by manufacturer and system,,Manufacturer + system query
+MF-005,manufacturer,lookup,What Volvo parts are in the Brakes system?,MULTIPLE,Should filter by manufacturer and system,,Manufacturer + system query
+MF-006,manufacturer,part_number,What is the VMRS code for part number 89019343?,001-001-062,Should lookup by MANF_PARTNUMBER,,OEM part number lookup
+MF-007,manufacturer,part_number,What is the VMRS code for part A22-72869-000?,001-001-062,Should lookup by MANF_PARTNUMBER,,OEM part number lookup
+MF-008,manufacturer,part_number,What is the VMRS code for part 23469929?,001-001-062,Should lookup by MANF_PARTNUMBER,,OEM part number lookup
+MF-009,manufacturer,variations,What is the VMRS code for GM condenser?,001-001-062,Should recognize GM as General Motors,,Manufacturer abbreviation
+MF-010,manufacturer,variations,What is the VMRS code for International brake drum?,013-001-001,Should recognize International as Navistar,,Manufacturer name variation
+VQ-001,vendor_query,who_sells,Which vendors sell batteries?,MULTIPLE,Should list 35 vendors who sell batteries (032-001-001),,Battery sold by 35 vendors
+VQ-002,vendor_query,who_sells,Who sells disc brake pads?,MULTIPLE,Should list 32 vendors who sell brake pads (013-017-003),,Brake pads sold by 32 vendors
+VQ-003,vendor_query,who_sells,What vendors carry electrical connectors?,MULTIPLE,Should list 31 vendors (053-017-004),,Connectors sold by 31 vendors
+VQ-004,vendor_query,who_sells,Which manufacturers sell fittings?,MULTIPLE,Should list 30 vendors (053-008-004),,Fittings sold by 30 vendors
+VQ-005,vendor_query,who_sells,Who sells brake chambers?,MULTIPLE,Should list 29 vendors (013-010-034),,Brake chambers sold by 29 vendors
+VQ-006,vendor_query,who_sells,What vendors sell rearview mirrors?,MULTIPLE,Should list 27 vendors (002-010-006),,Mirrors sold by 27 vendors
+VQ-007,vendor_query,who_sells,Which vendors carry air springs?,MULTIPLE,Should list 27 vendors (016-008-001),,Air springs sold by 27 vendors
+VQ-008,vendor_query,who_sells,Who sells shock absorbers?,MULTIPLE,Should list 27 vendors (016-003-016),,Shocks sold by 27 vendors
+VQ-009,vendor_query,who_sells,What vendors sell radiators?,MULTIPLE,Should list 26 vendors (042-002-001),,Radiators sold by 26 vendors
+VQ-010,vendor_query,who_sells,Which vendors carry brake rotors?,MULTIPLE,Should list 26 vendors (013-017-001),,Rotors sold by 26 vendors
+VQ-011,vendor_query,who_sells,Who sells fan belts?,MULTIPLE,Should list 23 vendors (042-003-010),,Fan belts sold by 23 vendors
+VQ-012,vendor_query,who_sells,What vendors carry A/C condensers?,MULTIPLE,Should list vendors for 001-001-062,,A/C condensers
+VQ-013,vendor_query,who_sells,Which manufacturers sell fuel filters?,MULTIPLE,Should list vendors for 044-002-002,,Fuel filters
+VQ-014,vendor_query,who_sells,Who sells wiper blades?,MULTIPLE,Should list vendors for 002-035-015,,Wiper blades
+VQ-015,vendor_query,who_sells,What vendors have alternators in stock?,MULTIPLE,Should list vendors for alternator components,,Alternators - inventory phrasing
+VQ-016,vendor_query,specific_vendor,Does Freightliner sell A/C condensers?,YES,Should confirm and show Freightliner condenser parts,,Specific vendor + part query
+VQ-017,vendor_query,specific_vendor,Does Cummins make fuel filters?,YES,Should confirm Cummins fuel filter availability,,Specific vendor + part query
+VQ-018,vendor_query,specific_vendor,Does Volvo sell brake pads?,YES/NO,Should check Volvo brake pad availability,,May or may not have this part
+VQ-019,vendor_query,specific_vendor,Does Paccar make batteries?,YES/NO,Should check Paccar battery availability,,May or may not have this part
+VQ-020,vendor_query,specific_vendor,What A/C parts does Freightliner sell?,MULTIPLE,Should list Freightliner A/C parts,,Vendor + system filter
+VQ-021,vendor_query,specific_vendor,What brake parts does Bendix sell?,MULTIPLE,Should list Bendix brake parts,,Vendor + system filter
+VQ-022,vendor_query,specific_vendor,Show me all Cummins engine parts,MULTIPLE,Should list Cummins parts in power plant system,,Vendor + system filter
+VQ-023,vendor_query,comparison,Which vendors have the most brake parts?,MULTIPLE,Should rank vendors by brake part count,,Vendor ranking query
+VQ-024,vendor_query,comparison,Who has the widest selection of A/C parts?,MULTIPLE,Should rank vendors by A/C part variety,,Vendor ranking query
+VQ-025,vendor_query,comparison,Compare Freightliner vs Volvo for suspension parts,COMPARISON,Should compare two vendors' suspension offerings,,Vendor comparison
+VQ-026,vendor_query,availability,Is there a vendor that sells both batteries and alternators?,YES,Should find vendors selling both,,Multi-part vendor search
+VQ-027,vendor_query,availability,Which vendor has parts for the entire cooling system?,MULTIPLE,Should find vendors with broad cooling coverage,,System coverage query
+VQ-028,vendor_query,availability,Do any vendors sell EV batteries?,NOT_FOUND,Should indicate EV batteries not in system,,Modern part not in VMRS
+VQ-029,vendor_query,informal,who makes brake pads,MULTIPLE,Should list brake pad manufacturers,,Informal who sells query
+VQ-030,vendor_query,informal,where can i get a radiator,MULTIPLE,Should list radiator vendors,,Informal availability query
+NE-001,not_in_db,fake_vendor,What parts does Toyota sell?,NOT_FOUND,Should say Toyota not in vendor database,,Toyota not in vendor data
+NE-002,not_in_db,fake_vendor,Does Honda make brake pads?,NOT_FOUND,Should say Honda not in vendor database,,Honda not in vendor data
+NE-003,not_in_db,fake_vendor,What parts does BMW sell?,NOT_FOUND,Should say BMW not in vendor database,,BMW not in vendor data
+NE-004,not_in_db,fake_vendor,Show me all Tesla parts,NOT_FOUND,Should say Tesla not in vendor database,,Tesla not in vendor data
+NE-005,not_in_db,fake_vendor,Which parts does Bosch sell?,NOT_FOUND,Should say Bosch not in vendor database (or may exist),,Bosch may or may not be in data
+NE-006,not_in_db,fake_vendor,What does AutoZone carry?,NOT_FOUND,Should say AutoZone not in vendor database,,Retail store not OEM vendor
+NE-007,not_in_db,fake_vendor,Does NAPA sell batteries?,NOT_FOUND,Should say NAPA not in vendor database,,Retail store not OEM vendor
+NE-008,not_in_db,fake_part,What is the VMRS code for turbocharger wastegate actuator?,NOT_FOUND,Should say not found or suggest alternatives,,Specific part may not be in VMRS
+NE-009,not_in_db,fake_part,What is the VMRS code for DEF tank heater?,NOT_FOUND,Should say not found - modern emissions part,,Modern emissions part
+NE-010,not_in_db,fake_part,What is the VMRS code for collision avoidance sensor?,NOT_FOUND,Should say not found - ADAS part,,ADAS technology not in VMRS
+NE-011,not_in_db,fake_part,What is the VMRS code for lane departure camera?,NOT_FOUND,Should say not found - ADAS part,,ADAS technology not in VMRS
+NE-012,not_in_db,fake_part,What is the VMRS code for regenerative braking module?,NOT_FOUND,Should say not found - EV/hybrid part,,EV/hybrid technology
+NE-013,not_in_db,fake_part,What is the VMRS code for lithium ion battery pack?,NOT_FOUND,Should say not found - EV part,,EV technology not in VMRS
+NE-014,not_in_db,fake_part,What is the VMRS code for autonomous driving computer?,NOT_FOUND,Should say not found - autonomous tech,,Autonomous vehicle tech
+NE-015,not_in_db,fake_vmrs,What component is VMRS code 999-999-999?,NOT_FOUND,Should say code does not exist,,Fake VMRS code
+NE-016,not_in_db,fake_vmrs,What is in system 500?,NOT_FOUND,Should say system 500 does not exist,,VMRS only goes to ~299
+NE-017,not_in_db,fake_vmrs,Show me assembly 999-001,NOT_FOUND,Should say assembly does not exist,,Fake assembly code
+NE-018,not_in_db,fake_vmrs,What parts are in VMRS 123-456-789?,NOT_FOUND,Should say code does not exist,,Fake VMRS code
+NE-019,not_in_db,combined,Does Toyota sell EV batteries?,NOT_FOUND,Should say neither Toyota nor EV batteries in system,,Fake vendor + fake part
+NE-020,not_in_db,combined,What Tesla parts are in system 500?,NOT_FOUND,Should say Tesla not in DB and system 500 doesn't exist,,Multiple not-found elements

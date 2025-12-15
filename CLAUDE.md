@@ -255,9 +255,41 @@ Located in `tests/neo4j_acceptance/`:
 ### Stress Tests
 Located in `tests/stress_test/`:
 - `curated_edge_cases.csv` - 224 curated edge case questions across 9 categories
+- `manual_test_results.csv` - Testing spreadsheet with columns for recording actual results
 - `edge_cases_summary.md` - Category breakdown and testing procedure
+- `v2_chatbot_simulation_results.md` - Pass criteria and expected chatbot behavior
 
 Categories: Data Quality, Ambiguity, Missing Data, Query Complexity, Natural Language, Boundary, Manufacturer, Vendor Query, Not In Database
+
+### Stress Test MCP Server
+Located in `mcp/stress_test_mcp.py` - Provides Claude Desktop with read/write access to the testing spreadsheet.
+
+**Tools:**
+- `get_next_test()` - Get next untested question
+- `get_test_by_id(test_id)` - Get specific test case
+- `record_result(test_id, actual_response, pass_fail, notes)` - Record test result
+- `get_test_stats()` - Get pass/fail statistics
+- `list_tests(category, status, limit)` - List tests with filtering
+- `get_categories()` - List all test categories
+
+**Claude Desktop Config** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+```json
+"stress-test": {
+  "command": "/usr/local/bin/python3",
+  "args": ["/path/to/vrms/mcp/stress_test_mcp.py"]
+}
+```
+
+**Usage in Claude Desktop:**
+```
+Run all stress tests automatically:
+1. get_next_test() from stress-test MCP
+2. Query neo4j-aura to answer the question
+3. Compare result to expected_vmrs
+4. record_result() with PASS/FAIL/PARTIAL
+5. Repeat until all 224 tests complete
+6. Show final get_test_stats()
+```
 
 ### Data Validation
 - `scripts/data_processing/validate_vmrs_csv.py` generates validation reports
@@ -272,6 +304,12 @@ Categories: Data Quality, Ambiguity, Missing Data, Query Complexity, Natural Lan
 - **docs/analysis/PATTERNS_ANALYSIS.md** - VMRS data patterns and insights (9 key insights)
 - **docs/analysis/LINKING_PATTERNS.md** - VMRS-vendor linking strategies (5 patterns)
 - **docs/analysis/POC_READY_SUBSETS.md** - PoC datasets documentation
+
+## Git Commit Guidelines
+
+- **Do NOT include** "Generated with Claude Code" or similar AI attribution in commit messages
+- **Do NOT include** "Co-Authored-By: Claude" or similar in commit messages
+- Keep commit messages concise and focused on what changed
 
 ## Common Workflows
 

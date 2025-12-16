@@ -305,6 +305,29 @@ Run all stress tests automatically:
 - **docs/analysis/LINKING_PATTERNS.md** - VMRS-vendor linking strategies (5 patterns)
 - **docs/analysis/POC_READY_SUBSETS.md** - PoC datasets documentation
 
+## VP Presentation (Dec 2025)
+
+**File:** `VMRS Chatbot (2).pdf` (13 slides)
+
+**Slide Structure:**
+1. Title - VMRS Chatbot Dec 2025
+2. The Problem - VMRS background, 30k parts, manual lookup challenges
+3. Demo - "grille" (works) and "flux capacitor" (graceful failure)
+4. Savings and Cost - $160k savings example, $75k labor cost, $20k data cleanup
+5. Current Problem vs New Solution - before/after flow diagram
+6. The Approach - knowledge graph ingestion with Neo4j
+7. Results and Limitations - confident on system/assembly, component needs feedback
+8. Tech Stack - Neo4j + Claude (both interchangeable)
+9. Next Steps - pilot rollout, learn from operators, Snowflake access
+10-13. Appendix - Savings details, development process, handbook link
+
+**Key Talking Points:**
+- $160k saved from 240-part filter optimization → extrapolate to 19,000 parts
+- Current labor: 5,000 parts × 0.5 hrs × $30/hr = $75k/year
+- Data cleanup outsourcing: $20k one-time + $5k annual
+- Knowledge graph enables vendor comparison via VMRS code standardization
+- Tech stack is vendor-agnostic (Neo4j/Claude can be swapped)
+
 ## Git Commit Guidelines
 
 - **Do NOT include** "Generated with Claude Code" or similar AI attribution in commit messages

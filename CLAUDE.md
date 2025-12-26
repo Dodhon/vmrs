@@ -234,6 +234,7 @@ Copy `.env.example` to `.env` and fill in credentials.
 ## Important Path Conventions
 
 - **Run scripts from project root**: All paths are relative to `/vrms/`
+- **Notes**: `.claude/notes/` is a symlink to `~/.claude/notes/` (daily work notes)
 - **Data directories**:
   - `csv data/` - Processed VMRS CSV files
   - `md data/` - Source markdown files (39 VMRS handbook pages)

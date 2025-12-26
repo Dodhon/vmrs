@@ -41,3 +41,6 @@ temp.txt
 test.txt
 *Copy*.xlsx
 !CLAUDE.md
+
+# Claude Code local config
+.claude/rules/shared

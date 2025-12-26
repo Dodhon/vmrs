@@ -233,7 +233,7 @@ Copy `.env.example` to `.env` and fill in credentials.
 
 ## Important Path Conventions
 
-- **Run scripts from project root**: All paths are relative to `/vrms/`
+- **Run scripts from project root**: All paths are relative to `/vmrs/`
 - **Notes**: `.claude/notes/` is a symlink to `~/.claude/notes/` (daily work notes)
 - **Data directories**:
   - `csv data/` - Processed VMRS CSV files
@@ -277,7 +277,7 @@ Located in `mcp/stress_test_mcp.py` - Provides Claude Desktop with read/write ac
 ```json
 "stress-test": {
   "command": "/usr/local/bin/python3",
-  "args": ["/path/to/vrms/mcp/stress_test_mcp.py"]
+  "args": ["/path/to/vmrs/mcp/stress_test_mcp.py"]
 }
 ```
 

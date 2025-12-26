@@ -4,7 +4,7 @@ import json
 import os
 import sys
 
-ROOT = "/Users/thuptenwangpo/Documents/GitHub/vrms"
+ROOT = "/Users/thuptenwangpo/Documents/GitHub/vmrs"
 IN_DIR = os.path.join(ROOT, "csv data")
 OUT_FILE = os.path.join(IN_DIR, "VMRS_COMPLETE_v20_MASTER.csv")
 SUMMARY_FILE = os.path.join(IN_DIR, "master_summary.json")

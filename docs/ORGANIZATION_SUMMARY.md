@@ -8,7 +8,7 @@
 ## 📂 New Structure
 
 ```
-vrms/
+vmrs/
 ├── README.md                          # Main project documentation
 ├── .gitignore                         # Git ignore patterns
 │
@@ -53,7 +53,7 @@ vrms/
 ## 📝 New Documentation
 
 ### 1. **Main README.md**
-Location: `/vrms/README.md`
+Location: `/vmrs/README.md`
 
 Contents:
 - Project overview
@@ -65,7 +65,7 @@ Contents:
 - Next steps
 
 ### 2. **Scripts README.md**
-Location: `/vrms/scripts/README.md`
+Location: `/vmrs/scripts/README.md`
 
 Contents:
 - Detailed description of each script
@@ -75,7 +75,7 @@ Contents:
 - Dependencies
 
 ### 3. **Enhanced .gitignore**
-Location: `/vrms/.gitignore`
+Location: `/vmrs/.gitignore`
 
 Added:
 - Python patterns

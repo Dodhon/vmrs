@@ -5,7 +5,7 @@ import os
 import re
 from html import unescape
 
-ROOT = "/Users/thuptenwangpo/Documents/GitHub/vrms"
+ROOT = "/Users/thuptenwangpo/Documents/GitHub/vmrs"
 IN_DIR = os.path.join(ROOT, "md data")
 CSV_DIR = os.path.join(ROOT, "csv data")
 REPORT_PATH = os.path.join(CSV_DIR, "validation_report.json")

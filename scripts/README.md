@@ -169,7 +169,7 @@ pip3 install pandas openpyxl
 
 ## 💡 Tips
 
-1. **Run scripts from project root**: All paths are relative to `/vrms/`
+1. **Run scripts from project root**: All paths are relative to `/vmrs/`
 2. **Check output directories**: Results go to `csv data/`, `eda/`, or `vendor data/`
 3. **Review console output**: Scripts provide detailed progress and statistics
 4. **Incremental processing**: Most scripts can be re-run safely (they overwrite)

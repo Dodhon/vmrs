@@ -228,7 +228,7 @@ Processing `llm_matching/matching_context.md`:
 ## Project Structure
 
 ```
-vrms/
+vmrs/
 ├── src/
 │   ├── text_chunker.py      # Document splitting
 │   ├── triple_extractor.py  # Claude 4.5 extraction

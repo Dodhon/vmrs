@@ -5,7 +5,7 @@ A comprehensive toolkit for processing, analyzing, and linking Vehicle Maintenan
 ## 📁 Project Structure
 
 ```
-vrms/
+vmrs/
 ├── README.md                          # This file
 │
 ├── scripts/                           # Python scripts

@@ -1,0 +1,55 @@
+Create a clean, professional architecture diagram for a VMRS Chatbot system with 4 horizontal sections (left to right): Inputs, Processing Pipelines, Knowledge Graph (Neo4j), and Interface.
+
+  INPUTS (left column):
+  - VMRS Handbook icon 
+  - Vendor Cleaned CSV 
+  - Verified Vendor Websites
+
+  PROCESSING PIPELINES (middle-left, 4 parallel lanes):
+
+  Lane 1 - Tabular Extraction:
+  VMRS Handbook → "Extract" → "Combine" 
+
+  Lane 2 - LLM Extraction:
+  VMRS Handbook → "Text Chunking" → "Claude LLM Triple Extraction" → "Checkpointed JSON"
+
+  Lane 3 - Vendor Pipeline:
+  Vendor CSV → "Preprocessed"
+
+  Lane 4 - Vendor Websites:
+  Vendor Websites → "Search" → Interface
+
+
+  MERGE STAGE (center circle):
+  - Lanes 1 & 2 merge into "Combined VMRS Data" and then feed into Knowledge graph
+  - Lane 3 feeds directly to Knowledge Graph  (separate from VMRS merge)
+
+  KNOWLEDGE GRAPH - Neo4j (middle-right):
+  Show this exact schema with labeled relationship arrows:
+  System ←[PART_OF]— Assembly ←[PART_OF]— Component ←[MAPS_TO]— VendorPart ←[MANUFACTURES]—Vendor
+
+  The schema must be shown exactly as above.
+                                        
+
+  INTERFACE (right column):
+  - "LLM Reasoning Layer"
+  - "Context & Prompt Engineering"
+  - "Chatbot UI" with options: Claude Desktop / Copilot Studio
+  - "Chatbot UI" should connect to the knowledge graph with an arrow pointing to the knowledge graph icon that says "Operator Feedback"
+  - Interface and Knowledge graph should be connected by a line that says MCP The arrow should face right
+
+  Style notes:
+  - Use a light gray background with distinct colored sections
+  - Blue for VMRS data flow, green for Vendor data flow
+  - Neo4j section should show database icon with the graph schema clearly visible
+  - Arrows should clearly show data flow direction
+  - Make sure all text is fully visible and not cut off
+
+The green arrow should not connect to the combined vmrs data until the knowledge graph
+
+1. Change Preprocessed to Extract in the vendor pipeline
+
+
+
+
+Make it clear that the web search from verified sites does not go through the processing pipeline: workshop this*

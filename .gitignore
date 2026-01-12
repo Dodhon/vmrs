@@ -44,3 +44,6 @@ test.txt
 
 # Claude Code local config
 .claude/rules/shared
+/pptx_notes
+.claude/mcp.json
+/prompts/pptx_review

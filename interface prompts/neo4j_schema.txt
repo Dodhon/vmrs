@@ -1,0 +1,97 @@
+
+vmrs
+
+
+
+
+Unique questions from this project
+Last message 2 hours ago
+Freightliner Corporation parts count
+Last message 22 hours ago
+VMRS code comparison for parts
+Last message 22 hours ago
+VMRS code lookup for CTT00002705
+Last message 22 hours ago
+VMRS code for flux capacitor
+Last message 22 hours ago
+VMRS code for grille
+Last message 22 hours ago
+VMRS code for grille
+Last message 22 hours ago
+VMRS code for grille
+Last message 22 hours ago
+Part numbers for VMRS code 034-004-108
+Last message 23 hours ago
+VMRS code lookup for CTT00002705
+Last message 23 hours ago
+Air filter for 2018 Freightliner Cascadia
+Last message 1 day ago
+Finding effective demo questions
+Last message 1 day ago
+Cypher query for system 022 connections
+Last message 5 days ago
+VMRS code for flux capacitor
+Last message 27 days ago
+VMRS code for grille
+Last message 27 days ago
+VMRS code for water pump
+Last message 27 days ago
+VMRS code for flux capacitor
+Last message 27 days ago
+VMRS code for grille
+Last message 27 days ago
+VMRS code for grille
+Last message 28 days ago
+VMRS code for grille
+Last message 28 days ago
+VMRS code for water pump
+Last message 28 days ago
+VMRS code for flux capacitor
+Last message 28 days ago
+VMRS chatbot stress test automation
+Last message 28 days ago
+VMRS code for water pump
+Last message 28 days ago
+VMRS number lookup for part 163759
+Last message 28 days ago
+Brake system components
+Last message 28 days ago
+VMRS code for LED marker lamp
+Last message 28 days ago
+VMRS code for flux capacitor
+Last message 28 days ago
+Flux capacitor
+Last message 28 days ago
+VMRS code for windscreen
+Last message 28 days ago
+Memory
+Only you
+Purpose & context Thupten works extensively with VMRS (Vehicle Maintenance Reporting Standards) systems and automotive/commercial vehicle parts databases. His primary focus involves identifying, classifying, and managing vehicle components using standardized VMRS codes, which follow a hierarchical structure (System-Assembly-Component format like XXX-XXX-XXX). This work appears to support fleet maintenance, parts management, or supply chain operations in the commercial vehicle industry. Key stakeholders include manufacturers like Freightliner, Ford, Cummins, Detroit Diesel, and parts suppliers across the automotive ecosystem. The work requires precision in parts identification, understanding of technical specifications, and knowledge of industry-standard classification systems used for inventory management and maintenance reporting. Current state Thupten is actively working with a Neo4j graph database containing comprehensive VMRS parts data, including vendor relationships, component hierarchies, and parts classifications. The database contains over 20,000 vendor parts from various manufacturers, organized in a hierarchical structure with Systems, Assemblies, Components, and VendorParts connected through specific relationships (PARTOF, MAPSTO, MANUFACTURES). Current activities include systematic database queries for parts lookup, VMRS code identification, vendor analysis, and data quality assessment. Recent work has involved stress testing chatbot systems for VMRS code accuracy and developing automated workflows for parts classification validation. On the horizon Ongoing development includes comprehensive stress testing protocols for VMRS chatbot systems with detailed pass/fail criteria covering data quality, ambiguity handling, and natural language processing capabilities. Future work involves expanding database coverage, improving parts matching accuracy, and developing more sophisticated query patterns for complex parts relationships. There's continued focus on identifying cross-system dependencies, analyzing vendor competition patterns, and optimizing supply chain relationships through better parts classification and vendor mapping. Key learnings & principles VMRS codes require precise context - generic terms like "grille" or "mounting bracket" can map to dozens of different codes depending on vehicle system, location, and function. Manufacturer and vendor information significantly improves classification accuracy when dealing with ambiguous part descriptions. Database searches work best using case-insensitive regex patterns across multiple description fields simultaneously, as vendor terminology often differs from official VMRS descriptions. The hierarchical nature of VMRS (System > Assembly > Component) means understanding the complete classification context is essential for accurate parts identification. Data quality issues like unmapped vendor parts (approximately 5% in current database) can impact search effectiveness, requiring systematic validation approaches. Approach & patterns Thupten follows a systematic methodology for parts identification: starting with exact part number searches, then broadening to manufacturer-specific queries, and finally using description-based pattern matching when direct matches fail. Database queries typically begin with schema examination, followed by targeted searches using multiple field combinations (component names, descriptions, vendor data). For ambiguous queries, he provides multiple relevant options ranked by vendor part count or usage frequency rather than single definitive answers. Quality validation involves cross-referencing database results with web searches on priority parts supplier sites (excelerator.com, imperialsupplies.com, fleetpride.com) to confirm parts availability and specifications. Tools & resources Primary tool is Neo4j database integration (neo4j-aura) for querying VMRS parts data using Cypher query language. Effective query patterns include case-insensitive regex matching with `(?i).term.` syntax, relationship traversal using OPTIONAL MATCH clauses, and hierarchical queries following PARTOF and MAPSTO relationships. Secondary resources include web search capabilities targeting specific automotive parts supplier websites for validation and additional parts information. Database contains comprehensive vendor relationships, manufacturer data, and standardized VMRS classification codes essential for commercial vehicle parts management and fleet maintenance operations.
+
+Last updated 14 hours ago
+
+Instructions
+This is a fleet parts management system using VMRS (Vehicle Maintenance Reporting Standards). Use the Neo4j database to answer questions about parts and VMRS codes. NEO4J SCHEMA Nodes: - System (code: "044", name): Top-level categories - Assembly (code: "044-001", name): Mid-level groupings - Component (code: "044-001-015", name): VMRS part categories - VendorPart (part, description, vmrs, manf_partmfr_name): Physical inventory items - Vendor (code, name): Manufacturers Relationships: - Component -[:PART_OF]-> Assembly -[:PART_OF]-> System - VendorPart -[:MAPS_TO]-> Component - Vendor -[:MANUFACTURES]-> VendorPart QUERY GUIDELINES 1. Reference the attached Schema file when making queries. 2. When searching by description, check BOTH: - Component.name (VMRS standard name) - VendorPart.description (vendor's part description) 3. If given manufacturer info, query through Vendor or VendorPart.manf_partmfr_name 4. To check if a Component has vendor data: MATCH (vp:VendorPart)-[:MAPS_TO]->(c:Component) RESPONSE FORMAT - Return the top 3 most likely matches. If there are multiple possible matches, you must enumerate them. If you find a possible match, try to find at least 1 more possible match in order to get a better picture. - If you have an exact match, return the match. If you have multiple exact matches, enumerate them all. - Explain reasoning for system/assembly/component hierarchy - Explain reasoning for your recommendation - Explain how or why your recommendation may be incorrect - Ask for at least 1 piece of information that may clarify your recommendation - Cite your source for each description/code/name: (neo4j) or (web: sitename) FALLBACK If Neo4j is inconclusive, web search priority sites: [your priority sites list]. You must only search the sites listed
+
+Files
+1% of project capacity used
+
+Neo4j Schema
+1 line
+
+text
+
+
+
+Priority sites.
+5 lines
+
+text
+
+
+Claude
+Neo4j Schema
+0.99 KB •1 line
+Formatting may be inconsistent from source
+
+{"label": "System", "attributes": {"name": "STRING", "description": "STRING", "code": "STRING indexed", "updated_at": "INTEGER"}, "relationships": {}}, {"label": "Assembly", "attributes": {"name": "STRING", "description": "STRING", "code": "STRING indexed", "updated_at": "INTEGER"}, "relationships": {"PART_OF": "System"}}, {"label": "Component", "attributes": {"vmrs_official_description": "STRING", "code": "STRING indexed", "updated_at": "INTEGER", "name": "STRING", "description": "STRING", "source": "STRING"}, "relationships": {"PART_OF": "Assembly"}}, {"label": "Vendor", "attributes": {"name": "STRING", "code": "STRING indexed", "updated_at": "INTEGER"}, "relationships": {"MANUFACTURES": "VendorPart"}}, {"label": "VendorPart", "attributes": {"manf_partmfr_name": "STRING", "component": "STRING", "system": "STRING", "manf_partnumber": "STRING", "part": "STRING indexed", "assembly": "STRING", "description": "STRING", "manf_partmfr": "STRING", "vmrs": "STRING"}, "relationships": {"MAPS_TO": "Component"}}

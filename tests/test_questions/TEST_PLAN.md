@@ -83,6 +83,18 @@ By category:
 - validation: TK
 - comparison: TK
 
+Category roll-up for log schema:
+| Test set category | Log category |
+|-------------------|--------------|
+| part_number exact | part lookup |
+| vendor + part_number | vendor lookup |
+| description exact | description lookup |
+| description partial/typo | description lookup |
+| hierarchy navigation | hierarchy navigation |
+| vendor mapping from VMRS | vendor mapping |
+| validation | validation |
+| comparison | comparison |
+
 By behavior:
 - KNOWN_PRESENT: TK
 - KNOWN_ABSENT: TK

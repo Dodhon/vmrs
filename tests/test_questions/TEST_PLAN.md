@@ -47,11 +47,13 @@ Every answer must be one of the following response types and include the require
   - system {code, name} → assembly {code, name} → component {code, name}
 - When vendor mapping is requested, return vendor mappings:
   - {vendor, vendor_part_number, vendor_part_description, mapped_vmrs_code/component}
+- For scoring: expected answer must appear in ranked top 3 candidates (if multiple returned)
 
 2) **AMBIGUOUS** (multiple plausible matches)
-- Return a ranked candidate list (top 5) with distinguishing attributes (code/name/description/vendor hints)
+- Return a ranked candidate list (top 3 required, top 5 optional for display) with distinguishing attributes (code/name/description/vendor hints)
 - Ranking priority: exact identifier match > exact phrase match > fuzzy match
 - Ask a clarifying question needed to select the correct target
+- For scoring: expected answer must appear in ranked top 3 candidates
 
 3) **NOT_FOUND** (absent from the snapshot)
 - Explicitly state “not found in the current snapshot”
@@ -114,6 +116,25 @@ By behavior:
 - MCP harness: `mcp/test_questions_mcp.py` (runs the suite and writes logs/transcripts)
 - Run manifest template: `tests/test_questions/runs/manifest_template.json` (copy to `tests/test_questions/runs/<run_id>/manifest.json`)
 
+### Oracle Schema
+Each oracle entry must include fields to support top-3 scoring and hierarchy consistency checks:
+```json
+{
+  "test_id": "PN-001",
+  "expected_vmrs_code": "001-001-062",
+  "expected_hierarchy": {
+    "system": {"code": "001", "name": "AIR CONDITIONING..."},
+    "assembly": {"code": "001-001", "name": "AIR CONDITIONING ASSEMBLY..."},
+    "component": {"code": "001-001-062", "name": "CONDENSER ASSEMBLY..."}
+  },
+  "acceptable_candidates": ["001-001-062"],
+  "vendor_parts": [{"part": "...", "manufacturer": "..."}]
+}
+```
+- `expected_vmrs_code`: Primary expected VMRS code
+- `expected_hierarchy`: System/assembly/component with codes for prefix validation
+- `acceptable_candidates`: List of VMRS codes considered correct if in top 3 (usually just the expected code, but may include aliases)
+
 ## Execution Approach
 1. Create a `run_id` and `manifest_id`, then write a run manifest at `tests/test_questions/runs/<run_id>/manifest.json` capturing:
    - Claude Code build (from "About"), model ID, Neo4j MCP version
@@ -146,11 +167,14 @@ Per-question log rows are intentionally slim, with run-level context captured in
 - evidence_link (full transcript path under `tests/test_questions/runs/<run_id>/`; includes prompt context, MCP/tool calls, Cypher queries/results, intermediate outputs, and final answer)
 
 ## Pass/Fail Criteria
-- Baseline coverage: 100% of questions in `tests/test_questions/questions.md` return correct results or a clear, accurate “not found” response.
+- Baseline coverage: 100% of questions in `tests/test_questions/questions.md` return correct results or a clear, accurate "not found" response.
+- **Correct if in top 3**: A response is correct if the expected VMRS code appears in the top 3 ranked candidates (for RESOLVED or AMBIGUOUS responses).
+- **Hierarchy consistency**: The returned system/assembly/component must match the VMRS code's PART_OF relationships in the graph (code prefix consistency).
 - Any incorrect answer is a fail. No answer is a fail when the expected item exists in the oracle/ground truth.
 - No critical defects:
-  - Incorrect VMRS code for a known item
+  - Incorrect VMRS code for a known item (not in top 3)
   - Incorrect hierarchy (system/assembly/component) for a known item
+  - **Hierarchy mismatch**: Expected VMRS code returned but with wrong assembly/system (VMRS prefix mismatch or PART_OF relationship inconsistency)
   - Incorrect vendor mapping for a known part
   - Interface errors that block completion of a question
   - Missing evidence: transcript does not include tool traces/queries for a test that used tools

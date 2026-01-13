@@ -1,6 +1,6 @@
 # Copy of CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. All edits to this file must also be applied to CLAUDE.md
+All edits to this file must also be applied to CLAUDE.md
 
 ## Project Overview
 
@@ -305,6 +305,7 @@ Run all stress tests automatically:
 - **docs/analysis/PATTERNS_ANALYSIS.md** - VMRS data patterns and insights (9 key insights)
 - **docs/analysis/LINKING_PATTERNS.md** - VMRS-vendor linking strategies (5 patterns)
 - **docs/analysis/POC_READY_SUBSETS.md** - PoC datasets documentation
+- **pptx_notes/** - Reference PDFs for writeups, presentations, and slide content
 
 ## VP Presentation (Dec 2025)
 

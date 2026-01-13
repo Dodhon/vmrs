@@ -305,6 +305,7 @@ Run all stress tests automatically:
 - **docs/analysis/PATTERNS_ANALYSIS.md** - VMRS data patterns and insights (9 key insights)
 - **docs/analysis/LINKING_PATTERNS.md** - VMRS-vendor linking strategies (5 patterns)
 - **docs/analysis/POC_READY_SUBSETS.md** - PoC datasets documentation
+- **pptx_notes/** - Reference PDFs for writeups, presentations, and slide content
 
 ## VP Presentation (Dec 2025)
 

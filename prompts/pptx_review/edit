@@ -1,55 +1,63 @@
-Create a clean, professional architecture diagram for a VMRS Chatbot system with 4 horizontal sections (left to right): Inputs, Processing Pipelines, Knowledge Graph (Neo4j), and Interface.
+Create a clean, professional architecture diagram for a VMRS Chatbot system with 5 horizontal sections (left to right): Inputs, Processing Pipelines, Knowledge Graph (Neo4j), LLM Layer, and Interface.
 
-  INPUTS (left column):
-  - VMRS Handbook icon 
-  - Vendor Cleaned CSV 
-  - Verified Vendor Websites
+INPUTS (column 1):
+- VMRS Handbook icon
+- Vendor Cleaned CSV icon
 
-  PROCESSING PIPELINES (middle-left, 4 parallel lanes):
+PROCESSING PIPELINES (column 2, 3 parallel lanes):
 
-  Lane 1 - Tabular Extraction:
-  VMRS Handbook → "Extract" → "Combine" 
+Lane 1 - Tabular Extraction (blue):
+VMRS Handbook → "Extract" → "Combine"
 
-  Lane 2 - LLM Extraction:
-  VMRS Handbook → "Text Chunking" → "Claude LLM Triple Extraction" → "Checkpointed JSON"
+Lane 2 - LLM Extraction (blue):
+VMRS Handbook → "Text Chunking" → "Claude LLM Triple Extraction" → "Checkpointed JSON"
 
-  Lane 3 - Vendor Pipeline:
-  Vendor CSV → "Preprocessed"
+Lane 3 - Vendor Pipeline (green):
+Vendor CSV → "Extract"
+Lane 3 (Vendor) feeds directly to Knowledge Graph
 
-  Lane 4 - Vendor Websites:
-  Vendor Websites → "Search" → Interface
+MERGE STAGE (between Pipelines and Knowledge Graph):
+- Lanes 1 & 2 merge into "Combined VMRS Data" circle, then feed into Knowledge Graph
 
+KNOWLEDGE GRAPH - Neo4j (column 3):
+Show this exact schema with labeled relationship arrows:
+System ←[PART_OF]— Assembly ←[PART_OF]— Component ←[MAPS_TO]— VendorPart ←[MANUFACTURES]— Vendor
 
-  MERGE STAGE (center circle):
-  - Lanes 1 & 2 merge into "Combined VMRS Data" and then feed into Knowledge graph
-  - Lane 3 feeds directly to Knowledge Graph  (separate from VMRS merge)
+Include Neo4j database icon at top of section.
 
-  KNOWLEDGE GRAPH - Neo4j (middle-right):
-  Show this exact schema with labeled relationship arrows:
-  System ←[PART_OF]— Assembly ←[PART_OF]— Component ←[MAPS_TO]— VendorPart ←[MANUFACTURES]—Vendor
-
-  The schema must be shown exactly as above.
-                                        
-
-  INTERFACE (right column):
-  - "LLM Reasoning Layer"
-  - "Context & Prompt Engineering"
-  - "Chatbot UI" with options: Claude Desktop / Copilot Studio
-  - "Chatbot UI" should connect to the knowledge graph with an arrow pointing to the knowledge graph icon that says "Operator Feedback"
-  - Interface and Knowledge graph should be connected by a line that says MCP The arrow should face right
-
-  Style notes:
-  - Use a light gray background with distinct colored sections
-  - Blue for VMRS data flow, green for Vendor data flow
-  - Neo4j section should show database icon with the graph schema clearly visible
-  - Arrows should clearly show data flow direction
-  - Make sure all text is fully visible and not cut off
-
-The green arrow should not connect to the combined vmrs data until the knowledge graph
-
-1. Change Preprocessed to Extract in the vendor pipeline
+LLM LAYER (column 4):
+- "MCP Connection" (arrow from Neo4j pointing right into this layer)
+- "LLM Reasoning"
+- "Context & Prompt Engineering"
 
 
+INTERFACE (column 5):
+- "Chatbot UI" with subtitle: "Claude Desktop / Copilot Studio"
+- "Operator Feedback" arrow pointing back to Knowledge Graph (shows human-in-the-loop)
 
+RUNTIME TOOLS (separate section, below or beside LLM Layer):
+- "Verified Vendor Websites" icon
+- "Web Search" box
+- Arrow from Web Search directly into LLM Layer (bypasses Knowledge Graph)
+- Label this section "Runtime Tools (not persisted)"
 
-Make it clear that the web search from verified sites does not go through the processing pipeline: workshop this*
+This makes it clear web search is a runtime lookup, not a data ingestion pipeline.
+
+Style notes:
+- Light gray background with distinct colored sections
+- Blue for VMRS data flow (Tabular + LLM Extraction lanes)
+- Green for Vendor data flow (Vendor Pipeline lane)
+- Purple/lavender for Knowledge Graph section
+- Orange for LLM Layer and Interface sections
+- Neo4j section should show database icon with graph schema clearly visible
+- Arrows should clearly show data flow direction (left to right)
+- All text must be fully visible and not cut off
+- Use rounded rectangles for process boxes
+- Use circles for merge/junction points
+
+Key visual requirements:
+1. Green vendor arrow should NOT connect to "Combined VMRS Data" - it goes directly to Neo4j
+2. Web Search bypasses the entire pipeline and graph - goes straight to LLM Layer
+3. MCP arrow connects Neo4j → LLM Layer (pointing right)
+4. Operator Feedback arrow connects Interface → Knowledge Graph (pointing left)
+5. LLM Layer is visually separate from Interface (they are different columns)

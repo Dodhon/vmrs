@@ -10,12 +10,14 @@ import sys
 from pathlib import Path
 
 CSV_PATH = Path(__file__).parent.parent.parent / "tests" / "test_questions" / "test_log.csv"
+CONVERSATIONS_DIR = Path(__file__).parent.parent.parent / "tests" / "test_questions" / "conversations"
 
 def extract_test_id(transcript_lines: list[dict]) -> str | None:
     """Extract test_id from the prompt (expects format: [TEST_ID: XX-XXXXX])"""
     for entry in transcript_lines:
-        if entry.get("role") == "user":
-            content = entry.get("content", "")
+        message = entry.get("message", {})
+        if message.get("role") == "user":
+            content = message.get("content", "")
             if isinstance(content, list):
                 content = " ".join(c.get("text", "") for c in content if isinstance(c, dict))
             match = re.search(r"\[TEST_ID:\s*([A-Z]{2}-[a-f0-9]+)\]", content)
@@ -23,17 +25,42 @@ def extract_test_id(transcript_lines: list[dict]) -> str | None:
                 return match.group(1)
     return None
 
-def get_full_conversation(transcript_lines: list[dict]) -> str:
-    """Get full conversation as a single string for the CSV."""
-    parts = []
-    for entry in transcript_lines:
-        role = entry.get("role", "")
-        content = entry.get("content", "")
-        if isinstance(content, list):
-            content = " ".join(c.get("text", "") for c in content if isinstance(c, dict) and c.get("type") == "text")
-        if role and content:
-            parts.append(f"[{role.upper()}]: {content}")
-    return "\n\n".join(parts)
+def save_conversation_file(test_id: str, transcript_lines: list[dict]) -> Path:
+    """Save full conversation to a markdown file and return the path."""
+    CONVERSATIONS_DIR.mkdir(parents=True, exist_ok=True)
+    file_path = CONVERSATIONS_DIR / f"{test_id}.md"
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(f"# Test: {test_id}\n\n")
+
+        for entry in transcript_lines:
+            message = entry.get("message", {})
+            role = message.get("role", "")
+            content = message.get("content", "")
+
+            if role == "user":
+                f.write("## User\n\n")
+                if isinstance(content, list):
+                    for item in content:
+                        if item.get("type") == "text":
+                            f.write(f"{item.get('text', '')}\n\n")
+                        elif item.get("type") == "tool_result":
+                            f.write(f"**Tool Result** (`{item.get('tool_use_id', '')}`):\n```json\n{item.get('content', '')}\n```\n\n")
+                else:
+                    f.write(f"{content}\n\n")
+
+            elif role == "assistant":
+                f.write("## Assistant\n\n")
+                if isinstance(content, list):
+                    for item in content:
+                        if item.get("type") == "text":
+                            f.write(f"{item.get('text', '')}\n\n")
+                        elif item.get("type") == "tool_use":
+                            f.write(f"**Tool Call** (`{item.get('name', '')}`):\n```json\n{json.dumps(item.get('input', {}), indent=2)}\n```\n\n")
+                else:
+                    f.write(f"{content}\n\n")
+
+    return file_path
 
 def update_csv(test_id: str, full_conversation: str):
     """Update the row in test_log.csv matching test_id."""
@@ -61,7 +88,9 @@ def update_csv(test_id: str, full_conversation: str):
 
 def main():
     hook_input = json.load(sys.stdin)
-    transcript_path = hook_input.get("transcript_path")
+
+    # Use agent_transcript_path for subagent conversations
+    transcript_path = hook_input.get("agent_transcript_path")
 
     if not transcript_path:
         sys.exit(0)
@@ -77,9 +106,13 @@ def main():
     if not test_id:
         sys.exit(0)
 
-    full_conversation = get_full_conversation(transcript_lines)
-    if update_csv(test_id, full_conversation):
-        print(f"Saved {test_id}")
+    # Save full conversation to markdown file
+    conv_path = save_conversation_file(test_id, transcript_lines)
+
+    # Update CSV with relative path to conversation file
+    rel_path = f"tests/test_questions/conversations/{test_id}.md"
+    if update_csv(test_id, rel_path):
+        print(f"Saved {test_id} -> {conv_path}")
 
 if __name__ == "__main__":
     main()

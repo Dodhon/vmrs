@@ -1,5 +1,5 @@
 test_id,category,expected_behavior,question_text,row_key,expected_answer,vendor_parts,pass_fail,failure_type,full_conversation
-PN-18ba5e,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 2234788PE?,"2234788PE|PACCAR, INC.",047-000-000,,,,
+PN-18ba5e,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 2234788PE?,"2234788PE|PACCAR, INC.",047-000-000,,,,tests/test_questions/conversations/PN-18ba5e.md
 PN-1e091a,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 215331?,215331|ANDERSON POWER PROD,046-003-002,,,,
 PN-15fbb2,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 14092?,14092|OREILLY AUTO PARTS,027-033-091,,,,
 PN-f3ee76,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 59209T?,59209T|TODCO DIV OVRHD DOOR,072-004-073,,,,

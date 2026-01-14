@@ -39,10 +39,11 @@ CSV columns:
 - expected_behavior: KNOWN_PRESENT, KNOWN_ABSENT, or AMBIGUOUS
 - question_text: The question to ask
 - row_key: Source row identifier (for traceability)
-- expected_vmrs: Expected VMRS code(s)
-- expected_parts: Expected vendor parts (for VM category)
+- expected_answer: Expected VMRS code(s)
+- vendor_parts: Expected vendor parts (for VM category)
 - pass_fail: Empty (filled during manual review)
 - failure_type: Empty (filled during manual review)
+- full_conversation: Empty (filled with complete conversation transcript during test execution)
 
 ## Categories
 
@@ -83,7 +84,7 @@ Prefixes:
 
 **vendor_lookup**: No ambiguity issue since MANUFACTURER+PART is unique.
 
-**description_exact**: If a description maps to multiple VMRS codes, mark as AMBIGUOUS and list all acceptable codes in expected_vmrs.
+**description_exact**: If a description maps to multiple VMRS codes, mark as AMBIGUOUS and list all acceptable codes in expected_answer.
 
 ## Step-by-Step Process
 
@@ -102,47 +103,47 @@ Create indexes for ambiguity detection:
 **part_lookup**:
 - Filter to PART values that map to exactly one VMRS code (unambiguous)
 - Select 10 rows with diverse SYSTEM_ values
-- Oracle: expected_vmrs = the single VMRS code
+- Oracle: expected_answer = the single VMRS code
 
 **vendor_lookup**:
 - Select 10 rows with diverse MANUFACTURER values
-- Oracle: expected_vmrs = row's VMRS code
+- Oracle: expected_answer = row's VMRS code
 
 **description_exact**:
 - Filter to rows with non-empty, unique descriptions
 - Select 10 with diverse SYSTEM_ values
-- Oracle: expected_vmrs = row's VMRS code
+- Oracle: expected_answer = row's VMRS code
 
 **description_partial**:
 - Filter to rows with descriptions of 3+ words
 - Select 10 with diverse SYSTEM_ values
 - Truncate description to first N-1 words
-- Oracle: expected_vmrs = row's VMRS code
+- Oracle: expected_answer = row's VMRS code
 
 **hierarchy_navigation**:
 - Deduplicate rows by VMRS code
 - Select 10 with diverse SYSTEM_ values
-- Oracle: expected_vmrs = the VMRS code
+- Oracle: expected_answer = the VMRS code
 
 **vendor_mapping**:
 - Filter to VMRS codes with 2+ parts mapped
 - Select 10
-- Oracle: expected_vmrs = VMRS code, expected_parts = all parts that map to it
+- Oracle: expected_answer = VMRS code, vendor_parts = all parts that map to it
 
 **validation_valid**:
 - Select 5 valid VMRS codes from the data
-- Oracle: expected_vmrs = the valid code
+- Oracle: expected_answer = the valid code
 
 **validation_invalid**:
 - Generate 5 invalid VMRS codes by perturbation:
   - Take valid code, change last digit (e.g., 001-001-062 → 001-001-063)
   - Verify perturbed code does NOT exist in source data
-- Oracle: expected_vmrs = empty (code should not exist)
+- Oracle: expected_answer = empty (code should not exist)
 
 **comparison**:
 - 5 same-VMRS pairs: Pick two parts with SAME VMRS code
 - 5 different-VMRS pairs: Pick two parts with DIFFERENT VMRS codes
-- Oracle: expected_vmrs = both VMRS codes
+- Oracle: expected_answer = both VMRS codes
 
 ### Step 4: Generate Stable Test IDs
 
@@ -153,9 +154,9 @@ For each question:
 
 ### Step 5: Write Output
 
-Write CSV with columns: test_id, category, expected_behavior, question_text, row_key, expected_vmrs, expected_parts, pass_fail, failure_type
+Write CSV with columns: test_id, category, expected_behavior, question_text, row_key, expected_answer, vendor_parts, pass_fail, failure_type, full_conversation
 
-The pass_fail and failure_type columns are left empty for manual review.
+The pass_fail, failure_type, and full_conversation columns are left empty for test execution.
 
 ## CLI Arguments
 
@@ -179,7 +180,7 @@ Test IDs are stable because they're derived from row_key hashes. When the CSV ch
 After running:
 1. Confirm test_log.csv has 80 rows
 2. Verify each category has expected count
-3. Verify expected_vmrs is populated for all KNOWN_PRESENT questions
+3. Verify expected_answer is populated for all KNOWN_PRESENT questions
 4. Verify validation_invalid questions have VMRS codes that don't exist in source
 5. Verify part_lookup questions use unambiguous part numbers
 6. Check diversity: count unique SYSTEM_ and MANUFACTURER values used

@@ -71,8 +71,8 @@ class TestQuestion(NamedTuple):
     expected_behavior: str
     question_text: str
     row_key: str
-    expected_vmrs: str
-    expected_parts: str
+    expected_answer: str
+    vendor_parts: str
 
 
 def compute_row_key(part: str, manufacturer: str) -> str:
@@ -195,8 +195,8 @@ def generate_part_lookup(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f"What is the VMRS code for part number {row.part}?",
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -219,8 +219,8 @@ def generate_vendor_lookup(
                     f"What is the VMRS code for {row.manufacturer} part {row.part}?"
                 ),
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -252,8 +252,8 @@ def generate_description_exact(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f'What is the VMRS code for "{row.description}"?',
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -287,8 +287,8 @@ def generate_description_partial(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f'What is the VMRS code for "{partial_desc}"?',
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -317,8 +317,8 @@ def generate_hierarchy_navigation(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f"What is the hierarchy for VMRS code {row.vmrs}?",
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -354,8 +354,8 @@ def generate_vendor_mapping(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f"What vendor parts map to VMRS code {row.vmrs}?",
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts=expected_parts,
+                expected_answer=row.vmrs,
+                vendor_parts=expected_parts,
             )
         )
     return questions
@@ -385,8 +385,8 @@ def generate_validation_valid(
                 expected_behavior="KNOWN_PRESENT",
                 question_text=f"Is {row.vmrs} a valid VMRS code?",
                 row_key=row.row_key,
-                expected_vmrs=row.vmrs,
-                expected_parts="",
+                expected_answer=row.vmrs,
+                vendor_parts="",
             )
         )
     return questions
@@ -431,8 +431,8 @@ def generate_validation_invalid(
                 expected_behavior="KNOWN_ABSENT",
                 question_text=f"Is {invalid} a valid VMRS code?",
                 row_key=row_key,
-                expected_vmrs="",
-                expected_parts="",
+                expected_answer="",
+                vendor_parts="",
             )
         )
     return questions
@@ -470,8 +470,8 @@ def generate_comparison(
                         f"Do parts {part_a} and {part_b} have the same VMRS code?"
                     ),
                     row_key=row_key,
-                    expected_vmrs=f"{vmrs};{vmrs}",
-                    expected_parts="",
+                    expected_answer=f"{vmrs};{vmrs}",
+                    vendor_parts="",
                 )
             )
             same_count += 1
@@ -503,8 +503,8 @@ def generate_comparison(
                     f"Do parts {part_a} and {part_b} have the same VMRS code?"
                 ),
                 row_key=row_key,
-                expected_vmrs=f"{vmrs_a};{vmrs_b}",
-                expected_parts="",
+                expected_answer=f"{vmrs_a};{vmrs_b}",
+                vendor_parts="",
             )
         )
         different_count += 1
@@ -522,10 +522,11 @@ def write_output(questions: list[TestQuestion], output_path: Path) -> None:
         "expected_behavior",
         "question_text",
         "row_key",
-        "expected_vmrs",
-        "expected_parts",
+        "expected_answer",
+        "vendor_parts",
         "pass_fail",
         "failure_type",
+        "full_conversation",
     ]
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
@@ -539,10 +540,11 @@ def write_output(questions: list[TestQuestion], output_path: Path) -> None:
                     "expected_behavior": q.expected_behavior,
                     "question_text": q.question_text,
                     "row_key": q.row_key,
-                    "expected_vmrs": q.expected_vmrs,
-                    "expected_parts": q.expected_parts,
+                    "expected_answer": q.expected_answer,
+                    "vendor_parts": q.vendor_parts,
                     "pass_fail": "",
                     "failure_type": "",
+                    "full_conversation": "",
                 }
             )
 

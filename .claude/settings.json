@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SubagentStop": [
+      {
+        "matcher": "vmrs-test-runner",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/save_vmrs_result.py",
+            "timeout": 30000
+          }
+        ]
+      }
+    ]
+  }
+}

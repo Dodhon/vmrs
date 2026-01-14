@@ -163,6 +163,33 @@ Each oracle entry must include fields to support top-3 scoring and hierarchy con
 3. Verify each response against the oracle (`expected_answers.*`) and reference sources; log pass/fail with a short note.
 4. Re-run failed tests after fixes and confirm resolution.
 
+## Ad Hoc Execution (Hook-Based)
+
+For ad hoc testing without the full MCP harness, use the `vmrs-test-runner` subagent with automatic transcript capture via Claude Code hooks.
+
+### Setup
+- Hook config: `.claude/settings.json` (SubagentStop hook for `vmrs-test-runner`)
+- Hook script: `.claude/hooks/save_vmrs_result.py`
+- Output: `tests/test_questions/test_log.csv` (`full_conversation` column)
+
+### Usage
+Include the test_id in the prompt when invoking the subagent:
+```
+[TEST_ID: PN-18ba5e] What is the VMRS code for part number 2234788PE?
+```
+
+The hook automatically:
+1. Parses the test_id from the prompt
+2. Captures the full conversation (user prompt, tool calls, assistant response)
+3. Updates the matching row in `test_log.csv`
+
+### Prompt Format
+```
+[TEST_ID: <test_id>] <question_text>
+```
+
+The test_id pattern is `XX-XXXXXX` (category prefix + hex suffix), e.g., `PN-18ba5e`, `VP-666da5`, `DE-c563a9`.
+
 ## Test Log Schema
 Per-question log rows are intentionally slim, with run-level context captured in the run manifest:
 - run_id

@@ -48,3 +48,4 @@ test.txt
 .claude/mcp.json
 /prompts/pptx_review
 /writing_guides
+.mcp.json

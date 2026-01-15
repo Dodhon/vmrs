@@ -1,81 +1,81 @@
 test_id,category,expected_behavior,question_text,row_key,expected_answer,vendor_parts,pass_fail,failure_type,full_conversation
-PN-18ba5e,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 2234788PE?,"2234788PE|PACCAR, INC.",,,,,tests/test_questions/conversations/PN-18ba5e.md
-PN-1e091a,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 215331?,215331|ANDERSON POWER PROD,,,,,
-PN-15fbb2,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 14092?,14092|OREILLY AUTO PARTS,,,,,
-PN-f3ee76,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 59209T?,59209T|TODCO DIV OVRHD DOOR,,,,,
-PN-efd130,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number ES3420S?,ES3420S|MOOG AUTOMOTIVE,,,,,
-PN-4dd637,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number ES800481?,ES800481|MOOG AUTOMOTIVE,,,,,
-PN-189192,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 781103?,"781103|GATES RUBBER, THE",,,,,
-PN-223ca8,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number VS-33769-2?,VS-33769-2|HENDRICKSON,,,,,
-PN-b31e6a,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number PH/369PPV001?,PH/369PPV001|PARKER-HANNIFIN CORP,,,,,
-PN-edbfd0,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number EA0054460702?,EA0054460702|FREIGHTLINER,,,,,
-VP-666da5,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for WALTCO LIFT CORP part WO-10099360?,WO-10099360|WALTCO LIFT CORP,,,,,tests/test_questions/conversations/VP-666da5.md
-VP-c2e72b,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for PACE part 10655-6-6?,10655-6-6|PACE,,,,,
-VP-baf06e,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for BRADY SPC part 927886-2?,927886-2|BRADY SPC,,,,,
-VP-cc78bc,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for PLASTIC MART part R-RVB355?,R-RVB355|PLASTIC MART,,,,,
-VP-e868c5,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for NGK part 4344?,4344|NGK,,,,,
-VP-83375b,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for DAIMLERCHRYSLERAG part A22-78084-000?,A22-78084-000|DAIMLERCHRYSLERAG,,,,,
-VP-68ba0f,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for BIG LIFT LLC part BJ111513300040?,BJ111513300040|BIG LIFT LLC,,,,,
-VP-51dc6a,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for STELLANA part ZT-105-RONT?,ZT-105-RONT|STELLANA,,,,,
-VP-3b52a6,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for HD DISTRIBUTION part SK03500?,SK03500|HD DISTRIBUTION,,,,,
-VP-01f5ae,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for UNISOURCE part 800031054?,800031054|UNISOURCE,,,,,
-DE-c563a9,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""AIR DEFLECTOR, L.H.""?",82745150|VOLVO,,,,,tests/test_questions/conversations/DE-c563a9.md
-DE-b56a47,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""SPARE TIRE CARRIER""?",CK4Z-1K353-F|FORD MOTOR CO,,,,,
-DE-63a5d8,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""GAUGE, FUEL""?",A680-542-01-03|FREIGHTLINER,,,,,
-DE-311219,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""PB MED DUTY BUMPER ASSY CHROME""?",N71-6063-111|FREIGHTLINER,,,,,
-DE-84ac88,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""LEVER, TRANSFER CASE CONTOL""?",926-884|DORMAN PROD CO.,,,,,
-DE-20dc6e,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""54"" X 1/2 DISCHARGE HOSE""?",15554|HDVALUE,,,,,
-DE-73fb06,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""COVER, CHASIS""?",B174 1137 20R0|FREIGHTLINER,,,,,
-DE-bc7cf7,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""KIT- KING PIN""?",NRK14705|MERITOR WABCO,,,,,
-DE-b1fc39,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""CENTER SUPPORT BEARING""?",85105227|VOLVO,,,,,
-DE-631f99,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""HYD HOSE FITTING 3/8""X 1/2""""?","G25180-0608|GATES RUBBER, THE",,,,,
-DP-48cc64,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SHAFT, DRIVESHAFT MIDSHIP""?",6-53-411|SPICER AXLE-TRANS,,,,,tests/test_questions/conversations/DP-48cc64.md
-DP-99a696,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""PANEL ASSY SIDE""?",A22-67112-003|FREIGHTLINER,,,,,
-DP-d41a4d,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""BOLT-HEX, COTTER""?",23-14701-200|FREIGHTLINER,,,,,
-DP-9f5adf,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SWITCH, START, PEDAL,""?",9650010092|ZF WABCO,,,,,
-DP-b56a47,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SPARE TIRE""?",CK4Z-1K353-F|FORD MOTOR CO,,,,,
-DP-246ebb,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""END ASSY DRAG LINK""?",PC3Z-3A131-J|FORD MOTOR CO,,,,,
-DP-4910ab,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""93-3/8 ALUMINUM NOSE""?",75111125B|AURORA PARTS & ACCS,,,,,
-DP-cc78bc,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""WATER TANK 21""?",R-RVB355|PLASTIC MART,,,,,
-DP-3dd466,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""DRIVERS SIDE SEAT""?",23240853|VOLVO,,,,,
-DP-7dd364,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""MOTOR ASSY 4-1/2 -""?",21500-1|WESTERN (SOW PLOWS),,,,,
-HN-013ea6,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 082-001-014?,03-7270-0-003|UTILITY,,,,,tests/test_questions/conversations/HN-013ea6.md
-HN-36fb73,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 017-008-001?,9593595|GENERAL MOTORS CORP,,,,,
-HN-15f695,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 044-001-001?,BC2Z-9002-B|FORD MOTOR CO,,,,,
-HN-0bd245,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 055-022-010?,40915201S109.25|GREAT DANE,,,,,
-HN-f179cb,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 174-002-020?,3578797C1|INTERNATIONAL,,,,,
-HN-52697b,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 063-007-002?,A66-14384-000|FREIGHTLINER,,,,,
-HN-074ab8,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 013-009-119?,"5004049|BENDIX CORP, THE",,,,,
-HN-0d0bb0,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 078-025-001?,404000WHITE|ENERGY GUARD AERO,,,,,
-HN-cc78bc,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 177-001-000?,R-RVB355|PLASTIC MART,,,,,
-HN-7e0e80,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 002-001-031?,A17-17256-000|FREIGHTLINER,,,,,
-VM-7ce8f2,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 045-008-215?,VS50504R1|FEL-PRO GASKETS,,,,,tests/test_questions/conversations/VM-7ce8f2.md
-VM-9ff5a5,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 042-000-000?,4946501|CUMMINS ENGINE CO,,,,,
-VM-8d9a8e,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-004-072?,A0091531128|FREIGHTLINER,,,,,
-VM-4e2d51,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-001-093?,A0019950502|DETROIT DIESEL CORP,,,,,
-VM-f555d9,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 053-008-022?,"103071|DAVCO, INC.",,,,,
-VM-ed72cf,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 032-001-045?,4493260600|MERITOR WABCO,,,,,
-VM-ea51ef,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 044-010-059?,2894829|CUMMINS ENGINE CO,,,,,
-VM-bcacbe,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 026-001-072?,21786063|VOLVO,,,,,
-VM-4e279a,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 042-002-001?,9C2Z-8005-F|FORD MOTOR CO,,L,,,
-VM-fa29ac,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-007-143?,04-29001-000|FREIGHTLINER,,,,,
-VV-a341ae,validation_valid,KNOWN_PRESENT,Is 013-007-021 a valid VMRS code?,3570659C1|INTERNATIONAL,,,,,tests/test_questions/conversations/VV-a341ae.md
-VV-9a734a,validation_valid,KNOWN_PRESENT,Is 001-001-049 a valid VMRS code?,FLTAC3131369|INTERNATIONAL,,,,,
-VV-6e764d,validation_valid,KNOWN_PRESENT,Is 015-005-074 a valid VMRS code?,SK000255|TRW,,,,,
-VV-3c5c1a,validation_valid,KNOWN_PRESENT,Is 026-015-095 a valid VMRS code?,4102452C2|INTERNATIONAL,,,,,
-VV-7ef605,validation_valid,KNOWN_PRESENT,Is 082-001-010 a valid VMRS code?,1001439657BSM|BERGSTROM,,,,,
-VI-7befa4,validation_invalid,KNOWN_ABSENT,Is 014-011-016 a valid VMRS code?,INVALID|014-011-016,,,,,tests/test_questions/conversations/VI-7befa4.md
-VI-82290b,validation_invalid,KNOWN_ABSENT,Is 014-002-024 a valid VMRS code?,INVALID|014-002-024,,,,,
-VI-1062e3,validation_invalid,KNOWN_ABSENT,Is 003-001-009 a valid VMRS code?,INVALID|003-001-009,,,,,
-VI-503d29,validation_invalid,KNOWN_ABSENT,Is 055-019-006 a valid VMRS code?,INVALID|055-019-006,,,,,
-VI-d62d5a,validation_invalid,KNOWN_ABSENT,Is 002-020-051 a valid VMRS code?,INVALID|002-020-051,,,,,
-CP-c9c439,comparison,KNOWN_PRESENT,Do parts HG0067 and S-32097 have the same VMRS code?,HG0067|FLEETPRIDE+S-32097|HENDRICKSON,,,,,tests/test_questions/conversations/CP-c9c439.md
-CP-cdece9,comparison,KNOWN_PRESENT,Do parts K750322 and K80043 have the same VMRS code?,K750322|PRECISION BRAND PROD+K80043|MASTERPRO,,,,,
-CP-4f79ed,comparison,KNOWN_PRESENT,Do parts KK4Z-17F774-DB and CK4Z-17F774-DD have the same VMRS code?,KK4Z-17F774-DB|FORD MOTOR CO+CK4Z-17F774-DD|FORD MOTOR CO,,,,,
-CP-7a0bf6,comparison,KNOWN_PRESENT,Do parts 05-16070-000 and 05-19865-000 have the same VMRS code?,05-16070-000|FREIGHTLINER+05-19865-000|FREIGHTLINER,,,,,
-CP-dd2ca0,comparison,KNOWN_PRESENT,Do parts 334-2298 and VS-33769-2 have the same VMRS code?,"334-2298|DAYTON PARTS, INC.+VS-33769-2|HENDRICKSON",,,,,
-CP-de4eeb,comparison,KNOWN_PRESENT,Do parts A06-52867-038 and 80654-1PA0A have the same VMRS code?,A06-52867-038|FREIGHTLINER+80654-1PA0A|NISSAN,,,,,
-CP-e8bca9,comparison,KNOWN_PRESENT,Do parts 80654-1PA0A and A17-20380-003 have the same VMRS code?,80654-1PA0A|NISSAN+A17-20380-003|FREIGHTLINER,,,,,
-CP-b0f2ba,comparison,KNOWN_PRESENT,Do parts A17-20380-003 and 4376527 have the same VMRS code?,A17-20380-003|FREIGHTLINER+4376527|CUMMINS ENGINE CO,,,,,
-CP-d18b80,comparison,KNOWN_PRESENT,Do parts 4376527 and AA-452-091 have the same VMRS code?,4376527|CUMMINS ENGINE CO+AA-452-091|LEYMAN,,,,,
-CP-94e32d,comparison,KNOWN_PRESENT,Do parts AA-452-091 and 1517672C91 have the same VMRS code?,AA-452-091|LEYMAN+1517672C91|INTERNATIONAL,,,,,
+PN-18ba5e,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 2234788PE?,"2234788PE|PACCAR, INC.",047-000-000,,pass,,tests/test_questions/conversations/PN-18ba5e.md
+PN-1e091a,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 215331?,215331|ANDERSON POWER PROD,046-003-002,,pass,,tests/test_questions/conversations/PN-1e091a.md
+PN-15fbb2,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 14092?,14092|OREILLY AUTO PARTS,027-033-091,,pass,,tests/test_questions/conversations/PN-15fbb2.md
+PN-f3ee76,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 59209T?,59209T|TODCO DIV OVRHD DOOR,072-004-073,,pass,,tests/test_questions/conversations/PN-f3ee76.md
+PN-efd130,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number ES3420S?,ES3420S|MOOG AUTOMOTIVE,015-004-026,,pass,,tests/test_questions/conversations/PN-efd130.md
+PN-4dd637,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number ES800481?,ES800481|MOOG AUTOMOTIVE,011-001-031,,pass,,tests/test_questions/conversations/PN-4dd637.md
+PN-189192,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number 781103?,"781103|GATES RUBBER, THE",082-034-013,,pass,,tests/test_questions/conversations/PN-189192.md
+PN-223ca8,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number VS-33769-2?,VS-33769-2|HENDRICKSON,017-009-009,,pass,,tests/test_questions/conversations/PN-223ca8.md
+PN-b31e6a,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number PH/369PPV001?,PH/369PPV001|PARKER-HANNIFIN CORP,098-013-012,,pass,,tests/test_questions/conversations/PN-b31e6a.md
+PN-edbfd0,part_lookup,KNOWN_PRESENT,What is the VMRS code for part number EA0054460702?,EA0054460702|FREIGHTLINER,037-001-004,,pass,,tests/test_questions/conversations/PN-edbfd0.md
+VP-666da5,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for WALTCO LIFT CORP part WO-10099360?,WO-10099360|WALTCO LIFT CORP,055-003-008,,pass,,tests/test_questions/conversations/VP-666da5.md
+VP-c2e72b,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for PACE part 10655-6-6?,10655-6-6|PACE,053-008-003,,pass,,tests/test_questions/conversations/VP-c2e72b.md
+VP-baf06e,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for BRADY SPC part 927886-2?,927886-2|BRADY SPC,053-004-018,,pass,,tests/test_questions/conversations/VP-baf06e.md
+VP-cc78bc,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for PLASTIC MART part R-RVB355?,R-RVB355|PLASTIC MART,177-001-000,,pass,,tests/test_questions/conversations/VP-cc78bc.md
+VP-e868c5,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for NGK part 4344?,4344|NGK,033-003-005,,pass,,tests/test_questions/conversations/VP-e868c5.md
+VP-83375b,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for DAIMLERCHRYSLERAG part A22-78084-000?,A22-78084-000|DAIMLERCHRYSLERAG,001-001-285,,pass,,tests/test_questions/conversations/VP-83375b.md
+VP-68ba0f,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for BIG LIFT LLC part BJ111513300040?,BJ111513300040|BIG LIFT LLC,018-003-063,,pass,,tests/test_questions/conversations/VP-68ba0f.md
+VP-51dc6a,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for STELLANA part ZT-105-RONT?,ZT-105-RONT|STELLANA,017-005-002,,fail,Expected VMRS 017-005-002 but transcript top-3 was NO_VMRS_CODE_FOUND.,tests/test_questions/conversations/VP-51dc6a.md
+VP-3b52a6,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for HD DISTRIBUTION part SK03500?,SK03500|HD DISTRIBUTION,071-002-023,,pass,,tests/test_questions/conversations/VP-3b52a6.md
+VP-01f5ae,vendor_lookup,KNOWN_PRESENT,What is the VMRS code for UNISOURCE part 800031054?,800031054|UNISOURCE,013-005-004,,pass,,tests/test_questions/conversations/VP-01f5ae.md
+DE-c563a9,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""AIR DEFLECTOR, L.H.""?",82745150|VOLVO,004-001-001,,pass,,tests/test_questions/conversations/DE-c563a9.md
+DE-b56a47,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""SPARE TIRE CARRIER""?",CK4Z-1K353-F|FORD MOTOR CO,057-001-001,,pass,,tests/test_questions/conversations/DE-b56a47.md
+DE-63a5d8,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""GAUGE, FUEL""?",A680-542-01-03|FREIGHTLINER,003-001-020,,pass,,tests/test_questions/conversations/DE-63a5d8.md
+DE-311219,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""PB MED DUTY BUMPER ASSY CHROME""?",N71-6063-111|FREIGHTLINER,014-002-001,,pass,,tests/test_questions/conversations/DE-311219.md
+DE-84ac88,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""LEVER, TRANSFER CASE CONTOL""?",926-884|DORMAN PROD CO.,025-001-231,,pass,,tests/test_questions/conversations/DE-84ac88.md
+DE-20dc6e,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""54"" X 1/2 DISCHARGE HOSE""?",15554|HDVALUE,001-001-285,,pass,,tests/test_questions/conversations/DE-20dc6e.md
+DE-73fb06,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""COVER, CHASIS""?",B174 1137 20R0|FREIGHTLINER,034-004-344,,pass,,tests/test_questions/conversations/DE-73fb06.md
+DE-bc7cf7,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""KIT- KING PIN""?",NRK14705|MERITOR WABCO,011-001-010,,pass,,tests/test_questions/conversations/DE-bc7cf7.md
+DE-b1fc39,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""CENTER SUPPORT BEARING""?",85105227|VOLVO,024-002-005,,pass,,tests/test_questions/conversations/DE-b1fc39.md
+DE-631f99,description_exact,KNOWN_PRESENT,"What is the VMRS code for ""HYD HOSE FITTING 3/8""X 1/2""""?","G25180-0608|GATES RUBBER, THE",065-007-005,,pass,,tests/test_questions/conversations/DE-631f99.md
+DP-48cc64,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SHAFT, DRIVESHAFT MIDSHIP""?",6-53-411|SPICER AXLE-TRANS,024-002-048,,pass,,tests/test_questions/conversations/DP-48cc64.md
+DP-99a696,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""PANEL ASSY SIDE""?",A22-67112-003|FREIGHTLINER,004-004-047,,pass,,tests/test_questions/conversations/DP-99a696.md
+DP-d41a4d,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""BOLT-HEX, COTTER""?",23-14701-200|FREIGHTLINER,053-007-005,,pass,,tests/test_questions/conversations/DP-d41a4d.md
+DP-9f5adf,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SWITCH, START, PEDAL,""?",9650010092|ZF WABCO,023-001-000,,pass,,tests/test_questions/conversations/DP-9f5adf.md
+DP-b56a47,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""SPARE TIRE""?",CK4Z-1K353-F|FORD MOTOR CO,057-001-001,,pass,,tests/test_questions/conversations/DP-b56a47.md
+DP-246ebb,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""END ASSY DRAG LINK""?",PC3Z-3A131-J|FORD MOTOR CO,011-001-031,,pass,,tests/test_questions/conversations/DP-246ebb.md
+DP-4910ab,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""93-3/8 ALUMINUM NOSE""?",75111125B|AURORA PARTS & ACCS,071-003-027,,pass,,tests/test_questions/conversations/DP-4910ab.md
+DP-cc78bc,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""WATER TANK 21""?",R-RVB355|PLASTIC MART,177-001-000,,pass,,tests/test_questions/conversations/DP-cc78bc.md
+DP-3dd466,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""DRIVERS SIDE SEAT""?",23240853|VOLVO,002-011-003,,fail,"Expected VMRS 002-011-003 but transcript top-3 was ['002-037-003', '002-037-002', '002-037-007'].",tests/test_questions/conversations/DP-3dd466.md
+DP-7dd364,description_partial,KNOWN_PRESENT,"What is the VMRS code for ""MOTOR ASSY 4-1/2 -""?",21500-1|WESTERN (SOW PLOWS),066-001-003,,pass,,tests/test_questions/conversations/DP-7dd364.md
+HN-013ea6,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 082-001-014?,03-7270-0-003|UTILITY,082-001-014,,pass,,tests/test_questions/conversations/HN-013ea6.md
+HN-36fb73,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 017-008-001?,9593595|GENERAL MOTORS CORP,017-008-001,,pass,,tests/test_questions/conversations/HN-36fb73.md
+HN-15f695,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 044-001-001?,BC2Z-9002-B|FORD MOTOR CO,044-001-001,,pass,,tests/test_questions/conversations/HN-15f695.md
+HN-0bd245,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 055-022-010?,40915201S109.25|GREAT DANE,055-022-010,,pass,,tests/test_questions/conversations/HN-0bd245.md
+HN-f179cb,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 174-002-020?,3578797C1|INTERNATIONAL,174-002-020,,pass,,tests/test_questions/conversations/HN-f179cb.md
+HN-52697b,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 063-007-002?,A66-14384-000|FREIGHTLINER,063-007-002,,pass,,tests/test_questions/conversations/HN-52697b.md
+HN-074ab8,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 013-009-119?,"5004049|BENDIX CORP, THE",013-009-119,,pass,,tests/test_questions/conversations/HN-074ab8.md
+HN-0d0bb0,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 078-025-001?,404000WHITE|ENERGY GUARD AERO,078-025-001,,pass,,tests/test_questions/conversations/HN-0d0bb0.md
+HN-cc78bc,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 177-001-000?,R-RVB355|PLASTIC MART,177-001-000,,pass,,tests/test_questions/conversations/HN-cc78bc.md
+HN-7e0e80,hierarchy_navigation,KNOWN_PRESENT,What is the hierarchy for VMRS code 002-001-031?,A17-17256-000|FREIGHTLINER,002-001-031,,pass,,tests/test_questions/conversations/HN-7e0e80.md
+VM-7ce8f2,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 045-008-215?,VS50504R1|FEL-PRO GASKETS,045-008-215,n=2,pass,,tests/test_questions/conversations/VM-7ce8f2.md
+VM-9ff5a5,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 042-000-000?,4946501|CUMMINS ENGINE CO,042-000-000,n=2,pass,,tests/test_questions/conversations/VM-9ff5a5.md
+VM-8d9a8e,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-004-072?,A0091531128|FREIGHTLINER,043-004-072,n=10,pass,,tests/test_questions/conversations/VM-8d9a8e.md
+VM-4e2d51,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-001-093?,A0019950502|DETROIT DIESEL CORP,043-001-093,n=2,pass,,tests/test_questions/conversations/VM-4e2d51.md
+VM-f555d9,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 053-008-022?,"103071|DAVCO, INC.",053-008-022,n=7,pass,,tests/test_questions/conversations/VM-f555d9.md
+VM-ed72cf,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 032-001-045?,4493260600|MERITOR WABCO,032-001-045,n=3,pass,,tests/test_questions/conversations/VM-ed72cf.md
+VM-ea51ef,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 044-010-059?,2894829|CUMMINS ENGINE CO,044-010-059,n=3,pass,,tests/test_questions/conversations/VM-ea51ef.md
+VM-bcacbe,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 026-001-072?,21786063|VOLVO,026-001-072,n=3,pass,,tests/test_questions/conversations/VM-bcacbe.md
+VM-4e279a,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 042-002-001?,9C2Z-8005-F|FORD MOTOR CO,042-002-001,n=118,pass,,tests/test_questions/conversations/VM-4e279a.md
+VM-fa29ac,vendor_mapping,KNOWN_PRESENT,What vendor parts map to VMRS code 043-007-143?,04-29001-000|FREIGHTLINER,043-007-143,n=7,pass,,tests/test_questions/conversations/VM-fa29ac.md
+VV-a341ae,validation_valid,KNOWN_PRESENT,Is 013-007-021 a valid VMRS code?,3570659C1|INTERNATIONAL,013-007-021,,pass,,tests/test_questions/conversations/VV-a341ae.md
+VV-9a734a,validation_valid,KNOWN_PRESENT,Is 001-001-049 a valid VMRS code?,FLTAC3131369|INTERNATIONAL,001-001-049,,pass,,tests/test_questions/conversations/VV-9a734a.md
+VV-6e764d,validation_valid,KNOWN_PRESENT,Is 015-005-074 a valid VMRS code?,SK000255|TRW,015-005-074,,pass,,tests/test_questions/conversations/VV-6e764d.md
+VV-3c5c1a,validation_valid,KNOWN_PRESENT,Is 026-015-095 a valid VMRS code?,4102452C2|INTERNATIONAL,026-015-095,,pass,,tests/test_questions/conversations/VV-3c5c1a.md
+VV-7ef605,validation_valid,KNOWN_PRESENT,Is 082-001-010 a valid VMRS code?,1001439657BSM|BERGSTROM,082-001-010,,pass,,tests/test_questions/conversations/VV-7ef605.md
+VI-7befa4,validation_invalid,KNOWN_ABSENT,Is 014-011-016 a valid VMRS code?,INVALID|014-011-016,,,fail,Expected INVALID/NOT_FOUND (not in vendor CSV) but transcript marked 014-011-016 valid in Neo4j.,tests/test_questions/conversations/VI-7befa4.md
+VI-82290b,validation_invalid,KNOWN_ABSENT,Is 014-002-024 a valid VMRS code?,INVALID|014-002-024,,,fail,Expected INVALID/NOT_FOUND (not in vendor CSV) but transcript marked 014-002-024 valid in Neo4j.,tests/test_questions/conversations/VI-82290b.md
+VI-1062e3,validation_invalid,KNOWN_ABSENT,Is 003-001-009 a valid VMRS code?,INVALID|003-001-009,,,fail,Expected INVALID/NOT_FOUND (not in vendor CSV) but transcript marked 003-001-009 valid in Neo4j.,tests/test_questions/conversations/VI-1062e3.md
+VI-503d29,validation_invalid,KNOWN_ABSENT,Is 055-019-006 a valid VMRS code?,INVALID|055-019-006,,,fail,Expected INVALID/NOT_FOUND (not in vendor CSV) but transcript marked 055-019-006 valid in Neo4j.,tests/test_questions/conversations/VI-503d29.md
+VI-d62d5a,validation_invalid,KNOWN_ABSENT,Is 002-020-051 a valid VMRS code?,INVALID|002-020-051,,,fail,Expected INVALID/NOT_FOUND (not in vendor CSV) but transcript marked 002-020-051 valid in Neo4j.,tests/test_questions/conversations/VI-d62d5a.md
+CP-c9c439,comparison,KNOWN_PRESENT,Do parts HG0067 and S-32097 have the same VMRS code?,HG0067|FLEETPRIDE+S-32097|HENDRICKSON,018-003-017;018-003-017,,pass,,tests/test_questions/conversations/CP-c9c439.md
+CP-cdece9,comparison,KNOWN_PRESENT,Do parts K750322 and K80043 have the same VMRS code?,K750322|PRECISION BRAND PROD+K80043|MASTERPRO,016-007-003;016-007-003,,pass,,tests/test_questions/conversations/CP-cdece9.md
+CP-4f79ed,comparison,KNOWN_PRESENT,Do parts KK4Z-17F774-DB and CK4Z-17F774-DD have the same VMRS code?,KK4Z-17F774-DB|FORD MOTOR CO+CK4Z-17F774-DD|FORD MOTOR CO,014-002-100;014-002-100,,pass,,tests/test_questions/conversations/CP-4f79ed.md
+CP-7a0bf6,comparison,KNOWN_PRESENT,Do parts 05-16070-000 and 05-19865-000 have the same VMRS code?,05-16070-000|FREIGHTLINER+05-19865-000|FREIGHTLINER,042-002-019;042-002-019,,pass,,tests/test_questions/conversations/CP-7a0bf6.md
+CP-dd2ca0,comparison,KNOWN_PRESENT,Do parts 334-2298 and VS-33769-2 have the same VMRS code?,"334-2298|DAYTON PARTS, INC.+VS-33769-2|HENDRICKSON",017-009-009;017-009-009,,pass,,tests/test_questions/conversations/CP-dd2ca0.md
+CP-de4eeb,comparison,KNOWN_PRESENT,Do parts A06-52867-038 and 80654-1PA0A have the same VMRS code?,A06-52867-038|FREIGHTLINER+80654-1PA0A|NISSAN,034-004-191;002-019-048,,pass,,tests/test_questions/conversations/CP-de4eeb.md
+CP-e8bca9,comparison,KNOWN_PRESENT,Do parts 80654-1PA0A and A17-20380-003 have the same VMRS code?,80654-1PA0A|NISSAN+A17-20380-003|FREIGHTLINER,002-019-048;002-004-040,,pass,,tests/test_questions/conversations/CP-e8bca9.md
+CP-b0f2ba,comparison,KNOWN_PRESENT,Do parts A17-20380-003 and 4376527 have the same VMRS code?,A17-20380-003|FREIGHTLINER+4376527|CUMMINS ENGINE CO,002-004-040;044-000-000,,pass,,tests/test_questions/conversations/CP-b0f2ba.md
+CP-d18b80,comparison,KNOWN_PRESENT,Do parts 4376527 and AA-452-091 have the same VMRS code?,4376527|CUMMINS ENGINE CO+AA-452-091|LEYMAN,044-000-000;055-001-043,,pass,,tests/test_questions/conversations/CP-d18b80.md
+CP-94e32d,comparison,KNOWN_PRESENT,Do parts AA-452-091 and 1517672C91 have the same VMRS code?,AA-452-091|LEYMAN+1517672C91|INTERNATIONAL,055-001-043;043-001-127,,pass,,tests/test_questions/conversations/CP-94e32d.md

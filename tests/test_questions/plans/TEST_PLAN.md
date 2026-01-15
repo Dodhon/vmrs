@@ -8,7 +8,10 @@ This plan is written for stakeholders who need confidence that the interface ans
 
 ## Scope
 
-We will test the interface against the stakeholder question set in `tests/test_questions/questions.md`.
+We will test the interface using a predefined, loggable suite in `tests/test_questions/test_log.csv`.
+
+Related (but not the executed suite):
+- `tests/test_questions/questions.md` is a stakeholder prompt backlog / example set (useful for brainstorming patterns and future test expansion).
 
 A stakeholder question is **in scope** if the answer can be derived **solely** from the current Neo4j snapshot’s fields and relationships covering:
 - **Part identity**: part_id (if present), vendor/manufacturer part number
@@ -71,40 +74,100 @@ Every answer must be one of the following response types and include the require
 - If it exists, include the code name/label and hierarchy path when available
 
 ## Test Set Composition
-Counts are bounded and tracked per test_id in `tests/test_questions/questions.md` and the oracle.
+Counts are bounded and tracked per test_id in `tests/test_questions/test_log.csv` and the source of truth.
 
 By category:
-- part_number exact: TK
-- vendor + part_number: TK
-- description exact: TK
-- description partial/typo: TK
-- hierarchy navigation: TK
-- vendor mapping from VMRS: TK
-- validation: TK
-- comparison: TK
+- part_lookup: 10
+- vendor_lookup: 10
+- description_exact: 10
+- description_partial: 10
+- hierarchy_navigation: 10
+- vendor_mapping: 10
+- validation_valid: 5
+- validation_invalid: 5
+- comparison: 10
 
-Category roll-up for log schema:
-| Test set category | Log category |
-|-------------------|--------------|
-| part_number exact | part lookup |
-| vendor + part_number | vendor lookup |
-| description exact | description lookup |
-| description partial/typo | description lookup |
-| hierarchy navigation | hierarchy navigation |
-| vendor mapping from VMRS | vendor mapping |
-| validation | validation |
-| comparison | comparison |
+Total: 80
+
+Category values (as they appear in `tests/test_questions/test_log.csv`):
+- part_lookup
+- vendor_lookup
+- description_exact
+- description_partial
+- hierarchy_navigation
+- vendor_mapping
+- validation_valid
+- validation_invalid
+- comparison
 
 By behavior:
-- KNOWN_PRESENT: TK
-- KNOWN_ABSENT: TK
-- AMBIGUOUS: TK
+- KNOWN_PRESENT: 75
+- KNOWN_ABSENT: 5
+- AMBIGUOUS: 0 (gap—see "Known Coverage Gaps" below)
+
+## Known Coverage Gaps
+
+The current 80-question suite does not cover the following scenarios. These gaps are documented for future expansion and are not blocking for the current POC validation.
+
+### 1. AMBIGUOUS behavior (0 tests)
+No questions where the expected response is "return ranked candidates + ask clarifying question." The plan defines AMBIGUOUS as a required response type (see "Required Response Types"), but no test cases exercise it.
+
+**Why it matters**: Short or generic descriptions (1-2 words like "FILTER", "HOSE", "SWITCH") commonly produce multiple plausible matches. Without AMBIGUOUS tests, we cannot validate the system's ranking logic or clarifying-question behavior.
+
+**Recommended addition**: Add 5-10 short-description questions with `expected_behavior = AMBIGUOUS` and verify the correct answer appears in the top-3 ranked candidates.
+
+### 2. NOT_FOUND for lookup categories (0 tests)
+No part_lookup, vendor_lookup, description_exact, description_partial, or hierarchy_navigation tests with `expected_behavior = KNOWN_ABSENT`. Only validation_invalid tests absent scenarios (and those have a definitional conflict—see note below).
+
+**Why it matters**: The plan requires NOT_FOUND responses to state what was searched, what scope was checked, and provide a concrete next step. Without KNOWN_ABSENT lookup tests, we cannot validate "don't guess" behavior in common flows.
+
+**Recommended addition**: Add 5-10 lookup questions using fabricated part numbers, nonexistent vendor names, or descriptions that do not appear in the vendor data.
+
+### 3. Short descriptions (0 tests)
+The description_partial category explicitly filters to descriptions with 3+ words and only removes the final word. This means 1-word and 2-word description lookups are structurally excluded.
+
+**Why it matters**: Short descriptions are common in real usage and typically produce the most ambiguity. They are also where fuzzy matching and synonym handling are most likely to surface issues.
+
+**Recommended addition**: Add a `description_short` category with 1-2 word queries (e.g., "FILTER", "SEAT BELT", "FUEL GAUGE") and appropriate expected_behavior (likely AMBIGUOUS for generic terms, RESOLVED for specific terms).
+
+### 4. VMRS prefix queries (0 tests)
+All validation and hierarchy questions use full xxx-xxx-xxx codes. Partial codes like "042-002" (system-assembly only) or "042" (system only) are untested.
+
+**Why it matters**: Users may ask about VMRS prefixes when they don't know the full component code. The system should either resolve to the prefix node or clarify which component is intended.
+
+**Recommended addition**: Add 3-5 prefix queries to hierarchy_navigation or validation categories.
+
+### 5. Phrasing variations (0 tests)
+All questions use exact templates (e.g., "What is the VMRS code for part number X?"). Alternate phrasings, typos, case variations, missing quotes, and synonyms are untested.
+
+**Why it matters**: Real users will not use exact template phrasing. Robustness to minor variations is important for production readiness but is out of scope for this POC.
+
+**Recommendation**: Document as a future test expansion; not required for current POC sign-off.
+
+### 6. Multi-turn conversations (0 tests)
+Each test is a single question with a single answer. Follow-up questions, clarifications after AMBIGUOUS responses, and conversational context are untested.
+
+**Why it matters**: The AMBIGUOUS response type is designed to prompt clarifying questions, but we never test what happens when the user answers them.
+
+**Recommendation**: Defer to a future "conversation flow" test suite.
+
+## How the test questions were generated (source of truth)
+
+The current 80-question suite in `tests/test_questions/test_log.csv` was generated from vendor mapping data using the process described in:
+- `tests/test_questions/plans/generate_test_questions_plan.md`
+
+In brief:
+- **Source data**: `vendor data/checked/Motors Part Cleanup - Return Data.csv`
+- **Row key**: `{PART}|{MANUFACTURER}` (used for traceability and stable IDs)
+- **Stable test IDs**: `{PREFIX}-{HASH6}`, where `HASH6` is the first 6 hex chars of SHA256(row_key)
+- **Question templates**: the 9 categories in the plan (10 each, except validation 5/5) totaling 80
+- **Source-of-truth fields**: `expected_answer` and `vendor_parts` are derived from the vendor CSV (not directly from the VMRS handbook)
 
 ## Interface Under Test
 - Primary interface: Claude Code using the Neo4j MCP server (https://github.com/neo4j-contrib/mcp-neo4j).
 - Prompt context: `interface prompts/v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`.
 - Web search is disabled for this test plan, even if the prompt context allows it.
-- Claude Code build: record from Claude "About" screen in the run manifest; target run uses the build available on 1/13/2026.
+- Claude Code build: record from the Claude "About" screen (current run used the build available on 1/13/2026).
 - Model: Sonnet 4.5.
 - Neo4j MCP version: v0.8.2.
 - Environment: Claude Code connected to Neo4j via MCP.
@@ -117,60 +180,86 @@ By behavior:
 - Questions requiring information not represented in the snapshot (e.g., pricing, inventory, lead times, recommendations like “best vendor”)
 
 ## Test Assets
-- Primary question list: `tests/test_questions/questions.md` (stakeholder-driven questions)
-- Expected answers (oracle): `tests/test_questions/expected_answers.json` (or `.csv`) keyed by `test_id`
-- Expected answers source: `vendor data/checked/Motors Part Cleanup - Return Data.xlsx` (input source used to build the oracle)
-- Oracle-backed rule: Every generated question must map to a `test_id` with an `expected_answer` in `expected_answers.*`. If an expected answer cannot be derived, the test must be labeled KNOWN_ABSENT with an expected NOT_FOUND response.
-- Generated questions should follow the same patterns and style as the examples in `tests/test_questions/questions.md`.
+- Executed test suite (questions + expected answers + scoring fields): `tests/test_questions/test_log.csv`
+- Evidence (full transcripts): `tests/test_questions/conversations/<test_id>.md`
+- Stakeholder-readable summary: `tests/test_questions/EVALUATION_SUMMARY.md`
+- Source-of-truth inputs for generating expected answers:
+  - `vendor data/checked/Motors Part Cleanup - Return Data.csv`
+  - (source spreadsheet): `vendor data/checked/Motors Part Cleanup - Return Data.xlsx`
+- Source-of-truth rule (current state): Every test row in `test_log.csv` must have:
+  - `test_id`
+  - `question_text`
+  - `expected_behavior`
+  - `expected_answer` (for KNOWN_PRESENT)
+- Related prompt backlog (not the executed suite): `tests/test_questions/questions.md`
 - Prompt context sources: `interface prompts/v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`
 - Ground truth vendor data: `vendor data/checked/` (source of truth for vendor mappings and part data)
 - Reference sources: VMRS handbook content and the current graph/data snapshot used by the interface
-- MCP harness: `mcp/test_questions_mcp.py` (runs the suite and writes logs/transcripts)
-- Run manifest template: `tests/test_questions/runs/manifest_template.json` (copy to `tests/test_questions/runs/<run_id>/manifest.json`)
 
-### Oracle Schema
-Each oracle entry must include fields to support top-3 scoring and hierarchy consistency checks:
-```json
-{
-  "test_id": "PN-001",
-  "expected_vmrs_code": "001-001-062",
-  "expected_hierarchy": {
-    "system": {"code": "001", "name": "AIR CONDITIONING..."},
-    "assembly": {"code": "001-001", "name": "AIR CONDITIONING ASSEMBLY..."},
-    "component": {"code": "001-001-062", "name": "CONDENSER ASSEMBLY..."}
-  },
-  "acceptable_candidates": ["001-001-062"],
-  "vendor_parts": [{"part": "...", "manufacturer": "..."}]
-}
-```
-- `expected_vmrs_code`: Primary expected VMRS code
-- `expected_hierarchy`: System/assembly/component with codes for prefix validation
-- `acceptable_candidates`: List of VMRS codes considered correct if in top 3 (usually just the expected code, but may include aliases)
+### What was actually used in the current run (Claude subagent + hook)
 
-## Execution Approach
-1. Create a `run_id` and `manifest_id`, then write a run manifest at `tests/test_questions/runs/<run_id>/manifest.json` capturing:
-   - Claude Code build (from "About"), model ID, Neo4j MCP version
-   - Prompt file hashes (v2.txt, neo4j_schema.txt, priority_sites.txt)
-   - Neo4j snapshot identifier (dump name/commit/date) and snapshot date
-   - Any relevant runtime configuration (e.g., temperature if configurable)
-2. Run each question through the interface and capture a complete transcript that includes:
-   - Full final answer text
-   - Prompt context used for the run
-   - MCP/tool calls and outputs
-   - Cypher queries/results (or equivalent returned records)
-   - Any intermediate outputs produced by the interface
-   - Save each transcript under `tests/test_questions/runs/<run_id>/transcripts/<test_id>_attempt<k>.txt`
-3. Verify each response against the oracle (`expected_answers.*`) and reference sources; log pass/fail with a short note.
-4. Re-run failed tests after fixes and confirm resolution.
+This run was executed via a Claude subagent plus a SubagentStop hook.
+
+- **Subagent**: `.claude/agents/vmrs-test-runner.md`
+  - Invoked with prompts that include a stable test ID prefix like:
+    - `[TEST_ID: PN-18ba5e] What is the VMRS code for part number 2234788PE?`
+- **Hook**: `.claude/hooks/save_vmrs_result.py` (wired via `.claude/settings.json`)
+  - On SubagentStop, it:
+    - Parses the subagent transcript to extract `test_id` from the `[TEST_ID: ...]` tag.
+    - Writes the full conversation (user prompt, tool calls/results, assistant answer) to:
+      - `tests/test_questions/conversations/<test_id>.md`
+    - Updates `tests/test_questions/test_log.csv` by setting the `full_conversation` column to the relative path:
+      - `tests/test_questions/conversations/<test_id>.md`
+
+### Test suite source-of-truth files (what to look at)
+
+- **Test cases + scoring fields**: `tests/test_questions/test_log.csv`
+- **Stakeholder-readable run summary**: `tests/test_questions/EVALUATION_SUMMARY.md`
+- **Evidence (tool calls + query results + final answers)**: `tests/test_questions/conversations/<test_id>.md`
+- **Prompt backlog / examples**: `tests/test_questions/questions.md`
+
+### Source-of-truth fields (current suite)
+
+In the current run, the “source of truth” for each test is stored directly in `tests/test_questions/test_log.csv`:
+- `expected_answer`: expected VMRS code (or, for comparison, a semicolon-delimited pair of VMRS codes)
+- `vendor_parts`: for vendor-mapping tests, the expected vendor-part set/size indicator (current format is a lightweight summary like `n=118`)
+
+Optional/future enhancement:
+- Store richer expected hierarchy fields (system/assembly/component names) in a dedicated expected-answers artifact, or extend the CSV schema.
+
+## Execution Approach (end-to-end)
+
+### Claude subagent + hook (current run)
+
+1. **Prepare the suite**
+   - Ensure `tests/test_questions/test_log.csv` contains the full question set with stable `test_id`s, `category`, and `expected_answer` populated.
+   - Ensure the prompt context files are up to date:
+     - `interface prompts/v2.txt`
+     - `interface prompts/neo4j_schema.txt`
+     - `interface prompts/priority_sites.txt`
+2. **Execute each test**
+   - For each row in `test_log.csv`, ask the subagent `.claude/agents/vmrs-test-runner.md` the question in `question_text` with the required prefix:
+     - `[TEST_ID: <test_id>] <question_text>`
+3. **Capture evidence (automatic)**
+   - On SubagentStop, `.claude/hooks/save_vmrs_result.py` writes:
+     - `tests/test_questions/conversations/<test_id>.md`
+   - And updates `tests/test_questions/test_log.csv`:
+     - sets `full_conversation` to `tests/test_questions/conversations/<test_id>.md`
+4. **Score + label outcomes**
+   - Update `pass_fail` (pass/fail) and `failure_type` where needed.
+   - Use the pass/fail rules in this document (top-3 candidate rule, vendor-mapping rule, etc.).
+5. **Summarize**
+   - Update `tests/test_questions/EVALUATION_SUMMARY.md` with totals, category breakdown, and the short list of notable failures + why.
 
 ## Ad Hoc Execution (Hook-Based)
 
-For ad hoc testing without the full MCP harness, use the `vmrs-test-runner` subagent with automatic transcript capture via Claude Code hooks.
+Mode A (Claude subagent + hook) is the primary execution path used in the current run; this section is retained as a quick reference.
 
 ### Setup
 - Hook config: `.claude/settings.json` (SubagentStop hook for `vmrs-test-runner`)
 - Hook script: `.claude/hooks/save_vmrs_result.py`
 - Output: `tests/test_questions/test_log.csv` (`full_conversation` column)
+- Transcripts: `tests/test_questions/conversations/<test_id>.md` (written by the hook)
 
 ### Usage
 Include the test_id in the prompt when invoking the subagent:
@@ -191,25 +280,23 @@ The hook automatically:
 The test_id pattern is `XX-XXXXXX` (category prefix + hex suffix), e.g., `PN-18ba5e`, `VP-666da5`, `DE-c563a9`.
 
 ## Test Log Schema
-Per-question log rows are intentionally slim, with run-level context captured in the run manifest:
-- run_id
-- manifest_id
+Current run log schema (matches `tests/test_questions/test_log.csv`):
 - test_id
-- attempt (1..N for stability runs)
-- question_text
-- category (description lookup, part lookup, comparison, vendor mapping, vendor lookup, validation, hierarchy navigation)
+- category
 - expected_behavior: KNOWN_PRESENT | KNOWN_ABSENT | AMBIGUOUS
-- expected_answer (string or JSON)
-- actual_answer (full final response text)
+- question_text
+- row_key
+- expected_answer
+- vendor_parts
 - pass_fail
-- failure_type: DATA_GAP | PROMPT | QUERY_LOGIC | FUZZY_MATCH | HALLUCINATION | TOOL_ERROR
-- evidence_link (full transcript path under `tests/test_questions/runs/<run_id>/`; includes prompt context, MCP/tool calls, Cypher queries/results, intermediate outputs, and final answer)
+- failure_type
+- full_conversation (relative path to `tests/test_questions/conversations/<test_id>.md`)
 
 ## Pass/Fail Criteria
-- Baseline coverage: 100% of questions in `tests/test_questions/questions.md` return correct results or a clear, accurate "not found" response.
-- **Correct if in top 3**: A response is correct if the expected VMRS code appears in the top 3 ranked candidates (for RESOLVED or AMBIGUOUS responses).
+- Baseline coverage: 100% of rows in `tests/test_questions/test_log.csv` return correct results or a clear, accurate "not found" response.
+- **Correct if in top 3**: For VMRS-code lookup questions, a response is correct if the expected VMRS code appears in the top 3 ranked candidates (for RESOLVED or AMBIGUOUS responses).
 - **Hierarchy consistency**: The returned system/assembly/component must match the VMRS code's PART_OF relationships in the graph (code prefix consistency).
-- Any incorrect answer is a fail. No answer is a fail when the expected item exists in the oracle/ground truth.
+- Any incorrect answer is a fail. No answer is a fail when the expected item exists in the source of truth.
 - No critical defects:
   - Incorrect VMRS code for a known item (not in top 3)
   - Incorrect hierarchy (system/assembly/component) for a known item
@@ -218,9 +305,30 @@ Per-question log rows are intentionally slim, with run-level context captured in
   - Interface errors that block completion of a question
   - Missing evidence: transcript does not include tool traces/queries for a test that used tools
 
+### Per-category scoring notes (current suite)
+
+- **part_lookup / vendor_lookup / description_exact / description_partial**:
+  - pass if expected VMRS code appears in the assistant’s top 3 VMRS codes
+- **vendor_mapping**:
+  - pass if the assistant includes at least one vendor part number that exists under that VMRS code in the vendor mapping source of truth
+- **hierarchy_navigation**:
+  - pass if the requested VMRS code appears in the response (with hierarchy context around it)
+- **comparison**:
+  - pass if the YES/NO matches whether the two parts map to the same VMRS code in the vendor mapping source of truth
+- **validation_valid / validation_invalid**:
+  - see “validation_invalid definition” note below
+
 ### Acceptance for special behaviors
 - **KNOWN_ABSENT**: must return NOT_FOUND behavior (no guessing) and a concrete next step.
 - **AMBIGUOUS**: must return AMBIGUOUS behavior (ranked candidates and/or clarifying question); must not select a single answer without qualification.
+
+### Note on VMRS validity definitions (source-of-truth definition)
+
+There are two common “valid VMRS” definitions:
+- **Vendor-mapping validity** (what the current suite uses): “the code appears in the vendor mapping source of truth”
+- **Hierarchy validity**: “the code exists in the VMRS hierarchy in the Neo4j snapshot”
+
+The current suite’s `validation_invalid` cases are constructed as “not present in vendor mapping data,” which can conflict with hierarchy existence (i.e., the system can truthfully answer “valid in hierarchy” while the suite expects “invalid in vendor mappings”).
 
 ## Stability Check (Nondeterminism)
 - Run each test 2–3 times, especially description-based or ambiguous categories.
@@ -228,9 +336,11 @@ Per-question log rows are intentionally slim, with run-level context captured in
 - Description-based categories must be consistent or return the same candidate set with the same top result.
 - Record each run as a separate log row with the `attempt` field incremented.
 
+Current run note: the suite was executed once (no `attempt` column; no repeated-run stability sampling recorded).
+
 ## Risks and Assumptions
 - The interface and the reference snapshot stay in sync for the duration of testing.
-- Some failures may reflect vendor data gaps rather than interface defects; classify as DATA_GAP only when the oracle/reference confirms missing/incorrect source data.
+- Some failures may reflect vendor data gaps rather than interface defects; classify as DATA_GAP only when the source-of-truth/reference confirms missing/incorrect source data.
 - Description-based matching depends on current search/synonym logic; document false positives and ambiguous results.
 
 ## Regression Policy
@@ -257,8 +367,7 @@ Provide a concise results summary with:
 
 ## Next Steps
 - Freeze `tests/test_questions/questions.md` and assign stable `test_id`s.
-- Build `tests/test_questions/expected_answers.json` (oracle) from `Motors Part Cleanup - Return Data.xlsx` and VMRS handbook references.
-- Implement `mcp/test_questions_mcp.py` to run the suite and write `manifest.json`, transcripts, and the per-question log.
+- Optional: create a dedicated expected-answers artifact (e.g., `tests/test_questions/expected_answers.json`) if you want the source of truth separated from `test_log.csv`.
 - Run a pilot set (3–5 questions) to validate workflow and adjust categories/expectations.
 - Execute the full suite, fix defects, and re-run failures until clean.
 - Schedule stakeholder review and share the results summary with links to evidence.

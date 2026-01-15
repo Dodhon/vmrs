@@ -1,5 +1,28 @@
 # Interface Test Plan: VMRS Question Set
 
+## Executive Summary (Current Run)
+
+| Metric | Value |
+|--------|-------|
+| Total tests | 80 |
+| Pass | 73 (91.25%) |
+| Fail | 7 |
+| True interface defects | 2 |
+| Test-design issues | 5 (validation_invalid oracle mismatch) |
+
+**Key findings**:
+- Core lookup functionality (part, vendor, description, hierarchy, comparison) works well: 68/70 pass (97%)
+- Vendor mapping queries work correctly: 10/10 pass
+- Two true failures require investigation: VP-51dc6a (STELLANA part not found), DP-3dd466 (description partial matched wrong codes)
+- Five validation_invalid "failures" are test-design issues, not interface defects (see "Note on VMRS validity definitions")
+
+**Coverage gaps** (documented, not blocking for POC):
+- No AMBIGUOUS behavior tests
+- No NOT_FOUND tests for lookup categories
+- No short-description (1-2 word) tests
+- No VMRS prefix queries
+- Stability testing not performed
+
 ## Objective
 Validate that the stakeholder-facing interface (Claude Code with Neo4j MCP) returns correct VMRS codes, relationships, and vendor mappings for common user questions, and that it handles unknowns with a clear, user-friendly response.
 
@@ -322,13 +345,22 @@ Current run log schema (matches `tests/test_questions/test_log.csv`):
 - **KNOWN_ABSENT**: must return NOT_FOUND behavior (no guessing) and a concrete next step.
 - **AMBIGUOUS**: must return AMBIGUOUS behavior (ranked candidates and/or clarifying question); must not select a single answer without qualification.
 
-### Note on VMRS validity definitions (source-of-truth definition)
+### Note on VMRS validity definitions (source-of-truth conflict)
 
-There are two common “valid VMRS” definitions:
-- **Vendor-mapping validity** (what the current suite uses): “the code appears in the vendor mapping source of truth”
-- **Hierarchy validity**: “the code exists in the VMRS hierarchy in the Neo4j snapshot”
+There are two common "valid VMRS" definitions:
+- **Vendor-mapping validity** (what the current suite's oracle uses): "the code appears in the vendor mapping source of truth"
+- **Hierarchy validity** (what the interface answers): "the code exists in the VMRS hierarchy in the Neo4j snapshot"
 
-The current suite’s `validation_invalid` cases are constructed as “not present in vendor mapping data,” which can conflict with hierarchy existence (i.e., the system can truthfully answer “valid in hierarchy” while the suite expects “invalid in vendor mappings”).
+The current suite's `validation_invalid` cases are constructed as "not present in vendor mapping data," which conflicts with hierarchy existence. The interface correctly answers "valid" (exists in hierarchy) while the test oracle expects "invalid" (not in vendor mappings).
+
+**Result**: All 5 validation_invalid tests fail, but these are **not true interface defects**. The interface is answering the question as a user would expect ("Does this VMRS code exist?"), not as the test oracle defines it ("Does this VMRS code have vendor mappings?").
+
+**Resolution options**:
+1. **Reclassify as PASS**: Accept that hierarchy validity is the correct interpretation and mark these tests as passing.
+2. **Change the question**: Rephrase validation_invalid questions to "Do any vendor parts map to VMRS code X?" to match the oracle's definition.
+3. **Replace test cases**: Generate new validation_invalid cases using VMRS codes that do not exist in the hierarchy (e.g., malformed codes like 999-999-999).
+
+**Current status**: These 5 tests are counted as failures in the test log but are flagged as a test-design issue, not an interface defect.
 
 ## Stability Check (Nondeterminism)
 - Run each test 2–3 times, especially description-based or ambiguous categories.
@@ -336,7 +368,9 @@ The current suite’s `validation_invalid` cases are constructed as “not prese
 - Description-based categories must be consistent or return the same candidate set with the same top result.
 - Record each run as a separate log row with the `attempt` field incremented.
 
-Current run note: the suite was executed once (no `attempt` column; no repeated-run stability sampling recorded).
+**Current run status**: The suite was executed once only. Stability sampling (repeated runs) was **not performed** for this POC. The test log has no `attempt` column.
+
+**Recommendation**: Stability testing is optional for POC sign-off but recommended before production deployment, especially for description-based categories where LLM nondeterminism may affect results.
 
 ## Risks and Assumptions
 - The interface and the reference snapshot stay in sync for the duration of testing.

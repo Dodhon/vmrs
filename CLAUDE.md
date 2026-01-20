@@ -19,6 +19,7 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `mcp/stress_test_mcp.py` - when automating stress-test tracking; why: MCP server for results
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `writing_guides/` - when writing or polishing presentation materials; why: reference PDFs
+- `presentations/` - when referencing past presentation versions; why: pptx version history
 
 ## Data locations
 - `csv data/` - when using processed VMRS tables; why: canonical CSV exports

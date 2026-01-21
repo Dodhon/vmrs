@@ -64,7 +64,7 @@
 4) Schema & counts (label snapshot)
 5) Interface layer (MCP, LLM reasoning, chatbot UI)
 6) Demo (grille / flux capacitor / air filter)
-7) Evaluation & results (acceptance + stress; confidence by level; pricing gap)
+7) Evaluation & results (acceptance + targeted edge-case coverage; confidence by level; pricing gap)
 8) Failure modes & mitigations
 9) Roadmap/next steps (operator feedback loop, metrics/gates, data cleanup, Snowflake)
 10) Backup: hierarchy, ETL details, LLM path, vendor linking, testing deep dive, savings detail

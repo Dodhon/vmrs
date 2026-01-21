@@ -99,7 +99,7 @@ Added:
 ✅ **Standard layout** - Follows Python project conventions  
 
 ### For Development
-✅ **Organized imports** - Can now use `from scripts.analysis import ...`  
+✅ **Organized scripts** - consistent locations for ETL, import, and analysis scripts  
 ✅ **Version control** - Clean git status  
 ✅ **CI/CD ready** - Standard structure for automation  
 

@@ -79,7 +79,7 @@ All current testing assets live under `tests/test_questions/`:
 
 ### 4. HITL feedback capture (MVP)
 - MCP server: `mcp/hitl/server.py`
-- Prompt guidance: `interface prompts/hitl_feedback_capture.txt`
+- Prompt guidance: `interface prompts/lookup_agent/hitl_feedback_capture.txt`
 - HITL step plan: `dev_plans/hitl_plan.md`
 
 

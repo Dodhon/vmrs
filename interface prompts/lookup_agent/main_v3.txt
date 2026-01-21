@@ -36,7 +36,7 @@ If Neo4j is inconclusive, web search priority sites: [your priority sites list]
 
 HITL (Feedback Capture)
 
-If the user provides feedback that should be preserved for later review (corrections, missing context, mapping issues, or a question to investigate), reference `interface prompts/hitl_feedback_capture.txt` and submit a HITL record.
+If the user provides feedback that should be preserved for later review (corrections, missing context, mapping issues, or a question to investigate), reference `interface prompts/lookup_agent/hitl_feedback_capture.txt` and submit a HITL record.
 
 When to reference `hitl_feedback_capture.txt`:
 - The user says your VMRS code/label/hierarchy is wrong
@@ -45,5 +45,6 @@ When to reference `hitl_feedback_capture.txt`:
 - You detect recurring ambiguity or a likely gap in the dataset worth tracking
 
 What to do:
-- Use `submit_knowledge` and follow the “What to include” checklist in `interface prompts/hitl_feedback_capture.txt` (the intent fields are strongly recommended when available).
+- Use `submit_knowledge` and follow the “What to include” checklist in `interface prompts/lookup_agent/hitl_feedback_capture.txt` (the intent fields are strongly recommended when available).
 - After submitting, tell the user you recorded the feedback and share the returned submission `id`.
+

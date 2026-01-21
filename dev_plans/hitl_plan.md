@@ -16,7 +16,7 @@ mcp/hitl/
 ```
 
 Prompt guidance (used by the Claude Desktop agent):
-- `interface prompts/hitl_feedback_capture.txt`
+- `interface prompts/lookup_agent/hitl_feedback_capture.txt`
 
 ## Local storage layout
 ```
@@ -136,13 +136,13 @@ When review tooling is added later, store review decision metadata alongside the
 ## Files to create
 - `mcp/hitl/server.py`
 - `HitL_local/pending/`
-- `interface prompts/hitl_feedback_capture.txt`
+- `interface prompts/lookup_agent/hitl_feedback_capture.txt`
 
 ## Implementation (MVP)
 1. Create `HitL_local/pending/`
 2. Build MCP server in `mcp/hitl/server.py` (Python MCP SDK / `FastMCP`)
 3. Add a Claude Desktop MCP entry pointing to `mcp/hitl/server.py` (via `claude_desktop_config.json`)
-4. Put the agent-facing guidance in `interface prompts/hitl_feedback_capture.txt` and reference it from your main interface prompt as needed.
+4. Put the agent-facing guidance in `interface prompts/lookup_agent/hitl_feedback_capture.txt` and reference it from your main interface prompt as needed.
 
 ## Verification (MVP)
 1. Run `python3 mcp/hitl/server.py`

@@ -12,7 +12,7 @@ Long-term, this pushes you toward **two layers**:
 1. **Proposal / review layer** (auditable; ideally append-only-ish)
 2. **Published KG layer** (the current `System/Assembly/Component/Vendor/VendorPart` graph users query)
 
-This is consistent with provenance thinking: provenance records **entities, activities, agents, and time** so users can judge trustworthiness and responsibility. (Source: `https://www.w3.org/TR/prov-dm/`)
+This is consistent with provenance thinking: provenance records **entities, activities, agents, and time** so users can judge trustworthiness and responsibility. (Source: [W3C PROV-DM](https://www.w3.org/TR/prov-dm/))
 
 
 ## Long-term Neo4j model (recommended)
@@ -23,7 +23,7 @@ Create a node like:
 
 - `(:HitlSubmission { id, type, status, description, context?, related_query?, submitted_at_ms, ... })`
 
-Rationale: review is a workflow (pending → reviewed/approved/rejected). Neo4j’s workflow/state modeling example uses Requests, States, and lifecycle metadata to answer operational questions (“what’s pending”, “who approved”, “what notes”). (Source: `https://neo4j.com/blog/part-1-using-neo4j-in-business-process-modeling-scenarios/`)
+Rationale: review is a workflow (pending → reviewed/approved/rejected). Neo4j’s workflow/state modeling example uses Requests, States, and lifecycle metadata to answer operational questions (“what’s pending”, “who approved”, “what notes”). (Source: [Neo4j BPM modeling example](https://neo4j.com/blog/part-1-using-neo4j-in-business-process-modeling-scenarios/))
 
 
 ### 2) Store the *proposed change intent* explicitly
@@ -58,12 +58,12 @@ Two legitimate patterns:
   - `(:HitlSubmission)-[:HAS_EVENT]->(:HitlEvent {type, at_ms, notes})`
   - `(:HitlEvent)-[:BY]->(:User)`
 
-Event nodes are better when you expect multiple review cycles, edits, appeals, or future automation. The PROV model explicitly supports representing agents and activities over time. (Source: `https://www.w3.org/TR/prov-dm/`)
+Event nodes are better when you expect multiple review cycles, edits, appeals, or future automation. The PROV model explicitly supports representing agents and activities over time. (Source: [W3C PROV-DM](https://www.w3.org/TR/prov-dm/))
 
 
 ### 5) Timestamps (storage vs human readability)
 
-Neo4j supports native temporal types as properties and they support indexing and range queries. (Source: `https://neo4j.com/docs/cypher-manual/current/values-and-types/temporal/`)
+Neo4j supports native temporal types as properties and they support indexing and range queries. (Source: [Neo4j Cypher Manual: Temporal values](https://neo4j.com/docs/cypher-manual/current/values-and-types/temporal/))
 
 Your existing schema uses `updated_at: INTEGER`, so a consistent approach is:
 
@@ -78,9 +78,9 @@ Optionally, you can also store a `datetime` property alongside the integer, deri
 If you anticipate multiple competing values/claims, Wikidata’s pattern is instructive:
 
 - keep multiple statements, qualify them, cite references, and mark rank:
-  - normal / preferred / deprecated. (Source: `https://www.wikidata.org/wiki/Help:Ranking`)
+  - normal / preferred / deprecated. (Source: [Wikidata Help:Ranking](https://www.wikidata.org/wiki/Help:Ranking))
 
-Wikidata’s data model also emphasizes statements with qualifiers and ranks as first-class concepts. (Source: `https://www.wikidata.org/wiki/Wikidata:Data_model`)
+Wikidata’s data model also emphasizes statements with qualifiers and ranks as first-class concepts. (Source: [Wikidata:Data model](https://www.wikidata.org/wiki/Wikidata:Data_model))
 
 In Neo4j, the analogous approach is:
 
@@ -89,7 +89,7 @@ In Neo4j, the analogous approach is:
 
 ### 7) Auditing KG writes (later)
 
-Neo4j Change Data Capture (CDC) can capture create/update/delete changes in real time for downstream processing and audit/replication. (Source: `https://neo4j.com/docs/cdc/current/`)
+Neo4j Change Data Capture (CDC) can capture create/update/delete changes in real time for downstream processing and audit/replication. (Source: [Neo4j CDC docs](https://neo4j.com/docs/cdc/current/))
 
 CDC does not replace HITL semantics (it captures *what* changed, not *why* it was accepted), but it can complement it.
 
@@ -216,10 +216,37 @@ When moving a file from `pending/` to `reviewed/` (Step 2), add:
 
 ## Sources (cited)
 
-- W3C PROV-DM (provenance core concepts: Entity/Activity/Agent/time): `https://www.w3.org/TR/prov-dm/`
-- Neo4j workflow/state modeling example (Requests, States, lifecycle events): `https://neo4j.com/blog/part-1-using-neo4j-in-business-process-modeling-scenarios/`
-- Neo4j temporal values (temporal types, epochMillis, indexing/range): `https://neo4j.com/docs/cypher-manual/current/values-and-types/temporal/`
-- Neo4j CDC overview: `https://neo4j.com/docs/cdc/current/`
-- Wikidata ranking (preferred/normal/deprecated semantics): `https://www.wikidata.org/wiki/Help:Ranking`
-- Wikidata data model (statements/qualifiers/ranks): `https://www.wikidata.org/wiki/Wikidata:Data_model`
+- [W3C PROV-DM](https://www.w3.org/TR/prov-dm/) (provenance core concepts: Entity/Activity/Agent/time)
+- [Neo4j BPM modeling example](https://neo4j.com/blog/part-1-using-neo4j-in-business-process-modeling-scenarios/) (Requests, States, lifecycle events)
+- [Neo4j Cypher Manual: Temporal values](https://neo4j.com/docs/cypher-manual/current/values-and-types/temporal/) (temporal types, epochMillis, indexing/range)
+- [Neo4j CDC docs](https://neo4j.com/docs/cdc/current/)
+- [Wikidata Help:Ranking](https://www.wikidata.org/wiki/Help:Ranking) (preferred/normal/deprecated semantics)
+- [Wikidata:Data model](https://www.wikidata.org/wiki/Wikidata:Data_model) (statements/qualifiers/ranks)
+
+## Working examples (GitHub)
+
+### Python MCP / FastMCP servers
+
+- [modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
+  - The official SDK repository (note: `main` is v2 pre-alpha; v1.x is the production branch).
+  - Useful server examples directory: [examples/snippets/servers](https://github.com/modelcontextprotocol/python-sdk/tree/main/examples/snippets/servers)
+  - If you want “stable” docs/code, also see the [v1.x branch](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x)
+
+### Provenance → Neo4j (PROV-DM import)
+
+- [DLR-SC/prov2neo](https://github.com/DLR-SC/prov2neo) (imports W3C PROV documents into Neo4j)
+
+### Wikidata → Neo4j property graph (statement-heavy KGs)
+
+- [megagonlabs/cypherbench](https://github.com/megagonlabs/cypherbench)
+  - Includes a “Wikidata-to-Property-Graph conversion engine” (`wd2neo4j`) that’s useful inspiration if you later want statement-style modeling, provenance subgraphs, etc.
+
+### Approval workflow state machines (inspiration for Step 2+)
+
+- [cjmellor/approval](https://github.com/cjmellor/approval)
+  - Laravel package implementing an approval workflow with states like `pending`, `approved`, `rejected` and storing proposed changes as JSON (`new_data`, `original_data`) before applying them.
+- [palantir/policy-bot](https://github.com/palantir/policy-bot)
+  - GitHub App that enforces approval policies on pull requests (useful inspiration if you later want “approval rules” rather than manual review only).
+- [statelyai/xstate](https://github.com/statelyai/xstate)
+  - Widely used state machine/statechart library; useful inspiration for explicitly modeling `pending → in_review → approved/rejected` transitions and guards.
 

@@ -98,13 +98,79 @@ CDC does not replace HITL semantics (it captures *what* changed, not *why* it wa
 
 Keep MVP minimal while staying compatible with the long-term graph model.
 
+### Architecture diagrams
+
+#### Long-term (two-layer HITL + published KG)
+```mermaid
+flowchart TD
+  user[User (Claude Desktop)] --> agent[Agent]
+  agent -->|feedback / proposed change| submit[mcp_hitl.submit_knowledge]
+
+  subgraph ProposalReview[Proposal + Review layer (auditable)]
+    submit --> proposal[(Proposal store)]
+    proposal --> review[Operator review]
+    review --> decision{approve or reject}
+    decision -->|approve| approved[Approved (+notes)]
+    decision -->|reject| rejected[Rejected (+notes)]
+  end
+
+  approved --> incorporate[Incorporate approved change]
+
+  subgraph Published[Published KG (query layer)]
+    incorporate --> kg[(Neo4j domain graph)]
+  end
+
+  kg --> agent
+```
+
+#### MVP (step-by-step implementation)
+```mermaid
+flowchart TD
+  subgraph Step1[Step 1 (done): capture]
+    agent1[Agent] --> submit1[mcp_hitl.submit_knowledge]
+    submit1 --> pending1[HitL_local/pending/<id>.json]
+  end
+
+  subgraph Step2[Step 2 (next): operator review]
+    pending1 --> review2[Review UI/tools]
+    review2 --> decision2{approve or reject}
+    decision2 -->|approve| approved2[approved record (+notes)]
+    decision2 -->|reject| rejected2[rejected record (+notes)]
+  end
+
+  approved2 --> later[Later: incorporate into Neo4j KG]
+```
+
+### Current state (implemented)
+
+- MCP server: `mcp/hitl/server.py`
+  - Tools: `submit_knowledge`, `get_submission_status`, `list_submissions`
+  - Scope: **pending-only capture** (writes to `HitL_local/pending/`)
+- Claude Desktop MCP config entry: `claude_desktop_config.json` (local machine config)
+- Agent-facing guidance:
+  - `interface prompts/hitl_feedback_capture.txt` (what to include; intent fields are strongly recommended)
+  - `interface prompts/main_v3.txt` references HITL and when to use it
+
+### Near-term plan (step-by-step MVP)
+
+Step 1 (done): capture proposals to `HitL_local/pending/` with strong structured intent.
+
+Step 2 (next): add operator review tooling + reviewed/approved/rejected states (file-first), keeping the JSON compatible with a future `:HitlSubmission` node model.
+
 ### Storage layout
 
 ```
 HitL_local/
-├── pending/         # submissions awaiting review (MVP writes here)
-├── reviewed/        # reviewed submissions (manual move for now)
-└── conversations/   # conversation context (empty for now)
+└── pending/         # submissions awaiting review (MVP writes here)
+```
+
+Future (not required for Step 1, but recommended when review tooling is added):
+
+```
+HitL_local/
+├── pending/
+├── reviewed/        # or split into approved/ rejected/ later
+└── conversations/   # only if you later capture extra context explicitly
 ```
 
 
@@ -114,16 +180,16 @@ Even in files, mirror the future Neo4j node properties:
 
 - `id`: UUID or timestamp+random suffix (so you don’t need `index.json`)
 - `type`: correction|addition|context|question
-- `status`: pending|reviewed (and later approved/rejected)
+- `status`: `pending` in Step 1; later `reviewed` / `approved` / `rejected`
 - `submitted_at_ms`: integer epoch millis UTC
 - `content`:
   - `description` (required)
   - `vmrs_code?`, `context?`, `related_query?`
-  - `target_type?`, `target_key?`, `proposed_action?`, `proposed_payload?` (can start optional, but recommended)
+  - `target_type?`, `target_key?`, `proposed_action?`, `proposed_payload?` (**strongly recommended** whenever a concrete change is proposed)
 
 ### MVP review metadata (in reviewed files)
 
-When moving a file from `pending/` to `reviewed/`, add:
+When moving a file from `pending/` to `reviewed/` (Step 2), add:
 
 - `reviewed_at_ms`
 - `decision`: approved|rejected (or reviewed_only for a transitional phase)

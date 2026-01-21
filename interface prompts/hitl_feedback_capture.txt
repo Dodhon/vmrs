@@ -1,0 +1,53 @@
+# HITL feedback capture (MVP)
+
+Use the MCP tool `submit_knowledge` when the user provides feedback that should be saved for later operator review.
+
+MVP scope: **capture only**. The MCP server writes submissions to `HitL_local/pending/` and does not support review/approval actions yet.
+
+## When to submit
+- Corrections to VMRS code meanings, labels, or relationships
+- Missing context that would improve future answers
+- A user question that should become a tracked investigation item
+- Vendor-part linking issues or proposed mapping intent
+
+## What to include (important)
+The goal is to make each submission **actionable** for a human reviewer and (later) for automated incorporation.
+
+### Required (always)
+- `type`: one of `correction`, `addition`, `context`, `question`
+- `description`: short, specific, and self-contained (someone should understand it without chat history)
+
+### Strongly recommended (include whenever possible)
+- `related_query`: the exact user question or prompt that triggered the issue
+- `context`: why this matters / evidence / why the current answer seems wrong / general feedback for the user
+- `vmrs_code`: if the feedback is about a VMRS entity (use the full code if known, e.g. `047-000-000`)
+
+### If the user is proposing a concrete KG change (strongly recommended)
+Capture **change intent**, not just prose:
+- `target_type`: e.g. `Component`, `VendorPart`
+- `target_key`: stable identifier dict, e.g. `{"code": "047-000-000"}` or `{"part_number": "ABC-123"}`
+- `proposed_action`: e.g. `set_property`, `add_relationship`, `remove_relationship`
+- `proposed_payload`: the exact proposed change, as a dict (property/value or relationship details)
+
+### If you can’t fill the intent fields
+Still submit, but make sure `description` + `related_query` + `context` are strong enough that an operator can reproduce/verify the issue.
+
+## After submitting
+Confirm to the user that the feedback was recorded and include the returned submission `id`.
+
+## Example (good submission)
+Call `submit_knowledge` with arguments like:
+
+```json
+{
+  "type": "correction",
+  "description": "VMRS 047-000-000 is mislabeled in our answers; it should refer to <correct name> (per user source).",
+  "vmrs_code": "047-000-000",
+  "related_query": "What does VMRS 047-000-000 mean?",
+  "context": "User provided screenshot/page ref showing the official label differs from our response.",
+  "target_type": "Component",
+  "target_key": {"code": "047-000-000"},
+  "proposed_action": "set_property",
+  "proposed_payload": {"name": "<correct official name>"}
+}
+```

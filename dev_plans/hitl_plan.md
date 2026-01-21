@@ -5,14 +5,18 @@ MCP server that lets Claude Desktop users submit **structured feedback** (correc
 
 Notes:
 - Claude Desktop does **not** expose full chat transcripts to MCP tools automatically; for now we store **feedback only**.
-- `HitL_local/conversations/` exists as a future extension point and is empty in MVP.
+- Operator review/approval is part of the MVP goal, but we’re implementing it **step-by-step**:
+  - Step 1 (current): pending-only capture to `HitL_local/pending/`
+  - Step 2 (next): operator review/approval tooling + reviewed state
 
 ## Repo layout (new)
 ```
 mcp/hitl/
 ├── server.py            # MCP server implementation
-└── agent_prompt.md      # Prompt/instructions that go to the agent
 ```
+
+Prompt guidance (used by the Claude Desktop agent):
+- `interface prompts/hitl_feedback_capture.txt`
 
 ## Local storage layout
 ```
@@ -27,18 +31,67 @@ HitL_local/e
   - File naming: `HitL_local/pending/<id>.json`
 - **Time**: store `submitted_at_ms` as **epoch millis UTC** (integer). This aligns with the existing Neo4j model’s `updated_at: INTEGER`.
 
-## Pipeline (simple)
-```mermaid
-flowchart TD
-  user[User_in_ClaudeDesktop] --> chat[Chat_with_agent]
-  chat --> decide{User_has_feedback?}
-  decide -->|No| endNode[End]
-  decide -->|Yes| submit[mcp_hitl.submit_knowledge]
-  submit --> pending[Write_JSON_to_HitL_local/pending]
-  pending --> idBack[Return_submission_id_to_chat]
-  idBack --> reviewLater[Later: operator_review]
-  reviewLater --> reviewed[Move_to_HitL_local/reviewed_and_add_review_metadata]
-  chat -. optional_later .-> conv[HitL_local/conversations_empty_for_now]
+## Diagrams
+
+### Long-term HITL architecture (target state)
+```
+User (Claude Desktop)
+        |
+        v
+      Agent
+        |
+        v
+ mcp_hitl.submit_knowledge
+        |
+        v
+  +-------------------------------+
+  | Proposal / Review layer       |
+  | (auditable)                   |
+  |                               |
+  | store submission              |
+  | (files now; later Neo4j node) |
+  |        |                      |
+  |        v                      |
+  |   operator review             |
+  |        |                      |
+  |        v                      |
+  |  approve / reject (+notes)    |
+  +-------------------------------+
+        |
+        v
+ incorporate approved changes
+        |
+        v
+  +-------------------------------+
+  | Published KG (query layer)    |
+  | Neo4j domain graph:           |
+  | System/Assembly/Component/... |
+  +-------------------------------+
+        ^
+        |
+      Agent
+```
+
+### MVP (pending-only capture you just built)
+```
+User (Claude Desktop)
+        |
+        v
+      Agent
+        |
+        v
+  feedback worth saving?
+     |           |
+    no          yes
+     |           |
+     v           v
+    End   mcp_hitl.submit_knowledge
+                  |
+                  v
+   write JSON -> HitL_local/pending/<id>.json
+                  |
+                  v
+        return submission id to chat
 ```
 
 ## Submission schema (MVP)
@@ -62,8 +115,8 @@ flowchart TD
 }
 ```
 
-## Review metadata (file-first MVP)
-When a submission is reviewed, move it from `pending/` to `reviewed/` and add:
+## Review metadata (future)
+When review tooling is added later, store review decision metadata alongside the submission:
 ```json
 {
   "reviewed_at_ms": 1737469000000,
@@ -77,21 +130,19 @@ When a submission is reviewed, move it from `pending/` to `reviewed/` and add:
 | Tool | Description |
 |------|-------------|
 | `submit_knowledge` | Create a new pending submission file and return the new ID |
-| `get_submission_status` | Check status by ID |
+| `get_submission_status` | Check pending status by ID |
 | `list_submissions` | List recent pending submissions (no per-user identity in MVP) |
 
 ## Files to create
 - `mcp/hitl/server.py`
-- `mcp/hitl/agent_prompt.md`
 - `HitL_local/pending/`
-- `HitL_local/reviewed/`
-- `HitL_local/conversations/`
+- `interface prompts/hitl_feedback_capture.txt`
 
 ## Implementation (MVP)
-1. Create `HitL_local/{pending,reviewed,conversations}/`
+1. Create `HitL_local/pending/`
 2. Build MCP server in `mcp/hitl/server.py` (Python MCP SDK / `FastMCP`)
-3. Add a local-only Claude Desktop MCP entry pointing to `mcp/hitl/server.py` (e.g. in `.claude/mcp.json`, which is gitignored)
-4. Put the agent-facing guidance in `mcp/hitl/agent_prompt.md`
+3. Add a Claude Desktop MCP entry pointing to `mcp/hitl/server.py` (via `claude_desktop_config.json`)
+4. Put the agent-facing guidance in `interface prompts/hitl_feedback_capture.txt` and reference it from your main interface prompt as needed.
 
 ## Verification (MVP)
 1. Run `python3 mcp/hitl/server.py`

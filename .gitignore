@@ -49,3 +49,7 @@ test.txt
 /prompts/pptx_review
 /writing_guides
 .mcp.json
+
+# HITL local storage (MVP: pending-only; keep design docs, ignore submissions)
+HitL_local/pending/
+!HitL_local/pending/.gitkeep

@@ -18,8 +18,8 @@ Savings for this project:
 
 Make several version of the prompt before you present: make sure to save each version
 
-* Make a test plan to stress test the capabilities of the solution
-- needs to cover all possible edge cases
+* Make a test plan to broaden coverage of the solution
+- focus on edge cases and ambiguity
 - identify what questions will break the solution
 - make github issue for this.
 

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file is a reference index. Keep it in sync with `AGENTS.md`.
+This file is a reference index. Keep it in sync with `AGENTS.md`. If I tell you to remember something, make sure you update this file or update a file when you can reference it.
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
@@ -14,9 +14,11 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `docs/analysis/PATTERNS_ANALYSIS.md` - when interpreting VMRS data patterns; why: key insights and trends
 - `docs/analysis/LINKING_PATTERNS.md` - when linking VMRS codes to vendor parts; why: mapping strategies
 - `docs/analysis/POC_READY_SUBSETS.md` - when assembling proof-of-concept datasets; why: subset definitions
-- `tests/neo4j_acceptance/` - when validating query answers; why: acceptance test harness
-- `tests/stress_test/` - when running edge case coverage; why: stress test assets and procedures
-- `mcp/stress_test_mcp.py` - when automating stress-test tracking; why: MCP server for results
+- `tests/test_questions/` - when validating query answers; why: acceptance test harness + transcripts + scoring
+- `dev_plans/hitl_plan.md` - when working on HITL scope; why: step-by-step plan and current MVP shape
+- `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
+- `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
+- `interface prompts/hitl_feedback_capture.txt` - when tuning HITL capture quality; why: what to include in submissions
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `writing_guides/` - when writing or polishing presentation materials; why: reference PDFs
 - `presentations/` - when referencing past presentation versions; why: pptx version history

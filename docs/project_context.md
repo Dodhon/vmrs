@@ -47,7 +47,7 @@
 - Acceptance testing should include LLM-driven unit-style checks that enforce strict input/output formats and confirm the QA agent mirrors stakeholder review steps.
 
 ## Immediate Focus
-- Flesh out the acceptance test suite described in `prompts/test_case_prompt.txt`, ensuring coverage of common stakeholder questions and any single-source-of-truth datasets.
+- Flesh out the acceptance test suite described in `image_generation_prompts/test_case_prompt.txt`, ensuring coverage of common stakeholder questions and any single-source-of-truth datasets.
 
 ## Quick Commands
 ```bash

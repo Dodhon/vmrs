@@ -188,7 +188,7 @@ In brief:
 
 ## Interface Under Test
 - Primary interface: Claude Code using the Neo4j MCP server (https://github.com/neo4j-contrib/mcp-neo4j).
-- Prompt context: `interface prompts/v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`.
+- Prompt context: `interface prompts/main_v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`.
 - Web search is disabled for this test plan, even if the prompt context allows it.
 - Claude Code build: record from the Claude "About" screen (current run used the build available on 1/13/2026).
 - Model: Sonnet 4.5.
@@ -215,7 +215,7 @@ In brief:
   - `expected_behavior`
   - `expected_answer` (for KNOWN_PRESENT)
 - Related prompt backlog (not the executed suite): `tests/test_questions/questions.md`
-- Prompt context sources: `interface prompts/v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`
+- Prompt context sources: `interface prompts/main_v2.txt`, `interface prompts/neo4j_schema.txt`, `interface prompts/priority_sites.txt`
 - Ground truth vendor data: `vendor data/checked/` (source of truth for vendor mappings and part data)
 - Reference sources: VMRS handbook content and the current graph/data snapshot used by the interface
 
@@ -257,7 +257,7 @@ Optional/future enhancement:
 1. **Prepare the suite**
    - Ensure `tests/test_questions/test_log.csv` contains the full question set with stable `test_id`s, `category`, and `expected_answer` populated.
    - Ensure the prompt context files are up to date:
-     - `interface prompts/v2.txt`
+     - `interface prompts/main_v2.txt`
      - `interface prompts/neo4j_schema.txt`
      - `interface prompts/priority_sites.txt`
 2. **Execute each test**

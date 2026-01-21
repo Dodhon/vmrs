@@ -2,23 +2,41 @@
 
 This file is a reference index. Keep it in sync with `CLAUDE.md`.
 
+## When to update this file (and `CLAUDE.md`)
+Update both `AGENTS.md` and `CLAUDE.md` whenever you:
+- Add/remove/rename a **key entry point** (scripts, docs, MCP servers, prompts, plans) that you expect to be referenced again.
+- Change the **recommended workflow** (e.g., testing location, how Neo4j is built, where prompts live).
+- Move or delete a file/folder that’s referenced here (avoid stale paths).
+- Introduce a new “source of truth” document (e.g., a new build guide, evaluation summary, or architecture note).
+
+### When to update an individual reference entry
+For each item under **Primary references** or **Data locations**, update that specific line when:
+- **Path changes**: the file/folder is moved/renamed/deleted.
+- **Canonical source changes**: a different file becomes the “go-to” source for that topic (supersedes the old one).
+- **Purpose changes**: the “when you need X / why” description is no longer accurate.
+- **Status changes**: it’s deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
+
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
-End goal: build a knowledge graph that stakeholders can query through a chatbot interface.
+End goal: build a knowledge graph that stakeholders can query through a chatbot interface, with a HITL (human-in-the-loop) feedback capture loop for corrections and improvements.
 
 ## Primary references
-- `README.md` - when you need the project overview or quick start steps; why: defines scope and entry points
+- `README.md` - when you need a high-level overview; why: broad project summary (may lag behind current workflows)
+- `docs/project_context.md` - when you need the current “agent context”; why: up-to-date workflows, assets, and commands
+- `docs/KNOWLEDGE_GRAPH_GUIDE.md` - when you need KG ingestion/extraction details; why: end-to-end pipeline guide
+- `docs/ORGANIZATION_SUMMARY.md` - when you need repo navigation rationale; why: structure and where things live
 - `scripts/README.md` - when running scripts or checking CLI options; why: catalog and usage notes
-- `scripts/data_processing/README.md` - when working on CSV extraction/validation; why: pipeline details
+- `scripts/data_processing/` - when working on CSV extraction/validation; why: pipeline scripts and conventions
 - `docs/NEO4J_BUILD_GUIDE.md` - when setting up or rebuilding Neo4j; why: build steps and design decisions
 - `docs/analysis/PATTERNS_ANALYSIS.md` - when interpreting VMRS data patterns; why: key insights and trends
 - `docs/analysis/LINKING_PATTERNS.md` - when linking VMRS codes to vendor parts; why: mapping strategies
 - `docs/analysis/POC_READY_SUBSETS.md` - when assembling proof-of-concept datasets; why: subset definitions
-- `tests/neo4j_acceptance/` - when validating query answers; why: acceptance test harness
-- `tests/stress_test/` - when running edge case coverage; why: stress test assets and procedures
-- `mcp/stress_test_mcp.py` - when automating stress-test tracking; why: MCP server for results
+- `tests/test_questions/` - when validating query answers; why: acceptance test harness + transcripts + scoring
+- `dev_plans/hitl_plan.md` - when working on HITL scope; why: step-by-step plan and current MVP shape
+- `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
+- `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
+- `interface prompts/hitl_feedback_capture.txt` - when tuning HITL capture quality; why: what to include in submissions
 - `docs/` - when looking for deeper background docs; why: broader project documentation
-- `writing_guides/` - when writing or polishing presentation materials; why: reference PDFs
 - `presentations/` - when referencing past presentation versions; why: pptx version history
 
 ## Data locations

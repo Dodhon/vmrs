@@ -1,0 +1,79 @@
+VMRS Chatbot - Testing / Validation content (ASCII draft)
+
+Assumptions
+- You want to add this to the existing deck (Slide 9 Results, Slide 10 Next Steps, Slide 12 Appendix).
+- Keep it concise for stakeholders; details live in Appendix / file links.
+
+================================================================================
+SLIDE 9 (Results) — add a “Validation / Testing” block
+================================================================================
+
++--------------------------------------------------------------------------------+
+| Slide 9: Results                                                               |
+|                                                                                |
+| HEADLINE (assertion, 1 line)                                                   |
+| - Interface passes 73/80 predefined questions; remaining issues are scoped.    |
+|                                                                                |
+| Validation / Testing (new block)                                               |
+| - Test suite: 80 predefined, single-turn questions with full transcripts.      |
+| - Patterns tested (input → expected output):                                   |
+|   - part number → VMRS code                                                    |
+|   - vendor + part number → VMRS code                                           |
+|   - exact description (quoted) → VMRS code                                     |
+|   - partial/truncated description (quoted) → VMRS code                         |
+|   - VMRS code → hierarchy path (system → assembly → component)                 |
+|   - VMRS code → mapped vendor parts list                                       |
+|   - VMRS code → valid/invalid classification (per current oracle definition)  |
+|   - (part A, part B) → same-VMRS yes/no                                        |
+| - Scoring (summary): code lookups pass if expected appears in top 3.           |
+| - Result: 73/80 pass; all tests have transcripts saved.                        |
+| - Known issues (7 fails):                                                      |
+|   - 1 vendor lookup returned NOT_FOUND despite vendor CSV mapping              |
+|   - 1 partial description resolved to wrong “seat” component family            |
+|   - 5 “invalid VMRS” fails due to oracle mismatch (vendor-mapping vs hierarchy)|
+|                                                                                |
+| Evidence links (1 line)                                                        |
+| - See Appendix / repo: tests/test_questions/ (log + transcripts)               |
++--------------------------------------------------------------------------------+
+
+Small footnote option (bottom-right)
+* Note: “VMRS valid” can mean “in vendor mappings” or “in VMRS hierarchy”; current
+  oracle uses the former, while the system answers the latter for 5 cases.
+
+================================================================================
+SLIDE 10 (Next Steps) — add one bullet
+================================================================================
+
++--------------------------------------------------------------------------------+
+| Slide 10: Next Steps                                                           |
+|                                                                                |
+| Add bullet (quality / validation)                                              |
+| - Expand coverage: 1–2 word descriptions, explicit AMBIGUOUS cases (ranked      |
+|   candidates + clarifying question), NOT_FOUND for normal lookups, and VMRS     |
+|   prefix-only questions.                                                       |
++--------------------------------------------------------------------------------+
+
+================================================================================
+SLIDE 12 (Appendix) — add a “Test artifacts” box
+================================================================================
+
++--------------------------------------------------------------------------------+
+| Slide 12: Appendix                                                             |
+|                                                                                |
+| Test artifacts (paths)                                                         |
+| - Summary: tests/test_questions/EVALUATION_SUMMARY.md                           |
+| - Log (80 questions + pass/fail + transcript path):                             |
+|   tests/test_questions/test_log.csv                                            |
+| - Evidence (full conversation per test_id):                                    |
+|   tests/test_questions/conversations/*.md                                      |
++--------------------------------------------------------------------------------+
+
+================================================================================
+OPTIONAL: single sentence (for speaker notes / email)
+================================================================================
+
+We tested that the system can take a part number, vendor+part number, and exact or
+partial quoted description to return VMRS codes, can take a VMRS code to return its
+hierarchy or mapped vendor parts and validate the code, and can take two parts to
+answer whether they map to the same VMRS code.
+

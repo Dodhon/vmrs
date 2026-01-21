@@ -39,13 +39,12 @@
 - **Operator Feedback loop (planned)**: Operators provide corrections and context (e.g., "this part goes on the fuel system") → updates graph relationships or adds metadata. Knowledge graph grows over time from human feedback.
 
 ## Testing & Evaluation
-- Acceptance: 50 Qs (`tests/neo4j_acceptance/process_questions.py`).
-- Stress: 224 curated edge cases across 9 categories (`tests/stress_test` + MCP tool).
+- Acceptance: 80 Qs (`tests/test_questions/test_log.csv` + `tests/test_questions/conversations/*.md` + scoring summary in `tests/test_questions/EVALUATION_SUMMARY.md`).
 - Posture: test happy path + failure modes (ambiguity, missing data, OCR/typos).
 
 ## Failure Modes & Mitigations
 - OCR/typos, empty descriptions → validation reports; LLM path uses strict code validation/salvage; CSV precedence in merge.
-- Component ambiguity → hierarchy context; stress tests; plan for human-in-loop feedback.
+- Component ambiguity → hierarchy context; targeted edge-case evaluation within `tests/test_questions`; plan for human-in-loop feedback.
 - Vendor-only codes → create Components from vendor data (101 nodes) with provenance; export unclassified (373 rows).
 - Hallucination risk → temp=0, schema validation, dedup, CSV-first merge.
 
@@ -56,7 +55,7 @@
 - LLM path: `PYTHONPATH=. python3 scripts/run_ingest_from_file.py --input llm_matching/matching_context.md --save-every 10` (add `--start-chunk N` to resume).
 - Merge: `PYTHONPATH=. python3 scripts/merge_csv_with_json.py`.
 - Vendor: `python3 scripts/create_vendor_nodes.py && python3 scripts/refactor_vendor_schema.py && python3 scripts/fix_orphaned_vendor_parts.py`.
-- Tests: `cd tests/neo4j_acceptance && python3 process_questions.py` (stress via MCP in `tests/stress_test`).
+- Tests: see `tests/test_questions/plans/TEST_PLAN.md`.
 
 ## Slide Outline (technical cut)
 1) Goal/Context (one line)
@@ -65,7 +64,7 @@
 4) Schema & counts (label snapshot)
 5) Interface layer (MCP, LLM reasoning, chatbot UI)
 6) Demo (grille / flux capacitor / air filter)
-7) Evaluation & results (acceptance + stress; confidence by level; pricing gap)
+7) Evaluation & results (acceptance + targeted edge-case coverage; confidence by level; pricing gap)
 8) Failure modes & mitigations
 9) Roadmap/next steps (operator feedback loop, metrics/gates, data cleanup, Snowflake)
 10) Backup: hierarchy, ETL details, LLM path, vendor linking, testing deep dive, savings detail

@@ -101,44 +101,61 @@ Keep MVP minimal while staying compatible with the long-term graph model.
 ### Architecture diagrams
 
 #### Long-term (two-layer HITL + published KG)
-```mermaid
-flowchart TD
-  user[User (Claude Desktop)] --> agent[Agent]
-  agent -->|feedback / proposed change| submit[mcp_hitl.submit_knowledge]
-
-  subgraph ProposalReview[Proposal + Review layer (auditable)]
-    submit --> proposal[(Proposal store)]
-    proposal --> review[Operator review]
-    review --> decision{approve or reject}
-    decision -->|approve| approved[Approved (+notes)]
-    decision -->|reject| rejected[Rejected (+notes)]
-  end
-
-  approved --> incorporate[Incorporate approved change]
-
-  subgraph Published[Published KG (query layer)]
-    incorporate --> kg[(Neo4j domain graph)]
-  end
-
-  kg --> agent
+```
+User (Claude Desktop)
+        |
+        v
+      Agent
+        |
+        v
+ mcp_hitl.submit_knowledge
+        |
+        v
+  +----------------------------------+
+  | Proposal + Review layer          |
+  | (auditable)                      |
+  |                                  |
+  | Proposal store                   |
+  | (files now; later Neo4j nodes)   |
+  |        |                         |
+  |        v                         |
+  |   Operator review                |
+  |        |                         |
+  |        v                         |
+  |  approve / reject (+notes)       |
+  +----------------------------------+
+        |
+        v
+ incorporate approved changes
+        |
+        v
+  +----------------------------------+
+  | Published KG (query layer)       |
+  | Neo4j domain graph               |
+  +----------------------------------+
+        ^
+        |
+      Agent
 ```
 
 #### MVP (step-by-step implementation)
-```mermaid
-flowchart TD
-  subgraph Step1[Step 1 (done): capture]
-    agent1[Agent] --> submit1[mcp_hitl.submit_knowledge]
-    submit1 --> pending1[HitL_local/pending/<id>.json]
-  end
+```
+Step 1 (done): capture
 
-  subgraph Step2[Step 2 (next): operator review]
-    pending1 --> review2[Review UI/tools]
-    review2 --> decision2{approve or reject}
-    decision2 -->|approve| approved2[approved record (+notes)]
-    decision2 -->|reject| rejected2[rejected record (+notes)]
-  end
+Agent -> mcp_hitl.submit_knowledge -> HitL_local/pending/<id>.json
 
-  approved2 --> later[Later: incorporate into Neo4j KG]
+Step 2 (next): operator review
+
+HitL_local/pending/<id>.json
+        |
+        v
+   review UI/tools
+        |
+        v
+ approve / reject (+notes)
+        |
+        v
+Later: incorporate into Neo4j KG
 ```
 
 ### Current state (implemented)

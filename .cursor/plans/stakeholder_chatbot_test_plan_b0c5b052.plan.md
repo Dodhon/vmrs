@@ -54,13 +54,13 @@ todos:
 - **Efficiency** (for meeting): typically **≤2 Cypher queries** and **fast response**.
 
 ## Prompt testing (optimize Claude Desktop system prompt)
-You said you’re using the prompts under [`interface prompts/`](/Users/thuptenwangpo/Documents/GitHub/vrms/interface%20prompts) and **`v2.txt` is the current baseline**.\n+
+You said you’re using the prompts under [`interface prompts/`](/Users/thuptenwangpo/Documents/GitHub/vrms/interface%20prompts) and **`main_v2.txt` is the current baseline**.\n+
 ### Why test prompts at all?
 - The system prompt directly affects whether the agent:\n+  - asks clarifying questions vs guessing\n+  - searches `Component` vs `VendorPart`\n+  - shows Cypher (good for traceability, bad for non-technical UX)\n+  - wastes time fetching “schema first” every time\n+
 ### Bakeoff setup (minimal)
 - **Question set (15 total)**: sample from [`tests/neo4j_acceptance/questions.json`](/Users/thuptenwangpo/Documents/GitHub/vrms/tests/neo4j_acceptance/questions.json)\n+  - 5 clean “happy path” (specific part names)\n+  - 5 typos/messy text (e.g., “winshield”, “mirrior”)\n+  - 5 ambiguous (e.g., “seal”, “bracket”, “switch”)\n+- **Scoring**:\n+  - **Correctness**: correct code returned (or correct “not found”) vs expected\n+  - **UX**: did it ask a clarifying question when ambiguous?\n+  - **Efficiency**: number of Neo4j queries (aim ≤2)\n+  - **Answer quality**: concise + includes system/assembly context\n+
 ### Prompts to compare (start minimal: 3)
-- **Prompt A (baseline)**: current [`interface prompts/v2.txt`](/Users/thuptenwangpo/Documents/GitHub/vrms/interface%20prompts/v2.txt)\n+- **Prompt B (stakeholder-optimized)**: same as v2 but:\n+  - **No web search fallback** (Neo4j-only for the meeting)\n+  - **Don’t fetch schema first by default** (only if a query fails)\n+  - **Hide Cypher by default**; offer “I can show the query if you want”\n+  - Return **1 best answer** unless ambiguous; if ambiguous, ask 1 question or show top 3\n+- **Prompt C (debug/dev)**: same as Prompt B but **always include the Cypher** (useful when you’re validating correctness pre-meeting)\n+
+- **Prompt A (baseline)**: current [`interface prompts/main_v2.txt`](/Users/thuptenwangpo/Documents/GitHub/vrms/interface%20prompts/main_v2.txt)\n+- **Prompt B (stakeholder-optimized)**: same as v2 but:\n+  - **No web search fallback** (Neo4j-only for the meeting)\n+  - **Don’t fetch schema first by default** (only if a query fails)\n+  - **Hide Cypher by default**; offer “I can show the query if you want”\n+  - Return **1 best answer** unless ambiguous; if ambiguous, ask 1 question or show top 3\n+- **Prompt C (debug/dev)**: same as Prompt B but **always include the Cypher** (useful when you’re validating correctness pre-meeting)\n+
 ### Expected outcome
 - Use **Prompt B** in the stakeholder meeting (best UX), and keep **Prompt C** for pre-meeting validation.
 

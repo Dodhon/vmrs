@@ -20,7 +20,7 @@ Prompt guidance (used by the Claude Desktop agent):
 
 ## Local storage layout
 ```
-HitL_local/e
+HitL_local/
 ├── pending/                # New submissions awaiting review (MVP writes here)
 ├── reviewed/               # Reviewed submissions (empty for now)
 └── conversations/          # Conversation context/logs (empty for now)

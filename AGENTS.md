@@ -19,6 +19,12 @@ For each item under **Primary references** or **Data locations**, update that sp
 ## Plan requirements
 Use the Claude skill `planning` for plan requirements and best-practice references: `~/.claude/skills/planning/SKILL.md`. If you cannot use the skill, read the file directly at `~/.claude/skills/planning/SKILL.md`.
 
+When writing plans that touch system behavior, include **both**:
+- a **high-level** architecture diagram (C4 **Level 1: System Context**), and
+- a **low-level** architecture diagram (C4 **Level 2: Containers + data stores**) that explicitly calls out **storage** (e.g. local `HitL_local/.../<id>.json` files) and the key implementation touchpoints.
+
+For behavior/flows, also include a short **runtime** section (arc42 **Runtime View**) describing the key scenarios step-by-step (e.g., “capture submission”, “review submission”).
+
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
 End goal: build a knowledge graph that stakeholders can query through a chatbot interface, with a HITL (human-in-the-loop) feedback capture loop for corrections and improvements.
@@ -37,6 +43,7 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `docs/analysis/POC_READY_SUBSETS.md` - when assembling proof-of-concept datasets; why: subset definitions
 - `tests/test_questions/` - when validating query answers; why: acceptance test harness + transcripts + scoring
 - `dev_plans/hitl_plan.md` - when working on HITL scope; why: step-by-step plan and current MVP shape
+- `dev_plans/hitl_step3_context_and_operator_metadata.md` - when upgrading HITL context/operator capture; why: defines the minimal context_pack + operator identity schema and rollout steps
 - `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
 - `dev_plans/` - when working on dev plans; why: all plans live in this folder
 - `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation

@@ -28,6 +28,7 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 
 ## Primary references
 - `README.md` - when you need a high-level overview; why: broad project summary (may lag behind current workflows)
+- `/Users/thuptenwangpo/Library/Application Support/Claude/claude_desktop_config.json` - when updating Claude Desktop MCP servers
 - `docs/project_context.md` - when you need the current “agent context”; why: up-to-date workflows, assets, and commands
 - `docs/KNOWLEDGE_GRAPH_GUIDE.md` - when you need KG ingestion/extraction details; why: end-to-end pipeline guide
 - `docs/ORGANIZATION_SUMMARY.md` - when you need repo navigation rationale; why: structure and where things live

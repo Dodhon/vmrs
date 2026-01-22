@@ -14,7 +14,13 @@ For each item under **Primary references** or **Data locations**, update that sp
 - **Path changes**: the file/folder is moved/renamed/deleted.
 - **Canonical source changes**: a different file becomes the “go-to” source for that topic (supersedes the old one).
 - **Purpose changes**: the “when you need X / why” description is no longer accurate.
-- **Status changes**: it’s deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
+- **Status changes**: it's deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
+
+## Plan requirements
+Every new plan in `dev_plans/` must at least include:
+1. **End user context** - who is the feature being built for (role, technical level, goals)
+2. **User requirements** - what the end user needs to accomplish and why
+3. **Architecture diagram** - ASCII art diagram showing how the new feature fits into the existing system
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.

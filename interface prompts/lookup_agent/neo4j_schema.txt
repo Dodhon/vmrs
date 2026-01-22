@@ -63,3 +63,4 @@ Assembly
   | PART_OF
 Component <-- MAPS_TO -- VendorPart <-- MANUFACTURES -- Vendor
 ```
+

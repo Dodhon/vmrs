@@ -14,7 +14,20 @@ For each item under **Primary references** or **Data locations**, update that sp
 - **Path changes**: the file/folder is moved/renamed/deleted.
 - **Canonical source changes**: a different file becomes the “go-to” source for that topic (supersedes the old one).
 - **Purpose changes**: the “when you need X / why” description is no longer accurate.
-- **Status changes**: it’s deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
+- **Status changes**: it's deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
+
+## Plan requirements
+All plans should be written to `dev_plans/`.
+
+When planning, you should search online for industry best practices and include exact references (links) from credible sources like GitHub repos, official documentation, and engineering blogs.
+
+Every new plan in `dev_plans/` must at least include:
+1. **End user context** - who is the feature being built for (role, technical level, goals)
+2. **User requirements** - what the end user needs to accomplish and why
+3. **Architecture diagram** - ASCII art diagram showing how the new feature fits into the existing system
+4. **Goals** - what the plan intends to achieve
+5. **Non-goals** - what is explicitly out of scope
+6. **Success metrics** - how we’ll know it worked (measurable where possible)
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
@@ -22,6 +35,7 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 
 ## Primary references
 - `README.md` - when you need a high-level overview; why: broad project summary (may lag behind current workflows)
+- `/Users/thuptenwangpo/Library/Application Support/Claude/claude_desktop_config.json` - when updating Claude Desktop MCP servers
 - `docs/project_context.md` - when you need the current “agent context”; why: up-to-date workflows, assets, and commands
 - `docs/KNOWLEDGE_GRAPH_GUIDE.md` - when you need KG ingestion/extraction details; why: end-to-end pipeline guide
 - `docs/ORGANIZATION_SUMMARY.md` - when you need repo navigation rationale; why: structure and where things live
@@ -34,8 +48,10 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `tests/test_questions/` - when validating query answers; why: acceptance test harness + transcripts + scoring
 - `dev_plans/hitl_plan.md` - when working on HITL scope; why: step-by-step plan and current MVP shape
 - `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
+- `dev_plans/` - when working on dev plans; why: all plans live in this folder
 - `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
-- `interface prompts/hitl_feedback_capture.txt` - when tuning HITL capture quality; why: what to include in submissions
+- `mcp/hitl_review/server.py` - when changing HITL operator review behavior
+- `interface prompts/` - when editing prompts; why: prompts are organized by agent (e.g. `lookup_agent/`, `hitl_review_agent/`)
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `presentations/` - when referencing past presentation versions; why: pptx version history
 

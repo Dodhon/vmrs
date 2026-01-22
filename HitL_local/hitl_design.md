@@ -165,8 +165,8 @@ Later: incorporate into Neo4j KG
   - Scope: **pending-only capture** (writes to `HitL_local/pending/`)
 - Claude Desktop MCP config entry: `claude_desktop_config.json` (local machine config)
 - Agent-facing guidance:
-  - `interface prompts/hitl_feedback_capture.txt` (what to include; intent fields are strongly recommended)
-  - `interface prompts/main_v3.txt` references HITL and when to use it
+  - `interface prompts/lookup_agent/hitl_feedback_capture.txt` (what to include; intent fields are strongly recommended)
+  - `interface prompts/lookup_agent/main_v3.txt` references HITL and when to use it
 
 ### Near-term plan (step-by-step MVP)
 

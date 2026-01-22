@@ -17,17 +17,7 @@ For each item under **Primary references** or **Data locations**, update that sp
 - **Status changes**: it's deprecated, replaced, or no longer part of the current workflow (remove it rather than leaving stale guidance).
 
 ## Plan requirements
-All plans should be written to `dev_plans/`.
-
-When planning, you should search online for industry best practices and include exact references (links) from credible sources like GitHub repos, official documentation, and engineering blogs.
-
-Every new plan in `dev_plans/` must at least include:
-1. **End user context** - who is the feature being built for (role, technical level, goals)
-2. **User requirements** - what the end user needs to accomplish and why
-3. **Architecture diagram** - ASCII art diagram showing how the new feature fits into the existing system
-4. **Goals** - what the plan intends to achieve
-5. **Non-goals** - what is explicitly out of scope
-6. **Success metrics** - how we’ll know it worked (measurable where possible)
+Use the Claude skill `planning` for plan requirements and best-practice references: `~/.claude/skills/planning/SKILL.md`. If you cannot use the skill, read the file directly at `~/.claude/skills/planning/SKILL.md`.
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.

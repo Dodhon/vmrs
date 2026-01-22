@@ -9,6 +9,8 @@ Update both `CLAUDE.md` and `AGENTS.md` whenever you:
 - Move or delete a file/folder that’s referenced here (avoid stale paths).
 - Introduce a new “source of truth” document (e.g., a new build guide, evaluation summary, or architecture note).
 
+Before finishing a PR, ensure `README.md` is still accurate for the changes included (or at minimum remind the user to confirm whether it needs updating).
+
 ### When to update an individual reference entry
 For each item under **Primary references** or **Data locations**, update that specific line when:
 - **Path changes**: the file/folder is moved/renamed/deleted.

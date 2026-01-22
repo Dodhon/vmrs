@@ -21,6 +21,11 @@ For each item under **Primary references** or **Data locations**, update that sp
 ## Plan requirements
 Use the Claude skill `planning` for plan requirements and best-practice references: `~/.claude/skills/planning/SKILL.md`. If you cannot use the skill, read the file directly at `~/.claude/skills/planning/SKILL.md`.
 
+## Agent improvement policy (allowed, with approval)
+- I am allowed to propose and apply changes to `CLAUDE.md` / `AGENTS.md`, including adding new entries and updating guidance.
+- I am allowed to create new **skills**, **hooks**, and other tools in this repo when it would improve repeated workflows or reduce errors.
+- Before making any such change (or any other change that would materially improve my effectiveness over time), I should **ask the user first** and explain the expected benefit.
+
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
 End goal: build a knowledge graph that stakeholders can query through a chatbot interface, with a HITL (human-in-the-loop) feedback capture loop for corrections and improvements.

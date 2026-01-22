@@ -53,3 +53,9 @@ test.txt
 # HITL local storage (MVP: pending-only; keep design docs, ignore submissions)
 HitL_local/pending/
 !HitL_local/pending/.gitkeep
+
+# HITL local storage (Step 2: reviewed; keep placeholders, ignore submissions)
+HitL_local/reviewed/
+!HitL_local/reviewed/.gitkeep
+!HitL_local/reviewed/approved/.gitkeep
+!HitL_local/reviewed/rejected/.gitkeep

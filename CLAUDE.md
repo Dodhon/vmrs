@@ -42,6 +42,7 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
 - `dev_plans/` - when working on dev plans; why: all plans live in this folder
 - `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
+- `mcp/hitl_review/server.py` - when changing HITL operator review behavior
 - `interface prompts/` - when editing prompts; why: prompts are organized by agent (e.g. `lookup_agent/`, `hitl_review_agent/`)
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `presentations/` - when referencing past presentation versions; why: pptx version history

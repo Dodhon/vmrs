@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add to GitHub Project (v2)
-        uses: actions/add-to-project@v1
+        uses: actions/add-to-project@v1.0.2
         with:
           # Fill this in after creating the Project:
           # https://github.com/users/Dodhon/projects/<NUMBER>

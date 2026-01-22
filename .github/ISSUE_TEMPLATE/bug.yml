@@ -1,0 +1,42 @@
+name: Bug report
+description: Report something that isn't working
+title: "[bug] <short summary>"
+labels: ["triage", "type:bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: What broke? Include error messages if any.
+      placeholder: "Describe the bug"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: "Expected behavior"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: Minimal steps to reproduce.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Versions, environment, logs (redact secrets), links to files/PRs.
+      placeholder: "Any extra context"
+    validations:
+      required: false

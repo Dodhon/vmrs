@@ -68,8 +68,8 @@ Create a project-local hook script at `/.claude/hooks/restart_claude_desktop.py`
   - print JSON to stdout to halt further processing (exit code 0):
     - `{"decision":"block","reason":"Restarting Claude Desktop..."}` (blocks/erases the prompt)
 
-Why JSON + `continue=false`:
-- For `UserPromptSubmit`, this prevents the submitted prompt from being processed downstream. (Docs: `https://code.claude.com/docs/en/hooks`)
+Why JSON + `decision:"block"`:
+- For `UserPromptSubmit`, `decision:"block"` prevents the prompt from being processed and the submitted prompt is erased from context. (Docs: `https://code.claude.com/docs/en/hooks`)
 
 ### Hook wiring (project-local and safe-by-default)
 Add a `UserPromptSubmit` hook entry.

@@ -6,7 +6,7 @@ This plan upgrades the HITL file-first workflow so that:
 - each review carries structured **operator identity** (name + role, optionally id/team)
 
 Concretely, the goal is to **adapt the two MCP servers** (and the prompts that call them) so HITL records are shaped to **fit your existing Neo4j domain model identifiers**:
-- Capture server: `mcp/hitl/server.py` (writes Neo4j-aligned `content.target_type` + `content.target_key`, plus `content.context_pack`)
+- Capture server: `mcp/hitl_get_feedback/server.py` (writes Neo4j-aligned `content.target_type` + `content.target_key`, plus `content.context_pack`)
 - Review server: `mcp/hitl_review/server.py` (writes canonical `review.operator` metadata + decision fields, with back-compat)
 
 This document is written to be **independent** of any previous HITL plans. It restates the baseline workflow, the target JSON shape, compatibility rules, and the rollout steps.
@@ -57,7 +57,7 @@ Container: Lookup agent (Claude Desktop prompt-driven)
         |
         v
 Container: HITL capture MCP server (Python)
-  - impl: mcp/hitl/server.py
+- impl: mcp/hitl_get_feedback/server.py
   - responsibility: validate + persist pending submissions
         |
         v
@@ -236,7 +236,7 @@ Compatibility strategy (minimal risk):
 
 ## MCP API changes (minimal)
 
-### Capture server: `mcp/hitl/server.py`
+### Capture server: `mcp/hitl_get_feedback/server.py`
 Add optional parameters to `submit_knowledge` (additive, does not break callers):
 - `context_pack: Optional[Dict[str, Any]] = None`
 - `targets: Optional[List[Dict[str, Any]]] = None`
@@ -286,7 +286,7 @@ Validation rules (MVP-appropriate):
 ## Disk JSON schemas (before → after)
 These examples show the concrete **data shape written to disk** by each MCP server.
 
-### Capture server (`mcp/hitl/server.py`) output (pending submission)
+### Capture server (`mcp/hitl_get_feedback/server.py`) output (pending submission)
 File path: `HitL_local/pending/<id>.json`
 
 Before (baseline pending submission):

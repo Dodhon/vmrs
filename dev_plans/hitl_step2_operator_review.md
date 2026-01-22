@@ -103,10 +103,10 @@ When a submission is reviewed, keep existing fields and append review metadata:
 This keeps the JSON shape compatible with a future Neo4j `(:HitlSubmission {...})` node.
 
 ## Review tooling: MCP server tools (agent-facing)
-Step 2 review is implemented via MCP tools in a **separate MCP server under `mcp/`** (not `mcp/hitl/server.py`).
+Step 2 review is implemented via MCP tools in a **separate MCP server under `mcp/`** (not `mcp/hitl_get_feedback/server.py`).
 
 Important:
-- `mcp/hitl/server.py` remains the **capture-only** server (Step 1).
+- `mcp/hitl_get_feedback/server.py` remains the **capture-only** server (Step 1).
 - Step 2 introduces a **review** MCP server (suggested path: `mcp/hitl_review/server.py`).
 - Rationale: keep **one MCP server per agent** (capture vs review) to reduce cross-scope coupling.
 - The operator never touches JSON or the filesystem.

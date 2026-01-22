@@ -160,7 +160,7 @@ Later: incorporate into Neo4j KG
 
 ### Current state (implemented)
 
-- MCP server: `mcp/hitl/server.py`
+- MCP server: `mcp/hitl_get_feedback/server.py`
   - Tools: `submit_knowledge`, `get_submission_status`, `list_submissions`
   - Scope: **pending-only capture** (writes to `HitL_local/pending/`)
 - Claude Desktop MCP config entry: `claude_desktop_config.json` (local machine config)

@@ -42,9 +42,9 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `dev_plans/hitl_step3_context_and_operator_metadata.md` - when upgrading HITL context/operator capture; why: defines the minimal context_pack + operator identity schema and rollout steps
 - `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
 - `dev_plans/` - when working on dev plans; why: all plans live in this folder
-- `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
+- `mcp/hitl_get_feedback/server.py` - when changing HITL capture behavior; why: MCP server implementation
 - `mcp/hitl_review/server.py` - when changing HITL operator review behavior
-- `interface prompts/` - when editing prompts; why: prompts are organized by agent (e.g. `lookup_agent/`, `hitl_review_agent/`)
+- `interface prompts/` - when editing prompts; why: use the latest version of each prompt in its folder (e.g. newest `*_v*.txt`)
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `presentations/` - when referencing past presentation versions; why: pptx version history
 

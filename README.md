@@ -26,7 +26,7 @@ vmrs/
 ├── tests/test_questions/              # Current QA evidence + scoring + plans
 │
 ├── interface prompts/                 # Claude Desktop prompt variants + HITL guidance
-├── mcp/hitl/server.py                 # HITL MCP server (feedback capture)
+├── mcp/hitl_get_feedback/server.py    # HITL MCP server (feedback capture)
 ├── HitL_local/                        # HITL design notes + local pending submissions (gitignored)
 └── eda/                               # Exploratory analysis artifacts
 ```
@@ -78,6 +78,6 @@ All current testing assets live under `tests/test_questions/`:
 - `tests/test_questions/EVALUATION_SUMMARY.md` (results + gaps)
 
 ### 4. HITL feedback capture (MVP)
-- MCP server: `mcp/hitl/server.py`
+- MCP server: `mcp/hitl_get_feedback/server.py`
 - Prompt guidance: `interface prompts/lookup_agent/hitl_feedback_capture.txt`
 - HITL step plan: `dev_plans/hitl_plan.md`

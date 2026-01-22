@@ -188,8 +188,8 @@ async def record_review(
     outcome: str,
     reviewed_by: str,
     review_notes: str,
-    operator_name: Optional[str] = None,
-    operator_role: Optional[str] = None,
+    operator_name: str,
+    operator_role: str,
     operator_id: Optional[str] = None,
     operator_team: Optional[str] = None,
 ) -> Dict[str, Any]:
@@ -203,7 +203,7 @@ async def record_review(
     - outcome is approved|rejected
     - review_notes is provided
     - reviewed_by is provided
-    - if any operator fields are provided, require operator_name + operator_role
+    - operator_name + operator_role are required
     """
     _ensure_dirs()
 

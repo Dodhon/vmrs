@@ -76,14 +76,14 @@ def _summarize_submission(data: Dict[str, Any]) -> Dict[str, Any]:
 async def submit_knowledge(
     type: str,
     description: str,
-    vmrs_code: Optional[str] = None,
-    context: Optional[str] = None,
-    related_query: Optional[str] = None,
+    vmrs_code: str,
+    context: str,
+    related_query: str,
+    submitter: Dict[str, Any],
     target_type: Optional[str] = None,
     target_key: Optional[Dict[str, Any]] = None,
     context_pack: Optional[Dict[str, Any]] = None,
     targets: Optional[List[Dict[str, Any]]] = None,
-    submitter: Optional[Dict[str, Any]] = None,
     proposed_action: Optional[str] = None,
     proposed_payload: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
@@ -93,14 +93,14 @@ async def submit_knowledge(
     Args:
         type: One of: correction|addition|context|question
         description: What the user wants to record (required)
-        vmrs_code: Optional VMRS code (e.g. "047-000-000")
-        context: Optional rationale / why valuable
-        related_query: Optional query that prompted this
+        vmrs_code: Required VMRS code (e.g. "047-000-000")
+        context: Required privacy-safe rationale / evidence
+        related_query: Required query that prompted this
+        submitter: Required submitter identity metadata (dict; must include name + role)
         target_type: Optional "Component"|"VendorPart"|...
         target_key: Optional stable identifier dict (e.g. {"code": "047-000-000"})
         context_pack: Optional minimal context pack for review (dict)
         targets: Optional list of Neo4j-aligned targets (list of dicts)
-        submitter: Optional submitter identity metadata (dict)
         proposed_action: Optional change intent (e.g. "set_property")
         proposed_payload: Optional change payload dict
     """
@@ -115,7 +115,7 @@ async def submit_knowledge(
     if not description or not isinstance(description, str):
         return {"status": "error", "message": "description is required"}
 
-    # Step 3: make these required (per repo workflow decision).
+    # Step 3: required fields (per repo workflow decision).
     if not isinstance(vmrs_code, str) or not vmrs_code.strip():
         return {"status": "error", "message": "vmrs_code is required"}
     if not isinstance(context, str) or not context.strip():

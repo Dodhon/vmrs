@@ -19,6 +19,8 @@ For each item under **Primary references** or **Data locations**, update that sp
 ## Plan requirements
 All plans should be written to `dev_plans/`.
 
+When planning, you should search online for industry best practices and include exact references (links) from credible sources like GitHub repos, official documentation, and engineering blogs.
+
 Every new plan in `dev_plans/` must at least include:
 1. **End user context** - who is the feature being built for (role, technical level, goals)
 2. **User requirements** - what the end user needs to accomplish and why

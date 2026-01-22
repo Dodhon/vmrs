@@ -1,0 +1,43 @@
+# HITL feedback capture (v2 - required context + submitter)
+
+Use the MCP tool `submit_knowledge` when the user provides feedback that should be saved for later operator review.
+
+Scope: file-first capture for operator review. Submissions are written to `HitL_local/pending/`.
+
+## When to submit
+- Corrections to VMRS code meanings, labels, or relationships
+- Missing context that would improve future answers
+- A user question that should become a tracked investigation item
+- Vendor-part linking issues or proposed mapping intent
+
+## What to include (important)
+The goal is to make each submission **actionable** for a human reviewer without needing the full chat transcript.
+
+### Required (always)
+- `type`: one of `correction`, `addition`, `context`, `question`
+- `description`: short, specific, self-contained
+- `vmrs_code`: required (full code if known, e.g. `047-000-000`)
+- `related_query`: required (the exact user question/prompt that triggered the issue)
+- `context`: required (privacy-safe rationale/evidence; do NOT paste full transcripts)
+- `submitter`: required (must include at least `{name, role}`; optional `{id, team, channel, label}`)
+
+### Strongly recommended (include whenever possible)
+- `context_pack`: minimal structured context for review:
+  - `answer_excerpt_or_summary`: short excerpt/summary of your answer (**≤ 500 characters**)
+  - `why_saved`: 1–2 sentences describing why this needs operator attention
+  - `evidence`: list of evidence items (at least one, even if only `{"type":"user_claim","value":"..."}`)
+  - `expected_vs_observed`: for corrections, capture what should be true vs what was observed
+
+### If the user is proposing a concrete KG change (strongly recommended)
+Capture **change intent**, not just prose:
+- `target_type`: e.g. `Component`, `VendorPart`
+- `target_key`: stable identifier dict aligned to Neo4j keys:
+  - `Component|Assembly|System|Vendor`: `{"code": "..."}`
+  - `VendorPart`: `{"part": "..."}`
+- `targets`: optional list of additional targets; if provided, `targets[0]` is treated as the primary target (mirrored to `target_type`/`target_key`)
+- `proposed_action`: e.g. `set_property`, `add_relationship`, `remove_relationship`
+- `proposed_payload`: the proposed change dict
+
+## After submitting
+Confirm to the user that the feedback was recorded and include the returned submission `id`.
+

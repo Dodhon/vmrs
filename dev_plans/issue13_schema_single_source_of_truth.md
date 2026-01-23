@@ -9,6 +9,7 @@
 - **Operators/reviewers**: need consistent fields across captured submissions and reviewed records.
 
 ## User requirements
+- **Scope clarification**: “Schema” here means the **HITL submission/review JSON shape** (what we write to `HitL_local/.../*.json` and what MCP servers validate/stamp), not the Neo4j domain graph schema.
 - **Single change point**: update a field/type/version in exactly one canonical place.
 - **No drift**: MCP servers must not duplicate field lists, schema version, or required/optional logic.
 - **Prompt-safe schema access**: prompts/docs should reference the canonical schema (or a generated excerpt derived from it).
@@ -97,6 +98,7 @@ Submitter (Claude Desktop user)    |
 - Migrating storage from files to a DB (tracked separately).
 - Building a UI for review.
 - Full Neo4j incorporation pipeline for approved changes (future work).
+- Updating or redefining any **Neo4j domain schema** text/structure in `interface prompts/` (or elsewhere). If prompts mention Neo4j labels/properties, they remain unchanged in this workstream.
 
 ## Proposed approach (minimal)
 
@@ -114,7 +116,7 @@ Submitter (Claude Desktop user)    |
 - Update `mcp/hitl_review/server.py`:
   - use `SCHEMA_VERSION` from `src/hitl_schema.py`
   - validate loaded submissions against the canonical schema before review
-- Update prompts/docs to avoid duplicating schema text:
+- Update prompts/docs to avoid duplicating **HITL JSON** schema text:
   - reference the canonical file path, or
   - reference a generated excerpt file derived from `render_prompt_schema_excerpt()`
 

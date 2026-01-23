@@ -29,6 +29,8 @@ Create a new plan markdown file under `dev_plans/` (name is up to you).
 ### Gather issue context (recommended)
 Use `gh` to pull the issue description/comments (see `.claude/skills/github-cli-workflow.md`).
 
+Also check the Backlog Project item `Status` for the issue/PR (project fields don’t show up in `gh issue list` / `gh pr list`).
+
 ## 3) Draft a PR based on the plan (do not create it without approval)
 
 Use the PR drafting guidance/template in `.claude/skills/github-cli-workflow.md` and ensure the PR is derived from (and links to) the plan you wrote in Step 2.

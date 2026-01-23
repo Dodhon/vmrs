@@ -1,0 +1,21 @@
+name: Add new issues to Backlog project
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add to GitHub Project (v2)
+        uses: actions/add-to-project@v1.0.2
+        with:
+          # Fill this in after creating the Project:
+          # https://github.com/users/Dodhon/projects/<NUMBER>
+          project-url: https://github.com/users/Dodhon/projects/1
+          # PAT (fine-grained or classic) with Projects access.
+          # Store it as a repo secret named ADD_TO_PROJECT_PAT.
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+

@@ -21,10 +21,16 @@ For each item under **Primary references** or **Data locations**, update that sp
 ## Plan requirements
 Use the Claude skill `planning` for plan requirements and best-practice references: `~/.claude/skills/planning/SKILL.md`. If you cannot use the skill, read the file directly at `~/.claude/skills/planning/SKILL.md`.
 
+When writing plans that touch system behavior, include **both**:
+- a **high-level** architecture diagram (C4 **Level 1: System Context**), and
+- a **low-level** architecture diagram (C4 **Level 2: Containers + data stores**) that explicitly calls out **storage** (e.g. local `HitL_local/.../<id>.json` files) and the key implementation touchpoints.
+
+For behavior/flows, also include a short **runtime** section (arc42 **Runtime View**) describing the key scenarios step-by-step (e.g., “capture submission”, “review submission”).
+
 ## Agent improvement policy (allowed, with approval)
-- I am allowed to propose and apply changes to `CLAUDE.md` / `AGENTS.md`, including adding new entries and updating guidance.
+- I am allowed to propose and apply changes to `AGENTS.md` / `CLAUDE.md`, including adding new entries and updating guidance.
 - I am allowed to create new **skills**, **hooks**, and other tools in this repo when it would improve repeated workflows or reduce errors.
-- Before making any such change (or any other change that would materially improve my effectiveness over time), I should **ask the user first** and explain the expected benefit.
+- Before making any such change (or any other change that would materially improve my effectiveness over time), I should **ask you first** and explain the expected benefit.
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.

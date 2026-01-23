@@ -19,6 +19,27 @@ gh issue create --repo Dodhon/vmrs --title "..." --body "..."
 gh pr create --repo Dodhon/vmrs --base main --title "..." --body "Fixes #<issue-number>"
 ```
 
+### PR body template (plan-driven)
+Use this when your work starts with a plan doc in `dev_plans/` (see `.claude/skills/planning.md` for plan requirements).
+
+```text
+Fixes #<issue-number>
+
+## Summary
+- <1–3 bullets mapping to plan Goals>
+
+## Plan
+- **Plan doc**: `dev_plans/<plan>.md`
+- **Key decisions**:
+  - <link to plan section(s)>
+
+## Test plan
+- [ ] <how success metrics will be validated>
+
+## Notes / rollout
+- <sequencing / flags / backwards-compat (if relevant)>
+```
+
 ## Backlog Project (v2)
 - Project URL: `https://github.com/users/Dodhon/projects/1`
 - Repo automation: `.github/workflows/add-to-project.yml`

@@ -1,21 +1,315 @@
-name: Add new issues to Backlog project
+name: Add issues/PRs to Backlog project
 
 on:
   issues:
-    types: [opened, reopened]
+    types: [opened, reopened, closed]
+  pull_request:
+    types: [opened, reopened, closed]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "If true, don't mutate Project or issues"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   add-to-project:
-    name: Add issue to project
+    name: Add/triage Backlog item
     runs-on: ubuntu-latest
     steps:
-      - name: Add to GitHub Project (v2)
-        uses: actions/add-to-project@v1.0.2
+      - name: Add/triage item in Backlog Project (v2)
+        uses: actions/github-script@v7
         with:
-          # Fill this in after creating the Project:
-          # https://github.com/users/Dodhon/projects/<NUMBER>
-          project-url: https://github.com/users/Dodhon/projects/1
-          # PAT (fine-grained or classic) with Projects access.
-          # Store it as a repo secret named ADD_TO_PROJECT_PAT.
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          script: |
+            const PROJECT_OWNER = "Dodhon";
+            const PROJECT_NUMBER = 1;
+            const rawDryRun = context.payload?.inputs?.dry_run;
+            const DRY_RUN =
+              rawDryRun === true ||
+              rawDryRun === "true" ||
+              rawDryRun === "True" ||
+              rawDryRun === "1";
+
+            const { owner, repo } = context.repo;
+            const eventName = context.eventName;
+            const action = context.payload?.action;
+
+            function labelNamesFromPayload(payloadLabels) {
+              if (!Array.isArray(payloadLabels)) return [];
+              return payloadLabels
+                .map((l) => (typeof l === "string" ? l : l?.name))
+                .filter(Boolean);
+            }
+
+            function findFirstLabelValue(labelNames, prefixLower) {
+              for (const name of labelNames) {
+                const lower = String(name).toLowerCase();
+                if (lower.startsWith(prefixLower)) return String(name).slice(prefixLower.length);
+              }
+              return null;
+            }
+
+            function findFieldByName(fields, targetName) {
+              const t = String(targetName).toLowerCase();
+              return fields.find((f) => String(f?.name || "").toLowerCase() === t) || null;
+            }
+
+            function findOptionByName(field, optionName) {
+              const t = String(optionName).toLowerCase();
+              const opts = field?.options || [];
+              return opts.find((o) => String(o?.name || "").toLowerCase() === t) || null;
+            }
+
+            async function getProject() {
+              const q = `
+                query($login: String!, $number: Int!) {
+                  user(login: $login) {
+                    projectV2(number: $number) {
+                      id
+                      fields(first: 100) {
+                        nodes {
+                          __typename
+                          ... on ProjectV2FieldCommon {
+                            id
+                            name
+                            dataType
+                          }
+                          ... on ProjectV2SingleSelectField {
+                            options { id name }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+              const data = await github.graphql(q, { login: PROJECT_OWNER, number: PROJECT_NUMBER });
+              const project = data?.user?.projectV2;
+              if (!project?.id) throw new Error(`Project not found: ${PROJECT_OWNER}/${PROJECT_NUMBER}`);
+              const fields = project?.fields?.nodes?.filter(Boolean) || [];
+              return { projectId: project.id, fields };
+            }
+
+            async function ensureProjectItemForContent(projectId, contentId) {
+              const q = `
+                query($id: ID!) {
+                  node(id: $id) {
+                    __typename
+                    ... on Issue {
+                      projectItems(first: 50) { nodes { id project { id } } }
+                    }
+                    ... on PullRequest {
+                      projectItems(first: 50) { nodes { id project { id } } }
+                    }
+                  }
+                }
+              `;
+              const data = await github.graphql(q, { id: contentId });
+              const node = data?.node;
+              const nodes = node?.projectItems?.nodes || [];
+              const existing = nodes.find((n) => n?.project?.id === projectId);
+              if (existing?.id) return existing.id;
+
+              if (DRY_RUN) return "DRY_RUN_ITEM_ID";
+
+              const m = `
+                mutation($projectId: ID!, $contentId: ID!) {
+                  addProjectV2ItemById(input: { projectId: $projectId, contentId: $contentId }) {
+                    item { id }
+                  }
+                }
+              `;
+              const added = await github.graphql(m, { projectId, contentId });
+              const itemId = added?.addProjectV2ItemById?.item?.id;
+              if (!itemId) throw new Error("Failed to add Project item");
+              return itemId;
+            }
+
+            async function setSingleSelect(projectId, itemId, fieldId, optionId) {
+              if (DRY_RUN) return;
+              const m = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { singleSelectOptionId: $optionId }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+              await github.graphql(m, { projectId, itemId, fieldId, optionId });
+            }
+
+            async function setText(projectId, itemId, fieldId, text) {
+              if (DRY_RUN) return;
+              const m = `
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $text: String!) {
+                  updateProjectV2ItemFieldValue(
+                    input: {
+                      projectId: $projectId
+                      itemId: $itemId
+                      fieldId: $fieldId
+                      value: { text: $text }
+                    }
+                  ) {
+                    projectV2Item { id }
+                  }
+                }
+              `;
+              await github.graphql(m, { projectId, itemId, fieldId, text });
+            }
+
+            async function assignDefaultOwnerIfUnassigned(issueNumber) {
+              if (DRY_RUN) return;
+              await github.rest.issues.addAssignees({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                assignees: [PROJECT_OWNER],
+              });
+            }
+
+            async function triageOne({ contentId, labelNames, desiredStatus, maybeIssueNumber, assigneeCount }) {
+              const { projectId, fields } = await getProject();
+
+              const statusField = findFieldByName(fields, "Status");
+              if (!statusField?.id) throw new Error('Missing required Project field: "Status" (single-select)');
+
+              const statusOption = findOptionByName(statusField, desiredStatus);
+              if (!statusOption?.id) {
+                throw new Error(`Missing required Status option "${desiredStatus}" in Project`);
+              }
+
+              const itemId = await ensureProjectItemForContent(projectId, contentId);
+              if (itemId !== "DRY_RUN_ITEM_ID") {
+                await setSingleSelect(projectId, itemId, statusField.id, statusOption.id);
+              }
+
+              if (desiredStatus === "Todo") {
+                // Best-effort Area
+                const areaValue = findFirstLabelValue(labelNames, "area:");
+                const areaField = findFieldByName(fields, "Area");
+                if (areaValue && areaField?.id) {
+                  const areaOpt = findOptionByName(areaField, areaValue);
+                  if (areaOpt?.id && itemId !== "DRY_RUN_ITEM_ID") {
+                    await setSingleSelect(projectId, itemId, areaField.id, areaOpt.id);
+                  }
+                }
+
+                // Best-effort Priority (single-select)
+                const prioRaw = findFirstLabelValue(labelNames, "priority:");
+                const prioValue = prioRaw ? prioRaw.toUpperCase() : null; // P0/P1/P2
+                const priorityField = findFieldByName(fields, "Priority");
+                if (prioValue && priorityField?.id) {
+                  const prioOpt = findOptionByName(priorityField, prioValue);
+                  if (prioOpt?.id && itemId !== "DRY_RUN_ITEM_ID") {
+                    await setSingleSelect(projectId, itemId, priorityField.id, prioOpt.id);
+                  }
+                }
+
+                // Best-effort Importance (TEXT field) - always set a default
+                const importanceField = findFieldByName(fields, "Importance");
+                const importanceText = prioValue || "P2";
+                if (importanceField?.id && importanceField?.dataType === "TEXT" && itemId !== "DRY_RUN_ITEM_ID") {
+                  await setText(projectId, itemId, importanceField.id, importanceText);
+                }
+
+                // Default assignee (issues only)
+                if (typeof maybeIssueNumber === "number" && (assigneeCount ?? 0) === 0) {
+                  await assignDefaultOwnerIfUnassigned(maybeIssueNumber);
+                }
+              }
+            }
+
+            async function backfillOpen() {
+              const { projectId, fields } = await getProject();
+              const statusField = findFieldByName(fields, "Status");
+              if (!statusField?.id) throw new Error('Missing required Project field: "Status" (single-select)');
+              const todoOpt = findOptionByName(statusField, "Todo");
+              if (!todoOpt?.id) throw new Error('Missing required Status option "Todo" in Project');
+              const importanceField = findFieldByName(fields, "Importance");
+
+              async function backfillConnection(kind) {
+                let cursor = null;
+                while (true) {
+                  const q = `
+                    query($owner: String!, $repo: String!, $cursor: String) {
+                      repository(owner: $owner, name: $repo) {
+                        ${kind}(states: OPEN, first: 100, after: $cursor) {
+                          nodes { id }
+                          pageInfo { hasNextPage endCursor }
+                        }
+                      }
+                    }
+                  `;
+                  const data = await github.graphql(q, { owner, repo, cursor });
+                  const conn = data?.repository?.[kind];
+                  const nodes = conn?.nodes || [];
+                  for (const n of nodes) {
+                    const contentId = n?.id;
+                    if (!contentId) continue;
+                    const itemId = await ensureProjectItemForContent(projectId, contentId);
+                    if (itemId !== "DRY_RUN_ITEM_ID") {
+                      await setSingleSelect(projectId, itemId, statusField.id, todoOpt.id);
+                      if (importanceField?.id && importanceField?.dataType === "TEXT") {
+                        await setText(projectId, itemId, importanceField.id, "P2");
+                      }
+                    }
+                  }
+                  if (!conn?.pageInfo?.hasNextPage) break;
+                  cursor = conn?.pageInfo?.endCursor;
+                }
+              }
+
+              await backfillConnection("issues");
+              await backfillConnection("pullRequests");
+            }
+
+            if (eventName === "workflow_dispatch") {
+              await backfillOpen();
+              core.info(`Backfill complete (dry_run=${DRY_RUN}).`);
+              return;
+            }
+
+            if (eventName === "issues") {
+              const issue = context.payload.issue;
+              const contentId = issue?.node_id;
+              if (!contentId) throw new Error("Missing issue.node_id in event payload");
+
+              const desiredStatus = action === "closed" ? "Done" : "Todo";
+              const labelNames = labelNamesFromPayload(issue?.labels);
+              const assigneeCount = Array.isArray(issue?.assignees) ? issue.assignees.length : 0;
+              const issueNumber = typeof issue?.number === "number" ? issue.number : null;
+
+              await triageOne({
+                contentId,
+                labelNames,
+                desiredStatus,
+                maybeIssueNumber: issueNumber,
+                assigneeCount,
+              });
+              core.info(`Processed issue #${issueNumber} (status=${desiredStatus}, dry_run=${DRY_RUN}).`);
+              return;
+            }
+
+            if (eventName === "pull_request") {
+              const pr = context.payload.pull_request;
+              const contentId = pr?.node_id;
+              if (!contentId) throw new Error("Missing pull_request.node_id in event payload");
+
+              const desiredStatus = action === "closed" ? "Done" : "Todo";
+              const labelNames = labelNamesFromPayload(pr?.labels);
+
+              await triageOne({ contentId, labelNames, desiredStatus });
+              core.info(`Processed PR #${pr?.number} (status=${desiredStatus}, dry_run=${DRY_RUN}).`);
+              return;
+            }
+
+            core.info(`No-op for event: ${eventName}`);
 

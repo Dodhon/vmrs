@@ -130,7 +130,7 @@ User (Claude Desktop)
   | (files now; later Neo4j nodes)   |
   |        |                         |
   |        v                         |
-  |   Operator review                |
+  |  Human Operator review           |
   |        |                         |
   |        v                         |
   |  approve / reject (+notes)       |
@@ -168,6 +168,38 @@ HitL_local/pending/<id>.json
         v
 Later: incorporate into Neo4j KG
 ```
+
+#### Final (Neo4j: HITL + domain graph in one place)
+```
+                        files (MVP persistence)
+        +-----------------------------------------------+
+        |                                               |
+        |  HitL_local/pending/*.json   HitL_local/reviewed/**/*.json
+        |           |                             |
+        |           v                             v
+        |      (feedback)                    (review)
+        +-----------|-----------------------------|---+
+                    |                             |
+                    v                             v
+            +-----------------+           +-----------------+
+            | Neo4j           |           | Neo4j           |
+            | (:Feedback)     |<----------| (:Review)       |
+            | id, status, ... |  :OF      | decision, ...   |
+            +--------+--------+           +--------+--------+
+                     |                             |
+                     | mentions / about            | mentions / about
+          +----------+-----------+-----------------+----------+
+          |                      |                            |
+          v                      v                            v
+   +-------------+        +--------------+              +-------------+
+   | (:VMRSCode) |        | (:Vendor)    |              | (:Part)     |
+   | code=...    |        | name=...     |              | number=...  |
+   +-------------+        +--------------+              +-------------+
+```
+
+Notes:
+- Pending files become `:Feedback` nodes; reviewed files become `:Review` nodes.
+- Both `:Feedback` and `:Review` should be linked to whatever they reference in the JSON (VMRS codes, vendors, parts).
 
 ### Current state (implemented)
 

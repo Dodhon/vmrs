@@ -45,6 +45,14 @@ Fixes #<issue-number>
 - Repo automation: `.github/workflows/add-to-project.yml`
 - Secret required: `ADD_TO_PROJECT_PAT` (PAT must have Projects v2 access + repo access for assigning issues)
 
+### See issue “Status” (Project field)
+Issue status (e.g. `Status=Todo|Done`) lives on the **Project item**, not on the issue itself—so use `gh project ...` to see it.
+
+```bash
+# List project items with their current Status
+gh project item-list 1 --owner Dodhon --limit 200 --format json -q '.items[] | {number: .content.number, title: .content.title, status: .status}'
+```
+
 ### List projects / fields
 ```bash
 gh project list --owner Dodhon

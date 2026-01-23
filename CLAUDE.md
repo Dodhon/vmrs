@@ -9,6 +9,8 @@ Update both `CLAUDE.md` and `AGENTS.md` whenever you:
 - Move or delete a file/folder that’s referenced here (avoid stale paths).
 - Introduce a new “source of truth” document (e.g., a new build guide, evaluation summary, or architecture note).
 
+Before finishing a PR, ensure `README.md` is still accurate for the changes included (or at minimum remind the user to confirm whether it needs updating).
+
 ### When to update an individual reference entry
 For each item under **Primary references** or **Data locations**, update that specific line when:
 - **Path changes**: the file/folder is moved/renamed/deleted.
@@ -24,6 +26,11 @@ When writing plans that touch system behavior, include **both**:
 - a **low-level** architecture diagram (C4 **Level 2: Containers + data stores**) that explicitly calls out **storage** (e.g. local `HitL_local/.../<id>.json` files) and the key implementation touchpoints.
 
 For behavior/flows, also include a short **runtime** section (arc42 **Runtime View**) describing the key scenarios step-by-step (e.g., “capture submission”, “review submission”).
+
+## Agent improvement policy (allowed, with approval)
+- I am allowed to propose and apply changes to `AGENTS.md` / `CLAUDE.md`, including adding new entries and updating guidance.
+- I am allowed to create new **skills**, **hooks**, and other tools in this repo when it would improve repeated workflows or reduce errors.
+- Before making any such change (or any other change that would materially improve my effectiveness over time), I should **ask you first** and explain the expected benefit.
 
 ## Project overview
 VMRS data processing and knowledge graph tooling that links VMRS codes with vendor parts for analysis and Neo4j-backed applications.
@@ -46,9 +53,9 @@ End goal: build a knowledge graph that stakeholders can query through a chatbot 
 - `dev_plans/hitl_step3_context_and_operator_metadata.md` - when upgrading HITL context/operator capture; why: defines the minimal context_pack + operator identity schema and rollout steps
 - `HitL_local/hitl_design.md` - when aligning HITL MVP with long-term goals; why: architecture + data model notes
 - `dev_plans/` - when working on dev plans; why: all plans live in this folder
-- `mcp/hitl/server.py` - when changing HITL capture behavior; why: MCP server implementation
+- `mcp/hitl_get_feedback/server.py` - when changing HITL capture behavior; why: MCP server implementation
 - `mcp/hitl_review/server.py` - when changing HITL operator review behavior
-- `interface prompts/` - when editing prompts; why: prompts are organized by agent (e.g. `lookup_agent/`, `hitl_review_agent/`)
+- `interface prompts/` - when editing prompts; why: use the latest version of each prompt in its folder (e.g. newest `*_v*.txt`)
 - `docs/` - when looking for deeper background docs; why: broader project documentation
 - `presentations/` - when referencing past presentation versions; why: pptx version history
 

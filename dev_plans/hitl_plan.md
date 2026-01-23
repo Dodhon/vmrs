@@ -11,7 +11,7 @@ Notes:
 
 ## Repo layout (new)
 ```
-mcp/hitl/
+mcp/hitl_get_feedback/
 ├── server.py            # MCP server implementation
 ```
 
@@ -134,18 +134,18 @@ When review tooling is added later, store review decision metadata alongside the
 | `list_submissions` | List recent pending submissions (no per-user identity in MVP) |
 
 ## Files to create
-- `mcp/hitl/server.py`
+- `mcp/hitl_get_feedback/server.py`
 - `HitL_local/pending/`
 - `interface prompts/lookup_agent/hitl_feedback_capture.txt`
 
 ## Implementation (MVP)
 1. Create `HitL_local/pending/`
-2. Build MCP server in `mcp/hitl/server.py` (Python MCP SDK / `FastMCP`)
-3. Add a Claude Desktop MCP entry pointing to `mcp/hitl/server.py` (via `claude_desktop_config.json`)
+2. Build MCP server in `mcp/hitl_get_feedback/server.py` (Python MCP SDK / `FastMCP`)
+3. Add a Claude Desktop MCP entry pointing to `mcp/hitl_get_feedback/server.py` (via `claude_desktop_config.json`)
 4. Put the agent-facing guidance in `interface prompts/lookup_agent/hitl_feedback_capture.txt` and reference it from your main interface prompt as needed.
 
 ## Verification (MVP)
-1. Run `python3 mcp/hitl/server.py`
+1. Run `python3 mcp/hitl_get_feedback/server.py`
 2. Call `submit_knowledge` with test data
 3. Verify JSON created in `HitL_local/pending/` and `submitted_at_ms` is present
 4. Call `get_submission_status` with the returned ID

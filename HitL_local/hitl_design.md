@@ -98,6 +98,17 @@ CDC does not replace HITL semantics (it captures *what* changed, not *why* it wa
 
 Keep MVP minimal while staying compatible with the long-term graph model.
 
+### Identity / provenance (important distinction)
+
+HITL has **two different humans** whose identity should be recorded:
+
+- **Submitter** (Step 1 capture): the person providing feedback in the lookup/chat experience.
+  - Captured by the capture MCP: `mcp/hitl_get_feedback/server.py` via `submit_knowledge(..., submitter=...)`.
+  - Stored on the pending JSON as top-level `submitter` (required: `name`, `role`).
+- **Reviewer / operator** (Step 2 review): the person approving/rejecting submissions.
+  - Captured by the review MCP: `mcp/hitl_review/server.py` via `record_review(..., operator_name=..., operator_role=...)`.
+  - Stored on the reviewed JSON as `review.operator` (required: `name`, `role`).
+
 ### Architecture diagrams
 
 #### Long-term (two-layer HITL + published KG)
@@ -119,7 +130,7 @@ User (Claude Desktop)
   | (files now; later Neo4j nodes)   |
   |        |                         |
   |        v                         |
-  |   Operator review                |
+  |  Human Operator review           |
   |        |                         |
   |        v                         |
   |  approve / reject (+notes)       |
@@ -158,30 +169,69 @@ HitL_local/pending/<id>.json
 Later: incorporate into Neo4j KG
 ```
 
+#### Final (Neo4j: HITL + domain graph in one place)
+```
+                        files (MVP persistence)
+        +-----------------------------------------------+
+        |                                               |
+        |  HitL_local/pending/*.json   HitL_local/reviewed/**/*.json
+        |           |                             |
+        |           v                             v
+        |      (feedback)                    (review)
+        +-----------|-----------------------------|---+
+                    |                             |
+                    v                             v
+            +-----------------+           +-----------------+
+            | Neo4j           |           | Neo4j           |
+            | (:Feedback)     |<----------| (:Review)       |
+            | id, status, ... |  :OF      | decision, ...   |
+            +--------+--------+           +--------+--------+
+                     |                             |
+                     | mentions / about            | mentions / about
+          +----------+-----------+-----------------+----------+
+          |                      |                            |
+          v                      v                            v
+   +-------------+        +--------------+              +-------------+
+   | (:VMRSCode) |        | (:Vendor)    |              | (:Part)     |
+   | code=...    |        | name=...     |              | number=...  |
+   +-------------+        +--------------+              +-------------+
+```
+
+Notes:
+- Pending files become `:Feedback` nodes; reviewed files become `:Review` nodes.
+- Both `:Feedback` and `:Review` should be linked to whatever they reference in the JSON (VMRS codes, vendors, parts).
+
 ### Current state (implemented)
 
-- MCP server: `mcp/hitl/server.py`
+- Step 1 (capture) MCP server: `mcp/hitl_get_feedback/server.py`
   - Tools: `submit_knowledge`, `get_submission_status`, `list_submissions`
-  - Scope: **pending-only capture** (writes to `HitL_local/pending/`)
+  - Scope: writes pending submissions to `HitL_local/pending/`
+- Step 2 (review) MCP server: `mcp/hitl_review/server.py`
+  - Tools: `list_submissions`, `get_submission`, `record_review`
+  - Scope: approves/rejects submissions and moves files into `HitL_local/reviewed/approved/` or `HitL_local/reviewed/rejected/`
 - Claude Desktop MCP config entry: `claude_desktop_config.json` (local machine config)
-- Agent-facing guidance:
-  - `interface prompts/lookup_agent/hitl_feedback_capture.txt` (what to include; intent fields are strongly recommended)
-  - `interface prompts/lookup_agent/main_v3.txt` references HITL and when to use it
+- Agent-facing guidance (versioned prompts):
+  - Lookup agent: `interface prompts/lookup_agent/main_v4.txt`
+  - Lookup HITL checklist: `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt`
+  - Review agent: `interface prompts/hitl_review_agent/main_v3.txt`
 
 ### Near-term plan (step-by-step MVP)
 
 Step 1 (done): capture proposals to `HitL_local/pending/` with strong structured intent.
 
-Step 2 (next): add operator review tooling + reviewed/approved/rejected states (file-first), keeping the JSON compatible with a future `:HitlSubmission` node model.
+Step 2 (done): operator review tooling + reviewed/approved/rejected states (file-first), keeping the JSON compatible with a future `:HitlSubmission` node model.
 
 ### Storage layout
 
 ```
 HitL_local/
-└── pending/         # submissions awaiting review (MVP writes here)
+├── pending/                  # submissions awaiting review
+└── reviewed/
+    ├── approved/             # reviewed + approved submissions
+    └── rejected/             # reviewed + rejected submissions
 ```
 
-Future (not required for Step 1, but recommended when review tooling is added):
+Future (optional):
 
 ```
 HitL_local/
@@ -195,23 +245,122 @@ HitL_local/
 
 Even in files, mirror the future Neo4j node properties:
 
+- `schema_version`: integer (current: `2`)
 - `id`: UUID or timestamp+random suffix (so you don’t need `index.json`)
 - `type`: correction|addition|context|question
-- `status`: `pending` in Step 1; later `reviewed` / `approved` / `rejected`
+- `status`: `pending` in Step 1
 - `submitted_at_ms`: integer epoch millis UTC
+- `submitter` (required):
+  - `name` (required)
+  - `role` (required)
+  - optional: `id`, `team`, `channel`, `label`
 - `content`:
   - `description` (required)
-  - `vmrs_code?`, `context?`, `related_query?`
+  - `vmrs_code` (required)
+  - `context` (required)
+  - `related_query` (required)
   - `target_type?`, `target_key?`, `proposed_action?`, `proposed_payload?` (**strongly recommended** whenever a concrete change is proposed)
+  - optional: `context_pack`, `targets`
+
+### Schema (Step 1: pending submission, schema_version=2)
+
+Canonical pending JSON written to: `HitL_local/pending/<id>.json`
+
+```json
+{
+  "schema_version": 2,
+  "id": "HITL-<uuid>",
+  "type": "correction",
+  "submitted_at_ms": 1737465030000,
+  "status": "pending",
+  "submitter": {
+    "name": "Alex Submitter",
+    "role": "Fleet Ops",
+    "id": "optional",
+    "team": "optional",
+    "channel": "optional",
+    "label": "optional"
+  },
+  "content": {
+    "vmrs_code": "047-000-000",
+    "description": "Short, specific, self-contained description of what should be changed/recorded.",
+    "context": "Privacy-safe rationale/evidence. Do NOT paste full transcripts.",
+    "related_query": "Exact user question/prompt that triggered this.",
+    "target_type": "Component",
+    "target_key": { "code": "047-000-000" },
+    "targets": [
+      { "target_type": "Component", "target_key": { "code": "047-000-000" } }
+    ],
+    "context_pack": {
+      "related_query": "optional duplicate of related_query",
+      "answer_excerpt_or_summary": "optional (<= 500 chars)",
+      "why_saved": "optional",
+      "evidence": [{ "type": "user_claim", "value": "optional" }],
+      "expected_vs_observed": { "expected": "optional", "observed": "optional" }
+    },
+    "proposed_action": "set_property",
+    "proposed_payload": { "name": "optional" }
+  }
+}
+```
 
 ### MVP review metadata (in reviewed files)
 
 When moving a file from `pending/` to `reviewed/` (Step 2), add:
 
-- `reviewed_at_ms`
-- `decision`: approved|rejected (or reviewed_only for a transitional phase)
-- `review_notes`
-- `reviewed_by`
+- `schema_version = 2`
+- `status = "reviewed"`
+- `review` (canonical):
+  - `decision`: approved|rejected
+  - `reviewed_at_ms`
+  - `notes`
+  - `operator` (required):
+    - `name` (required)
+    - `role` (required)
+    - optional: `id`, `team`
+
+For backward compatibility, you may also mirror legacy top-level fields (e.g. `decision`, `reviewed_at_ms`, `review_notes`, `reviewed_by`).
+
+### Schema (Step 2: reviewed submission, schema_version=2)
+
+Canonical reviewed JSON written to:
+- `HitL_local/reviewed/approved/<id>.json` or
+- `HitL_local/reviewed/rejected/<id>.json`
+
+```json
+{
+  "schema_version": 2,
+  "id": "HITL-<uuid>",
+  "type": "correction",
+  "submitted_at_ms": 1737465030000,
+  "status": "reviewed",
+  "submitter": {
+    "name": "Alex Submitter",
+    "role": "Fleet Ops"
+  },
+  "content": {
+    "vmrs_code": "047-000-000",
+    "description": "Short, specific, self-contained description of what should be changed/recorded.",
+    "context": "Privacy-safe rationale/evidence.",
+    "related_query": "Exact user question/prompt that triggered this."
+  },
+  "review": {
+    "decision": "approved",
+    "reviewed_at_ms": 1737469000000,
+    "notes": "Why this was approved/rejected (required).",
+    "operator": {
+      "name": "Jane Operator",
+      "role": "Fleet Analyst",
+      "id": "optional",
+      "team": "optional"
+    }
+  },
+  "decision": "approved",
+  "reviewed_at_ms": 1737469000000,
+  "review_notes": "Why this was approved/rejected (required).",
+  "reviewed_by": "Jane Operator"
+}
+```
 
 
 ## Sources (cited)

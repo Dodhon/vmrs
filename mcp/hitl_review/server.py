@@ -68,10 +68,18 @@ def _summarize_submission(data: Dict[str, Any]) -> Dict[str, Any]:
         "vmrs_code": content.get("vmrs_code"),
         "description": desc,
     }
-    if "decision" in data:
-        out["decision"] = data.get("decision")
-    if "reviewed_at_ms" in data:
-        out["reviewed_at_ms"] = data.get("reviewed_at_ms")
+    # Read-both compatibility: prefer nested review.* when present, fall back to legacy top-level fields.
+    review = data.get("review") if isinstance(data.get("review"), dict) else {}
+    decision = review.get("decision") if isinstance(review, dict) else None
+    reviewed_at_ms = review.get("reviewed_at_ms") if isinstance(review, dict) else None
+    if decision is None and "decision" in data:
+        decision = data.get("decision")
+    if reviewed_at_ms is None and "reviewed_at_ms" in data:
+        reviewed_at_ms = data.get("reviewed_at_ms")
+    if decision is not None:
+        out["decision"] = decision
+    if reviewed_at_ms is not None:
+        out["reviewed_at_ms"] = reviewed_at_ms
     return out
 
 
@@ -180,6 +188,10 @@ async def record_review(
     outcome: str,
     reviewed_by: str,
     review_notes: str,
+    operator_name: str,
+    operator_role: str,
+    operator_id: Optional[str] = None,
+    operator_team: Optional[str] = None,
 ) -> Dict[str, Any]:
     """
     Record an operator review decision and move the submission out of pending.
@@ -191,6 +203,7 @@ async def record_review(
     - outcome is approved|rejected
     - review_notes is provided
     - reviewed_by is provided
+    - operator_name + operator_role are required
     """
     _ensure_dirs()
 
@@ -202,6 +215,18 @@ async def record_review(
         return {"status": "error", "message": "reviewed_by is required"}
     if not isinstance(review_notes, str) or not review_notes.strip():
         return {"status": "error", "message": "review_notes is required"}
+
+    # Step 3: operator name + role are required on every review.
+    if not isinstance(operator_name, str) or not operator_name.strip():
+        return {"status": "error", "message": "operator_name is required"}
+    if not isinstance(operator_role, str) or not operator_role.strip():
+        return {"status": "error", "message": "operator_role is required"}
+    for field_name, field_val in (
+        ("operator_id", operator_id),
+        ("operator_team", operator_team),
+    ):
+        if field_val is not None and (not isinstance(field_val, str) or not field_val.strip()):
+            return {"status": "error", "message": f"{field_name} must be a non-empty string when provided"}
 
     pending_path = PENDING_DIR / f"{submission_id}.json"
     if not pending_path.exists():
@@ -232,11 +257,36 @@ async def record_review(
         return {"status": "error", "message": f"Failed to move pending submission for review: {e}"}
 
     # Apply review metadata
-    data["status"] = outcome
+    reviewed_at_ms = _now_ms()
+    data["schema_version"] = 2
+    data["status"] = "reviewed"
+
+    operator_obj: Dict[str, Any] = {"name": operator_name.strip(), "role": operator_role.strip()}
+    if isinstance(operator_id, str) and operator_id.strip():
+        operator_obj["id"] = operator_id.strip()
+    if isinstance(operator_team, str) and operator_team.strip():
+        operator_obj["team"] = operator_team.strip()
+
+    data["review"] = {
+        "decision": outcome,
+        "reviewed_at_ms": reviewed_at_ms,
+        "notes": review_notes.strip(),
+        "operator": operator_obj,
+    }
+
+    # Mirror legacy top-level fields for back-compat readers.
     data["decision"] = outcome
-    data["reviewed_at_ms"] = _now_ms()
-    data["reviewed_by"] = reviewed_by.strip()
+    data["reviewed_at_ms"] = reviewed_at_ms
     data["review_notes"] = review_notes.strip()
+    data["reviewed_by"] = (
+        operator_id.strip()
+        if isinstance(operator_id, str) and operator_id.strip()
+        else (
+            operator_name.strip()
+            if isinstance(operator_name, str) and operator_name.strip()
+            else reviewed_by.strip()
+        )
+    )
 
     try:
         # Atomic write into reviewed destination, then clean up staging

@@ -12,14 +12,16 @@ Create development plans for this repo.
 When this skill is invoked:
 
 1. **Write plans to `dev_plans/`** (repo-relative).
-2. **Research best practices** relevant to the feature and include **exact references (links)** from credible sources (official docs, reputable engineering blogs, high-quality GitHub repos).
+2. **Research best practices** relevant to the feature and include **exact references (links)** from credible sources (official docs, reputable engineering blogs, high-quality GitHub repos). You must start with an extensive search
 3. **Ensure every new plan includes**:
-   1. **End user context** - who the feature is for (role, technical level, goals)
+   1. **End user context** - who the feature is for (role, technical level, goals). Also include reference to github issue or pull request (ad hoc)
    2. **User requirements** - what the end user needs to accomplish and why
    3. **Architecture diagram** - ASCII art showing how the feature fits into the existing system
    4. **Goals** - what the plan intends to achieve
    5. **Non-goals** - what is explicitly out of scope
-   6. **Success metrics** - how we'll know it worked (measurable where possible)
+   7. **Success metrics** - how we'll know it worked (measurable where possible). This includes the testing approach
+4. **Validate** everything. Search online, again, to see if your draft follows industry standards and best practices
+5. **Draft** a pull request when you are done. This requires user approval.
 
 ### Diagram conventions (required when the plan touches system behavior)
 - Include **both**:

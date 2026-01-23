@@ -16,7 +16,7 @@ gh issue create --repo Dodhon/vmrs --title "..." --body "..."
 1) Create a branch, push commits
 2) Create PR:
 ```bash
-gh pr create --repo Dodhon/vmrs --base main --title "..." --body "Fixes #<issue-number>"
+gh pr create --repo Dodhon/vmrs --base main --draft --title "..." --body "Fixes #<issue-number>"
 ```
 
 ### PR body template (plan-driven)

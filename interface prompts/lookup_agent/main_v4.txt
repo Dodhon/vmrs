@@ -46,6 +46,6 @@ When to reference `hitl_feedback_capture_v3.txt`:
 
 What to do:
 - Use `submit_knowledge` and follow the “What to include” checklist in `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt`.
-- Ensure `submitter.name` and `submitter.role` are included (required by the server).
+- Ensure `submitter.name` and `submitter.role` are included (required by the server). For MVP, ask the user/operator for them, but allow them to say “skip” and use placeholders (e.g., name="Unknown", role="unspecified") so submission still succeeds.
 - After submitting, tell the user you recorded the feedback and share the returned submission `id`.
 

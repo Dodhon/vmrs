@@ -21,6 +21,16 @@ The goal is to make each submission **actionable** for a human reviewer without 
 - `context`: required (privacy-safe rationale/evidence; do NOT paste full transcripts)
 - `submitter`: required (must include at least `{name, role}`; optional `{id, team, channel, label}`)
 
+#### Required-field collection (important)
+If the user/operator has not already provided submitter identity, you MUST ask for it before calling `submit_knowledge`.
+
+Ask in a constrained format:
+- "What is your name and role for this feedback?" (name + role required)
+
+Canonical reply format:
+- `Submitter: name=<Full Name>, role=<role>`
+- Optional: `id=<id>, team=<team>`
+
 ### Strongly recommended (include whenever possible)
 - `context_pack`: minimal structured context for review:
   - `answer_excerpt_or_summary`: short excerpt/summary of your answer (**≤ 500 characters**)

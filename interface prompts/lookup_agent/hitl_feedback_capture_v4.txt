@@ -1,4 +1,4 @@
-# HITL feedback capture (v3 - required submitter name + role)
+# HITL feedback capture (v4 - ask submitter name + role; allow skip)
 
 Use the MCP tool `submit_knowledge` when the user provides feedback that should be saved for later operator review.
 
@@ -19,7 +19,22 @@ The goal is to make each submission **actionable** for a human reviewer without 
 - `vmrs_code`: required (full code if known, e.g. `047-000-000`)
 - `related_query`: required (the exact user question/prompt that triggered the issue)
 - `context`: required (privacy-safe rationale/evidence; do NOT paste full transcripts)
-- `submitter`: required (must include at least `{name, role}`; optional `{id, team, channel, label}`)
+- `submitter`: required by the server (must include at least `{name, role}`; optional `{id, team, channel, label}`)
+
+#### Submitter identity (MVP: ask, but allow skip)
+For MVP, submitter identity can be treated as optional *from the human’s perspective*.
+
+- Ask for it (low friction):
+  - "What name + role should I record for this feedback? (You can say 'skip')"
+
+If the user says **skip** / refuses:
+- Proceed, but set a placeholder submitter so the MCP server can validate:
+  - `submitter.name = "Unknown"`
+  - `submitter.role = "unspecified"`
+
+Canonical reply format (if provided):
+- `Submitter: name=<Full Name>, role=<role>`
+- Optional: `id=<id>, team=<team>`
 
 ### Strongly recommended (include whenever possible)
 - `context_pack`: minimal structured context for review:

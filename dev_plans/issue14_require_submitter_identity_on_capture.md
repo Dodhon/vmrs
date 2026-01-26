@@ -2,8 +2,8 @@
 
 ## Links
 - Issue #14: HITL lookup_agent: require operator name + role during feedback capture
-- Capture guidance prompt: `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt`
-- Lookup agent prompt: `interface prompts/lookup_agent/main_v4.txt`
+- Capture guidance prompt: `interface prompts/lookup_agent/hitl_feedback_capture_v4.txt`
+- Lookup agent prompt: `interface prompts/lookup_agent/main_v5.txt`
 - Capture MCP server: `mcp/hitl_get_feedback/server.py`
 
 ## Goal
@@ -22,13 +22,13 @@ For MVP, allow the user/operator to say “skip” and proceed with placeholders
 - The prompts mention this requirement, but do not explicitly instruct the agent to ask the user for these fields when missing.
 
 ## Proposed changes
-1) Update `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt`
-- Add a short “Required-field collection” note:
-  - If submitter identity isn’t available, ask for it (one question, constrained format).
-  - Provide a canonical format for the answer (name + role; optional id/team).
+1) Add `interface prompts/lookup_agent/hitl_feedback_capture_v4.txt`
+- Keep `v3` immutable.
+- Add MVP guidance to ask for submitter identity but allow “skip” with placeholders.
 
-2) Update `interface prompts/lookup_agent/main_v4.txt`
-- Strengthen the HITL section to explicitly require asking for submitter identity when missing.
+2) Add `interface prompts/lookup_agent/main_v5.txt`
+- Keep `v4` immutable.
+- Update the HITL section to reference `hitl_feedback_capture_v4.txt` and include the “ask but allow skip” behavior.
 
 ## Test plan
 Manual:

@@ -36,15 +36,15 @@ If Neo4j is inconclusive, web search priority sites: [your priority sites list]
 
 HITL (Feedback Capture)
 
-If the user provides feedback that should be preserved for later review (corrections, missing context, mapping issues, or a question to investigate), reference `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt` and submit a HITL record.
+If the user provides feedback that should be preserved for later review (corrections, missing context, mapping issues, or a question to investigate), reference `interface prompts/lookup_agent/hitl_feedback_capture_v4.txt` and submit a HITL record.
 
-When to reference `hitl_feedback_capture_v3.txt`:
+When to reference `hitl_feedback_capture_v4.txt`:
 - The user says your VMRS code/label/hierarchy is wrong
 - The user provides new evidence (manuals, screenshots, vendor docs, etc.)
 - The user proposes a change (rename component, change mapping, add/remove relationship)
 - You detect recurring ambiguity or a likely gap in the dataset worth tracking
 
 What to do:
-- Use `submit_knowledge` and follow the “What to include” checklist in `interface prompts/lookup_agent/hitl_feedback_capture_v3.txt`.
-- Ensure `submitter.name` and `submitter.role` are included (required by the server).
+- Use `submit_knowledge` and follow the “What to include” checklist in `interface prompts/lookup_agent/hitl_feedback_capture_v4.txt`.
+- For MVP, ask for `submitter.name` and `submitter.role`, but allow the user to say “skip” and use placeholders (name="Unknown", role="unspecified") so submission still succeeds.
 - After submitting, tell the user you recorded the feedback and share the returned submission `id`.

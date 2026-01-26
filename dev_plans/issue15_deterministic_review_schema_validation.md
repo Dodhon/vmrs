@@ -62,39 +62,94 @@ Source: Workflow DevKit example
 
 ## Proposed approach (recommended)
 Implement **Option B** (tool-boundary enforcement) plus a small UX refinement from **Option C**:
-- Persist only via `record_review(...)` with `outcome` enum.
-- Require `review_notes` and reviewer identity fields.
-- Ensure idempotency/no-overwrite and atomic move/write so you never double-review.
 
-## Key decisions to make
-1) Do we support “Skip” as a first-class persisted state?
-   - Recommendation: treat skip as “cancel” (not persisted) OR persist as a distinct value (e.g., `skipped`) but never conflate with reject.
-2) Canonical casing: `approved/rejected` vs `APPROVE/REJECT`.
-3) Canonical storage location for review fields (ties to issue #38):
-   - Recommend `review.{decision, reviewed_at_ms, notes, operator}` as canonical.
+### Guarantees this should provide
+1) **Decision is captured at the boundary, not inferred from prose**
+- Persisted truth comes only from the tool call (not the agent’s narrative).
+
+2) **Decision payload is machine-checkable (enums + required fields)**
+- Outcome is an enum.
+- Required fields are validated server-side.
+
+3) **Approval is durable and idempotent**
+- One submission should produce at most one persisted decision record.
+- Retries and concurrent attempts should return the already-recorded decision, not create duplicates.
+
+4) **Reviewer context + actionable rejection reasons are captured**
+- Capture enough context for review.
+- Require (at least) actionable notes on rejection.
+
+### Notes requirement (reduce friction)
+- `rejected` → `review_notes` required (min length >= 1)
+- `approved` → `review_notes` optional (or default)
+
+## Key design decisions to make (tight)
+1) **Skip semantics (avoid ambiguity)**
+- Treat “skip/cancel” as not persisted; keep submission pending.
+- Treat explicit refusal separately from reject (don’t conflate).
+(Conceptually mirrors MCP accept/decline/cancel separation.)
+
+2) **Canonical casing**
+- Prefer lowercase enums: `approved | rejected` to reduce drift.
+
+3) **Canonical review field placement** (ties to issue #38)
+- Canonical shape:
+  ```json
+  {
+    "schema_version": 1,
+    "review": {
+      "decision": "approved",
+      "reviewed_at_ms": 1730000000000,
+      "operator": {"name": "…", "role": "…"},
+      "notes": "…"
+    }
+  }
+  ```
+
+4) **Metadata to prevent mismatched/duplicate approvals**
+- Consider adding:
+  - `submission_hash` (hash of the pending payload at review time)
+  - `review_request_id` / server-generated review UUID
+  - `schema_version`
 
 ## Work breakdown
 E1) Harden server-side validation
 - Ensure outcome is restricted to enum.
-- Ensure `review_notes` is required and non-empty.
-- Ensure `operator_name` and `operator_role` are required and non-empty.
+- Ensure required operator identity fields are non-empty.
+- Enforce notes requirement by outcome:
+  - rejected → notes required
+  - approved → notes optional
+- Decide/implement explicit “skip” semantics (no persisted decision).
 
-E2) Ensure deterministic persistence
-- Review tool must never write ambiguous output.
-- Atomic move/write; no overwrite.
+E2) Deterministic persistence (crash-safe + no double-review)
+- Implement an idempotent pattern:
+  - lock (per submission_id)
+  - check already-reviewed → return existing record
+  - stage write + atomic rename
+  - no overwrite
+- Consider upgrading reviewed artifacts to per-submission directories to co-locate payload + review metadata.
 
-E3) Update prompts / runner tests
-- Review agent asks operator for Approve/Reject (and required reason).
-- Add explicit test cases: approve path + reject path.
+E3) Metadata
+- Add `submission_hash` and a server-generated review id, if we want stronger auditability.
+
+E4) Prompt/test updates
+- Review agent asks operator for Approve/Reject/Skip, with “Skip” mapping to no persisted decision.
+- Tests cover approve + reject + skip/cancel.
 
 ## Validation plan
-V1) Unit-style validation
-- Invalid outcomes rejected.
-- Missing `review_notes` rejected.
-- Missing operator identity rejected.
+V1) Validation (unit)
+- outcome not in enum → reject.
+- missing operator fields → reject.
+- rejected with empty notes → reject.
+- approved with empty notes → allowed (if we adopt the low-friction rule).
 
-V2) End-to-end manual
+V2) Persistence/idempotency (integration)
+- Approve then re-submit same review attempt → returns existing record; no duplicates.
+- Concurrency: two reviewers attempt same id → one wins; other sees already-reviewed.
+
+V3) End-to-end manual
 - Create a pending submission.
 - Record approve and verify file moved to `HitL_local/reviewed/approved/`.
 - Record reject and verify file moved to `HitL_local/reviewed/rejected/`.
+- Skip/cancel leaves submission pending.
 - Confirm reviewed records are machine-parseable and consistent.

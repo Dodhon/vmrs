@@ -37,6 +37,51 @@ Optional (lower-level smoke test; not a user-facing agent):
 
 ## Design
 
+### Architecture (ASCII)
+
+User-facing agents:
+
+```
+Operator A
+  |
+  | (asks VMRS question + provides feedback)
+  v
+VMRS Lookup Agent
+  |  \
+  |   \  (when feedback present)
+  |    \-> HITL Capture MCP (mcp/hitl_get_feedback)
+  |          writes: HitL_local/pending/<id>.json
+  v
+Neo4j MCP (read-only) + optional web fallback
+```
+
+Review workflow:
+
+```
+Operator B (reviewer)
+  |
+  v
+HITL Review Agent
+  |
+  v
+HITL Review MCP (mcp/hitl_review)
+  |
+  +--> reads:  HitL_local/pending/<id>.json
+  |
+  +--> writes: HitL_local/reviewed/approved/<id>.json
+  |            HitL_local/reviewed/rejected/<id>.json
+```
+
+Test runners (Claude Code subagents) mirror these surfaces:
+
+```
+vmrs-test-runner            (Neo4j-only Q&A)
+vmrs-lookup-hitl-runner     (lookup + capture integration)
+hitl-review-runner          (review approve/reject)
+[optional] hitl-capture-runner (capture MCP smoke test)
+```
+
+
 ### Repo recon requirement (process)
 Before implementing a new runner or writing its plan, first scan:
 - `README.md`

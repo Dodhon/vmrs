@@ -7,11 +7,11 @@
 - Capture MCP server: `mcp/hitl_get_feedback/server.py`
 
 ## Goal
-Make HITL submissions **auditable** by ensuring the lookup/capture flow always collects:
+Make HITL submissions more **auditable** by having the lookup/capture flow **ask** for:
 - `submitter.name`
 - `submitter.role`
 
-…before calling `submit_knowledge`.
+For MVP, allow the user/operator to say “skip” and proceed with placeholders (e.g., name="Unknown", role="unspecified") so capture remains low-friction while still satisfying server validation.
 
 ## Non-goals
 - Review-side operator identity collection (that is HITL review agent behavior).
@@ -37,5 +37,6 @@ Manual:
 - Confirm `submit_knowledge` succeeds and a pending JSON is written.
 
 ## Acceptance criteria
-- Lookup/capture flow does not attempt `submit_knowledge` without `submitter.name` and `submitter.role`.
+- Capture flow asks the user/operator for submitter identity (name + role) before submitting.
+- If the user/operator says “skip”, capture still proceeds using placeholders that satisfy validation (e.g., name="Unknown", role="unspecified").
 - The prompts provide a consistent, low-friction way for a human operator to supply identity.

@@ -21,13 +21,18 @@ The goal is to make each submission **actionable** for a human reviewer without 
 - `context`: required (privacy-safe rationale/evidence; do NOT paste full transcripts)
 - `submitter`: required (must include at least `{name, role}`; optional `{id, team, channel, label}`)
 
-#### Required-field collection (important)
-If the user/operator has not already provided submitter identity, you MUST ask for it before calling `submit_knowledge`.
+#### Submitter identity (MVP: ask, but allow skip)
+For MVP, submitter identity can be treated as optional *from the human’s perspective*.
 
-Ask in a constrained format:
-- "What is your name and role for this feedback?" (name + role required)
+- Ask for it (low friction):
+  - "What name + role should I record for this feedback? (You can say 'skip')"
 
-Canonical reply format:
+If the user says **skip** / refuses:
+- Proceed, but set a placeholder submitter in the HITL record so the MCP server can validate:
+  - `submitter.name = "Unknown"`
+  - `submitter.role = "unspecified"`
+
+Canonical reply format (if provided):
 - `Submitter: name=<Full Name>, role=<role>`
 - Optional: `id=<id>, team=<team>`
 

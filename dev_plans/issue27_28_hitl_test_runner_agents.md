@@ -163,6 +163,19 @@ So existing hooks can capture the run and append to `test_log.csv`.
   - HITL capture tools
 - [ ] `hitl-review-runner` exists under `.claude/agents/` and references the review MCP tools.
 - [ ] Prompts require `[TEST_ID: ...]` in the invoking prompt.
+
+### Required-field collection (must validate)
+- [ ] **HITL capture (Step 1)**: before calling `submit_knowledge`, the lookup/capture flow must obtain all required fields:
+  - `submitter.name` (non-empty)
+  - `submitter.role` (non-empty)
+  - plus required submission fields: `type`, `description`, `vmrs_code`, `context`, `related_query`
+  - Validation method: run a test prompt that omits submitter identity; the agent must ask for it, then submit successfully.
+- [ ] **HITL review (Step 2)**: before calling `record_review`, the review flow must obtain all required fields:
+  - `operator_name` (non-empty)
+  - `operator_role` (non-empty)
+  - `review_notes` (non-empty)
+  - Validation method: start a fresh review session and confirm it collects operator identity “once”, then includes it on every `record_review` call.
+
 - [ ] A developer can run an end-to-end manual test:
   - Integration runner answers a lookup question and (when feedback is present) creates a pending submission in `HitL_local/pending/`.
   - Review runner moves it to `HitL_local/reviewed/{approved|rejected}/`.
@@ -185,6 +198,12 @@ Prompt template (Claude Code subagent run):
 Lookup: What is the VMRS code for "DRIVERS SIDE SEAT"?
 
 Operator feedback: This is ambiguous — I actually mean DRIVER SIDE SEAT BELT (not the seat assembly). Please record this as HITL feedback.
+
+NOTE: Do NOT provide submitter identity up front. The agent must ask for required fields (submitter name + role) before it can submit.
+```
+
+Follow-up (after agent asks):
+```
 Submitter: name=Test Submitter, role=technician
 ```
 

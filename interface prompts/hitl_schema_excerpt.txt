@@ -1,0 +1,34 @@
+HITL JSON schema (canonical excerpt)
+schema_version: int = 2
+
+Pending submission JSON (HitL_local/pending/<id>.json):
+  Top-level:
+    schema_version: int
+    id: str  (e.g., 'HITL-<uuid>')
+    type: 'correction'|'addition'|'context'|'question'
+    submitted_at_ms: int
+    status: 'pending'
+    submitter: {name: str, role: str, ...}
+    content: { ... }
+  content (required):
+    vmrs_code: str
+    description: str
+    context: str
+    related_query: str
+  content (optional):
+    target_type: str
+    target_key: object
+    targets: list[object]  (if provided, non-empty; targets[0] has target_type+target_key)
+    context_pack: object  (answer_excerpt_or_summary <= 500 chars)
+    proposed_action: str
+    proposed_payload: object
+
+Reviewed submission JSON (HitL_local/reviewed/{approved|rejected}/<id>.json):
+  status: 'reviewed'
+  review: {
+    decision: 'approved'|'rejected',
+    reviewed_at_ms: int,
+    notes: str,
+    operator: {name: str, role: str, id?: str, team?: str}
+  }
+  Legacy mirrors (for back-compat): decision, reviewed_at_ms, review_notes, reviewed_by

@@ -17,6 +17,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from mcp.server.fastmcp import FastMCP
 
+from src.hitl_schema import SCHEMA_VERSION, validate_pending_submission_input
+
 mcp = FastMCP("hitl")
 
 
@@ -105,47 +107,24 @@ async def submit_knowledge(
         proposed_payload: Optional change payload dict
     """
     _ensure_dirs()
-
-    valid_types = {"correction", "addition", "context", "question"}
-    if type not in valid_types:
-        return {
-            "status": "error",
-            "message": f"Invalid type. Must be one of: {sorted(valid_types)}",
-        }
-    if not description or not isinstance(description, str):
-        return {"status": "error", "message": "description is required"}
-
-    # Step 3: required fields (per repo workflow decision).
-    if not isinstance(vmrs_code, str) or not vmrs_code.strip():
-        return {"status": "error", "message": "vmrs_code is required"}
-    if not isinstance(context, str) or not context.strip():
-        return {"status": "error", "message": "context is required"}
-    if not isinstance(related_query, str) or not related_query.strip():
-        return {"status": "error", "message": "related_query is required"}
-    if not isinstance(submitter, dict):
-        return {"status": "error", "message": "submitter is required and must be a dict"}
-
-    if context_pack is not None and not isinstance(context_pack, dict):
-        return {"status": "error", "message": "context_pack must be a dict when provided"}
-    if targets is not None and not isinstance(targets, list):
-        return {"status": "error", "message": "targets must be a list when provided"}
-
-    # Enforce small, reviewable answer excerpts (privacy + ergonomics)
-    if isinstance(context_pack, dict):
-        excerpt = context_pack.get("answer_excerpt_or_summary")
-        if isinstance(excerpt, str) and len(excerpt) > 500:
-            return {
-                "status": "error",
-                "message": "context_pack.answer_excerpt_or_summary must be <= 500 characters; please shorten it",
-            }
-
-    # Validate submitter: name + role are required.
-    name = submitter.get("name")
-    role = submitter.get("role")
-    if not isinstance(name, str) or not name.strip():
-        return {"status": "error", "message": "submitter.name is required"}
-    if not isinstance(role, str) or not role.strip():
-        return {"status": "error", "message": "submitter.role is required"}
+    errors = validate_pending_submission_input(
+        type=type,
+        description=description,
+        vmrs_code=vmrs_code,
+        context=context,
+        related_query=related_query,
+        submitter=submitter,
+        target_type=target_type,
+        target_key=target_key,
+        context_pack=context_pack,
+        targets=targets,
+        proposed_action=proposed_action,
+        proposed_payload=proposed_payload,
+    )
+    if errors:
+        # Preserve existing server error shape (single message).
+        first = errors[0]
+        return {"status": "error", "message": f"{first.field} {first.message}".strip()}
 
     # Targets: if provided, must be a non-empty list, and mirror targets[0] into target_type/target_key.
     primary_target_type = target_type
@@ -172,7 +151,7 @@ async def submit_knowledge(
 
     submission_id = _new_id()
     data: Dict[str, Any] = {
-        "schema_version": 2,
+        "schema_version": SCHEMA_VERSION,
         "id": submission_id,
         "type": type,
         "submitted_at_ms": _now_ms(),

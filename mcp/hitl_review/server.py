@@ -10,10 +10,17 @@ Implements a file-first review workflow over HITL submissions created by Step 1:
 from __future__ import annotations
 
 import json
+import sys
 import time
 import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+
+# Add repo root to sys.path so `src` package can be imported when server is run
+# from arbitrary working directories (e.g., by Claude Desktop).
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 from mcp.server.fastmcp import FastMCP
 
@@ -158,9 +165,47 @@ async def list_submissions(limit: int = 10, location: str = "pending") -> Dict[s
 
 @mcp.tool()
 async def get_submission(submission_id: str) -> Dict[str, Any]:
-    """
-    Fetch a full pending submission by ID.
-    """
+    """Fetch a full pending submission by ID."""
+    _ensure_dirs()
+    if not submission_id:
+        return {"status": "error", "message": "submission_id is required"}
+
+    pending_path = PENDING_DIR / f"{submission_id}.json"
+    if not pending_path.exists():
+        return {"status": "not_found", "id": submission_id, "location": "pending"}
+
+    try:
+        data = _load_submission(pending_path)
+    except Exception as e:
+        return {"status": "error", "message": f"Failed to read JSON: {e}"}
+
+    mismatch = _validate_id_matches_filename(pending_path, data)
+    if mismatch:
+        return {"status": "error", "message": mismatch}
+
+    if data.get("status") != "pending":
+        return {"status": "error", "message": "Only pending submissions can be fetched via get_submission (pending-only)"}
+
+    return {
+        "status": "success",
+        "id": submission_id,
+        "location": "pending",
+        "submission": data,
+    }
+
+
+@mcp.tool()
+async def record_review(
+    submission_id: str,
+    outcome: str,
+    reviewed_by: str,
+    review_notes: str,
+    operator_name: str,
+    operator_role: str,
+    operator_id: Optional[str] = None,
+    operator_team: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Validate + record an approved/rejected decision and move the file out of pending."""
     _ensure_dirs()
     errors = validate_review_input(
         submission_id=submission_id,
@@ -204,7 +249,6 @@ async def get_submission(submission_id: str) -> Dict[str, Any]:
     except Exception as e:
         return {"status": "error", "message": f"Failed to move pending submission for review: {e}"}
 
-    # Apply review metadata
     reviewed_at_ms = _now_ms()
     data["schema_version"] = SCHEMA_VERSION
     data["status"] = "reviewed"
@@ -237,7 +281,6 @@ async def get_submission(submission_id: str) -> Dict[str, Any]:
     )
 
     try:
-        # Atomic write into reviewed destination, then clean up staging
         _write_json_atomic(dest_path, data)
         if staging_path.exists():
             staging_path.unlink()
@@ -258,9 +301,10 @@ async def get_submission(submission_id: str) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    print("Starting HITL Review MCP Server...")
-    print(f"Repo root: {ROOT_DIR}")
-    print(f"HitL_local: {HITL_DIR}")
-    print("Tools available: list_submissions, get_submission, record_review")
+    # IMPORTANT: MCP uses stdio for the protocol. Do not write to stdout.
+    sys.stderr.write("Starting HITL Review MCP Server...\n")
+    sys.stderr.write(f"Repo root: {ROOT_DIR}\n")
+    sys.stderr.write(f"HitL_local: {HITL_DIR}\n")
+    sys.stderr.write("Tools available: list_submissions, get_submission, record_review\n")
     mcp.run()
 

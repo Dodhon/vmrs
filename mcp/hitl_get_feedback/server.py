@@ -10,10 +10,17 @@ Implements a file-first submission workflow:
 from __future__ import annotations
 
 import json
+import sys
 import time
 import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+# Add repo root to sys.path so `src` package can be imported when server is run
+# from arbitrary working directories (e.g., by Claude Desktop).
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 from mcp.server.fastmcp import FastMCP
 
@@ -236,9 +243,10 @@ async def list_submissions(limit: int = 10) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    print("Starting HITL MCP Server...")
-    print(f"Repo root: {ROOT_DIR}")
-    print(f"HitL_local: {HITL_DIR}")
-    print("Tools available: submit_knowledge, get_submission_status, list_submissions")
+    # IMPORTANT: MCP uses stdio for the protocol. Do not write to stdout.
+    sys.stderr.write("Starting HITL MCP Server...\n")
+    sys.stderr.write(f"Repo root: {ROOT_DIR}\n")
+    sys.stderr.write(f"HitL_local: {HITL_DIR}\n")
+    sys.stderr.write("Tools available: submit_knowledge, get_submission_status, list_submissions\n")
     mcp.run()
 

@@ -127,21 +127,28 @@ Optional:
 
 ## Manual test recipes
 
-### VMRS lookup + HITL capture (integration)
-Prompt:
+### VMRS lookup + HITL capture (integration) — canonical ambiguity case
+
+Canonical case from the last test suite:
+- `tests/test_questions/conversations/DP-3dd466.md`
+- Original question: `What is the VMRS code for "DRIVERS SIDE SEAT"?`
+- Why it matters: ambiguous phrasing can be interpreted as seat assembly vs seat belt; we want the lookup agent to either ask a clarifying question or allow the operator to correct and then capture that correction into HITL.
+
+Prompt template (Claude Code subagent run):
 ```
-[TEST_ID: VL-000001]
-Lookup: What is the best VMRS component code for "air dryer"?
-Feedback: If you suggest 013-xxx-xxx, that seems wrong — our shop uses 012-002-xxx for this. Please record that as feedback.
+[TEST_ID: VL-DP-3dd466]
+Lookup: What is the VMRS code for "DRIVERS SIDE SEAT"?
+
+Operator feedback: This is ambiguous — I actually mean DRIVER SIDE SEAT BELT (not the seat assembly). Please record this as HITL feedback.
 Submitter: name=Test Submitter, role=technician
 ```
 
 Expected:
-- Runner queries Neo4j and returns top matches.
-- Runner creates a HITL pending submission via `submit_knowledge`.
-- `get_submission_status` returns found/pending for the returned id.
+- Lookup behavior: returns ranked candidates and/or asks a clarifying question (seat vs seat belt).
+- HITL behavior: creates a pending submission via `submit_knowledge`.
+- Verification: a new JSON exists under `HitL_local/pending/` (or `get_submission_status` returns found/pending if you check via tool).
 
-### Review
+### Review (APPROVE path)
 Prompt:
 ```
 [TEST_ID: HR-000001]
@@ -151,6 +158,17 @@ Review the newest pending HITL submission as approved (operator_name "Test Opera
 Expected:
 - `record_review` returns `status=success`.
 - Approved list contains the id.
+
+### Review (REJECT path)
+Prompt:
+```
+[TEST_ID: HR-000002]
+Review the newest pending HITL submission as rejected (operator_name "Test Operator"; operator_role "reviewer"), include a short reason in review_notes, then confirm it shows up in the rejected list.
+```
+
+Expected:
+- `record_review` returns `status=success`.
+- Rejected list contains the id.
 
 ### (Optional) Capture MCP smoke test
 Prompt:

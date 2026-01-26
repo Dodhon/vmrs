@@ -20,7 +20,7 @@ gh pr create --repo Dodhon/vmrs --base main --draft --title "..." --body "Fixes 
 ```
 
 ### PR body template (plan-driven)
-Use this when your work starts with a plan doc in `dev_plans/` (see `.claude/skills/planning.md` for plan requirements).
+Use this when your work starts with a plan doc in `dev_plans/` (see `.claude/skills/planning/SKILL.md` for plan requirements).
 
 ```text
 Fixes #<issue-number>
@@ -116,4 +116,3 @@ gh run view --repo Dodhon/vmrs <run-id> --log
 ## Conventions
 - **Industry standard flow**: issue → branch → PR → merge → issue auto-closes.
 - Use closing keywords in PR body: `Fixes #123`, `Closes #123`, `Resolves #123`.
-

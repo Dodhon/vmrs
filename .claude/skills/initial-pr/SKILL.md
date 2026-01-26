@@ -18,7 +18,7 @@ Instead: resume the existing branch/PR and update it.
 - Repo: `Dodhon/vmrs`
 
 ## Reference (GitHub CLI)
-For repo-specific `gh` conventions and troubleshooting, read: `.claude/skills/github-cli-workflow.md`.
+For repo-specific `gh` conventions and troubleshooting, read: `.claude/skills/github-cli-workflow/SKILL.md`.
 
 ## 0) Preflight: confirm this is a “new issue”
 Recommended checks:
@@ -40,19 +40,19 @@ git pull --ff-only
 git checkout -b "<branch-name>"
 ```
 
-## 2) Draft a plan (MUST follow `.claude/skills/planning.md`)
+## 2) Draft a plan (MUST follow `.claude/skills/planning/SKILL.md`)
 
 ### Create a plan file in `dev_plans/`
 Create a new plan markdown file under `dev_plans/` (name is up to you).
 
 ### Gather issue context (recommended)
-Use `gh` to pull the issue description/comments (see `.claude/skills/github-cli-workflow.md`).
+Use `gh` to pull the issue description/comments (see `.claude/skills/github-cli-workflow/SKILL.md`).
 
 Also check the Backlog Project item `Status` for the issue/PR (project fields don’t show up in `gh issue list` / `gh pr list`).
 
 ## 3) Create a draft PR based on the plan (allowed)
 
-Use the PR drafting guidance/template in `.claude/skills/github-cli-workflow.md` and ensure the PR is derived from (and links to) the plan you wrote in Step 2.
+Use the PR drafting guidance/template in `.claude/skills/github-cli-workflow/SKILL.md` and ensure the PR is derived from (and links to) the plan you wrote in Step 2.
 
 Notes:
 - It’s **OK to create a draft PR** (use `gh pr create --draft`).

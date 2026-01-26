@@ -14,7 +14,7 @@
 - **Default assignment**: On issue opened/reopened, assign to `Dodhon` if unassigned.
 - **Lifecycle**: When an issue/PR is **completed** (closed), the Project item is updated to `Status=Done`.
 - **Backfill**: Provide a one-time (manual) backfill automation to add existing open issues/PRs to the Project and set baseline fields.
-- **Agent guidance**: Update `.claude/skills/github-cli-workflow.md` so future agents follow the updated best practices + troubleshooting.
+- **Agent guidance**: Update `.claude/skills/github-cli-workflow/SKILL.md` so future agents follow the updated best practices + troubleshooting.
 
 ### Architecture diagram
 #### C4 Level 1 (System Context)
@@ -187,7 +187,7 @@ GitHub Project "Backlog" reflects consistent triage metadata
      - Use GraphQL to list repository issues/PRs with `states: OPEN` and page via `pageInfo { hasNextPage endCursor }`.
      - Loop until `hasNextPage=false` (do not assume a small number of open items).
 10. **Update agent-facing workflow docs**
-   - Update `.claude/skills/github-cli-workflow.md` to reflect:
+   - Update `.claude/skills/github-cli-workflow/SKILL.md` to reflect:
      - PRs are also auto-added
      - label conventions that drive project field setting
      - common failure modes (PAT scopes/rotation; “resource not accessible”)

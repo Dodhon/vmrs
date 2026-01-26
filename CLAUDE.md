@@ -37,19 +37,19 @@ VMRS data processing and knowledge graph tooling that links VMRS codes with vend
 End goal: build a knowledge graph that stakeholders can query through a chatbot interface, with a HITL (human-in-the-loop) feedback capture loop for corrections and improvements.
 
 ## PR workflow (issue → branch → plan → PR)
-- Use `.claude/skills/initial-pr.md` **only when starting a new issue from scratch** (i.e., there is no existing branch/PR for that issue).
+- Use `.claude/skills/initial-pr/SKILL.md` **only when starting a new issue from scratch** (i.e., there is no existing branch/PR for that issue).
   - Preflight: check for an existing PR and branch first; if one exists, **do not** create a new “issue/<n>-…” branch—resume work on the existing branch/PR instead.
-- When using `.claude/skills/initial-pr.md`, also follow:
-  - `.claude/skills/github-cli-workflow.md` (Project “Status” lookup + PR body template)
-  - `.claude/skills/planning.md` (plan requirements; write a `dev_plans/*.md` plan)
+- When using `.claude/skills/initial-pr/SKILL.md`, also follow:
+  - `.claude/skills/github-cli-workflow/SKILL.md` (Project “Status” lookup + PR body template)
+  - `.claude/skills/planning/SKILL.md` (plan requirements; write a `dev_plans/*.md` plan)
 - It’s **OK to create a draft PR** (use `gh pr create --draft`) once there’s a plan doc.
 - **Do not create a ready-for-review PR** without approval.
 
 ## Primary references
 - `README.md` - when you need a high-level overview; why: broad project summary (may lag behind current workflows)
 - `/Users/thuptenwangpo/Library/Application Support/Claude/claude_desktop_config.json` - when updating Claude Desktop MCP servers
-- `.claude/skills/github-cli-workflow.md` - when checking issue/PR status (especially Project “Status” fields); why: standard gh + Project (v2) commands
-- `.claude/skills/initial-pr.md` - when starting work on a **new issue** (issue → branch → plan → PR draft); why: standardizes initial PR workflow
+- `.claude/skills/github-cli-workflow/SKILL.md` - when checking issue/PR status (especially Project “Status” fields); why: standard gh + Project (v2) commands
+- `.claude/skills/initial-pr/SKILL.md` - when starting work on a **new issue** (issue → branch → plan → PR draft); why: standardizes initial PR workflow
 - `docs/project_context.md` - when you need the current “agent context”; why: up-to-date workflows, assets, and commands
 - `docs/KNOWLEDGE_GRAPH_GUIDE.md` - when you need KG ingestion/extraction details; why: end-to-end pipeline guide
 - `docs/ORGANIZATION_SUMMARY.md` - when you need repo navigation rationale; why: structure and where things live

@@ -17,6 +17,8 @@ from typing import Any, Dict, List, Optional
 
 from mcp.server.fastmcp import FastMCP
 
+from src.hitl_schema import SCHEMA_VERSION, validate_review_input
+
 mcp = FastMCP("hitl_review")
 
 
@@ -160,73 +162,19 @@ async def get_submission(submission_id: str) -> Dict[str, Any]:
     Fetch a full pending submission by ID.
     """
     _ensure_dirs()
-    if not submission_id:
-        return {"status": "error", "message": "submission_id is required"}
-
-    path = PENDING_DIR / f"{submission_id}.json"
-    if not path.exists():
-        return {"status": "not_found", "id": submission_id, "location": "pending"}
-
-    try:
-        data = _load_submission(path)
-    except Exception as e:
-        return {"status": "error", "message": f"Failed to read JSON: {e}"}
-
-    mismatch = _validate_id_matches_filename(path, data)
-    if mismatch:
-        return {"status": "error", "message": mismatch}
-
-    if data.get("status") != "pending":
-        return {"status": "error", "message": "Only pending submissions can be fetched in Step 2"}
-
-    return {"status": "success", "id": submission_id, "location": "pending", "submission": data}
-
-
-@mcp.tool()
-async def record_review(
-    submission_id: str,
-    outcome: str,
-    reviewed_by: str,
-    review_notes: str,
-    operator_name: str,
-    operator_role: str,
-    operator_id: Optional[str] = None,
-    operator_team: Optional[str] = None,
-) -> Dict[str, Any]:
-    """
-    Record an operator review decision and move the submission out of pending.
-
-    Validates:
-    - pending/<id>.json exists
-    - JSON id matches filename
-    - status == "pending"
-    - outcome is approved|rejected
-    - review_notes is provided
-    - reviewed_by is provided
-    - operator_name + operator_role are required
-    """
-    _ensure_dirs()
-
-    if not submission_id:
-        return {"status": "error", "message": "submission_id is required"}
-    if outcome not in {"approved", "rejected"}:
-        return {"status": "error", "message": "outcome must be 'approved' or 'rejected'"}
-    if not isinstance(reviewed_by, str) or not reviewed_by.strip():
-        return {"status": "error", "message": "reviewed_by is required"}
-    if not isinstance(review_notes, str) or not review_notes.strip():
-        return {"status": "error", "message": "review_notes is required"}
-
-    # Step 3: operator name + role are required on every review.
-    if not isinstance(operator_name, str) or not operator_name.strip():
-        return {"status": "error", "message": "operator_name is required"}
-    if not isinstance(operator_role, str) or not operator_role.strip():
-        return {"status": "error", "message": "operator_role is required"}
-    for field_name, field_val in (
-        ("operator_id", operator_id),
-        ("operator_team", operator_team),
-    ):
-        if field_val is not None and (not isinstance(field_val, str) or not field_val.strip()):
-            return {"status": "error", "message": f"{field_name} must be a non-empty string when provided"}
+    errors = validate_review_input(
+        submission_id=submission_id,
+        outcome=outcome,
+        reviewed_by=reviewed_by,
+        review_notes=review_notes,
+        operator_name=operator_name,
+        operator_role=operator_role,
+        operator_id=operator_id,
+        operator_team=operator_team,
+    )
+    if errors:
+        first = errors[0]
+        return {"status": "error", "message": f"{first.field} {first.message}".strip()}
 
     pending_path = PENDING_DIR / f"{submission_id}.json"
     if not pending_path.exists():
@@ -258,7 +206,7 @@ async def record_review(
 
     # Apply review metadata
     reviewed_at_ms = _now_ms()
-    data["schema_version"] = 2
+    data["schema_version"] = SCHEMA_VERSION
     data["status"] = "reviewed"
 
     operator_obj: Dict[str, Any] = {"name": operator_name.strip(), "role": operator_role.strip()}

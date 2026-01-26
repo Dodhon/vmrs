@@ -3,34 +3,88 @@
 ## Links
 - Issue #27: Add test runner agent for HITL capture MCP server (`mcp/hitl_get_feedback`)
 - Issue #28: Add test runner agent for HITL review MCP server (`mcp/hitl_review`)
-- Existing runner: `.claude/agents/vmrs-test-runner.md`
+
+Key reference prompts (user-facing behavior):
+- VMRS lookup agent prompt: `interface prompts/lookup_agent/main_v4.txt`
+- HITL review agent prompt: `interface prompts/hitl_review_agent/main_v3.txt`
+
+Existing runners:
+- Neo4j QA runner: `.claude/agents/vmrs-test-runner.md`
+
+MCP servers:
 - Capture server: `mcp/hitl_get_feedback/server.py`
 - Review server: `mcp/hitl_review/server.py`
 
 ## Goal
-Add **two minimal test runner sub-agents** (similar to `vmrs-test-runner`) so we can exercise the HITL MCP servers in isolation.
+Add test runner sub-agents (similar to `vmrs-test-runner`) that match the **real product architecture**:
 
-End state: **3 total test runner agents**
-- `vmrs-test-runner`
-- `hitl-capture-runner`
-- `hitl-review-runner`
+**User-facing agents**
+1) **VMRS lookup agent**: answers using Neo4j (and optional web fallback) and captures operator feedback into HITL when present.
+2) **HITL review agent**: helps a different operator approve/reject pending HITL submissions.
+
+**Test runner end state**
+- `vmrs-test-runner` (Neo4j-only question answering)
+- `vmrs-lookup-hitl-runner` (integration runner: lookup + HITL capture)
+- `hitl-review-runner` (review operator workflow)
+
+Optional (lower-level smoke test; not a user-facing agent):
+- `hitl-capture-runner` (exercise capture MCP tools directly)
+
 
 ## Non-goals
 - Changing HITL schema or storage layout (tracked separately)
 - Changing the capture/review MCP servers beyond what is required to run tests
 
 ## Design
+
+### Repo recon requirement (process)
+Before implementing a new runner or writing its plan, first scan:
+- `README.md`
+- relevant `dev_plans/`
+- the MCP servers under `mcp/`
+- existing `.claude/agents/`
+
+This keeps runners aligned with established conventions.
+
+### Sub-agent details (what each runner is for)
+
+#### `vmrs-test-runner` (existing)
+- **File:** `.claude/agents/vmrs-test-runner.md`
+- **Purpose:** Neo4j-only VMRS Q&A (no HITL writes)
+- **Tools:** Neo4j schema + cypher read
+- **Use when:** validating retrieval/matching quality against question sets
+
+#### `vmrs-lookup-hitl-runner` (new; integration runner)
+- **File:** `.claude/agents/vmrs-lookup-hitl-runner.md`
+- **Purpose:** exercises the *real lookup pipeline*: answer the question, then capture operator feedback into HITL when present
+- **Tools:** Neo4j tools + HITL capture tools
+- **Use when:** validating that your lookup agent correctly triggers HITL submissions with required submitter metadata
+
+#### `hitl-review-runner`
+- **File:** `.claude/agents/hitl-review-runner.md`
+- **Purpose:** exercises the operator review workflow end-to-end
+- **Tools:** HITL review MCP tools
+- **Use when:** validating approve/reject decision recording + file movement
+
+#### `hitl-capture-runner` (optional; MCP smoke test)
+- **File:** `.claude/agents/hitl-capture-runner.md`
+- **Purpose:** minimal direct exercise of the capture MCP server tools (submit + status/list)
+- **Tools:** HITL capture MCP tools
+- **Use when:** isolating capture MCP validation/storage behavior from lookup logic
+
 ### Agent locations
-Add new sub-agent configs under:
-- `.claude/agents/hitl-capture-runner.md`
-- `.claude/agents/hitl-review-runner.md`
+Sub-agent configs live under:
+- `.claude/agents/`
 
 ### Tool wiring
-The agents should call MCP tools (no direct filesystem writes).
+The runners should call MCP tools (no direct filesystem writes).
 
-Expected tool namespaces (based on local Claude MCP config):
-- Capture: `mcp__hitl__submit_knowledge`, `mcp__hitl__get_submission_status`, `mcp__hitl__list_submissions`
-- Review: `mcp__hitl_review__list_submissions`, `mcp__hitl_review__get_submission`, `mcp__hitl_review__record_review`
+Expected tool namespaces (based on existing conventions in this repo):
+- Neo4j (lookup): `mcp__neo4j-aura__get_neo4j_schema`, `mcp__neo4j-aura__read_neo4j_cypher`
+- HITL capture: `mcp__hitl__submit_knowledge`, `mcp__hitl__get_submission_status`, `mcp__hitl__list_submissions`
+- HITL review: `mcp__hitl_review__list_submissions`, `mcp__hitl_review__get_submission`, `mcp__hitl_review__record_review`
+
+Note: `.claude/mcp.json` is gitignored in this repo; wiring is expected to be local.
 
 Note: `.claude/mcp.json` is gitignored in this repo; wiring is expected to be local.
 
@@ -44,39 +98,48 @@ Prompts must require a test id in this exact format:
 So existing hooks can capture the run and append to `test_log.csv`.
 
 ## Execution steps
-1. Create `.claude/agents/hitl-capture-runner.md`
-   - Similar style to `vmrs-test-runner`
-   - Includes minimal-valid `submit_knowledge` workflow
-   - Verifies submission exists via `get_submission_status` (and optionally `list_submissions`)
+1. Create `.claude/agents/vmrs-lookup-hitl-runner.md`
+   - Start from the same Neo4j schema + query guidelines as the VMRS lookup agent
+     (see `interface prompts/lookup_agent/main_v4.txt`).
+   - Include HITL capture behavior: when operator feedback is present, call `submit_knowledge`.
+   - Verify submission exists via `get_submission_status`.
 
 2. Create `.claude/agents/hitl-review-runner.md`
-   - Similar style to `vmrs-test-runner`
-   - Lists pending submissions
-   - Gets one submission
-   - Records an approved/rejected decision
-   - Confirms it appears in the destination list
+   - Pattern after the HITL review agent UX (see `interface prompts/hitl_review_agent/main_v3.txt`).
+   - Lists pending submissions, fetches one, records a decision, and confirms it appears in approved/rejected.
 
-3. Add/ensure `Closes #27` and `Closes #28` in the PR description.
+3. (Optional) Keep `.claude/agents/hitl-capture-runner.md` as a low-level smoke test for the capture MCP tools.
+
+4. Add/ensure `Closes #27` and `Closes #28` in the PR description.
 
 ## Acceptance criteria
-- [ ] `hitl-capture-runner` exists under `.claude/agents/` and references only the capture MCP tools.
-- [ ] `hitl-review-runner` exists under `.claude/agents/` and references only the review MCP tools.
-- [ ] Both prompts require `[TEST_ID: ...]` in the invoking prompt.
+- [ ] `vmrs-lookup-hitl-runner` exists under `.claude/agents/` and includes both:
+  - Neo4j lookup tools
+  - HITL capture tools
+- [ ] `hitl-review-runner` exists under `.claude/agents/` and references the review MCP tools.
+- [ ] Prompts require `[TEST_ID: ...]` in the invoking prompt.
 - [ ] A developer can run an end-to-end manual test:
-  - Capture runner creates a pending submission in `HitL_local/pending/`.
+  - Integration runner answers a lookup question and (when feedback is present) creates a pending submission in `HitL_local/pending/`.
   - Review runner moves it to `HitL_local/reviewed/{approved|rejected}/`.
 
+Optional:
+- [ ] `hitl-capture-runner` remains available as a capture MCP smoke test.
+
 ## Manual test recipes
-### Capture
+
+### VMRS lookup + HITL capture (integration)
 Prompt:
 ```
-[TEST_ID: HC-000001]
-Create a minimal HITL submission for VMRS 047-000-000 describing a small correction, then verify it exists.
+[TEST_ID: VL-000001]
+Lookup: What is the best VMRS component code for "air dryer"?
+Feedback: If you suggest 013-xxx-xxx, that seems wrong — our shop uses 012-002-xxx for this. Please record that as feedback.
+Submitter: name=Test Submitter, role=technician
 ```
 
 Expected:
-- Tool returns `status=success` with an `id`.
-- `get_submission_status` returns found/pending.
+- Runner queries Neo4j and returns top matches.
+- Runner creates a HITL pending submission via `submit_knowledge`.
+- `get_submission_status` returns found/pending for the returned id.
 
 ### Review
 Prompt:
@@ -88,3 +151,14 @@ Review the newest pending HITL submission as approved (operator_name "Test Opera
 Expected:
 - `record_review` returns `status=success`.
 - Approved list contains the id.
+
+### (Optional) Capture MCP smoke test
+Prompt:
+```
+[TEST_ID: HC-000001]
+Create a minimal HITL submission for VMRS 047-000-000 describing a small correction, then verify it exists.
+```
+
+Expected:
+- Tool returns `status=success` with an `id`.
+- `get_submission_status` returns found/pending.

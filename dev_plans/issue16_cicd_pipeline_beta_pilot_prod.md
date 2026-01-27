@@ -15,6 +15,17 @@ We will define and implement a minimal CI/CD system for VMRS that (1) runs deter
 ## Links
 - Issue #16: https://github.com/Dodhon/vmrs/issues/16
 
+## Executive summary (for manager feedback)
+We need a CI/CD + DataOps pipeline that can repeatedly build and deploy both (a) the application and (b) a versioned Neo4j Aura knowledge graph, while safely incorporating VMRS handbook updates, vendor data, HITL approvals, and removals.
+
+This plan proposes a **Graph Release** model (manifest + metrics + loadable snapshot artifact) built in CI (ephemeral Neo4j in Docker), then deployed to Aura environments via import/upload.
+
+Manager input requested (high-signal decisions):
+- **Prod graph deploy architecture:** confirm blue/green cutover is the right choice for “no downtime” and confirm the cutover mechanism (app secret flip vs DNS vs router).
+- **Beta/pilot graph deploy:** choose whether we accept downtime (in-place overwrite) or standardize on blue/green everywhere.
+- **Canonical data sources:** where the “remote canonical” datasets live for handbook/vendor/HITL/removals (repo vs object storage) and what the approval workflow is for HITL.
+- **Quality gates:** acceptable rollback time, drift thresholds, and required smoke queries before promotion.
+
 ## Goal
 Create a minimal but solid CI/CD foundation that supports:
 - automated CI on PRs

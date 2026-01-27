@@ -25,6 +25,9 @@ Manager input requested (high-signal decisions):
 - **Beta/pilot graph deploy:** choose whether we accept downtime (in-place overwrite) or standardize on blue/green everywhere.
 - **Canonical data sources:** where the “remote canonical” datasets live for handbook/vendor/HITL/removals (repo vs object storage) and what the approval workflow is for HITL.
 - **Quality gates:** acceptable rollback time, drift thresholds, and required smoke queries before promotion.
+- **Cross-issue alignment:** confirm the intended coupling between:
+  - Issue #15 (deterministic review decisions) → what constitutes “approved HITL”
+  - Issue #17 (HITL storage format + schema evolution) → where the canonical approved dataset lives
 
 ## Goal
 Create a minimal but solid CI/CD foundation that supports:

@@ -16,10 +16,16 @@ Decide the long-term storage approach for HITL records and define a schema evolu
 - Implementing the full production storage system (may be a follow-on)
 - Perfect analytics layer
 
-## Current state (baseline)
-- HITL records are JSON files in the repo working directory under `HitL_local/`.
-- Review flow moves pending → reviewed/{approved|rejected}.
-- Schema is versioned (`schema_version`) and centralized in `src/hitl_schema.py`.
+## Current state (repo-grounded baseline)
+- HITL records are JSON files under `HitL_local/`:
+  - pending: `HitL_local/pending/*.json`
+  - reviewed: `HitL_local/reviewed/{approved|rejected}/*.json`
+- The review MCP server (`mcp/hitl_review/server.py`) already:
+  - validates review inputs via `src/hitl_schema.validate_review_input`
+  - moves pending → reviewed via an atomic staging move (pending → staging → reviewed)
+  - writes reviewed JSON atomically and refuses overwrite
+- Canonical schema + versioning lives in `src/hitl_schema.py` (`SCHEMA_VERSION=2`) and CI enforces the prompt excerpt is up to date.
+- Current automated tests include `tests/test_hitl_schema.py` (validation + excerpt determinism).
 
 ## Options
 ### Option A — Keep JSON files (status quo)

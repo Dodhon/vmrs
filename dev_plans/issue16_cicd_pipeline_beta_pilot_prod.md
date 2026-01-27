@@ -29,18 +29,25 @@ Create a minimal but solid CI/CD foundation that supports:
 - A) Trunk-based + tagged releases
 - B) Release branches
 
+## Current repo state (as of plan creation)
+- GitHub Actions already exists:
+  - `.github/workflows/ci.yml` runs on PRs and pushes to `main`.
+    - Sets up Python 3.12
+    - Installs `pytest`
+    - Checks the HITL schema prompt excerpt is up to date (`python -m src.hitl_schema --check-excerpt "interface prompts/hitl_schema_excerpt.txt"`)
+    - Runs `pytest -q`
+  - `.github/workflows/add-to-project.yml` auto-triages issues/PRs into the Project (v2).
+- There is **no CD/deploy workflow** yet.
+- The repo is Python-first (see `requirements.txt` and the README `python3 -m venv ...` setup).
+
 ## Proposed approach (recommended v1)
-- Use GitHub Actions.
-- CI runs on PRs + pushes to main:
-  - python format/lint (if configured)
-  - unit tests
-  - minimal integration smoke (HITL file write/read path)
-- Build artifact is immutable and identifiable:
-  - container image tagged with commit SHA
-- CD is manual to start (minimize accidental prod deploy):
+- Build on the existing CI (`.github/workflows/ci.yml`) rather than replace it.
+- Extend CI minimally to include any deterministic lint/format checks you adopt (optional).
+- Add CD as separate workflows (manual first):
   - workflow_dispatch deploy to beta
   - promotion job: beta → pilot → prod
-- Rollback is “redeploy previous artifact SHA”.
+- Define rollback as “redeploy previous known-good artifact SHA”.
+- Artifact choice (container vs other) remains a decision gate; default recommendation is container image tagged by commit SHA.
 
 ## Work breakdown
 E1) Repo recon

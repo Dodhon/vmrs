@@ -28,6 +28,7 @@ Manager input requested (high-signal decisions):
 - **Notes policy:** confirm whether notes are required for reject only (recommended) or for both approve+reject.
 - **Tenant model assumption:** confirm single-tenant MVP vs designing for multi-tenant now (recommended to make `tenant_id` additive).
 - **Identity/auth seam:** confirm the expectation for when “real” AuthN/AuthZ must exist (local stub now vs immediate).
+- **Cross-issue alignment:** confirm how review artifacts should be stored/served as the canonical “approved HITL” dataset (ties to Issue #17 storage decisions and Issue #16 graph releases).
 
 ## Goal
 Ensure HITL review outcomes are **unambiguous**, **machine-checkable**, and **durably recorded** so downstream automation never depends on free-text interpretation.

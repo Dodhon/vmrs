@@ -8,9 +8,50 @@
 ## Goal
 Ensure HITL review outcomes are **unambiguous**, **machine-checkable**, and **durably recorded** so downstream automation never depends on free-text interpretation.
 
+## Threat model / context
+This system will be exposed as an agent “plugin” across sites/devices (e.g., Copilot-style). Treat **callers as untrusted by default**.
+
+We want an identical, deterministic experience for:
+- legitimate operators
+- sloppy users
+- bad actors
+
+So the server must enforce determinism + safety regardless of who is interacting.
+
 ## Non-goals
 - Applying approved changes into Neo4j (review is a gate only)
 - Storage backend migration (tracked separately)
+
+## Local MVP vs Production (what differs)
+### Local MVP (single-machine)
+Minimum to ship safely while keeping the architecture compatible with prod:
+- Tool-boundary decision recording + strict schema validation
+- Write-once, idempotent persistence (no overwrite)
+- Path safety (no traversal) + bounded payload sizes (basic DOS resistance)
+- “Authenticated principal” interface exists, even if the principal is hardcoded locally (do not treat user-supplied `operator` fields as security)
+- Add `submission_hash` + server-generated `review_id` now (cheap, future-proof)
+
+### Production (plugin accessible anywhere)
+Additional requirements because the surface is untrusted:
+- Real AuthN/AuthZ for review actions (who can approve/reject, and for what scope)
+- Replay resistance / request integrity (prevent replaying an approval)
+- Rate limiting + quotas + retention policy
+- Durable storage with atomic conditional writes (DB/object store) + append-only audit trail
+
+## Tenant model options (include both; decide later)
+We may be either single-tenant or multi-tenant.
+
+### Option 1 — Single-tenant (simpler)
+- One global backlog + one reviewer pool
+- All records share one namespace
+- Still requires AuthN/AuthZ (bad actors exist), but no tenant scoping
+
+### Option 2 — Multi-tenant (recommended for “plugin anywhere”)
+- Every submission/review is scoped by `tenant_id` (org/workspace)
+- Authorization is evaluated within a tenant
+- Storage paths/keys include tenant scoping to prevent cross-tenant reads/writes
+
+**Plan implication:** design schemas and storage keys so adding `tenant_id` later is additive (e.g., optional now, required in prod).
 
 ## Research / best practices (with sources)
 These sources converge on the same core idea: approvals should be explicit, schema-validated, and durably recorded.
@@ -21,14 +62,14 @@ These sources converge on the same core idea: approvals should be explicit, sche
 Source: Letta HITL guide
 - https://docs.letta.com/guides/agents/human-in-the-loop/
 
-### 2) Validate decisions against a schema (including enums)
+### 2) Validate decisions against a schema (including enums) + distinguish cancel/decline
 - MCP’s elicitation model uses a JSON schema for structured user input and explicitly supports enum schemas.
-- It also distinguishes user actions as accept/decline/cancel (important to avoid “skip” being ambiguous).
+- It distinguishes user actions as accept/decline/cancel, which prevents “skip” ambiguity.
 Source: MCP spec (elicitation)
 - https://modelcontextprotocol.io/specification/2025-06-18/client/elicitation
 
 ### 3) Durable approvals; avoid duplicate approvals
-- Durable workflow patterns emphasize storing approvals such that crashes/timeouts don’t require re-approval.
+- Durable workflow patterns emphasize storing approvals so crashes/timeouts don’t require re-approval.
 - Avoid re-processing the same approval and ensure idempotent review recording.
 Source: Temporal tutorial (durable HITL)
 - https://learn.temporal.io/tutorials/ai/building-durable-ai-applications/human-in-the-loop/
@@ -61,9 +102,9 @@ Source: Workflow DevKit example
 - If you ever want the model to emit JSON review objects directly, validate JSON (pydantic/jsonschema) and retry until valid.
 
 ## Proposed approach (recommended)
-Implement **Option B** (tool-boundary enforcement) plus a small UX refinement from **Option C**:
+Implement **Option B** (tool-boundary enforcement) plus a small UX refinement from **Option C**.
 
-### Guarantees this should provide
+### Core guarantees (determinism)
 1) **Decision is captured at the boundary, not inferred from prose**
 - Persisted truth comes only from the tool call (not the agent’s narrative).
 
@@ -77,11 +118,19 @@ Implement **Option B** (tool-boundary enforcement) plus a small UX refinement fr
 
 4) **Reviewer context + actionable rejection reasons are captured**
 - Capture enough context for review.
-- Require (at least) actionable notes on rejection.
+- Require actionable notes on rejection.
+
+### Security guarantees (bad-actor resistance)
+These should hold even if a caller is malicious:
+- **AuthN/AuthZ gate for review writes** (prod): only authorized principals can persist decisions.
+- **Write-once reviewed artifacts**: never overwrite silently.
+- **Path safety**: validate identifiers used in paths (no traversal).
+- **Bounded payload sizes**: prevent disk/CPU blowups.
+- **Replay-safe** (prod): approvals cannot be replayed to create inconsistent state.
 
 ### Notes requirement (reduce friction)
-- `rejected` → `review_notes` required (min length >= 1)
-- `approved` → `review_notes` optional (or default)
+- `rejected` → `notes` required (min length >= 1)
+- `approved` → `notes` optional
 
 ## Key design decisions to make (tight)
 1) **Skip semantics (avoid ambiguity)**
@@ -89,59 +138,73 @@ Implement **Option B** (tool-boundary enforcement) plus a small UX refinement fr
 - Treat explicit refusal separately from reject (don’t conflate).
 (Conceptually mirrors MCP accept/decline/cancel separation.)
 
-2) **Canonical casing**
-- Prefer lowercase enums: `approved | rejected` to reduce drift.
+2) **Canonical casing + field names**
+- Prefer lowercase enums: `approved | rejected`.
+- Canonical field: `notes` (avoid mixing `review_notes` vs `notes`).
 
-3) **Canonical review field placement** (ties to issue #38)
+3) **Canonical review record shape** (ties to issue #38)
 - Canonical shape:
   ```json
   {
     "schema_version": 1,
+    "tenant_id": "optional-now-required-later",
+    "submission_id": "...",
+    "submission_hash": "...",
     "review": {
+      "review_id": "...",
       "decision": "approved",
       "reviewed_at_ms": 1730000000000,
-      "operator": {"name": "…", "role": "…"},
+      "principal": {"id": "…", "source": "…"},
+      "operator_display": {"name": "…", "role": "…"},
       "notes": "…"
     }
   }
   ```
 
 4) **Metadata to prevent mismatched/duplicate approvals**
-- Consider adding:
-  - `submission_hash` (hash of the pending payload at review time)
-  - `review_request_id` / server-generated review UUID
+- Include:
+  - `submission_hash` (hash of pending payload at review time)
+  - `review_id` (server-generated UUID)
   - `schema_version`
+- Optional prod:
+  - `review_request_id` / tool_call_id (nonce) for replay resistance
 
 ## Work breakdown
+E0) Threat-model hardening (MVP now; prod-ready seams)
+- Define principal model (even if hardcoded locally) and ensure it is server-derived.
+- Add payload bounds (max lengths / max total size).
+- Validate identifiers used for filesystem paths.
+
 E1) Harden server-side validation
-- Ensure outcome is restricted to enum.
-- Ensure required operator identity fields are non-empty.
+- Ensure decision is restricted to enum.
+- Ensure required fields are present.
 - Enforce notes requirement by outcome:
   - rejected → notes required
   - approved → notes optional
-- Decide/implement explicit “skip” semantics (no persisted decision).
+- Decide/implement explicit “skip/cancel” semantics (no persisted decision).
 
 E2) Deterministic persistence (crash-safe + no double-review)
 - Implement an idempotent pattern:
   - lock (per submission_id)
   - check already-reviewed → return existing record
   - stage write + atomic rename
-  - no overwrite
-- Consider upgrading reviewed artifacts to per-submission directories to co-locate payload + review metadata.
+  - **no overwrite**
 
-E3) Metadata
-- Add `submission_hash` and a server-generated review id, if we want stronger auditability.
+E3) Metadata + auditability
+- Add `submission_hash` + server-generated `review_id`.
+- Optional prod: add `review_request_id` and record an append-only audit event per attempt.
 
 E4) Prompt/test updates
-- Review agent asks operator for Approve/Reject/Skip, with “Skip” mapping to no persisted decision.
+- Review agent asks for Approve/Reject/Skip, with “Skip” mapping to no persisted decision.
 - Tests cover approve + reject + skip/cancel.
 
 ## Validation plan
 V1) Validation (unit)
-- outcome not in enum → reject.
-- missing operator fields → reject.
+- decision not in enum → reject.
+- missing required fields → reject.
 - rejected with empty notes → reject.
-- approved with empty notes → allowed (if we adopt the low-friction rule).
+- approved with empty notes → allowed.
+- oversize payloads → reject.
 
 V2) Persistence/idempotency (integration)
 - Approve then re-submit same review attempt → returns existing record; no duplicates.
@@ -149,7 +212,7 @@ V2) Persistence/idempotency (integration)
 
 V3) End-to-end manual
 - Create a pending submission.
-- Record approve and verify file moved to `HitL_local/reviewed/approved/`.
-- Record reject and verify file moved to `HitL_local/reviewed/rejected/`.
+- Record approve and verify reviewed artifact created.
+- Record reject and verify reviewed artifact created.
 - Skip/cancel leaves submission pending.
 - Confirm reviewed records are machine-parseable and consistent.

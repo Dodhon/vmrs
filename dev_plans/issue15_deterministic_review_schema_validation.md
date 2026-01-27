@@ -18,6 +18,17 @@ We will make HITL review outcomes deterministic by treating the MCP server tool 
 - Review MCP server: `mcp/hitl_review/server.py`
 - Schema/validation helpers: `src/hitl_schema.py`
 
+## Executive summary (for manager feedback)
+We need HITL review decisions to be **deterministic at the tool boundary** (never inferred from free text), **schema-validated**, and **durably recorded** so downstream automation (including knowledge graph releases in Issue #16) can trust them.
+
+The repo is already close: the review MCP server validates inputs, refuses overwrite, and performs an atomic pending→staging→reviewed flow. The remaining work is to close ambiguity gaps (Skip semantics), harden against bad inputs (path safety + payload bounds), and add audit fields (`review_id`, `submission_hash`) so approvals are replay-safe and traceable.
+
+Manager input requested (high-signal decisions):
+- **Skip/cancel semantics:** confirm that Skip/Cancel results in *no persisted decision* and the submission remains pending (vs adding a third state).
+- **Notes policy:** confirm whether notes are required for reject only (recommended) or for both approve+reject.
+- **Tenant model assumption:** confirm single-tenant MVP vs designing for multi-tenant now (recommended to make `tenant_id` additive).
+- **Identity/auth seam:** confirm the expectation for when “real” AuthN/AuthZ must exist (local stub now vs immediate).
+
 ## Goal
 Ensure HITL review outcomes are **unambiguous**, **machine-checkable**, and **durably recorded** so downstream automation never depends on free-text interpretation.
 

@@ -1,5 +1,18 @@
 # Plan: Issue #15 — Deterministic, schema-validated HITL review decisions
 
+## 0. Executive Summary
+We will make HITL review outcomes deterministic by treating the MCP server tool call as the sole source of truth for persisted decisions (never inferred from prose). The server will validate a strict decision schema, record decisions durably and idempotently (no duplicates, crash-safe), and harden the filesystem write path against bad inputs (path traversal, unbounded payload sizes). This plan also establishes a production seam for authentication/authorization and multi-tenant scoping without forcing a storage migration yet.
+
+**Ask (decisions needed to proceed):**
+- Decide skip semantics: is “Skip” (a) a no-op that leaves a submission pending, or (b) a persisted state/event?
+- Decide notes policy: are notes required for approve, or only for reject?
+- Decide canonical field names/enums for review payloads (e.g., `notes` vs `review_notes`, enum casing).
+
+## 1. Introduction / Purpose
+- Purpose: define how we will guarantee **unambiguous**, **machine-checkable**, and **durably recorded** HITL review decisions.
+- Audience: maintainers and implementers of `mcp/hitl_review/server.py` and the HITL schema/prompt surface.
+- Decision enabled: accept the plan (incl. the three asks above) so implementation can proceed without re-litigating semantics.
+
 ## Links
 - Issue #15: HITL review agent: make approval decision deterministic and schema-validated
 - Review MCP server: `mcp/hitl_review/server.py`
@@ -7,6 +20,52 @@
 
 ## Goal
 Ensure HITL review outcomes are **unambiguous**, **machine-checkable**, and **durably recorded** so downstream automation never depends on free-text interpretation.
+
+## Functional requirements
+FR1. The only persisted decision record is created by a validated server-side tool call (not by parsing model prose).
+FR2. The server only persists allowed outcomes (enum); invalid outcomes never produce a reviewed artifact.
+FR3. A given submission can be reviewed at most once; repeated attempts return the existing recorded outcome (idempotent).
+FR4. Review records include sufficient metadata to link the decision to the reviewed submission (submission_id + reviewed_at_ms at minimum).
+FR5. “Skip” is handled consistently across clients and server (see Ask above); there is no ambiguous partial persistence.
+
+## Non-functional requirements
+NFR1. Persistence is crash-safe and atomic: no partial reviewed records, and no silent overwrite.
+NFR2. Concurrency-safe: two concurrent review attempts cannot create two different reviewed records.
+NFR3. Path-safe: submission identifiers cannot cause path traversal or writes outside expected directories.
+NFR4. Bounded inputs: server enforces maximum sizes/lengths to mitigate DOS/storage bloat.
+NFR5. Deterministic output: reviewed artifacts must be machine-parseable and stable in structure.
+
+## Architecture diagram (runtime + storage)
+### High-level (system context)
+```
+Operator/Reviewer (human)
+        |
+        v
+Review Agent UI / Client
+        |
+        v
+MCP Tool: mcp/hitl_review/server.py  ---->  HitL_local/* (pending/reviewed)
+        |
+        v
+Downstream automation reads reviewed artifacts (never model prose)
+```
+
+### Low-level (containers + data stores)
+```
++------------------------+        +------------------------------+
+| Review client/agent UI |  MCP   | hitl_review MCP server       |
+| (Approve/Reject/Skip)  | -----> | - validate_review_input       |
++------------------------+        | - lock per submission_id      |
+                                  | - atomic move/write           |
+                                  +---------------+--------------+
+                                                  |
+                                                  v
+                                     +-----------------------------+
+                                     | Local filesystem storage     |
+                                     | HitL_local/pending/*.json    |
+                                     | HitL_local/reviewed/...      |
+                                     +-----------------------------+
+```
 
 ## Threat model / context
 This system will be exposed as an agent “plugin” across sites/devices (e.g., Copilot-style). Treat **callers as untrusted by default**.
@@ -220,7 +279,7 @@ E1) Harden server-side validation
 
 E2) Deterministic persistence (crash-safe + no double-review)
 - Implement an idempotent pattern:
-  - lock (per submission_id)
+  - lock (per submission_id) using a lockfile created with exclusive create (e.g., `O_EXCL`) and a short timeout
   - check already-reviewed → return existing record
   - stage write + atomic rename
   - **no overwrite**

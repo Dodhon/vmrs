@@ -38,6 +38,41 @@ Additional requirements because the surface is untrusted:
 - Rate limiting + quotas + retention policy
 - Durable storage with atomic conditional writes (DB/object store) + append-only audit trail
 
+## Repo status vs this plan (as of today)
+This section is a quick reality check so implementation work is scoped correctly.
+
+### Already implemented in repo (baseline is stronger than a blank slate)
+- **Tool-boundary enforcement exists**: `mcp/hitl_review/server.py` exposes `record_review(...)` and persists review outcomes only via this tool.
+- **Server-side validation exists**: `src/hitl_schema.validate_review_input(...)` enforces:
+  - `outcome ∈ {approved, rejected}`
+  - `review_notes` required
+  - `operator_name` and `operator_role` required
+- **Deterministic file movement + overwrite refusal**:
+  - `record_review` refuses to overwrite if a reviewed destination exists.
+  - It does an atomic move out of pending (`pending → staging`) before writing the reviewed file, reducing double-review risk.
+- **Canonical schema source exists**: `src/hitl_schema.py` owns `SCHEMA_VERSION` and prompt-safe schema excerpt.
+- **Reviewed JSON shape is mostly aligned**:
+  - writes `review.{decision, reviewed_at_ms, notes, operator}`
+  - mirrors legacy top-level fields for back-compat
+  - writes to `HitL_local/reviewed/{approved|rejected}/<id>.json` and sets `status = "reviewed"`
+
+### Not yet implemented / mismatches (work required)
+- **Skip/cancel semantics are not enforced end-to-end**:
+  - Review agent prompt offers Approve/Reject/Skip, but the server tool only accepts approved/rejected.
+  - Decide whether “Skip” is a no-op (no tool call; remains pending) and ensure all clients behave identically.
+- **Bad-actor hardening is missing** (critical for plugin-anywhere future):
+  - Path safety: `submission_id` is used to form paths; add strict ID validation to prevent traversal.
+  - Bounded payload sizes: add max lengths to prevent DOS / storage bloat.
+- **Principal/Auth seam is missing**:
+  - Current operator identity is user-supplied text; not trustworthy for prod.
+  - Introduce a server-derived `principal` model (local stub now, real auth in prod).
+- **Policy alignment needed**:
+  - Current code requires notes for both approve and reject; plan proposes reject-required / approve-optional (choose one).
+- **Auditability fields not yet added**:
+  - `review_id` (server generated) and `submission_hash` (hash of pending payload at review time).
+- **Tenant scoping not present**:
+  - If multi-tenant is likely, design now so `tenant_id` can be additive (optional now, required later).
+
 ## Tenant model options (include both; decide later)
 We may be either single-tenant or multi-tenant.
 

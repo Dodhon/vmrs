@@ -101,7 +101,7 @@ Principals (who can do what)
 
 Security, privacy, compliance
 - HITL notes/context may contain sensitive operational/vendor data.
-- Redaction policy: TBD (define what can be stored in notes/context, what must be masked, and retention windows).
+- Redaction/retention: follow company data handling standards (Reyes). Any HITL notes/context must comply; if unclear, default to minimization and escalation.
 - Integrity: approved dataset export is tamper-evident via deterministic manifest + per-record hashes. (Optional later: sign artifacts.)
 
 Reliability
@@ -343,7 +343,7 @@ approved_hitl_release_<date>__<gitsha>.zip
 
 ## Next steps
 1) Get manager responses below.
-2) Define the redaction policy (TBD): what is allowed in notes/context, what must be masked, and retention windows.
+2) Confirm company data handling standard (Reyes) for redaction/retention expectations for HITL notes/context. If unclear, default to minimization and escalate for guidance.
 3) Update this doc if needed.
 4) Proceed with implementation PRs per issue.
 

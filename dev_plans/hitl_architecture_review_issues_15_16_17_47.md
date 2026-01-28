@@ -1,5 +1,17 @@
 HITL ARCHITECTURE REVIEW (BUNDLE): ISSUES 15, 16, 17, 47
 
+Table of contents
+- Objective
+- Scope (what this covers)
+- Why these are bundled
+- Proposed architecture (high level)
+- System invariants (non-negotiables)
+- Contract decisions to lock (D1/D2/D3)
+- Open questions (explicit, non-blockers)
+- Definition of done
+- Next steps
+- Manager response (copy/paste)
+
 Objective
 Produce one coherent HITL architecture that makes decisions deterministic, storage reliable, and KG releases auditable/rollbackable.
 

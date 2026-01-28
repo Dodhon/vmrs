@@ -17,6 +17,24 @@ We will choose a storage approach for HITL records that matches VMRS’s near-te
 - Current local storage: `HitL_local/{pending,reviewed}/` JSON files
 - Canonical schema/versioning: `src/hitl_schema.py` (`SCHEMA_VERSION`)
 
+## Executive summary (for manager feedback)
+HITL records currently live as local JSON files, which is great for MVP speed but becomes brittle once we need: (a) multi-device access, (b) reliable querying/reporting, and (c) a **remote canonical** dataset that can be used to build Neo4j Aura Graph Releases (Issue #16).
+
+This plan frames the storage decision as a tradeoff between simplicity (JSON) and operational/query robustness (SQLite/Postgres). It also defines a schema evolution approach so we can change HITL formats without breaking review automation (Issue #15) or CI/CD.
+
+Manager input requested (high-signal decisions):
+- **Storage target by environment:** for beta/pilot/prod, do we keep JSON, move to SQLite, or go directly to Postgres?
+- **Remote canonical dataset:** do we want the canonical “approved HITL” dataset to live in object storage (versioned exports) vs in a database?
+- **Schema evolution policy:** read-time upcasting vs write-time migrations, and how many schema versions we support concurrently.
+
+Quick architecture sketch (local authoring → remote canonical → graph builds):
+
+```
+local capture/runs          local review gate                 remote canonical               graph release
+-----------------         -----------------                 ----------------               ------------
+HitL_local/pending/*.json -> record_review tool -> HitL_local/reviewed/* -> [export/sync] -> approved_hitl@version -> kg-build (Neo4j CI)
+```
+
 ## Goal
 Decide the long-term storage approach for HITL records and define a schema evolution strategy that supports:
 - querying and reporting (status/date/operator/vmrs_code/etc.)

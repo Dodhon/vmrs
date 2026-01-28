@@ -72,9 +72,14 @@ System invariants (non-negotiables)
 Contract decisions to lock (D1/D2/D3)
 
 D1. Review decision contract (Issue 15)
-- Outcomes enum: approved, rejected, needs_clarification.
+- Current schema vs proposed schema (clarifies needs_clarification)
+  - Current HITL schema excerpt supports terminal review outcomes: approved, rejected.
+  - Proposed architecture adds needs_clarification as a workflow state (non-terminal) for follow-up.
+    In the MVP, needs_clarification is NOT a terminal review decision; it is recorded as an event/state and returns to pending once feedback is received.
+- Terminal outcomes enum: approved, rejected.
+- Non-terminal state: needs_clarification.
 - Skip semantics: Skip means needs_clarification (defer/follow-up). Reject is separate.
-- Notes: required for all outcomes.
+- Notes: required for all outcomes/states.
 - Terminal decision rule:
   - The first terminal decision (approved or rejected) wins for a submission_id.
   - Subsequent terminal attempts return the existing terminal decision (idempotent).
@@ -98,6 +103,10 @@ approved_or_rejected (terminal)  needs_clarification (non-terminal)
                                   |
                                   v
                      clarification_provided -> pending
+
+Terminal note
+- approved_or_rejected is a terminal bucket in this diagram.
+- The system still records the specific terminal outcome (approved vs rejected), and rejected decisions carry negative context/evidence.
 
 D2. Storage + queue (Issues 17 and 47)
 - MVP storage: SQLite.
@@ -283,9 +292,11 @@ HITLDecisionEvent -- SUPERSEDES --> HITLDecisionEvent
 
 Rationale (why this model)
 - Reified mapping nodes make it easy to attach: (a) approval provenance, (b) rejection reasons, (c) superseding history.
-- Active mapping rule must be explicit. If the business rule is VendorPart:Component is 1:1, then enforce:
-  - at most one active VendorPartComponentMapping per VendorPart at a time (status=active)
-  - new approvals supersede the prior mapping (status -> superseded)
+- Active mapping rule must be explicit.
+  - Invariant: VendorPart has 0..1 active mapping at a time.
+  - If the business rule is VendorPart:Component is 1:1, enforce:
+    - at most one active VendorPartComponentMapping per VendorPart at a time (status=active)
+    - new approvals supersede the prior mapping (status -> superseded)
 - Even with 1:1, avoid redundant “source-of-truth” fields. If VendorPart stores vmrs/system/assembly/component as strings, they can drift from relationships.
   Treat these as derived (or explicitly label them as cached copies) and define which is authoritative.
 - needs_clarification is provenance only; it should not produce active mappings.
@@ -331,12 +342,20 @@ Next steps
 MANAGER RESPONSE (COPY/PASTE)
 Please reply by copying this block and filling in blanks.
 
+Fast path
+- Approve direction (YES/NO): ____
+- Approve D1 (decision contract) (YES/NO): ____
+- Approve D2 (SQLite + event log + state projection) (YES/NO): ____
+- Approve D3 (batch Graph Releases + deterministic export artifact) (YES/NO): ____
+
+If any NO above, fill details below
+
 Overall
 - Approve this HITL architecture bundle as the contract for Issues 15/16/17/47? (YES/NO): ____
 
 Issue 15 review determinism
-- Outcomes enum approved/rejected/needs_clarification (YES/NO): ____
-- Notes required for all outcomes (YES/NO): ____
+- Terminal outcomes enum is approved/rejected; needs_clarification is a non-terminal state that returns to pending after feedback (YES/NO): ____
+- Notes required for all outcomes/states (YES/NO): ____
 - Skip means needs_clarification (defer/follow-up) and reject is separate (YES/NO): ____
 - Concurrency rule: first terminal wins; later attempts return existing; corrections only via explicit tool (YES/NO): ____
 - Corrections: append superseding event referencing supersedes_event_id; never overwrite; keep history queryable (YES/NO): ____

@@ -230,9 +230,13 @@ jobs:
 
             async function ensureLinkedPRsInProject({ projectId, issueNumber, maxPRs = 200 }) {
               // Best-effort: scan recent PRs and add any that link to this issue.
-              // GitHub only exposes strong issue<->PR linkage via closingIssuesReferences.
+              // Prefer strong linkage (closingIssuesReferences), but also support non-closing patterns like:
+              //   "Related: #123", "Tracking #123", "Relates to: #123"
+              // This keeps the Project board useful even when PRs should NOT auto-close issues.
               let cursor = null;
               let seen = 0;
+
+              const issueRefRe = new RegExp(String.raw`\b(related|relates|tracking)\b[^#\n\r]{0,40}#${issueNumber}\b`, "i");
 
               while (true) {
                 const q = `
@@ -242,6 +246,7 @@ jobs:
                         nodes {
                           id
                           number
+                          body
                           closingIssuesReferences(first: 20) { nodes { number } }
                         }
                         pageInfo { hasNextPage endCursor }
@@ -257,8 +262,11 @@ jobs:
                 for (const pr of prs) {
                   seen += 1;
                   const closes = pr?.closingIssuesReferences?.nodes || [];
-                  const matches = closes.some((i) => i?.number === issueNumber);
-                  if (matches) {
+                  const strongMatch = closes.some((i) => i?.number === issueNumber);
+                  const body = String(pr?.body || "");
+                  const weakMatch = issueRefRe.test(body);
+
+                  if (strongMatch || weakMatch) {
                     await ensureProjectItemForContent(projectId, pr.id);
                   }
                   if (seen >= maxPRs) return;

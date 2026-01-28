@@ -199,6 +199,10 @@ D3. KG update + release model (Issue 16)
 
 Approved dataset export (release input)
 - Format: zipped bundle containing manifest + per-record JSON + hashes.
+- At export time, finalize the exact KG changes to apply:
+  - the entities and relationships to write
+  - the properties on those nodes/edges
+  This makes the Graph Release reproducible and auditable (the KG isn’t “re-decided” at deploy time).
 - Reproducibility rules:
   - manifest is deterministic (stable key ordering; records sorted by submission_id).
   - record JSON serialization is canonical.

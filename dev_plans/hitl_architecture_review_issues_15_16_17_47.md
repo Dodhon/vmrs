@@ -1,38 +1,44 @@
-HITL ARCHITECTURE REVIEW (BUNDLE): ISSUES 15, 16, 17, 47
+# HITL Architecture Review (Bundle): Issues #15, #16, #17, #47
 
-Table of contents
-- Objective
-- Scope (what this covers)
-- Why these are bundled
-- Proposed architecture (high level)
-- System invariants (non-negotiables)
-- Contract decisions to lock (D1/D2/D3)
-- Open questions (explicit, non-blockers)
-- Definition of done
-- Next steps
-- Manager response (copy/paste)
+## Table of contents
+- [Objective](#objective)
+- [Scope](#scope)
+- [Why these are bundled](#why-these-are-bundled)
+- [Proposed architecture (high level)](#proposed-architecture-high-level)
+- [System invariants (non-negotiables)](#system-invariants-non-negotiables)
+- [Contract decisions to lock (D1/D2/D3)](#contract-decisions-to-lock-d1d2d3)
+- [Open questions (explicit, non-blockers)](#open-questions-explicit-non-blockers)
+- [Definition of done](#definition-of-done)
+- [Next steps](#next-steps)
+- [Manager response (copy/paste)](#manager-response-copypaste)
 
-Objective
+## Objective
 Produce one coherent HITL architecture that makes decisions deterministic, storage reliable, and KG releases auditable/rollbackable.
 
-Scope (what this covers)
-- Issue 15: deterministic, schema-validated HITL review decisions
-- Issue 17: HITL storage format + schema evolution
-- Issue 47: whether HITL status/queue needs stateful storage
-- Issue 16: CI/CD + release/rollback model for deploying the knowledge graph
+## Scope
+This doc bundles and aligns:
+- **#15** Deterministic, schema-validated HITL review decisions
+- **#17** HITL storage format + schema evolution
+- **#47** Evaluate stateful storage for HITL status/queue
+- **#16** CI/CD + release/rollback model for deploying the knowledge graph
 
-Why these are bundled
-These issues define one coupled contract: (a) what a decision is, (b) where truth lives, and (c) how approved HITL becomes a release input for the KG.
+## Why these are bundled
+These issues define one coupled contract:
+- what a decision *is*
+- where HITL truth lives
+- how approved HITL becomes a release input for KG builds
 
-Proposed architecture (high level)
-Canonical flow
-1) Capture creates a pending submission (schema_versioned).
+## Proposed architecture (high level)
+
+### Canonical flow
+1) Capture creates a pending submission (schema-versioned).
 2) Review records an explicit decision via a tool call (tool-boundary truth).
 3) Approved HITL is exported as a versioned dataset artifact.
 4) CI/CD builds a Graph Release from approved inputs and deploys it to Neo4j (rollbackable).
 
-HITL E2E diagram (conceptual)
+### HITL E2E diagram (conceptual)
 
+```text
                  +-------------------+
                  |  Ingest / Capture |
                  |  (agent + tools)  |
@@ -74,36 +80,45 @@ HITL E2E diagram (conceptual)
                  +-------------------+
                  | Neo4j Aura (KG)   |
                  +-------------------+
+```
 
-System invariants (non-negotiables)
-- Tool-boundary truth: no decision inferred from prose.
-- Append-only history: do not rewrite records; corrections are new events.
-- Provenance completeness: each submission includes who touched it, pipeline step, and relevant info up to that step.
-- Production identity seam: in prod use employee id (from auth/logs); MVP stores name + role.
+## System invariants (non-negotiables)
+- **Tool-boundary truth:** no decision inferred from prose.
+- **Append-only history:** do not rewrite records; corrections are new events.
+- **Provenance completeness:** each submission includes who touched it, pipeline step, and relevant info up to that step.
+- **Production identity seam:** in prod use employee id (from auth/logs); MVP stores name + role.
 
-Contract decisions to lock (D1/D2/D3)
+## Contract decisions to lock (D1/D2/D3)
 
-D1. Review decision contract (Issue 15)
-- Current schema vs proposed schema (clarifies needs_clarification)
-  - Current HITL schema excerpt supports terminal review outcomes: approved, rejected.
-  - Proposed architecture adds needs_clarification as a workflow state (non-terminal) for follow-up.
-    In the MVP, needs_clarification is NOT a terminal review decision; it is recorded as an event/state and returns to pending once feedback is received.
-- Terminal outcomes enum: approved, rejected.
-- Non-terminal state: needs_clarification.
-- Skip semantics: Skip means needs_clarification (defer/follow-up). Reject is separate.
+### D1. Review decision contract (Issue #15)
+
+#### Current schema vs proposed schema (clarifies needs_clarification)
+- Current HITL schema excerpt supports terminal review outcomes: **approved**, **rejected**.
+- Proposed architecture adds **needs_clarification** as a workflow state (non-terminal) for follow-up.
+  - In the MVP, needs_clarification is **not** a terminal review decision.
+  - It is recorded as an **event/state** and returns to **pending** once feedback is received.
+
+#### Semantics
+- Terminal outcomes enum: **approved**, **rejected**.
+- Non-terminal state: **needs_clarification**.
+- Skip semantics: Skip means **needs_clarification** (defer/follow-up). Reject is separate.
 - Notes: required for all outcomes/states.
-- Terminal decision rule:
-  - The first terminal decision (approved or rejected) wins for a submission_id.
-  - Subsequent terminal attempts return the existing terminal decision (idempotent).
-- Corrections:
-  - Corrections are explicit and append-only (dedicated correction action/tool).
-  - Correction event must reference the prior decision event id (supersedes_event_id).
-  - Prior decisions remain queryable for audit and KG provenance.
-- Race behavior:
-  - Concurrent terminal reviews: first write wins; other caller receives the already-recorded terminal decision.
 
-Review state machine (MVP)
+#### Terminal decision rule
+- The first terminal decision (approved or rejected) wins for a submission_id.
+- Subsequent terminal attempts return the existing terminal decision (idempotent).
 
+#### Corrections
+- Corrections are explicit and append-only (dedicated correction action/tool).
+- Correction event must reference the prior decision event id (`supersedes_event_id`).
+- Prior decisions remain queryable for audit and KG provenance.
+
+#### Race behavior
+- Concurrent terminal reviews: first write wins; other caller receives the already-recorded terminal decision.
+
+#### Review state machine (MVP)
+
+```text
             +-----------+
             |  pending  |
             +-----+-----+
@@ -116,18 +131,20 @@ approved_or_rejected (terminal)  needs_clarification (non-terminal)
                                   v
                      clarification_provided -> pending
 
-Terminal note
+Terminal note:
 - approved_or_rejected is a terminal bucket in this diagram.
 - The system still records the specific terminal outcome (approved vs rejected), and rejected decisions carry negative context/evidence.
+```
 
-D2. Storage + queue (Issues 17 and 47)
-- MVP storage: SQLite.
+### D2. Storage + queue (Issues #17 and #47)
+- MVP storage: **SQLite**.
 - Storage model:
-  - hitl_events: append-only audit truth
-  - hitl_state: transactional projection for current queue state
+  - `hitl_events`: append-only audit truth
+  - `hitl_state`: transactional projection for current queue state
 
-SQLite tables (conceptual)
+#### SQLite tables (conceptual)
 
+```text
 +------------------------+
 | hitl_submissions       |  immutable submission payload + provenance
 |------------------------|
@@ -201,93 +218,41 @@ SQLite tables (conceptual)
 | escalated_at_ms (opt)                                          |
 | escalation_target (opt)                                        |
 +--------------------------------------------------------------+
+```
 
-Queue semantics (MVP)
+#### Queue semantics (MVP)
 - Idempotency-only (no claim/lease). Assumes low reviewer concurrency. Revisit when duplicate-work becomes a problem.
 
-Escalation
+#### Escalation
 - If an item sits in needs_clarification for 30 days, escalate to the fleet management team manager (exact mechanism TBD).
 
-MDM identity stance (single-tenant)
+#### MDM identity stance (single-tenant)
 - VMRS codes are canonical by value and key for matching.
 - Vendors/vendor parts are MDM entities (canonical ids, aliases, merge/supersede).
-- Other/none-of-the-above should route to a needs-followup pile for later resolution (likely in-person).
+- Other/none-of-the-above routes to a needs-followup pile for later resolution (likely in-person).
 
-D3. KG update + release model (Issue 16)
+### D3. KG update + release model (Issue #16)
 - KG updates only after a terminal decision is recorded (approved or rejected).
 - KG application model (MVP): batch Graph Releases only (no online Neo4j writes per approval).
 - Rejections are persisted as negative context/evidence (not just dropped).
 
-Proposed Neo4j schema extension (future; NOT in MVP)
+#### Proposed Neo4j schema extension (future; NOT in MVP)
 Goal: show how HITL becomes graph provenance and how MDM mappings can be superseded while preserving history.
 
 Current core (as-is)
-Nodes
-- System(code indexed)
-- Assembly(code indexed)
-- Component(code indexed)
-- Vendor(code indexed)
-- VendorPart(part indexed)
-
-Relationships
-- Assembly -PART_OF-> System
-- Component -PART_OF-> Assembly
-- Vendor -MANUFACTURES-> VendorPart
-- VendorPart -MAPS_TO-> Component
+- Nodes: System, Assembly, Component, Vendor, VendorPart
+- Relationships: Assembly-PART_OF->System; Component-PART_OF->Assembly; Vendor-MANUFACTURES->VendorPart; VendorPart-MAPS_TO->Component
 
 Proposed additions for HITL + MDM (recommended)
-Multiple viable approaches (choose based on query/ops needs):
-A) Keep MAPS_TO as a relationship and store provenance on the relationship (simpler graph, weaker history model).
-B) Reify mappings as nodes (recommended for HITL/MDM): HITL can attach to “the mapping” and preserve superseding history cleanly.
-C) Hybrid: keep a simple MAPS_TO edge for fast lookups, but treat the reified mapping node as the source of truth.
-
-Operational note: we can also use subagents to answer questions against (1) canonical graph-only views vs (2) HITL evidence/provenance views, so reviewers/operators don’t have to mentally mix them.
-
-New nodes
-- VendorPartComponentMapping
-  - mapping_id (unique/indexed)
-  - status active|superseded
-  - created_at_ms
-  - submission_id (HITL id)
-  - decision_event_id (terminal decision)
-  - reason (short)
-- HITLSubmission
-  - submission_id (unique/indexed)
-  - schema_version
-  - type correction|addition|context|question
-  - submitted_at_ms
-  - pipeline_step
-  - source_system
-  - source_record_id (opt)
-  - vmrs_code
-  - description
-  - context
-  - related_query
-  - payload_hash
-- HITLDecisionEvent
-  - event_id (unique/indexed)
-  - created_at_ms
-  - outcome approved|rejected|needs_clarification
-  - notes (required)
-  - question (required if needs_clarification)
-  - supersedes_event_id (opt)
-  - terminal bool
-- Actor
-  - actor_id (employee id in prod; opt in MVP)
-  - name, role, team (opt)
-  - actor_kind operator|agent|system
-
-New relationships
-- VendorPart -HAS_MAPPING-> VendorPartComponentMapping -TO_COMPONENT-> Component
-- HITLSubmission -PROPOSES_MAPPING-> VendorPartComponentMapping
-- HITLDecisionEvent -FOR_SUBMISSION-> HITLSubmission
-- HITLDecisionEvent -DECIDES_MAPPING-> VendorPartComponentMapping
-- HITLDecisionEvent -ACTED_BY-> Actor
-- HITLSubmission -SUBMITTED_BY-> Actor
-- HITLDecisionEvent -SUPERSEDES-> HITLDecisionEvent (corrections)
+- Multiple viable approaches (choose based on query/ops needs):
+  - A) Keep MAPS_TO as a relationship and store provenance on the relationship (simpler graph, weaker history model).
+  - B) Reify mappings as nodes (recommended for HITL/MDM): HITL attaches to “the mapping” and preserves superseding history.
+  - C) Hybrid: keep MAPS_TO edge for fast lookups, but treat the mapping node as source of truth.
+- Operational note: subagents can answer questions against canonical graph-only views vs HITL evidence/provenance views.
 
 Proposed relationship summary
 
+```text
 System
   ^
   | PART_OF
@@ -301,57 +266,51 @@ HITLDecisionEvent -- FOR_SUBMISSION --> HITLSubmission
 HITLDecisionEvent -- DECIDES_MAPPING --> VendorPartComponentMapping
 HITLSubmission / HITLDecisionEvent -- (SUBMITTED_BY/ACTED_BY) --> Actor
 HITLDecisionEvent -- SUPERSEDES --> HITLDecisionEvent
+```
 
-Rationale (why this model)
-- Reified mapping nodes make it easy to attach: (a) approval provenance, (b) rejection reasons, (c) superseding history.
-- Active mapping rule must be explicit.
+Rationale
+- Reified mapping nodes make it easy to attach approval provenance, rejection reasons, and superseding history.
+- Active mapping rule must be explicit:
   - Invariant: VendorPart has 0..1 active mapping at a time.
-  - If the business rule is VendorPart:Component is 1:1, enforce:
-    - at most one active VendorPartComponentMapping per VendorPart at a time (status=active)
-    - new approvals supersede the prior mapping (status -> superseded)
-- Even with 1:1, avoid redundant “source-of-truth” fields. If VendorPart stores vmrs/system/assembly/component as strings, they can drift from relationships.
-  Treat these as derived (or explicitly label them as cached copies) and define which is authoritative.
-- needs_clarification is provenance only; it should not produce active mappings.
-- Batch Graph Releases can materialize only active mappings while keeping the full evidence trail for audit.
-- This does not force MVP complexity: MVP truth stays in SQLite; Neo4j is a later projection.
 
-Approved dataset export (release input)
+#### Approved dataset export (release input)
 - Format: zipped bundle containing manifest + per-record JSON + hashes.
 - At export time, finalize the exact KG changes to apply:
   - the entities and relationships to write
   - the properties on those nodes/edges
-  This makes the Graph Release reproducible and auditable (the KG isn’t “re-decided” at deploy time).
+  This makes the Graph Release reproducible and auditable (the KG isn’t re-decided at deploy time).
 - Reproducibility rules:
-  - manifest is deterministic (stable key ordering; records sorted by submission_id).
-  - record JSON serialization is canonical.
-  - zip creation is deterministic (stable file ordering; normalized/omitted timestamps).
+  - manifest is deterministic (stable key ordering; records sorted by submission_id)
+  - record JSON serialization is canonical
+  - zip creation is deterministic (stable file ordering; normalized/omitted timestamps)
 
 Example
 
+```text
 approved_hitl_release_<date>__<gitsha>.zip
   manifest.json
   records/
     <submission_id_1>.json
     <submission_id_2>.json
   metrics.json (optional)
+```
 
-Open questions (explicit, non-blockers)
+## Open questions (explicit, non-blockers)
 1) Escalation mechanism: notify only vs also change workflow state.
 2) Needs-followup pile: exact data shape and resolution workflow for MDM entity creation/merge.
-3) Issue 16 minimum env semantics: confirm beta/pilot/prod definitions and rollback expectations (deployment target can remain TBD).
+3) Issue #16 minimum env semantics: confirm beta/pilot/prod definitions and rollback expectations (deployment target can remain TBD).
 
-Definition of done
+## Definition of done
 - D1/D2/D3 above are ratified.
-- Issues 15/16/17/47 reference this doc as the contract.
+- Issues #15/#16/#17/#47 reference this doc as the contract.
 - Implementation proceeds via small PRs per issue.
 
-Next steps
+## Next steps
 1) Get manager responses below.
 2) Update this doc if needed.
 3) Proceed with implementation PRs per issue.
 
-
-MANAGER RESPONSE (COPY/PASTE)
+## Manager response (copy/paste)
 Please reply by copying this block and filling in blanks.
 
 Fast path

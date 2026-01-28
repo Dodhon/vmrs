@@ -1,90 +1,26 @@
-# HITL Architecture Review (Bundle): Issues #15, #16, #17, #47
+HITL ARCHITECTURE REVIEW (BUNDLE): ISSUES 15, 16, 17, 47
 
-## Table of contents
-- [Objective / decision](#objective--decision)
-- [Manager response (copy/paste)](#manager-response-copypaste)
-- [Decision summary (first-screen)](#decision-summary-first-screen)
-- [Scope](#scope)
-- [Architecture (high level)](#architecture-high-level)
-- [Decisions to lock (contract)](#decisions-to-lock-contract)
-- [Open questions](#open-questions-explicit)
-- [Definition of done](#definition-of-done)
-- [Next steps](#next-steps)
+Objective
+Produce one coherent HITL architecture that makes decisions deterministic, storage reliable, and KG releases auditable/rollbackable.
 
-## Objective / decision
-**Objective:** Produce one coherent HITL architecture that makes approvals deterministic, storage reliable, and deployments/release pipelines trustworthy.
+Scope (what this covers)
+- Issue 15: deterministic, schema-validated HITL review decisions
+- Issue 17: HITL storage format + schema evolution
+- Issue 47: whether HITL status/queue needs stateful storage
+- Issue 16: CI/CD + release/rollback model for deploying the knowledge graph
 
-**Decision needed (from manager):** Confirm/adjust the items in “Manager response (copy/paste)” below so implementation can proceed issue-by-issue without re-litigating fundamentals.
+Why these are bundled
+These issues define one coupled contract: (a) what a decision is, (b) where truth lives, and (c) how approved HITL becomes a release input for the KG.
 
-## Manager response (copy/paste)
-Please reply by copying this block and filling in blanks.
+Proposed architecture (high level)
+Canonical flow
+1) Capture creates a pending submission (schema_versioned).
+2) Review records an explicit decision via a tool call (tool-boundary truth).
+3) Approved HITL is exported as a versioned dataset artifact.
+4) CI/CD builds a Graph Release from approved inputs and deploys it to Neo4j (rollbackable).
 
-**Overall**
-- Approve this HITL architecture bundle as the contract for Issues #15/#16/#17/#47? (YES/NO): ____
+HITL E2E diagram (conceptual)
 
-## Decision summary (first-screen)
-If you only read one section, read this.
-- D1 (Issue #15): Deterministic review decisions with outcomes `approved | rejected | needs_clarification`; first terminal wins; corrections via explicit superseding event.
-- D2 (Issue #17/#47): SQLite as MVP source of truth with append-only events + transactional state table projection.
-- D3 (Issue #16): Batch Graph Releases only (no online Neo4j writes per approval); approved dataset exported as deterministic bundle w/ manifest + hashes.
-
-**Issue #15 — Review determinism**
-- Outcomes enum: `approved | rejected | needs_clarification` (YES/NO): ____
-- Notes required for all outcomes (YES/NO): ____
-- Skip semantics: Skip == `needs_clarification` (defer/follow-up), reject is separate (YES/NO): ____
-- Concurrency/race rule: first terminal decision wins; later attempts return existing; corrections only via explicit tool (YES/NO): ____
-- Corrections: append a superseding event with `supersedes_event_id`; never overwrite; keep old decision history queryable (YES/NO): ____
-
-**Issue #17/#47 — Storage + queue**
-- MVP storage: SQLite (YES/NO): ____
-- Current-state projection: maintain a state table updated transactionally from events (YES/NO): ____
-- Queue semantics for MVP: idempotency only (no claim/lease) (YES/NO): ____
-- `needs_clarification` escalation after 30 days to fleet management team manager (notify only vs state change?): ____
-
-**KG policy**
-- KG updates only when terminal decision recorded (`approved` or `rejected`) (YES/NO): ____
-- KG application model: batch Graph Releases (no online Neo4j writes per approval in MVP) (YES/NO): ____
-- Rejections should be persisted as negative context/evidence (not just dropped) (YES/NO): ____
-
-**Release artifact (approved dataset export)**
-- Export format: zipped bundle with `manifest.json` + per-record JSON + hashes (YES/NO): ____
-
-**Issue #16 — Environments (minimum semantics to lock, even if target is TBD)**
-- v1 deployment target: container vs serverless vs VM/systemd: ____
-- beta/pilot/prod definition (separate envs vs namespaces): ____
-- Minimum environment semantics:
-  - Beta: internal dev/testing; can tolerate downtime; manual deploy OK.
-  - Pilot: limited stakeholders; rollback expectation defined.
-  - Prod: enterprise; minimize downtime; fast rollback required.
-  Approve these semantics (YES/NO): ____
-
-## Scope
-This document bundles and aligns the following GitHub issues:
-- **#15** Deterministic, schema-validated HITL review decisions
-- **#16** CI/CD pipeline for deploys + rollbacks + Knowledge Graph releases (beta/pilot/prod)
-- **#17** HITL storage format (JSON vs SQLite/DB) + schema evolution
-- **#47** Evaluate stateful storage for HITL status (pending queue)
-
-## Why bundle these
-These four issues are architectural, not “one feature each.” They define:
-- what an approval *is* (contract + determinism)
-- where the HITL truth lives (storage, schema evolution)
-- how “approved HITL” becomes a release artifact for environments (CI/CD and graph releases)
-
-Treating them as a single architecture review avoids inconsistent local fixes that later block releases.
-
----
-
-## Architecture (high level)
-
-### Canonical flow
-1) **Capture** creates a pending HITL submission (structured JSON, schema-versioned)
-2) **Review** persists an explicit decision via an MCP tool call (tool-boundary truth)
-3) **Approved HITL dataset** becomes the only dataset eligible to feed beta/pilot/prod builds
-4) **Release pipeline** builds and deploys versioned artifacts (including KG releases), with rollback
-
-### HITL E2E diagram (conceptual)
-```
                  +-------------------+
                  |  Ingest / Capture |
                  |  (agent + tools)  |
@@ -93,10 +29,9 @@ Treating them as a single architecture review avoids inconsistent local fixes th
                            | submission (schema_versioned)
                            v
                  +-------------------+
-                 | SQLite (source of |
-                 | truth for MVP)    |
-                 | - events (append) |
-                 | - state (current) |
+                 | SQLite (MVP truth)|
+                 | events (append)   |
+                 | state (current)   |
                  +----+---------+----+
                       |         |
                       |         | queue views
@@ -106,13 +41,11 @@ Treating them as a single architecture review avoids inconsistent local fixes th
                       |   | review UI |
                       |   +-----+-----+
                       |         |
-                      |         | decision event:
-                      |         | approved/rejected/
-                      |         | needs_clarification
+                      |         | decision event
                       |         v
                       |   +-----------+
                       |   | Follow-up |
-                      |   | (clarify) |
+                      |   | clarify   |
                       |   +-----+-----+
                       |         |
                       +---------+
@@ -129,26 +62,31 @@ Treating them as a single architecture review avoids inconsistent local fixes th
                  +-------------------+
                  | Neo4j Aura (KG)   |
                  +-------------------+
-```
 
-### Key invariants
-- **Tool-boundary truth:** approvals/rejections are persisted only by validated server-side tool calls (never inferred from prose).
-- **Deterministic decisions:** decisions are enum-based, machine-parseable, and idempotent.
-- **Append-only history:** we do not rewrite history; when we need to add or correct information, we append a new event/record that supersedes prior records.
-- **Write-once reviewed artifacts:** no silent overwrite; correction flows must be explicit.
-- **Versioned records:** every HITL record has a `schema_version`.
-- **Provenance completeness:** every submission includes who touched it, where it is in the pipeline, and the relevant information for every step up to the current step.
-- **Production seam for identity/auth:** operator display fields are not security; in prod, principal identity should be derived from the environment (e.g., employee id from auth/logs) and only simulated via required fields in MCP/tooling (name + role for MVP).
+System invariants (non-negotiables)
+- Tool-boundary truth: no decision inferred from prose.
+- Append-only history: do not rewrite records; corrections are new events.
+- Provenance completeness: each submission includes who touched it, pipeline step, and relevant info up to that step.
+- Production identity seam: in prod use employee id (from auth/logs); MVP stores name + role.
 
----
+Contract decisions to lock (D1/D2/D3)
 
-## Decisions to lock (contract)
+D1. Review decision contract (Issue 15)
+- Outcomes enum: approved, rejected, needs_clarification.
+- Skip semantics: Skip means needs_clarification (defer/follow-up). Reject is separate.
+- Notes: required for all outcomes.
+- Terminal decision rule:
+  - The first terminal decision (approved or rejected) wins for a submission_id.
+  - Subsequent terminal attempts return the existing terminal decision (idempotent).
+- Corrections:
+  - Corrections are explicit and append-only (dedicated correction action/tool).
+  - Correction event must reference the prior decision event id (supersedes_event_id).
+  - Prior decisions remain queryable for audit and KG provenance.
+- Race behavior:
+  - Concurrent terminal reviews: first write wins; other caller receives the already-recorded terminal decision.
 
-### D1) Decision contract (Issue #15)
-**Persisted outcomes:** `approved | rejected | needs_clarification` (lowercase enums).
+Review state machine (MVP)
 
-### Review state machine (MVP)
-```
             +-----------+
             |  pending  |
             +-----+-----+
@@ -156,197 +94,122 @@ Treating them as a single architecture review avoids inconsistent local fixes th
         +---------+----------+
         |                    |
         v                    v
-+---------------+    +----------------------+
-|  approved     |    | needs_clarification |
-| (terminal)    |    | (non-terminal)      |
-+---------------+    +----------+-----------+
-                               |
-                               | clarification_provided
-                               v
-                         +-----------+
-                         |  pending  |
-                         +-----------+
+    approved (terminal)   needs_clarification (non-terminal)
+        |
+        v
+    rejected (terminal) is also allowed from pending
 
-pending -> rejected (terminal) is also allowed.
-```
+needs_clarification -> clarification_provided -> pending
 
-**Skip semantics:** “Skip” means **needs_clarification** (persisted), not “reject.”
-- Rationale: in this product, ambiguity is common and must be tracked; “skip” is a defer/follow-up state.
-- `needs_clarification` MUST include a reviewer-authored `question` (what is ambiguous / what input is needed).
-- `needs_clarification` is **non-terminal**; it does not admit data into the canonical approved dataset.
+D2. Storage + queue (Issues 17 and 47)
+- MVP storage: SQLite.
+- Storage model:
+  - hitl_events: append-only audit truth
+  - hitl_state: transactional projection for current queue state
 
-**Notes policy:** notes are **required for all outcomes**.
-- `approved` → notes required (justification/provenance for KG admission)
-- `rejected` → notes required (actionable reason)
-- `needs_clarification` → notes required + question required
+SQLite tables (conceptual)
 
-**Idempotency + corrections (resolve “reviewed once” vs “superseding”):**
-- **Terminal decision is write-once:** the first terminal decision event (`approved` or `rejected`) “wins” for a given `submission_id`.
-- **Repeat terminal attempts are idempotent:** if a terminal decision already exists, repeated calls return the existing terminal decision (no duplicates, no overwrite).
-- **Corrections are explicit:** a correction is a *new* event (e.g., `decision_supersedes`) created only by a dedicated correction tool/action.
-  - It MUST reference the prior terminal decision event id (`supersedes_event_id`).
-  - It produces a *new* terminal decision event id as the active decision.
-- **History is preserved:** prior decisions remain queryable for audit/context (and for KG provenance).
-
-**Race behavior (concurrent reviews):**
-- If two reviewers attempt terminal decisions concurrently, the system accepts **one** (first write wins) and the other receives the already-recorded terminal decision.
-- Concurrency control mechanism (SQLite MVP): transaction + unique constraint on `(submission_id, is_terminal_active)` or equivalent, enforced by the server/tool boundary.
-
-### D2) Storage format + schema evolution (Issues #17 + #47)
-
-### Storage model (SQLite MVP)
-```
 +------------------+
-| hitl_events      |   append-only audit truth
+| hitl_events      |  append-only audit truth
 |------------------|
 | event_id (PK)    |
 | submission_id    |
-| event_type       |  submitted / approved / rejected /
-| created_at_ms    |  needs_clarification / clarification_provided /
-| actor_*          |  supersedes
+| event_type       |
+| created_at_ms    |
+| actor_*          |
 | notes            |
 | event_json       |
 +--------+---------+
          |
-         | (projection)
+         | projection
          v
 +------------------+
-| hitl_state       |   current queue state
+| hitl_state       |  current queue state
 |------------------|
 | submission_id PK |
 | current_state    |  pending / needs_clarification / approved / rejected
 | updated_at_ms    |
 | ...              |
 +------------------+
-```
 
-**Near-term (intern MVP, single-machine):** JSON files are acceptable if we enforce:
-- atomic writes (temp → rename)
-- strict schema validation at tool boundary
-- bounded payload sizes
-- path-safe identifiers
-- idempotency + concurrency safety
+Queue semantics (MVP)
+- Idempotency-only (no claim/lease). Assumes low reviewer concurrency. Revisit when duplicate-work becomes a problem.
 
-**Near-term (intern MVP, but enterprise-aligned choice): SQLite now**
-Because this is a knowledge-graph/MDM project and ambiguity follow-ups are expected (needs_clarification), a stateful store becomes valuable earlier. For the intern MVP, SQLite is the recommended default if any of the following are true:
-- the workflow is more than one process/UI
-- you need queue views (pending vs needs_clarification) and throughput metrics
-- you want an append-only audit trail without file-move edge cases
+Escalation
+- If an item sits in needs_clarification for 30 days, escalate to the fleet management team manager (exact mechanism TBD).
 
-SQLite guidance:
-- model decisions/clarifications as an append-only event log + a current-state projection.
-- assume one writer / short transactions; enable WAL mode if applicable.
+MDM identity stance (single-tenant)
+- VMRS codes are canonical by value and key for matching.
+- Vendors/vendor parts are MDM entities (canonical ids, aliases, merge/supersede).
+- Other/none-of-the-above should route to a needs-followup pile for later resolution (likely in-person).
 
-**Early production (post-intern / scale-out): Postgres**
-If/when you need multiple service instances writing concurrently or stronger HA/ops guarantees, migrate the same schema to Postgres. Keep an additive seam for `tenant_id` even if single-tenant initially.
+D3. KG update + release model (Issue 16)
+- KG updates only after a terminal decision is recorded (approved or rejected).
+- KG application model (MVP): batch Graph Releases only (no online Neo4j writes per approval).
+- Rejections are persisted as negative context/evidence (not just dropped).
 
-**Schema evolution posture:**
-- record-level `schema_version`
-- prefer **read-time upcasting** (in-memory transform to current shape)
-- avoid write-time migrations unless necessary
+Approved dataset export (release input)
+- Format: zipped bundle containing manifest + per-record JSON + hashes.
+- Reproducibility rules:
+  - manifest is deterministic (stable key ordering; records sorted by submission_id).
+  - record JSON serialization is canonical.
+  - zip creation is deterministic (stable file ordering; normalized/omitted timestamps).
 
-**Pending queue state (Issue #47):**
-- For local MVP, file-based pending is fine (with locking and atomic moves).
-- The “stateful DB for pending queue” becomes compelling exactly when:
-  - multiple writers across devices/users, OR
-  - we need robust queue operations (claim/lease/visibility timeouts), OR
-  - we need high-confidence audit/history queries.
+Example
 
-### D3) “Approved HITL” as a release input (Issue #16)
-**Rule:** Only **approved** HITL participates in beta/pilot/prod builds.
+approved_hitl_release_<date>__<gitsha>.zip
+  manifest.json
+  records/
+    <submission_id_1>.json
+    <submission_id_2>.json
+  metrics.json (optional)
 
-**KG application model (MVP contract): batch releases (not online writes)**
-- The KG is updated only via a **batch “Graph Release”** build + deploy.
-- No direct/online writes to Neo4j on each approval in the MVP.
-  - Rationale: reproducibility + audit + rollback. (Online writes can be added later.)
+Open questions (explicit, non-blockers)
+1) Escalation mechanism: notify only vs also change workflow state.
+2) Needs-followup pile: exact data shape and resolution workflow for MDM entity creation/merge.
+3) Issue 16 minimum env semantics: confirm beta/pilot/prod definitions and rollback expectations (deployment target can remain TBD).
 
-**Artifact model:** Approved HITL is treated as a **versioned dataset** (exportable + checksummed) that CI/CD can consume deterministically.
+Definition of done
+- D1/D2/D3 above are ratified.
+- Issues 15/16/17/47 reference this doc as the contract.
+- Implementation proceeds via small PRs per issue.
 
-**Release + rollback expectation:**
-- Deployments must be attributable (who/what/where) and reversible.
-- For Neo4j Aura in prod: prefer blue/green cutover; rollback is a fast URI/secret flip.
+Next steps
+1) Get manager responses below.
+2) Update this doc if needed.
+3) Proceed with implementation PRs per issue.
 
----
 
-## Definition of done
-This architecture bundle is “done” when:
-- the D1/D2/D3 contract sections are ratified, and
-- each of #15/#16/#17/#47 references this doc as the shared contract.
+MANAGER RESPONSE (COPY/PASTE)
+Please reply by copying this block and filling in blanks.
 
-Implementation then proceeds in small PRs per issue.
+Overall
+- Approve this HITL architecture bundle as the contract for Issues 15/16/17/47? (YES/NO): ____
 
-## Implications / how this changes our workflow
+Issue 15 review determinism
+- Outcomes enum approved/rejected/needs_clarification (YES/NO): ____
+- Notes required for all outcomes (YES/NO): ____
+- Skip means needs_clarification (defer/follow-up) and reject is separate (YES/NO): ____
+- Concurrency rule: first terminal wins; later attempts return existing; corrections only via explicit tool (YES/NO): ____
+- Corrections: append superseding event referencing supersedes_event_id; never overwrite; keep history queryable (YES/NO): ____
 
-### What the issue board means vs dev_plans
-- GitHub issues track **what** needs to be done.
-- `dev_plans/` (this doc + per-issue plans) define **how** it will be done.
+Issues 17 and 47 storage and queue
+- MVP storage is SQLite (YES/NO): ____
+- Maintain hitl_state table projection (YES/NO): ____
+- MVP queue uses idempotency only (no claim/lease) (YES/NO): ____
+- needs_clarification escalation after 30 days to fleet management manager; mechanism (notify only vs state change): ____
 
-### What becomes “done” for this architecture bundle
-This bundle is “done” when:
-- the above decisions are ratified, and
-- each of #15/#17/#47/#16 references this architecture as the shared contract.
+KG policy
+- KG updates only when terminal decision recorded (YES/NO): ____
+- MVP KG application model is batch Graph Releases (no online writes per approval) (YES/NO): ____
+- Rejections persist as negative context/evidence (YES/NO): ____
 
-Implementation can then proceed as separate PRs:
-- PRs for #15 determinism + safety hardening
-- PRs for #17 storage/evolution refactors
-- PRs for #47 queue/stateful storage changes (if/when triggered)
-- PRs for #16 CI/CD + release pipelines
+Approved dataset export
+- Export is deterministic zip bundle with manifest + per-record JSON + hashes (YES/NO): ____
 
----
-
-## Open questions (explicit)
-These should be answered in the issue threads or as follow-up decisions, but they do not block adopting the core contract:
-
-1) For #16: confirm v1 deployment target + what beta/pilot/prod concretely mean.
-
-2) For #17/#47: confirm minimum query set required in beta/pilot/prod (Q1–Q8 style list).
-
-3) Current-state projection:
-   - Use a **state table** in SQLite updated transactionally from appended events (vs computing state on the fly).
-
-4) Queue claim/lease semantics (MVP):
-   - MVP uses idempotency only (no claim/lease) and assumes low reviewer concurrency; revisit with manager if duplicate-work becomes a problem.
-
-5) Escalation policy:
-   - Proposed: if an item sits in `needs_clarification` for 30 days, escalate to the fleet management team manager (and/or ping the team).
-   - Confirm exact escalation target + whether the escalation is a notification only or changes workflow state.
-
-6) MDM identity strategy:
-   - VMRS codes are canonical by value and are the key property for matching parts.
-   - Vendors/vendor parts are MDM entities (canonical ids + aliases + merge/supersede).
-   - Confirm the “other/none-of-the-above” flow: capture proposed values now, queue entity creation/merge for later review.
-
-7) KG update policy:
-   - KG should not be updated until a HITL submission reaches a terminal decision (`approved` or `rejected`).
-   - Confirm whether `rejected` updates the KG (e.g., adds negative evidence / suppression edges) or is stored only as audit history.
-
-8) Export format for the approved dataset:
-   - Prefer a zipped bundle with `manifest.json` + per-record JSON + hashes (CI/CD-friendly, reproducible, rollbackable).
-   - Optionally include JSONL for streaming ingestion later.
-
-   Example release artifact:
-   ```
-   approved_hitl_release_<date>__<gitsha>.zip
-     manifest.json
-     records/
-       <submission_id_1>.json
-       <submission_id_2>.json
-     metrics.json   (optional)
-   ```
-
-   Reproducibility rules (so the same inputs yield the same artifact):
-   - `manifest.json` MUST be deterministic:
-     - stable key ordering
-     - records listed in lexicographic order by `submission_id`
-     - include `sha256` for each record file and for the full bundle
-   - record JSON serialization MUST be canonical (no nondeterministic whitespace/ordering).
-   - zip creation MUST be deterministic:
-     - stable file ordering
-     - normalized timestamps (or omitted)
-
----
-
-## Next steps
-1) Merge this plan PR.
-2) Add a short comment to issues #15/#16/#17/#47 linking to this plan PR as the architecture contract.
-3) Proceed with implementation PRs in small slices, using these locked decisions as the guardrails.
+Issue 16 minimum env semantics (even if deployment target is TBD)
+- Beta definition: internal dev/testing; can tolerate downtime; manual deploy OK (YES/NO): ____
+- Pilot definition: limited stakeholders; rollback expectation defined (YES/NO): ____
+- Prod definition: minimize downtime; fast rollback required (YES/NO): ____
+- v1 deployment target (container vs serverless vs VM/systemd): ____
+- beta/pilot/prod model (separate envs vs namespaces): ____

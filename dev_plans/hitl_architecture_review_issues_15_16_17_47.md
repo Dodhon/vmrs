@@ -15,7 +15,8 @@ Please reply by copying this block and filling in blanks.
 - Outcomes enum: `approved | rejected | needs_clarification` (YES/NO): ____
 - Notes required for all outcomes (YES/NO): ____
 - Skip semantics: Skip == `needs_clarification` (defer/follow-up), reject is separate (YES/NO): ____
-- Corrections: append a superseding event; never overwrite; keep old decision history queryable (YES/NO): ____
+- Concurrency/race rule: first terminal decision wins; later attempts return existing; corrections only via explicit tool (YES/NO): ____
+- Corrections: append a superseding event with `supersedes_event_id`; never overwrite; keep old decision history queryable (YES/NO): ____
 
 **Issue #17/#47 — Storage + queue**
 - MVP storage: SQLite (YES/NO): ____
@@ -25,14 +26,20 @@ Please reply by copying this block and filling in blanks.
 
 **KG policy**
 - KG updates only when terminal decision recorded (`approved` or `rejected`) (YES/NO): ____
+- KG application model: batch Graph Releases (no online Neo4j writes per approval in MVP) (YES/NO): ____
 - Rejections should be persisted as negative context/evidence (not just dropped) (YES/NO): ____
 
 **Release artifact (approved dataset export)**
 - Export format: zipped bundle with `manifest.json` + per-record JSON + hashes (YES/NO): ____
 
-**Issue #16 — Environments (open)**
+**Issue #16 — Environments (minimum semantics to lock, even if target is TBD)**
 - v1 deployment target: container vs serverless vs VM/systemd: ____
 - beta/pilot/prod definition (separate envs vs namespaces): ____
+- Minimum environment semantics:
+  - Beta: internal dev/testing; can tolerate downtime; manual deploy OK.
+  - Pilot: limited stakeholders; rollback expectation defined.
+  - Prod: enterprise; minimize downtime; fast rollback required.
+  Approve these semantics (YES/NO): ____
 
 ## Scope
 This document bundles and aligns the following GitHub issues:
@@ -156,14 +163,17 @@ pending -> rejected (terminal) is also allowed.
 - `rejected` → notes required (actionable reason)
 - `needs_clarification` → notes required + question required
 
-**Idempotency:**
-- A submission can be reviewed at most once.
-- Repeated tool calls return the existing recorded decision (no duplicates).
+**Idempotency + corrections (resolve “reviewed once” vs “superseding”):**
+- **Terminal decision is write-once:** the first terminal decision event (`approved` or `rejected`) “wins” for a given `submission_id`.
+- **Repeat terminal attempts are idempotent:** if a terminal decision already exists, repeated calls return the existing terminal decision (no duplicates, no overwrite).
+- **Corrections are explicit:** a correction is a *new* event (e.g., `decision_supersedes`) created only by a dedicated correction tool/action.
+  - It MUST reference the prior terminal decision event id (`supersedes_event_id`).
+  - It produces a *new* terminal decision event id as the active decision.
+- **History is preserved:** prior decisions remain queryable for audit/context (and for KG provenance).
 
-**Correction policy:**
-- Do not overwrite reviewed artifacts.
-- Corrections are represented as a **superseding event** that points at (and logically supersedes) the prior decision.
-- Prior decisions remain queryable for audit/context.
+**Race behavior (concurrent reviews):**
+- If two reviewers attempt terminal decisions concurrently, the system accepts **one** (first write wins) and the other receives the already-recorded terminal decision.
+- Concurrency control mechanism (SQLite MVP): transaction + unique constraint on `(submission_id, is_terminal_active)` or equivalent, enforced by the server/tool boundary.
 
 ### D2) Storage format + schema evolution (Issues #17 + #47)
 
@@ -227,6 +237,11 @@ If/when you need multiple service instances writing concurrently or stronger HA/
 
 ### D3) “Approved HITL” as a release input (Issue #16)
 **Rule:** Only **approved** HITL participates in beta/pilot/prod builds.
+
+**KG application model (MVP contract): batch releases (not online writes)**
+- The KG is updated only via a **batch “Graph Release”** build + deploy.
+- No direct/online writes to Neo4j on each approval in the MVP.
+  - Rationale: reproducibility + audit + rollback. (Online writes can be added later.)
 
 **Artifact model:** Approved HITL is treated as a **versioned dataset** (exportable + checksummed) that CI/CD can consume deterministically.
 
@@ -294,6 +309,16 @@ These should be answered in the issue threads or as follow-up decisions, but the
        <submission_id_2>.json
      metrics.json   (optional)
    ```
+
+   Reproducibility rules (so the same inputs yield the same artifact):
+   - `manifest.json` MUST be deterministic:
+     - stable key ordering
+     - records listed in lexicographic order by `submission_id`
+     - include `sha256` for each record file and for the full bundle
+   - record JSON serialization MUST be canonical (no nondeterministic whitespace/ordering).
+   - zip creation MUST be deterministic:
+     - stable file ordering
+     - normalized timestamps (or omitted)
 
 ---
 

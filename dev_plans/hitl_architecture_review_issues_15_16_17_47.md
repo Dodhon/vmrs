@@ -91,15 +91,13 @@ Review state machine (MVP)
             |  pending  |
             +-----+-----+
                   |
-        +---------+----------+
-        |                    |
-        v                    v
-    approved (terminal)   needs_clarification (non-terminal)
-        |
-        v
-    rejected (terminal) is also allowed from pending
-
-needs_clarification -> clarification_provided -> pending
+        +---------+----------------+
+        |                          |
+        v                          v
+approved_or_rejected (terminal)  needs_clarification (non-terminal)
+                                  |
+                                  v
+                     clarification_provided -> pending
 
 D2. Storage + queue (Issues 17 and 47)
 - MVP storage: SQLite.

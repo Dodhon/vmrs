@@ -3,7 +3,36 @@
 ## Objective / decision
 **Objective:** Produce one coherent HITL architecture that makes approvals deterministic, storage reliable, and deployments/release pipelines trustworthy.
 
-**Decision needed (from Thupten):** Approve this architecture bundle as the shared “contract” for HITL going forward, so implementation PRs can proceed issue-by-issue without re-litigating fundamentals.
+**Decision needed (from manager):** Confirm/adjust the items in “Manager response (copy/paste)” below so implementation can proceed issue-by-issue without re-litigating fundamentals.
+
+## Manager response (copy/paste)
+Please reply by copying this block and filling in blanks.
+
+**Overall**
+- Approve this HITL architecture bundle as the contract for Issues #15/#16/#17/#47? (YES/NO): ____
+
+**Issue #15 — Review determinism**
+- Outcomes enum: `approved | rejected | needs_clarification` (YES/NO): ____
+- Notes required for all outcomes (YES/NO): ____
+- Skip semantics: Skip == `needs_clarification` (defer/follow-up), reject is separate (YES/NO): ____
+- Corrections: append a superseding event; never overwrite; keep old decision history queryable (YES/NO): ____
+
+**Issue #17/#47 — Storage + queue**
+- MVP storage: SQLite (YES/NO): ____
+- Current-state projection: maintain a state table updated transactionally from events (YES/NO): ____
+- Queue semantics for MVP: idempotency only (no claim/lease) (YES/NO): ____
+- `needs_clarification` escalation after 30 days to fleet management team manager (notify only vs state change?): ____
+
+**KG policy**
+- KG updates only when terminal decision recorded (`approved` or `rejected`) (YES/NO): ____
+- Rejections should be persisted as negative context/evidence (not just dropped) (YES/NO): ____
+
+**Release artifact (approved dataset export)**
+- Export format: zipped bundle with `manifest.json` + per-record JSON + hashes (YES/NO): ____
+
+**Issue #16 — Environments (open)**
+- v1 deployment target: container vs serverless vs VM/systemd: ____
+- beta/pilot/prod definition (separate envs vs namespaces): ____
 
 ## Scope
 This document bundles and aligns the following GitHub issues:

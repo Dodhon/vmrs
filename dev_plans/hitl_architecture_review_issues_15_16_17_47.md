@@ -215,7 +215,12 @@ Relationships
 - VendorPart -MAPS_TO-> Component
 
 Proposed additions for HITL + MDM (recommended)
-Key design choice: reify mappings as nodes so HITL can attach to “the mapping” and preserve superseding history.
+Multiple viable approaches (choose based on query/ops needs):
+A) Keep MAPS_TO as a relationship and store provenance on the relationship (simpler graph, weaker history model).
+B) Reify mappings as nodes (recommended for HITL/MDM): HITL can attach to “the mapping” and preserve superseding history cleanly.
+C) Hybrid: keep a simple MAPS_TO edge for fast lookups, but treat the reified mapping node as the source of truth.
+
+Operational note: we can also use subagents to answer questions against (1) canonical graph-only views vs (2) HITL evidence/provenance views, so reviewers/operators don’t have to mentally mix them.
 
 New nodes
 - VendorPartComponentMapping
@@ -278,6 +283,12 @@ HITLDecisionEvent -- SUPERSEDES --> HITLDecisionEvent
 
 Rationale (why this model)
 - Reified mapping nodes make it easy to attach: (a) approval provenance, (b) rejection reasons, (c) superseding history.
+- Active mapping rule must be explicit. If the business rule is VendorPart:Component is 1:1, then enforce:
+  - at most one active VendorPartComponentMapping per VendorPart at a time (status=active)
+  - new approvals supersede the prior mapping (status -> superseded)
+- Even with 1:1, avoid redundant “source-of-truth” fields. If VendorPart stores vmrs/system/assembly/component as strings, they can drift from relationships.
+  Treat these as derived (or explicitly label them as cached copies) and define which is authoritative.
+- needs_clarification is provenance only; it should not produce active mappings.
 - Batch Graph Releases can materialize only active mappings while keeping the full evidence trail for audit.
 - This does not force MVP complexity: MVP truth stays in SQLite; Neo4j is a later projection.
 

@@ -107,28 +107,78 @@ D2. Storage + queue (Issues 17 and 47)
 
 SQLite tables (conceptual)
 
-+------------------+
-| hitl_events      |  append-only audit truth
-|------------------|
-| event_id (PK)    |
-| submission_id    |
-| event_type       |
-| created_at_ms    |
-| actor_*          |
-| notes            |
-| event_json       |
-+--------+---------+
-         |
-         | projection
-         v
-+------------------+
-| hitl_state       |  current queue state
-|------------------|
-| submission_id PK |
-| current_state    |  pending / needs_clarification / approved / rejected
-| updated_at_ms    |
-| ...              |
-+------------------+
++------------------------+
+| hitl_submissions       |  immutable submission payload + provenance
+|------------------------|
+| submission_id (PK)     |  e.g., HITL-<uuid>
+| schema_version         |
+| submission_type        |  correction|addition|context|question
+| submitted_at_ms        |
+| status_initial         |  pending
+| submitter_name         |
+| submitter_role         |
+| submitter_id (opt)     |  employee id in prod
+| submitter_team (opt)   |
+| vmrs_code              |
+| description            |
+| context                |
+| related_query          |
+| target_type (opt)      |
+| target_key_json (opt)  |
+| targets_json (opt)     |
+| context_pack_json (opt)|  enforce <=500 char excerpt inside
+| proposed_action (opt)  |
+| proposed_payload_json  |
+| pipeline_step          |  where in the pipeline this was produced
+| source_system (opt)    |  agent/tool/ui name
+| source_record_id (opt) |
+| pipeline_run_id (opt)  |
+| touched_by_json (opt)  |  who/what touched it so far
+| submission_hash_sha256 |
+| payload_json           |  canonical JSON (full)
++------------+-----------+
+             |
+             | events
+             v
++------------------------+
+| hitl_events            |  append-only audit truth
+|------------------------|
+| event_id (PK)          |
+| submission_id (FK)     |
+| event_type             |  submitted|needs_clarification|
+|                        |  clarification_provided|decision_recorded|
+|                        |  decision_supersedes
+| created_at_ms          |
+| actor_kind             |  operator|agent|system
+| actor_name             |
+| actor_role             |
+| actor_id (opt)         |
+| actor_team (opt)       |
+| notes                  |  required
+| decision_outcome (opt) |  approved|rejected (only for decision_recorded)
+| question (opt)         |  required for needs_clarification
+| answer (opt)           |  for clarification_provided
+| supersedes_event_id    |  required for decision_supersedes
+| request_id (opt)       |  idempotency key for tool retries
+| link_assertions_json   |  structured KG/MDM link assertions
+| event_json             |  canonical JSON (full)
++------------+-----------+
+             |
+             | projection
+             v
++------------------------+
+| hitl_state             |  current queue state (projection)
+|------------------------|
+| submission_id (PK)     |
+| current_state          |  pending|needs_clarification|approved|rejected
+| updated_at_ms          |
+| active_terminal_event_id (opt)
+| active_decision_outcome (opt)
+| needs_clarification_since_ms (opt)
+| escalation_due_at_ms (opt)
+| escalated_at_ms (opt)
+| escalation_target (opt)
++------------------------+
 
 Queue semantics (MVP)
 - Idempotency-only (no claim/lease). Assumes low reviewer concurrency. Revisit when duplicate-work becomes a problem.

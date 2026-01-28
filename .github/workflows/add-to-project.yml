@@ -242,7 +242,10 @@ jobs:
                     query($owner: String!, $repo: String!, $cursor: String) {
                       repository(owner: $owner, name: $repo) {
                         ${kind}(states: OPEN, first: 100, after: $cursor) {
-                          nodes { id }
+                          nodes {
+                            id
+                            ... on PullRequest { commits { totalCount } }
+                          }
                           pageInfo { hasNextPage endCursor }
                         }
                       }
@@ -255,8 +258,13 @@ jobs:
                     const contentId = n?.id;
                     if (!contentId) continue;
                     const itemId = await ensureProjectItemForContent(projectId, contentId);
+
+                    // Treat PRs with commits as "In Progress".
+                    const hasCommits = (n?.commits?.totalCount ?? 0) > 0;
+                    const statusOpt = hasCommits ? findOptionByName(statusField, "In Progress") : todoOpt;
+
                     if (itemId !== "DRY_RUN_ITEM_ID") {
-                      await setSingleSelect(projectId, itemId, statusField.id, todoOpt.id);
+                      await setSingleSelect(projectId, itemId, statusField.id, statusOpt.id);
                       if (importanceField?.id && importanceField?.dataType === "TEXT") {
                         await setText(projectId, itemId, importanceField.id, "P2");
                       }
@@ -303,7 +311,10 @@ jobs:
               const contentId = pr?.node_id;
               if (!contentId) throw new Error("Missing pull_request.node_id in event payload");
 
-              const desiredStatus = action === "closed" ? "Done" : "Todo";
+              // If a PR has commits, treat it as "In Progress".
+              // This matches Thupten's convention: commits => work has started.
+              const hasCommits = (pr?.commits ?? 0) > 0;
+              const desiredStatus = action === "closed" ? "Done" : (hasCommits ? "In Progress" : "Todo");
               const labelNames = labelNamesFromPayload(pr?.labels);
 
               await triageOne({ contentId, labelNames, desiredStatus });

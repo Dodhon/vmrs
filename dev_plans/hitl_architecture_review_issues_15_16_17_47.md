@@ -59,6 +59,54 @@ Treating them as a single architecture review avoids inconsistent local fixes th
 3) **Approved HITL dataset** becomes the only dataset eligible to feed beta/pilot/prod builds
 4) **Release pipeline** builds and deploys versioned artifacts (including KG releases), with rollback
 
+### HITL E2E diagram (conceptual)
+```
+                 +-------------------+
+                 |  Ingest / Capture |
+                 |  (agent + tools)  |
+                 +---------+---------+
+                           |
+                           | submission (schema_versioned)
+                           v
+                 +-------------------+
+                 | SQLite (source of |
+                 | truth for MVP)    |
+                 | - events (append) |
+                 | - state (current) |
+                 +----+---------+----+
+                      |         |
+                      |         | queue views
+                      |         v
+                      |   +-----------+
+                      |   | Operator  |
+                      |   | review UI |
+                      |   +-----+-----+
+                      |         |
+                      |         | decision event:
+                      |         | approved/rejected/
+                      |         | needs_clarification
+                      |         v
+                      |   +-----------+
+                      |   | Follow-up |
+                      |   | (clarify) |
+                      |   +-----+-----+
+                      |         |
+                      +---------+
+                           |
+                           | approved dataset export
+                           v
+                 +-------------------+
+                 | Release pipeline  |
+                 | (CI/CD + KG build)|
+                 +---------+---------+
+                           |
+                           | deploy snapshot
+                           v
+                 +-------------------+
+                 | Neo4j Aura (KG)   |
+                 +-------------------+
+```
+
 ### Key invariants
 - **Tool-boundary truth:** approvals/rejections are persisted only by validated server-side tool calls (never inferred from prose).
 - **Deterministic decisions:** decisions are enum-based, machine-parseable, and idempotent.
@@ -74,6 +122,29 @@ Treating them as a single architecture review avoids inconsistent local fixes th
 
 ### D1) Decision contract (Issue #15)
 **Persisted outcomes:** `approved | rejected | needs_clarification` (lowercase enums).
+
+### Review state machine (MVP)
+```
+            +-----------+
+            |  pending  |
+            +-----+-----+
+                  |
+        +---------+----------+
+        |                    |
+        v                    v
++---------------+    +----------------------+
+|  approved     |    | needs_clarification |
+| (terminal)    |    | (non-terminal)      |
++---------------+    +----------+-----------+
+                               |
+                               | clarification_provided
+                               v
+                         +-----------+
+                         |  pending  |
+                         +-----------+
+
+pending -> rejected (terminal) is also allowed.
+```
 
 **Skip semantics:** “Skip” means **needs_clarification** (persisted), not “reject.”
 - Rationale: in this product, ambiguity is common and must be tracked; “skip” is a defer/follow-up state.
@@ -95,6 +166,33 @@ Treating them as a single architecture review avoids inconsistent local fixes th
 - Prior decisions remain queryable for audit/context.
 
 ### D2) Storage format + schema evolution (Issues #17 + #47)
+
+### Storage model (SQLite MVP)
+```
++------------------+
+| hitl_events      |   append-only audit truth
+|------------------|
+| event_id (PK)    |
+| submission_id    |
+| event_type       |  submitted / approved / rejected /
+| created_at_ms    |  needs_clarification / clarification_provided /
+| actor_*          |  supersedes
+| notes            |
+| event_json       |
++--------+---------+
+         |
+         | (projection)
+         v
++------------------+
+| hitl_state       |   current queue state
+|------------------|
+| submission_id PK |
+| current_state    |  pending / needs_clarification / approved / rejected
+| updated_at_ms    |
+| ...              |
++------------------+
+```
+
 **Near-term (intern MVP, single-machine):** JSON files are acceptable if we enforce:
 - atomic writes (temp → rename)
 - strict schema validation at tool boundary
@@ -186,6 +284,16 @@ These should be answered in the issue threads or as follow-up decisions, but the
 8) Export format for the approved dataset:
    - Prefer a zipped bundle with `manifest.json` + per-record JSON + hashes (CI/CD-friendly, reproducible, rollbackable).
    - Optionally include JSONL for streaming ingestion later.
+
+   Example release artifact:
+   ```
+   approved_hitl_release_<date>__<gitsha>.zip
+     manifest.json
+     records/
+       <submission_id_1>.json
+       <submission_id_2>.json
+     metrics.json   (optional)
+   ```
 
 ---
 

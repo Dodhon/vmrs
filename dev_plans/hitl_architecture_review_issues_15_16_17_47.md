@@ -6,6 +6,7 @@
 - [Why these are bundled](#why-these-are-bundled)
 - [Proposed architecture (high level)](#proposed-architecture-high-level)
 - [System invariants (non-negotiables)](#system-invariants-non-negotiables)
+- [Well-Architected (AWS/GCP) considerations](#well-architected-awsgcp-considerations)
 - [Contract decisions to lock (D1/D2/D3)](#contract-decisions-to-lock-d1d2d3)
 - [Open questions (explicit, non-blockers)](#open-questions-explicit-non-blockers)
 - [Definition of done](#definition-of-done)
@@ -87,6 +88,41 @@ These issues define one coupled contract:
 - **Append-only history:** do not rewrite records; corrections are new events.
 - **Provenance completeness:** each submission includes who touched it, pipeline step, and relevant info up to that step.
 - **Production identity seam:** in prod use employee id (from auth/logs); MVP stores name + role.
+
+## Well-Architected (AWS/GCP) considerations
+This section is intentionally short: it records the non-functional posture for MVP and the seams we will harden as we move toward enterprise deployment.
+
+Principals (who can do what)
+- Principal: an authenticated actor that can read/submit/review/correct HITL items (operator, agent, or system).
+- In MVP, principal identity is recorded as name + role (and optional team). In prod, the authoritative principal identifier is employee id from auth/logs.
+- Authorization (policy):
+  - Only authorized principals can record terminal decisions (approved/rejected).
+  - Only authorized principals can create correction/superseding events.
+
+Security, privacy, compliance
+- HITL notes/context may contain sensitive operational/vendor data.
+- Redaction policy: TBD (define what can be stored in notes/context, what must be masked, and retention windows).
+- Integrity: approved dataset export is tamper-evident via deterministic manifest + per-record hashes. (Optional later: sign artifacts.)
+
+Reliability
+- Idempotency: retries must not create duplicate decisions; request_id is used as an idempotency key for tool retries.
+- Failure modes (MVP): define behavior for SQLite locked, disk full, and partial export failure (retry-safe, fail loud).
+- Recovery: define backup/restore for SQLite (frequency + restore steps) and confirm Graph Release rollback path (redeploy prior known-good artifact).
+
+Operational excellence
+- Observability: every event/decision/correction includes actor identity fields and timestamps; exports include manifest metadata (counts, hashes, inputs).
+- Runbooks: document how to re-run export, backfill state projection, and run escalation for stale needs_clarification items.
+
+Performance/scalability
+- MVP boundaries: assume one writer to SQLite and short transactions; enable WAL mode and set busy timeout/retry.
+- Indexing: at minimum index submission_id, current_state, created_at_ms, and active terminal decision pointers.
+
+Cost optimization
+- SQLite + batch Graph Releases minimize operational overhead for MVP.
+- Trigger to migrate to Postgres: multiple service instances writing concurrently, stronger HA requirements, or sustained write contention.
+
+Sustainability (optional)
+- Prefer batch releases and minimal always-on infrastructure in MVP; revisit once volume and uptime targets are defined.
 
 ## Contract decisions to lock (D1/D2/D3)
 
@@ -307,8 +343,9 @@ approved_hitl_release_<date>__<gitsha>.zip
 
 ## Next steps
 1) Get manager responses below.
-2) Update this doc if needed.
-3) Proceed with implementation PRs per issue.
+2) Define the redaction policy (TBD): what is allowed in notes/context, what must be masked, and retention windows.
+3) Update this doc if needed.
+4) Proceed with implementation PRs per issue.
 
 ## Manager response (copy/paste)
 Please reply by copying this block and filling in blanks.

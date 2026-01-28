@@ -4,7 +4,8 @@ on:
   issues:
     types: [opened, reopened, closed]
   pull_request:
-    types: [opened, reopened, closed]
+    # synchronize = new commits pushed to an existing PR
+    types: [opened, reopened, synchronize, closed]
   workflow_dispatch:
     inputs:
       dry_run:
@@ -235,31 +236,59 @@ jobs:
               if (!todoOpt?.id) throw new Error('Missing required Status option "Todo" in Project');
               const importanceField = findFieldByName(fields, "Importance");
 
-              async function backfillConnection(kind) {
+              async function backfillIssues() {
                 let cursor = null;
                 while (true) {
                   const q = `
                     query($owner: String!, $repo: String!, $cursor: String) {
                       repository(owner: $owner, name: $repo) {
-                        ${kind}(states: OPEN, first: 100, after: $cursor) {
-                          nodes {
-                            id
-                            ... on PullRequest { commits { totalCount } }
-                          }
+                        issues(states: OPEN, first: 100, after: $cursor) {
+                          nodes { id }
                           pageInfo { hasNextPage endCursor }
                         }
                       }
                     }
                   `;
                   const data = await github.graphql(q, { owner, repo, cursor });
-                  const conn = data?.repository?.[kind];
+                  const conn = data?.repository?.issues;
+                  const nodes = conn?.nodes || [];
+                  for (const n of nodes) {
+                    const contentId = n?.id;
+                    if (!contentId) continue;
+                    const itemId = await ensureProjectItemForContent(projectId, contentId);
+                    if (itemId !== "DRY_RUN_ITEM_ID") {
+                      await setSingleSelect(projectId, itemId, statusField.id, todoOpt.id);
+                      if (importanceField?.id && importanceField?.dataType === "TEXT") {
+                        await setText(projectId, itemId, importanceField.id, "P2");
+                      }
+                    }
+                  }
+                  if (!conn?.pageInfo?.hasNextPage) break;
+                  cursor = conn?.pageInfo?.endCursor;
+                }
+              }
+
+              async function backfillPullRequests() {
+                let cursor = null;
+                while (true) {
+                  const q = `
+                    query($owner: String!, $repo: String!, $cursor: String) {
+                      repository(owner: $owner, name: $repo) {
+                        pullRequests(states: OPEN, first: 100, after: $cursor) {
+                          nodes { id commits { totalCount } }
+                          pageInfo { hasNextPage endCursor }
+                        }
+                      }
+                    }
+                  `;
+                  const data = await github.graphql(q, { owner, repo, cursor });
+                  const conn = data?.repository?.pullRequests;
                   const nodes = conn?.nodes || [];
                   for (const n of nodes) {
                     const contentId = n?.id;
                     if (!contentId) continue;
                     const itemId = await ensureProjectItemForContent(projectId, contentId);
 
-                    // Treat PRs with commits as "In Progress".
                     const hasCommits = (n?.commits?.totalCount ?? 0) > 0;
                     const statusOpt = hasCommits ? findOptionByName(statusField, "In Progress") : todoOpt;
 
@@ -275,8 +304,8 @@ jobs:
                 }
               }
 
-              await backfillConnection("issues");
-              await backfillConnection("pullRequests");
+              await backfillIssues();
+              await backfillPullRequests();
             }
 
             if (eventName === "workflow_dispatch") {

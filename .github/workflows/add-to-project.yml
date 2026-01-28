@@ -2,7 +2,7 @@ name: Add issues/PRs to Backlog project
 
 on:
   issues:
-    types: [opened, reopened, closed]
+    types: [opened, reopened, edited, closed]
   pull_request:
     # synchronize = new commits pushed to an existing PR
     types: [opened, reopened, synchronize, closed]
@@ -228,6 +228,47 @@ jobs:
               }
             }
 
+            async function ensureLinkedPRsInProject({ projectId, issueNumber, maxPRs = 200 }) {
+              // Best-effort: scan recent PRs and add any that link to this issue.
+              // GitHub only exposes strong issue<->PR linkage via closingIssuesReferences.
+              let cursor = null;
+              let seen = 0;
+
+              while (true) {
+                const q = `
+                  query($owner: String!, $repo: String!, $cursor: String) {
+                    repository(owner: $owner, name: $repo) {
+                      pullRequests(states: OPEN, first: 50, after: $cursor, orderBy: { field: UPDATED_AT, direction: DESC }) {
+                        nodes {
+                          id
+                          number
+                          closingIssuesReferences(first: 20) { nodes { number } }
+                        }
+                        pageInfo { hasNextPage endCursor }
+                      }
+                    }
+                  }
+                `;
+
+                const data = await github.graphql(q, { owner, repo, cursor });
+                const conn = data?.repository?.pullRequests;
+                const prs = conn?.nodes || [];
+
+                for (const pr of prs) {
+                  seen += 1;
+                  const closes = pr?.closingIssuesReferences?.nodes || [];
+                  const matches = closes.some((i) => i?.number === issueNumber);
+                  if (matches) {
+                    await ensureProjectItemForContent(projectId, pr.id);
+                  }
+                  if (seen >= maxPRs) return;
+                }
+
+                if (!conn?.pageInfo?.hasNextPage) return;
+                cursor = conn?.pageInfo?.endCursor;
+              }
+            }
+
             async function backfillOpen() {
               const { projectId, fields } = await getProject();
               const statusField = findFieldByName(fields, "Status");
@@ -324,13 +365,20 @@ jobs:
               const assigneeCount = Array.isArray(issue?.assignees) ? issue.assignees.length : 0;
               const issueNumber = typeof issue?.number === "number" ? issue.number : null;
 
-              await triageOne({
+              const { projectId } = await triageOne({
                 contentId,
                 labelNames,
                 desiredStatus,
                 maybeIssueNumber: issueNumber,
                 assigneeCount,
               });
+
+              // Best-effort: ensure linked PRs are also present in the Project.
+              // This makes the board show PRs alongside issues.
+              if (desiredStatus !== "Done") {
+                await ensureLinkedPRsInProject({ projectId, issueNumber, maxPRs: 200 });
+              }
+
               core.info(`Processed issue #${issueNumber} (status=${desiredStatus}, dry_run=${DRY_RUN}).`);
               return;
             }

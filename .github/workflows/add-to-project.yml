@@ -226,6 +226,8 @@ jobs:
                   await assignDefaultOwnerIfUnassigned(maybeIssueNumber);
                 }
               }
+
+              return { projectId };
             }
 
             async function ensureLinkedPRsInProject({ projectId, issueNumber, maxPRs = 200 }) {

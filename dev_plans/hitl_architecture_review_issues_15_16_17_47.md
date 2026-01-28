@@ -1,5 +1,16 @@
 # HITL Architecture Review (Bundle): Issues #15, #16, #17, #47
 
+## Table of contents
+- [Objective / decision](#objective--decision)
+- [Manager response (copy/paste)](#manager-response-copypaste)
+- [Decision summary (first-screen)](#decision-summary-first-screen)
+- [Scope](#scope)
+- [Architecture (high level)](#architecture-high-level)
+- [Decisions to lock (contract)](#decisions-to-lock-contract)
+- [Open questions](#open-questions-explicit)
+- [Definition of done](#definition-of-done)
+- [Next steps](#next-steps)
+
 ## Objective / decision
 **Objective:** Produce one coherent HITL architecture that makes approvals deterministic, storage reliable, and deployments/release pipelines trustworthy.
 
@@ -10,6 +21,12 @@ Please reply by copying this block and filling in blanks.
 
 **Overall**
 - Approve this HITL architecture bundle as the contract for Issues #15/#16/#17/#47? (YES/NO): ____
+
+## Decision summary (first-screen)
+If you only read one section, read this.
+- D1 (Issue #15): Deterministic review decisions with outcomes `approved | rejected | needs_clarification`; first terminal wins; corrections via explicit superseding event.
+- D2 (Issue #17/#47): SQLite as MVP source of truth with append-only events + transactional state table projection.
+- D3 (Issue #16): Batch Graph Releases only (no online Neo4j writes per approval); approved dataset exported as deterministic bundle w/ manifest + hashes.
 
 **Issue #15 — Review determinism**
 - Outcomes enum: `approved | rejected | needs_clarification` (YES/NO): ____
@@ -125,7 +142,7 @@ Treating them as a single architecture review avoids inconsistent local fixes th
 
 ---
 
-## Decisions to lock (recommendations)
+## Decisions to lock (contract)
 
 ### D1) Decision contract (Issue #15)
 **Persisted outcomes:** `approved | rejected | needs_clarification` (lowercase enums).
@@ -250,6 +267,13 @@ If/when you need multiple service instances writing concurrently or stronger HA/
 - For Neo4j Aura in prod: prefer blue/green cutover; rollback is a fast URI/secret flip.
 
 ---
+
+## Definition of done
+This architecture bundle is “done” when:
+- the D1/D2/D3 contract sections are ratified, and
+- each of #15/#16/#17/#47 references this doc as the shared contract.
+
+Implementation then proceeds in small PRs per issue.
 
 ## Implications / how this changes our workflow
 

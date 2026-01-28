@@ -197,6 +197,90 @@ D3. KG update + release model (Issue 16)
 - KG application model (MVP): batch Graph Releases only (no online Neo4j writes per approval).
 - Rejections are persisted as negative context/evidence (not just dropped).
 
+Proposed Neo4j schema extension (future; NOT in MVP)
+Goal: show how HITL becomes graph provenance and how MDM mappings can be superseded while preserving history.
+
+Current core (as-is)
+Nodes
+- System(code indexed)
+- Assembly(code indexed)
+- Component(code indexed)
+- Vendor(code indexed)
+- VendorPart(part indexed)
+
+Relationships
+- Assembly -PART_OF-> System
+- Component -PART_OF-> Assembly
+- Vendor -MANUFACTURES-> VendorPart
+- VendorPart -MAPS_TO-> Component
+
+Proposed additions for HITL + MDM (recommended)
+Key design choice: reify mappings as nodes so HITL can attach to “the mapping” and preserve superseding history.
+
+New nodes
+- VendorPartComponentMapping
+  - mapping_id (unique/indexed)
+  - status active|superseded
+  - created_at_ms
+  - submission_id (HITL id)
+  - decision_event_id (terminal decision)
+  - reason (short)
+- HITLSubmission
+  - submission_id (unique/indexed)
+  - schema_version
+  - type correction|addition|context|question
+  - submitted_at_ms
+  - pipeline_step
+  - source_system
+  - source_record_id (opt)
+  - vmrs_code
+  - description
+  - context
+  - related_query
+  - payload_hash
+- HITLDecisionEvent
+  - event_id (unique/indexed)
+  - created_at_ms
+  - outcome approved|rejected|needs_clarification
+  - notes (required)
+  - question (required if needs_clarification)
+  - supersedes_event_id (opt)
+  - terminal bool
+- Actor
+  - actor_id (employee id in prod; opt in MVP)
+  - name, role, team (opt)
+  - actor_kind operator|agent|system
+
+New relationships
+- VendorPart -HAS_MAPPING-> VendorPartComponentMapping -TO_COMPONENT-> Component
+- HITLSubmission -PROPOSES_MAPPING-> VendorPartComponentMapping
+- HITLDecisionEvent -FOR_SUBMISSION-> HITLSubmission
+- HITLDecisionEvent -DECIDES_MAPPING-> VendorPartComponentMapping
+- HITLDecisionEvent -ACTED_BY-> Actor
+- HITLSubmission -SUBMITTED_BY-> Actor
+- HITLDecisionEvent -SUPERSEDES-> HITLDecisionEvent (corrections)
+
+Proposed relationship summary
+
+System
+  ^
+  | PART_OF
+Assembly
+  ^
+  | PART_OF
+Component  <-- TO_COMPONENT --  VendorPartComponentMapping  -- HAS_MAPPING -->  VendorPart  <-- MANUFACTURES -- Vendor
+
+HITLSubmission -- PROPOSES_MAPPING --> VendorPartComponentMapping
+HITLDecisionEvent -- FOR_SUBMISSION --> HITLSubmission
+HITLDecisionEvent -- DECIDES_MAPPING --> VendorPartComponentMapping
+HITLSubmission / HITLDecisionEvent -- (SUBMITTED_BY/ACTED_BY) --> Actor
+HITLDecisionEvent -- SUPERSEDES --> HITLDecisionEvent
+
+Rationale (why this model)
+- Reified mapping nodes make it easy to attach: (a) approval provenance, (b) rejection reasons, (c) superseding history.
+- Batch Graph Releases can materialize only active mappings while keeping the full evidence trail for audit.
+- This does not force MVP complexity: MVP truth stays in SQLite; Neo4j is a later projection.
+
 Approved dataset export (release input)
 - Format: zipped bundle containing manifest + per-record JSON + hashes.
 - At export time, finalize the exact KG changes to apply:

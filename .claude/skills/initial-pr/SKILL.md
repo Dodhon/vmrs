@@ -1,9 +1,9 @@
 ---
 name: initial-pr
-description: Create the initial branch + dev plan + PR draft for a GitHub issue (vmrs). 
+description: Create the initial branch + repo-grounded dev plan + PR draft for a GitHub issue (vmrs).
 ---
 
-# Initial PR skill (issue → branch → plan → PR draft)
+# Initial PR skill (issue → recon → branch → plan → PR draft)
 
 ## When to use this skill (critical)
 Use this skill **only** when starting work on a **new issue from scratch**:
@@ -31,8 +31,24 @@ git fetch origin
 git branch -a | grep -E "issue/<N>-|issue/<N>\\b|<N>-"
 ```
 
-## 1) Create a new branch
+## 1) Repo recon (required for plan PRs)
+Goal: ensure the plan reflects **current reality** (avoid proposing duplicate CI, wrong entrypoints, etc.).
 
+Minimum recon:
+```bash
+# Workflows / CI / automation
+ls -la .github/workflows || true
+
+# Existing plans (look for prior decisions)
+ls -la dev_plans | sed -n '1,120p'
+
+# Locate likely relevant code paths
+ls -la mcp src tests "interface prompts" 2>/dev/null || true
+```
+
+Record the results in the plan as a **“Current repo state (as of plan creation)”** section with concrete file references.
+
+## 2) Create a new branch
 ```bash
 git fetch origin
 git checkout main
@@ -40,20 +56,30 @@ git pull --ff-only
 git checkout -b "<branch-name>"
 ```
 
-## 2) Draft a plan (MUST follow `.claude/skills/planning/SKILL.md`)
-
+## 3) Draft a plan (MUST follow `.claude/skills/planning/SKILL.md`)
 ### Create a plan file in `dev_plans/`
-Create a new plan markdown file under `dev_plans/` (name is up to you).
+Create a new plan markdown file under `dev_plans/`.
+
+**Required sections (minimum bar):**
+- Links (Issue + key repo files)
+- Goal + Non-goals
+- **Current repo state (repo-grounded)** (from Step 1)
+- Proposed approach + decision gates
+- Work breakdown + validation plan
 
 ### Gather issue context (recommended)
-Use `gh` to pull the issue description/comments (see `.claude/skills/github-cli-workflow/SKILL.md`).
+Use `gh` to pull the issue description/comments.
 
-Also check the Backlog Project item `Status` for the issue/PR (project fields don’t show up in `gh issue list` / `gh pr list`).
+## 4) Create and publish a draft PR based on the plan (required)
+- Use the repo PR template (minimum bar) as a checklist.
+- PR body must include **Related: #<N>** (or **Fixes/Closes #<N>** only when you intend auto-close).
 
-## 3) Create a draft PR based on the plan (allowed)
-
-Use the PR drafting guidance/template in `.claude/skills/github-cli-workflow/SKILL.md` and ensure the PR is derived from (and links to) the plan you wrote in Step 2.
+Create a draft PR immediately after the plan is written:
+```bash
+gh pr create --repo Dodhon/vmrs --draft \
+  --title "Plan: <short title> (Issue #<N>)" \
+  --body-file <path-to-body-file>
+```
 
 Notes:
-- It’s **OK to create a draft PR** (use `gh pr create --draft`).
 - Do **not** create a ready-for-review PR without approval.
